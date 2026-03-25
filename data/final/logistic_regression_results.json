@@ -1,0 +1,100 @@
+{
+  "model_fit": {
+    "n": 2199,
+    "n_events": 551,
+    "pseudo_r2_mcfadden": 0.2685,
+    "auc_roc": 0.8452,
+    "lr_chi2": 664.71,
+    "lr_pval": 0.0
+  },
+  "threshold_0_30": {
+    "sensitivity": 0.7132,
+    "specificity": 0.8052,
+    "accuracy": 0.7822
+  },
+  "odds_ratios": {
+    "pct_black": {
+      "OR": 1.0307,
+      "ci_low": 1.0252,
+      "ci_high": 1.0361,
+      "p_value": 0.0
+    },
+    "pct_hispanic": {
+      "OR": 1.0022,
+      "ci_low": 0.9945,
+      "ci_high": 1.01,
+      "p_value": 0.5797
+    },
+    "pct_limited_english": {
+      "OR": 1.0031,
+      "ci_low": 0.988,
+      "ci_high": 1.0184,
+      "p_value": 0.6879
+    },
+    "pct_disability": {
+      "OR": 0.943,
+      "ci_low": 0.9182,
+      "ci_high": 0.9685,
+      "p_value": 0.0
+    },
+    "pct_elderly_65_plus": {
+      "OR": 1.0145,
+      "ci_low": 0.9937,
+      "ci_high": 1.0356,
+      "p_value": 0.173
+    },
+    "pct_children_under_18": {
+      "OR": 1.0094,
+      "ci_low": 0.9906,
+      "ci_high": 1.0284,
+      "p_value": 0.3296
+    },
+    "log_income": {
+      "OR": 0.2928,
+      "ci_low": 0.1827,
+      "ci_high": 0.4692,
+      "p_value": 0.0
+    },
+    "pct_overcrowded_renter": {
+      "OR": 1.0087,
+      "ci_low": 0.9958,
+      "ci_high": 1.0217,
+      "p_value": 0.1868
+    },
+    "pct_poverty_under_100": {
+      "OR": 1.0382,
+      "ci_low": 1.0213,
+      "ci_high": 1.0554,
+      "p_value": 0.0
+    },
+    "Brooklyn": {
+      "OR": 0.5511,
+      "ci_low": 0.3718,
+      "ci_high": 0.817,
+      "p_value": 0.003
+    },
+    "Manhattan": {
+      "OR": 0.2236,
+      "ci_low": 0.1291,
+      "ci_high": 0.3871,
+      "p_value": 0.0
+    },
+    "Queens": {
+      "OR": 0.47,
+      "ci_low": 0.3142,
+      "ci_high": 0.7031,
+      "p_value": 0.0002
+    },
+    "Staten Island": {
+      "OR": 0.2098,
+      "ci_low": 0.0917,
+      "ci_high": 0.4803,
+      "p_value": 0.0002
+    }
+  },
+  "policy_numbers": {
+    "OR_black_per_10pp": 1.353,
+    "OR_poverty_per_10pp": 1.454,
+    "OR_income_doubled": 0.427
+  }
+}

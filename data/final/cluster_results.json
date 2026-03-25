@@ -1,0 +1,114 @@
+{
+  "k": 5,
+  "kruskal_wallis": {
+    "H": 1694.5,
+    "p": 0.0
+  },
+  "cluster_profiles": [
+    {
+      "cluster": 1,
+      "name": "Low Risk \u2014 Affluent & Low Exposure",
+      "policy_lever": "No immediate intervention required.",
+      "n_tracts": 329,
+      "pct_of_tracts": 15.0,
+      "pct_cooling_desert": 0.0,
+      "mean_cdi": 15.7,
+      "mean_hvi": 1.48,
+      "mean_rent_burden": 17.5,
+      "mean_income": 164537.0,
+      "mean_pct_black": 5.2,
+      "mean_lep": 3.1,
+      "mean_disability": 7.4,
+      "mean_overcrowding": 4.3,
+      "top_boroughs": {
+        "Manhattan": 0.44984802431610943,
+        "Brooklyn": 0.3130699088145897,
+        "Queens": 0.1398176291793313
+      }
+    },
+    {
+      "cluster": 2,
+      "name": "Moderate Risk \u2014 Financially Strained",
+      "policy_lever": "Monitor; rent stabilization and income support.",
+      "n_tracts": 647,
+      "pct_of_tracts": 29.4,
+      "pct_cooling_desert": 4.6,
+      "mean_cdi": 31.6,
+      "mean_hvi": 2.38,
+      "mean_rent_burden": 30.1,
+      "mean_income": 92951.0,
+      "mean_pct_black": 7.6,
+      "mean_lep": 10.2,
+      "mean_disability": 10.7,
+      "mean_overcrowding": 7.9,
+      "top_boroughs": {
+        "Queens": 0.46986089644513135,
+        "Brooklyn": 0.21638330757341576,
+        "Staten Island": 0.1205564142194745
+      }
+    },
+    {
+      "cluster": 3,
+      "name": "High Risk \u2014 Immigrant Heat Burden",
+      "policy_lever": "Multilingual cooling outreach; overcrowding enforcement.",
+      "n_tracts": 441,
+      "pct_of_tracts": 20.1,
+      "pct_cooling_desert": 27.0,
+      "mean_cdi": 42.9,
+      "mean_hvi": 3.32,
+      "mean_rent_burden": 34.6,
+      "mean_income": 69479.0,
+      "mean_pct_black": 6.6,
+      "mean_lep": 26.0,
+      "mean_disability": 9.6,
+      "mean_overcrowding": 25.4,
+      "top_boroughs": {
+        "Brooklyn": 0.48072562358276644,
+        "Queens": 0.3832199546485261,
+        "Bronx": 0.11564625850340136
+      }
+    },
+    {
+      "cluster": 4,
+      "name": "High Risk \u2014 Racial Heat Burden",
+      "policy_lever": "Targeted AC retrofit programs; tree canopy investment.",
+      "n_tracts": 461,
+      "pct_of_tracts": 21.0,
+      "pct_cooling_desert": 46.4,
+      "mean_cdi": 53.7,
+      "mean_hvi": 4.47,
+      "mean_rent_burden": 30.0,
+      "mean_income": 82631.0,
+      "mean_pct_black": 64.8,
+      "mean_lep": 4.4,
+      "mean_disability": 11.1,
+      "mean_overcrowding": 9.1,
+      "top_boroughs": {
+        "Brooklyn": 0.5466377440347071,
+        "Queens": 0.26898047722342733,
+        "Bronx": 0.1193058568329718
+      }
+    },
+    {
+      "cluster": 5,
+      "name": "Extreme Risk \u2014 Compound Deprivation",
+      "policy_lever": "Emergency cooling access; NYCHA surcharge waiver; disability-adapted outreach.",
+      "n_tracts": 321,
+      "pct_of_tracts": 14.6,
+      "pct_cooling_desert": 58.6,
+      "mean_cdi": 54.1,
+      "mean_hvi": 4.25,
+      "mean_rent_burden": 35.6,
+      "mean_income": 43691.0,
+      "mean_pct_black": 32.5,
+      "mean_lep": 15.9,
+      "mean_disability": 20.6,
+      "mean_overcrowding": 10.9,
+      "top_boroughs": {
+        "Bronx": 0.5451713395638629,
+        "Brooklyn": 0.19314641744548286,
+        "Manhattan": 0.14330218068535824
+      }
+    }
+  ]
+}

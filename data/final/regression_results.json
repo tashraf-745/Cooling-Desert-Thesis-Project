@@ -1,0 +1,114 @@
+{
+  "model_1": {
+    "r2": 0.2899,
+    "adj_r2": 0.2893,
+    "f_stat": 454.55,
+    "f_pval": 0.0,
+    "n": 2199
+  },
+  "model_2": {
+    "r2": 0.5667,
+    "adj_r2": 0.5657,
+    "r2_gain_from_m1": 0.2768,
+    "f_change": 466.89,
+    "f_change_pval": 0.0
+  },
+  "model_3": {
+    "r2": 0.6481,
+    "adj_r2": 0.6462,
+    "r2_gain_from_m2": 0.0814,
+    "coefficients": {
+      "const": {
+        "coef": 8.9698,
+        "ci_low": 7.5658,
+        "ci_high": 10.3738,
+        "p_value": 0.0,
+        "std_beta": 0.0
+      },
+      "log_income": {
+        "coef": -0.6408,
+        "ci_low": -0.7531,
+        "ci_high": -0.5284,
+        "p_value": 0.0,
+        "std_beta": -0.3206
+      },
+      "pct_black": {
+        "coef": 0.0276,
+        "ci_low": 0.026,
+        "ci_high": 0.0291,
+        "p_value": 0.0,
+        "std_beta": 0.7256
+      },
+      "pct_hispanic": {
+        "coef": 0.0012,
+        "ci_low": -0.0012,
+        "ci_high": 0.0037,
+        "p_value": 0.3256,
+        "std_beta": 0.0272
+      },
+      "pct_limited_english": {
+        "coef": 0.0101,
+        "ci_low": 0.0053,
+        "ci_high": 0.0149,
+        "p_value": 0.0,
+        "std_beta": 0.1095
+      },
+      "pct_rent_burden_50_plus": {
+        "coef": 0.0052,
+        "ci_low": 0.0024,
+        "ci_high": 0.0079,
+        "p_value": 0.0003,
+        "std_beta": 0.0702
+      },
+      "pct_disability": {
+        "coef": -0.002,
+        "ci_low": -0.0137,
+        "ci_high": 0.0096,
+        "p_value": 0.7327,
+        "std_beta": -0.0119
+      },
+      "pct_overcrowded_renter": {
+        "coef": 0.0093,
+        "ci_low": 0.0055,
+        "ci_high": 0.013,
+        "p_value": 0.0,
+        "std_beta": 0.0983
+      },
+      "pct_elderly_65_plus": {
+        "coef": -0.014,
+        "ci_low": -0.0197,
+        "ci_high": -0.0083,
+        "p_value": 0.0,
+        "std_beta": -0.1088
+      },
+      "Bronx": {
+        "coef": 1.0111,
+        "ci_low": 0.8301,
+        "ci_high": 1.1921,
+        "p_value": 0.0,
+        "std_beta": 0.3652
+      },
+      "Brooklyn": {
+        "coef": 0.8024,
+        "ci_low": 0.6724,
+        "ci_high": 0.9324,
+        "p_value": 0.0,
+        "std_beta": 0.3827
+      },
+      "Queens": {
+        "coef": 0.6608,
+        "ci_low": 0.5349,
+        "ci_high": 0.7867,
+        "p_value": 0.0,
+        "std_beta": 0.3049
+      },
+      "Staten Island": {
+        "coef": -0.266,
+        "ci_low": -0.4372,
+        "ci_high": -0.0948,
+        "p_value": 0.0023,
+        "std_beta": -0.06
+      }
+    }
+  }
+}

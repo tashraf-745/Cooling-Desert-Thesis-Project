@@ -1,0 +1,155 @@
+{
+  "weights": {
+    "HVI_RANK": 0.25,
+    "pct_rent_burden_50_plus": 0.2,
+    "median_household_income": 0.2,
+    "pct_black": 0.15,
+    "pct_limited_english": 0.08,
+    "pct_disability": 0.07,
+    "pct_overcrowded_renter": 0.05
+  },
+  "normalization_params": {
+    "HVI_RANK": {
+      "min": 1.0,
+      "max": 5.0,
+      "inverted": false
+    },
+    "pct_rent_burden_50_plus": {
+      "min": 0.0,
+      "max": 100.0,
+      "inverted": false
+    },
+    "pct_limited_english": {
+      "min": 0.0,
+      "max": 64.22,
+      "inverted": false
+    },
+    "pct_disability": {
+      "min": 0.0,
+      "max": 77.88,
+      "inverted": false
+    },
+    "median_household_income": {
+      "min": 11094.0,
+      "max": 250001.0,
+      "inverted": true
+    },
+    "pct_overcrowded_renter": {
+      "min": 0.0,
+      "max": 100.0,
+      "inverted": false
+    },
+    "pct_black": {
+      "min": 0.0,
+      "max": 96.86,
+      "inverted": false
+    }
+  },
+  "validation": {
+    "n_tracts": 2199,
+    "n_deserts": 551,
+    "desert_mean_cdi": 55.62,
+    "non_desert_mean_cdi": 34.01,
+    "gap_points": 21.61,
+    "mann_whitney_p": 2.997881242412501e-200,
+    "auc_roc": 0.9287
+  },
+  "cdi_range": {
+    "min": 2.88,
+    "max": 72.03,
+    "mean": 39.42,
+    "std": 15.14
+  },
+  "top_10_highest_risk_tracts": [
+    {
+      "GEOID": "36005039800",
+      "borough": "Bronx",
+      "CDI": 72.03,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 71.23,
+      "pct_black": 76.64
+    },
+    {
+      "GEOID": "36005038500",
+      "borough": "Bronx",
+      "CDI": 69.88,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 72.91,
+      "pct_black": 40.05
+    },
+    {
+      "GEOID": "36081097202",
+      "borough": "Queens",
+      "CDI": 69.65,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 46.77,
+      "pct_black": 85.43
+    },
+    {
+      "GEOID": "36047090000",
+      "borough": "Brooklyn",
+      "CDI": 69.0,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 50.4,
+      "pct_black": 81.97
+    },
+    {
+      "GEOID": "36005013100",
+      "borough": "Bronx",
+      "CDI": 68.66,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 61.53,
+      "pct_black": 44.67
+    },
+    {
+      "GEOID": "36047088400",
+      "borough": "Brooklyn",
+      "CDI": 68.45,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 57.6,
+      "pct_black": 76.48
+    },
+    {
+      "GEOID": "36005005300",
+      "borough": "Bronx",
+      "CDI": 67.83,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 56.55,
+      "pct_black": 58.03
+    },
+    {
+      "GEOID": "36005036400",
+      "borough": "Bronx",
+      "CDI": 67.55,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 64.02,
+      "pct_black": 77.26
+    },
+    {
+      "GEOID": "36005015100",
+      "borough": "Bronx",
+      "CDI": 67.48,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 45.88,
+      "pct_black": 59.61
+    },
+    {
+      "GEOID": "36005004100",
+      "borough": "Bronx",
+      "CDI": 66.97,
+      "is_cooling_desert": 1,
+      "HVI_RANK": 5.0,
+      "pct_rent_burden_50_plus": 58.31,
+      "pct_black": 33.69
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "global_morans_I": {
+    "I": 0.8672,
+    "EI": -0.0005,
+    "z_score": 71.86,
+    "p_value": 0.001,
+    "n_permutations": 999,
+    "interpretation": "Extremely strong positive spatial autocorrelation. High-CDI tracts cluster together; p=0.001 is the minimum possible with 999 permutations."
+  },
+  "lisa_summary": {
+    "HH": {
+      "n": 582,
+      "pct": 26.5,
+      "mean_cdi": 56.86,
+      "pct_cooling_desert": 60.7
+    },
+    "LL": {
+      "n": 516,
+      "pct": 23.5,
+      "mean_cdi": 19.71,
+      "pct_cooling_desert": 0.0
+    },
+    "HL": {
+      "n": 5,
+      "pct": 0.2,
+      "mean_cdi": 40.96,
+      "pct_cooling_desert": 0.0
+    },
+    "LH": {
+      "n": 1,
+      "pct": 0.0,
+      "mean_cdi": 37.16,
+      "pct_cooling_desert": 0.0
+    },
+    "NS": {
+      "n": 1095,
+      "pct": 49.8,
+      "mean_cdi": 39.44,
+      "pct_cooling_desert": 18.1
+    }
+  },
+  "policy_note": "HH zones (582 tracts, 26.5%) are the geographically contiguous priority intervention areas. 66% of Bronx tracts are HH. 5 isolated HL tracts need individual attention outside any geographic targeting program."
+}

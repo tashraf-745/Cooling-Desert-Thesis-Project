@@ -1,0 +1,154 @@
+{
+  "RQ4_temperature": {
+    "desert_mean_temp_f": 86.565,
+    "non_desert_mean_temp_f": 86.4,
+    "difference_f": 0.166,
+    "mann_whitney_p": 0.0002,
+    "pct_deserts_above_86f": 88.6,
+    "finding": "89% of cooling desert tracts have baseline temp \u2265 86\u00b0F. Cooling deserts face dangerous heat on ordinary summer days, not just during declared emergencies."
+  },
+  "RQ5_access_gap": {
+    "total_cooling_deserts": 551,
+    "covered_pct": 55.4,
+    "uncovered_pct": 44.6,
+    "uncovered_by_borough": {
+      "Bronx": {
+        "uncovered": 29,
+        "total_cd": 183,
+        "pct_uncovered": 15.8
+      },
+      "Brooklyn": {
+        "uncovered": 130,
+        "total_cd": 220,
+        "pct_uncovered": 59.1
+      },
+      "Manhattan": {
+        "uncovered": 2,
+        "total_cd": 28,
+        "pct_uncovered": 7.1
+      },
+      "Queens": {
+        "uncovered": 76,
+        "total_cd": 111,
+        "pct_uncovered": 68.5
+      },
+      "Staten Island": {
+        "uncovered": 9,
+        "total_cd": 9,
+        "pct_uncovered": 100.0
+      }
+    },
+    "finding": "45% of confirmed cooling desert tracts have no Cool It! site within 0.5 miles. Queens 68%, Staten Island 100%, Brooklyn 59% of cooling deserts are uncovered."
+  },
+  "RQ6_NYCHA_vs_private": {
+    "n_nycha_tracts": 156,
+    "n_private_tracts": 2043,
+    "comparisons": {
+      "CDI": {
+        "nycha_median": 52.95,
+        "private_median": 39.55,
+        "diff": 13.41,
+        "p": 0.0
+      },
+      "HVI": {
+        "nycha_median": 4.0,
+        "private_median": 3.0,
+        "diff": 1.0,
+        "p": 0.0
+      },
+      "rent_burden": {
+        "nycha_median": 26.52,
+        "private_median": 29.15,
+        "diff": -2.62,
+        "p": 0.0174
+      },
+      "income": {
+        "nycha_median": 41130.0,
+        "private_median": 84927.0,
+        "diff": -43797.0,
+        "p": 0.0
+      }
+    },
+    "finding": "NYCHA tracts: CDI=53.0 vs private=39.5 (+13.4pts, p<0.001). NYCHA income is $41K vs $85K but rent burden is LOWER \u2014 confirming the hidden constraint is energy costs, not rent."
+  },
+  "RQ7_language": {
+    "kw_H": 76.4,
+    "kw_p": 0.0,
+    "high_lep_median_cdi": 43.1,
+    "low_lep_median_cdi": 28.5,
+    "gap": 14.7,
+    "finding": "High-LEP tracts have +14.7 higher median CDI (p<0.001)."
+  },
+  "RQ8_disability": {
+    "disability_in_desert_median": 12.3,
+    "disability_outside_desert_median": 10.0,
+    "mann_whitney_p": 0.0,
+    "finding": "Disability is significantly higher inside cooling deserts (12.3% vs 10.0%). It compounds risk within deserts but does not predict where they form (logistic regression p=0.73)."
+  },
+  "RQ10_age": {
+    "elderly": {
+      "high_elderly_cd_pct": 19.3,
+      "low_elderly_cd_pct": 27.0,
+      "triple_compound_tracts": 73,
+      "note": "Elderly tracts have LOWER CDI \u2014 older neighborhoods are more financially stable."
+    },
+    "children": {
+      "high_children_cd_pct": 38.2,
+      "low_children_cd_pct": 20.7,
+      "triple_compound_tracts": 127,
+      "note": "Child-concentrated tracts: 38% cooling desert rate vs 21% citywide."
+    }
+  },
+  "borough_summary": {
+    "Bronx": {
+      "n_tracts": 339,
+      "mean_cdi": 52.1,
+      "median_hvi": 5.0,
+      "median_rent_burden_50": 34.7,
+      "median_income": 50243.0,
+      "median_lep": 13.8,
+      "median_disability": 15.5,
+      "pct_cooling_desert": 54.0
+    },
+    "Brooklyn": {
+      "n_tracts": 769,
+      "mean_cdi": 42.1,
+      "median_hvi": 4.0,
+      "median_rent_burden_50": 28.6,
+      "median_income": 79773.0,
+      "median_lep": 6.3,
+      "median_disability": 9.9,
+      "pct_cooling_desert": 28.6
+    },
+    "Manhattan": {
+      "n_tracts": 298,
+      "mean_cdi": 25.9,
+      "median_hvi": 1.0,
+      "median_rent_burden_50": 25.0,
+      "median_income": 121760.0,
+      "median_lep": 3.2,
+      "median_disability": 9.7,
+      "pct_cooling_desert": 9.4
+    },
+    "Queens": {
+      "n_tracts": 675,
+      "mean_cdi": 38.0,
+      "median_hvi": 3.0,
+      "median_rent_burden_50": 27.9,
+      "median_income": 88882.0,
+      "median_lep": 11.3,
+      "median_disability": 9.7,
+      "pct_cooling_desert": 16.4
+    },
+    "Staten Island": {
+      "n_tracts": 118,
+      "mean_cdi": 28.1,
+      "median_hvi": 1.0,
+      "median_rent_burden_50": 32.3,
+      "median_income": 99305.0,
+      "median_lep": 5.3,
+      "median_disability": 10.0,
+      "pct_cooling_desert": 7.6
+    }
+  }
+}
