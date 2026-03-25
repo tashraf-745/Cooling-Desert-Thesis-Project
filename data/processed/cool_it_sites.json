@@ -1,0 +1,1528 @@
+[
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Newtown Barge Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9597827021,
+    "latitude":40.7359820507
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9349132864,
+    "latitude":40.7836316073
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9341482801,
+    "latitude":40.7833712249
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8298133948,
+    "latitude":40.5793258574
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8285849444,
+    "latitude":40.5796966182
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9316142301,
+    "latitude":40.782843756
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8272631525,
+    "latitude":40.5800633029
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Sgt. William Dougherty Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9370916968,
+    "latitude":40.7237791654
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8264370314,
+    "latitude":40.5802996103
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8248770601,
+    "latitude":40.5807689618
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8237194184,
+    "latitude":40.5810924541
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8227484585,
+    "latitude":40.5813369055
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8161749023,
+    "latitude":40.583167003
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8127105625,
+    "latitude":40.583990776
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8115733063,
+    "latitude":40.5842702534
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.809524099,
+    "latitude":40.5849872743
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8081883587,
+    "latitude":40.5854785925
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8064073727,
+    "latitude":40.5859389449
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8055029327,
+    "latitude":40.5860008685
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8046253145,
+    "latitude":40.5860750129
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8034129563,
+    "latitude":40.5861646383
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8021061845,
+    "latitude":40.5862567089
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.8010118435,
+    "latitude":40.5862689302
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.7746918703,
+    "latitude":40.5915582513
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Beach 17 Playground",
+    "borough":"Queens",
+    "longitude":-73.7500970945,
+    "latitude":40.5942618173
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.926067908,
+    "latitude":40.7837101269
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8422999223,
+    "latitude":40.7436012312
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8418790724,
+    "latitude":40.7430662511
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8400042324,
+    "latitude":40.7445614403
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.836680954,
+    "latitude":40.750350439
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8442601911,
+    "latitude":40.7455678608
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9167245398,
+    "latitude":40.7918840726
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8495551704,
+    "latitude":40.7418994219
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.850498749,
+    "latitude":40.7461413006
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.914905163,
+    "latitude":40.7927795181
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8519924791,
+    "latitude":40.7462282404
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9152871032,
+    "latitude":40.7933617606
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9198721637,
+    "latitude":40.7942120608
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Claremont Park",
+    "borough":"Bronx",
+    "longitude":-73.9069064321,
+    "latitude":40.8415121873
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Claremont Park",
+    "borough":"Bronx",
+    "longitude":-73.9080564435,
+    "latitude":40.8376861282
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"John Hancock Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9551164017,
+    "latitude":40.6822167832
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Fulton Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9338351923,
+    "latitude":40.6796450132
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Jackie Robinson Park Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9273434754,
+    "latitude":40.6803427043
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Thomas Boyland Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9073806366,
+    "latitude":40.6820897639
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Murray Playground",
+    "borough":"Queens",
+    "longitude":-73.948736609,
+    "latitude":40.7473918927
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Murray Playground",
+    "borough":"Queens",
+    "longitude":-73.9488465802,
+    "latitude":40.7470566073
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Murray Playground",
+    "borough":"Queens",
+    "longitude":-73.9478139301,
+    "latitude":40.7472740352
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Murray Playground",
+    "borough":"Queens",
+    "longitude":-73.9479480402,
+    "latitude":40.7468310511
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Queensbridge Park",
+    "borough":"Queens",
+    "longitude":-73.9478986867,
+    "latitude":40.7571444775
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Newtown Playground",
+    "borough":"Queens",
+    "longitude":-73.8696028744,
+    "latitude":40.736366746
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Maurice A FitzGerald Playground",
+    "borough":"Queens",
+    "longitude":-73.839240413,
+    "latitude":40.6904115563
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Detective Keith L Williams Park",
+    "borough":"Queens",
+    "longitude":-73.785215637,
+    "latitude":40.7041288855
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Mapes Pool",
+    "borough":"Bronx",
+    "longitude":-73.8866834873,
+    "latitude":40.8468681784
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Monsignor Raul Del Valle Square",
+    "borough":"Bronx",
+    "longitude":-73.8906305999,
+    "latitude":40.8207206834
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Pulaski Park",
+    "borough":"Bronx",
+    "longitude":-73.9252267632,
+    "latitude":40.8055143847
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Pulaski Park",
+    "borough":"Bronx",
+    "longitude":-73.9240455984,
+    "latitude":40.8051648349
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"People's Park",
+    "borough":"Bronx",
+    "longitude":-73.9170221052,
+    "latitude":40.8093464048
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Clark Playground",
+    "borough":"Bronx",
+    "longitude":-73.9211663844,
+    "latitude":40.8139788428
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Bathgate Playground",
+    "borough":"Bronx",
+    "longitude":-73.8944820115,
+    "latitude":40.8520890187
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9183771411,
+    "latitude":40.7933487709
+  },
+  {
+    "feature_type":"Hydrant Spray Cap",
+    "property_name":"Randall's Island Park",
+    "borough":"Manhattan",
+    "longitude":-73.9235754247,
+    "latitude":40.8012507144
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Eae J Mitchell Park",
+    "borough":"Bronx",
+    "longitude":-73.8841775471,
+    "latitude":40.8364856025
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Aqueduct Walk",
+    "borough":"Bronx",
+    "longitude":-73.9141954589,
+    "latitude":40.8511529855
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Bill Rainey Park",
+    "borough":"Bronx",
+    "longitude":-73.897061785,
+    "latitude":40.8196285372
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Tiffany Playground",
+    "borough":"Bronx",
+    "longitude":-73.8942104325,
+    "latitude":40.824806271
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Magenta Playground",
+    "borough":"Bronx",
+    "longitude":-73.8677542999,
+    "latitude":40.8737243697
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Rev J Polite Playground",
+    "borough":"Bronx",
+    "longitude":-73.8979042412,
+    "latitude":40.8267923847
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Watson Gleason Playground",
+    "borough":"Bronx",
+    "longitude":-73.8687728758,
+    "latitude":40.8276915733
+  },
+  {
+    "feature_type":"Ground Hydrant Spray Adapter",
+    "property_name":"Lyons Square Park",
+    "borough":"Bronx",
+    "longitude":-73.8881622222,
+    "latitude":40.8223599636
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Vidalia Park",
+    "borough":"Bronx",
+    "longitude":-73.8814331523,
+    "latitude":40.8441940601
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Vidalia Park",
+    "borough":"Bronx",
+    "longitude":-73.8816579217,
+    "latitude":40.8437890167
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Howard Bennett Playground",
+    "borough":"Manhattan",
+    "longitude":-73.938616683,
+    "latitude":40.8135247729
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Rev Lena Irons Unity Park",
+    "borough":"Bronx",
+    "longitude":-73.9065111509,
+    "latitude":40.8311662254
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Benjamin Gladstone Square",
+    "borough":"Bronx",
+    "longitude":-73.8909312295,
+    "latitude":40.825381205
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Sheltering Arms Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9553215853,
+    "latitude":40.8149684928
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Lt. Wm. Tighe Triangle",
+    "borough":"Manhattan",
+    "longitude":-73.9281351876,
+    "latitude":40.8658681935
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Highbridge Park",
+    "borough":"Manhattan",
+    "longitude":-73.9331271033,
+    "latitude":40.8442508247
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Washington Park",
+    "borough":"Bronx",
+    "longitude":-73.8932021902,
+    "latitude":40.8559749702
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Railroad Park",
+    "borough":"Bronx",
+    "longitude":-73.9152945112,
+    "latitude":40.8249892854
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Railroad Park",
+    "borough":"Bronx",
+    "longitude":-73.915578436,
+    "latitude":40.8251181987
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Rose Hill Park",
+    "borough":"Bronx",
+    "longitude":-73.8904359583,
+    "latitude":40.862089117
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Fox Playground",
+    "borough":"Bronx",
+    "longitude":-73.8983740357,
+    "latitude":40.8151633619
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Lozada Playground",
+    "borough":"Bronx",
+    "longitude":-73.9251795174,
+    "latitude":40.8077396426
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"D'Auria-Murphy Triangle",
+    "borough":"Bronx",
+    "longitude":-73.8890638765,
+    "latitude":40.8533003212
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Fred Samuel Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9394388047,
+    "latitude":40.8169427087
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"William McCray Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9376344459,
+    "latitude":40.815518704
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Marconi Park",
+    "borough":"Queens",
+    "longitude":-73.7954719498,
+    "latitude":40.6940265189
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Captain Rivera Playground",
+    "borough":"Bronx",
+    "longitude":-73.906925337,
+    "latitude":40.818102005
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Macombs Dam Park",
+    "borough":"Bronx",
+    "longitude":-73.9296595265,
+    "latitude":40.828325726
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Behagen Playground",
+    "borough":"Bronx",
+    "longitude":-73.9009976283,
+    "latitude":40.8254972683
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Nelson Playground",
+    "borough":"Bronx",
+    "longitude":-73.9269824088,
+    "latitude":40.8349079174
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Beanstalk Playground",
+    "borough":"Bronx",
+    "longitude":-73.9166954287,
+    "latitude":40.8540152432
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Gouverneur Playground",
+    "borough":"Bronx",
+    "longitude":-73.9032849327,
+    "latitude":40.8357742558
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Noble Playground",
+    "borough":"Bronx",
+    "longitude":-73.8725418969,
+    "latitude":40.8368891469
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Andrews Grove",
+    "borough":"Queens",
+    "longitude":-73.9549988401,
+    "latitude":40.7434245016
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Playground One Forty",
+    "borough":"Queens",
+    "longitude":-73.8009471555,
+    "latitude":40.6747706533
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Springfield Park",
+    "borough":"Queens",
+    "longitude":-73.7626476833,
+    "latitude":40.6598326343
+  },
+  {
+    "feature_type":"Ground Hydrant Spray Adapter",
+    "property_name":"Asser Levy Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9725998593,
+    "latitude":40.5754510771
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Nautilus Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.995959258,
+    "latitude":40.5717190673
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Lafayette Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9851385725,
+    "latitude":40.5950295741
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Irving Square Park",
+    "borough":"Brooklyn",
+    "longitude":-73.909748978,
+    "latitude":40.6920135564
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Carver Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9203898527,
+    "latitude":40.6804727366
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Lafayette Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9300399984,
+    "latitude":40.6924925198
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Detective Keith L Williams Park",
+    "borough":"Queens",
+    "longitude":-73.7850225184,
+    "latitude":40.7029658007
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Wayanda Park",
+    "borough":"Queens",
+    "longitude":-73.738668304,
+    "latitude":40.7108753075
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Pat Williams Playground",
+    "borough":"Queens",
+    "longitude":-73.729607711,
+    "latitude":40.7131571941
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Moore Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9387992179,
+    "latitude":40.8094669903
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Moore Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9385199763,
+    "latitude":40.809518868
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Howard Bennett Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9388960164,
+    "latitude":40.8139448205
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Mitchel Square",
+    "borough":"Manhattan",
+    "longitude":-73.9399211902,
+    "latitude":40.8401760069
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Robert L. Clinkscales Playground and Community Garden",
+    "borough":"Manhattan",
+    "longitude":-73.9399135296,
+    "latitude":40.8227511072
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Detective Keith L Williams Park",
+    "borough":"Queens",
+    "longitude":-73.7840514189,
+    "latitude":40.7031671776
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Courtney Callender Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9402802833,
+    "latitude":40.8100980048
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Courtney Callender Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9397860838,
+    "latitude":40.8101971375
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"James Weldon Johnson Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9418985614,
+    "latitude":40.7970569483
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Eleanor Roosevelt Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9357952371,
+    "latitude":40.6927108315
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Sternberg Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9476488673,
+    "latitude":40.7061198162
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Lafayette Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9850283924,
+    "latitude":40.5940744744
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Lewis Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9379584888,
+    "latitude":40.6953102736
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Dr. Ronald E. McNair Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9381848477,
+    "latitude":40.8025729492
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Dr. Ronald E. McNair Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9379893013,
+    "latitude":40.8024271561
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Haffen Park",
+    "borough":"Bronx",
+    "longitude":-73.8396014508,
+    "latitude":40.8727460257
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Haffen Park",
+    "borough":"Bronx",
+    "longitude":-73.8399058814,
+    "latitude":40.872917772
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Poe Park",
+    "borough":"Bronx",
+    "longitude":-73.8951464623,
+    "latitude":40.8645164744
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Joyce Kilmer Park",
+    "borough":"Bronx",
+    "longitude":-73.9220153827,
+    "latitude":40.8287375909
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Edenwald Playground",
+    "borough":"Bronx",
+    "longitude":-73.8451078798,
+    "latitude":40.8840779476
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Abigail Playground",
+    "borough":"Bronx",
+    "longitude":-73.9046802239,
+    "latitude":40.8172025346
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Slattery Playground",
+    "borough":"Bronx",
+    "longitude":-73.8986615932,
+    "latitude":40.8575270099
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Ranaqua Playground",
+    "borough":"Bronx",
+    "longitude":-73.9221992255,
+    "latitude":40.8067967462
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Joyce Kilmer Park",
+    "borough":"Bronx",
+    "longitude":-73.9230242015,
+    "latitude":40.8284341246
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Joyce Kilmer Park",
+    "borough":"Bronx",
+    "longitude":-73.9229758678,
+    "latitude":40.8275930332
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Bushwick Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9117067357,
+    "latitude":40.6958432261
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Ocean Hill Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9119566158,
+    "latitude":40.674583979
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Mott Playground",
+    "borough":"Bronx",
+    "longitude":-73.915032467,
+    "latitude":40.8311361537
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Grove Hill Playground",
+    "borough":"Bronx",
+    "longitude":-73.9085553674,
+    "latitude":40.8198776924
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Givan Square",
+    "borough":"Bronx",
+    "longitude":-73.8427691863,
+    "latitude":40.8681528054
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"St. Nicholas Park",
+    "borough":"Manhattan",
+    "longitude":-73.9467098915,
+    "latitude":40.8204748099
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Wakefield Playground",
+    "borough":"Bronx",
+    "longitude":-73.8543192446,
+    "latitude":40.9017326383
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Story Playground",
+    "borough":"Bronx",
+    "longitude":-73.8631264026,
+    "latitude":40.822526236
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Colgate Close",
+    "borough":"Bronx",
+    "longitude":-73.8817957009,
+    "latitude":40.8239825562
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Holcombe Rucker Park",
+    "borough":"Manhattan",
+    "longitude":-73.9360087636,
+    "latitude":40.8290110091
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Holcombe Rucker Park",
+    "borough":"Manhattan",
+    "longitude":-73.936265306,
+    "latitude":40.8293857343
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Carmansville Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9443668293,
+    "latitude":40.8291642637
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Springfield Park",
+    "borough":"Queens",
+    "longitude":-73.762876377,
+    "latitude":40.661053423
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Springfield Park",
+    "borough":"Queens",
+    "longitude":-73.7629166101,
+    "latitude":40.6609394818
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Delphin H. Greene Playground",
+    "borough":"Queens",
+    "longitude":-73.7287263129,
+    "latitude":40.6847409381
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Delphin H. Greene Playground",
+    "borough":"Queens",
+    "longitude":-73.7286780331,
+    "latitude":40.6846148337
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"St. Nicholas Playground South",
+    "borough":"Manhattan",
+    "longitude":-73.9474814118,
+    "latitude":40.810793716
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Martin Luther King Jr. Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9506684805,
+    "latitude":40.7998981593
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Cherry Tree Park",
+    "borough":"Manhattan",
+    "longitude":-73.9468698369,
+    "latitude":40.7874003803
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Frost Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.939164566,
+    "latitude":40.7187913507
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Marcy Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9497318055,
+    "latitude":40.6956452725
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Lafayette Gardens Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9574492922,
+    "latitude":40.6900574136
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Renaissance Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9417954443,
+    "latitude":40.8214403009
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.8419843833,
+    "latitude":40.7403394542
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Flushing Meadows Corona Park",
+    "borough":"Queens",
+    "longitude":-73.833854939,
+    "latitude":40.750957624
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Jennie Jerome Playground",
+    "borough":"Bronx",
+    "longitude":-73.9136704079,
+    "latitude":40.8455221301
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Quarry Ballfields",
+    "borough":"Bronx",
+    "longitude":-73.889914874,
+    "latitude":40.8501753608
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Beatty Plaza",
+    "borough":"Bronx",
+    "longitude":-73.9018462078,
+    "latitude":40.8315772219
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Bryan Park",
+    "borough":"Bronx",
+    "longitude":-73.8942367523,
+    "latitude":40.8621603696
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"The Pearly Gates",
+    "borough":"Bronx",
+    "longitude":-73.8453814368,
+    "latitude":40.8389470398
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Devoe Park",
+    "borough":"Bronx",
+    "longitude":-73.9079711404,
+    "latitude":40.8629956607
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Webster Playground",
+    "borough":"Bronx",
+    "longitude":-73.8929515054,
+    "latitude":40.8594900689
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Franz Sigel Park",
+    "borough":"Bronx",
+    "longitude":-73.9263588098,
+    "latitude":40.8212991963
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Behagen Playground",
+    "borough":"Bronx",
+    "longitude":-73.9014496942,
+    "latitude":40.8255391089
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Paerdegat Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9383378659,
+    "latitude":40.6384908317
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Maria Hernandez Park",
+    "borough":"Brooklyn",
+    "longitude":-73.924058094,
+    "latitude":40.7030396018
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Bushwick Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9394852139,
+    "latitude":40.7016679679
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Raymond Bush Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9394207637,
+    "latitude":40.6865630193
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Beach 9 Playground",
+    "borough":"Queens",
+    "longitude":-73.7446161789,
+    "latitude":40.5956361612
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Rockaway Beach Boardwalk",
+    "borough":"Queens",
+    "longitude":-73.7892367917,
+    "latitude":40.5887435429
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Broad Channel Park",
+    "borough":"Queens",
+    "longitude":-73.8197391654,
+    "latitude":40.6012876524
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Osborn Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9062455243,
+    "latitude":40.6561304164
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Sternberg Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9467776554,
+    "latitude":40.7062119982
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Cooper Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9363577378,
+    "latitude":40.7158102231
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Middleton Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9551754012,
+    "latitude":40.7006226148
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Bartlett Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9459442236,
+    "latitude":40.7008333965
+  },
+  {
+    "feature_type":"Ground Hydrant Spray Adapter",
+    "property_name":"Seth Low Playground\/ Bealin Square",
+    "borough":"Brooklyn",
+    "longitude":-73.9860329906,
+    "latitude":40.6088391244
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Jesse Owens Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9324296045,
+    "latitude":40.6915420799
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Brevoort Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9227523801,
+    "latitude":40.6806783252
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Hot Spot Tot Lot",
+    "borough":"Brooklyn",
+    "longitude":-73.9565759651,
+    "latitude":40.6311490155
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"De Hostos Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9492499109,
+    "latitude":40.7023841416
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rodney Park North",
+    "borough":"Brooklyn",
+    "longitude":-73.9562513474,
+    "latitude":40.7090011549
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Fermi Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9282924123,
+    "latitude":40.7002431133
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"St. John's Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9353190005,
+    "latitude":40.6742441632
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Harry Maze Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9235849645,
+    "latitude":40.6439334284
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Railroad Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9140675372,
+    "latitude":40.6492122621
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Van Cortlandt Park",
+    "borough":"Bronx",
+    "longitude":-73.8960865101,
+    "latitude":40.8937381158
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"St. Mary's Park",
+    "borough":"Bronx",
+    "longitude":-73.9104514594,
+    "latitude":40.8099246312
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Rienzi Playground",
+    "borough":"Bronx",
+    "longitude":-73.8587315578,
+    "latitude":40.887624437
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Mount Hope Playground",
+    "borough":"Bronx",
+    "longitude":-73.9091346349,
+    "latitude":40.8503622748
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Jackie Robinson Park",
+    "borough":"Manhattan",
+    "longitude":-73.9397830994,
+    "latitude":40.827861951
+  },
+  {
+    "feature_type":"Buckner Box Spray Adapter",
+    "property_name":"Jackie Robinson Park",
+    "borough":"Manhattan",
+    "longitude":-73.9410612366,
+    "latitude":40.8262554422
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Annunciation Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9520787082,
+    "latitude":40.8186105027
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Col. Young Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9362074789,
+    "latitude":40.8190568077
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Donnellan Square",
+    "borough":"Manhattan",
+    "longitude":-73.9428330928,
+    "latitude":40.8267557427
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Sheltering Arms Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9559872541,
+    "latitude":40.8153319112
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Decatur Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9365704502,
+    "latitude":40.6812475433
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Claremont Park",
+    "borough":"Bronx",
+    "longitude":-73.9054193357,
+    "latitude":40.8406067946
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Taylor Playground",
+    "borough":"Bronx",
+    "longitude":-73.8661251012,
+    "latitude":40.8389824888
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Highbridge Park",
+    "borough":"Manhattan",
+    "longitude":-73.9257246538,
+    "latitude":40.8583598521
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Highbridge Park",
+    "borough":"Manhattan",
+    "longitude":-73.9247394076,
+    "latitude":40.8577448286
+  },
+  {
+    "feature_type":"RPZ Spray Adapter",
+    "property_name":"Highbridge Park",
+    "borough":"Manhattan",
+    "longitude":-73.9361404834,
+    "latitude":40.8379079987
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Highbridge Park",
+    "borough":"Manhattan",
+    "longitude":-73.9401126493,
+    "latitude":40.831663184
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Wright Brothers Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9419152683,
+    "latitude":40.831862892
+  },
+  {
+    "feature_type":"Other",
+    "property_name":"Harmony Park",
+    "borough":"Brooklyn",
+    "longitude":-73.9347681872,
+    "latitude":40.6779840135
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Renaissance Playground",
+    "borough":"Manhattan",
+    "longitude":-73.9417030661,
+    "latitude":40.8216575241
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"St. Nicholas Playground South",
+    "borough":"Manhattan",
+    "longitude":-73.9470909209,
+    "latitude":40.8113232179
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Martin Luther King, Jr. Playground",
+    "borough":"Manhattan",
+    "longitude":-73.950491955,
+    "latitude":40.8003929221
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Wagner Houses Pool",
+    "borough":"Manhattan",
+    "longitude":-73.9324808797,
+    "latitude":40.801614916
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"John Jay Park",
+    "borough":"Manhattan",
+    "longitude":-73.9493339518,
+    "latitude":40.7690430712
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"P.O. Reinaldo Salgado Playground",
+    "borough":"Brooklyn",
+    "longitude":-73.9255370594,
+    "latitude":40.6879125317
+  },
+  {
+    "feature_type":"Drinking Fountain Spray Adapter",
+    "property_name":"Upper Highland Playground",
+    "borough":"Queens",
+    "longitude":-73.8933749297,
+    "latitude":40.6833810646
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Wagner Houses Pool",
+    "borough":"Manhattan",
+    "longitude":-73.933283025,
+    "latitude":40.8017798916
+  },
+  {
+    "feature_type":"CS Spray Adapter",
+    "property_name":"Inwood Hill Park",
+    "borough":"Manhattan",
+    "longitude":-73.9214451856,
+    "latitude":40.8702574664
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Kosciuszko Pool",
+    "borough":"Brooklyn",
+    "longitude":-73.9489240037,
+    "latitude":40.6915655834
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Marcus Garvey Park",
+    "borough":"Manhattan",
+    "longitude":-73.9431760209,
+    "latitude":40.8054017876
+  },
+  {
+    "feature_type":"Misting Station",
+    "property_name":"Marcus Garvey Park",
+    "borough":"Manhattan",
+    "longitude":-73.943669701,
+    "latitude":40.805356921
+  }
+]

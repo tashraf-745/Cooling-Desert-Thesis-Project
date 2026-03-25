@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Large raw shapefiles (too big for git — download via fix_for_visualization.py)
+data/raw/shapefile/tl_2020_us_zcta520/
+data/raw/shapefile/tl_2024_36_tract/
+
+# Large raw NYCHVS microdata files (too big for git — original CSVs kept locally)
+data/raw/nychvs/
+data/processed/person_puf_21.json
+data/processed/occupied_puf_21.json
+data/processed/allunits_puf_21.json
+data/processed/vacant_puf_21.json
+data/processed/nychvs_renters.json
+
+# Large ACS raw file
+data/raw/acs/nhgis0001_ds272_20245_tract.csv
+
+# Large intermediate/derived files
+data/processed/heat_days_annual.json
+data/processed/acs_tract_indicators.json
+data/processed/tract_indicators_v2.json
+
+# Books / PDFs
+Books/
+resources/
+
+# Editor
+.vscode/
+*.swp

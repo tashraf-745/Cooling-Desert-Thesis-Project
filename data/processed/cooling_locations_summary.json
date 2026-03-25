@@ -1,0 +1,52 @@
+[
+  {
+    "borough":"Bronx",
+    "feature_type":"Drinking Fountain",
+    "count":590
+  },
+  {
+    "borough":"Bronx",
+    "feature_type":"Spray Shower",
+    "count":126
+  },
+  {
+    "borough":"Brooklyn",
+    "feature_type":"Drinking Fountain",
+    "count":1118
+  },
+  {
+    "borough":"Brooklyn",
+    "feature_type":"Spray Shower",
+    "count":227
+  },
+  {
+    "borough":"Manhattan",
+    "feature_type":"Drinking Fountain",
+    "count":909
+  },
+  {
+    "borough":"Manhattan",
+    "feature_type":"Spray Shower",
+    "count":148
+  },
+  {
+    "borough":"Queens",
+    "feature_type":"Drinking Fountain",
+    "count":978
+  },
+  {
+    "borough":"Queens",
+    "feature_type":"Spray Shower",
+    "count":225
+  },
+  {
+    "borough":"Staten Island",
+    "feature_type":"Drinking Fountain",
+    "count":254
+  },
+  {
+    "borough":"Staten Island",
+    "feature_type":"Spray Shower",
+    "count":35
+  }
+]

@@ -1,0 +1,374 @@
+KEY NUMBERS AND FACTS
+Cooling Deserts for Renters: Heat Equity Inside the NYC Housing System
+=======================================================================
+
+
+=======================================================================
+1. HEAT MORTALITY
+=======================================================================
+
+- More than 500 New Yorkers die prematurely every year from heat — more than from any other weather hazard.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- 516 average annual heat-exacerbated deaths (2018–2022, 95% CI: 146–868); only ~5 per year are direct heat-stress deaths — the rest are silent and statistically estimated.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- Heat deaths account for approximately 3% of all deaths May–September.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- July alone accounts for 61–72% of annual heat-stress deaths.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- 89% of heat-stress decedents had at least one chronic condition.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- 45% of heat-stress deaths occur at home; 43% outdoors; 7% in parked cars.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- Heat deaths are concentrated in neighborhoods where 30%+ of households are below the federal poverty line.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- By 2080: 3,300 projected annual heat deaths; 87+ days above 90°F annually; up to +8.8°F temperature increase.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- Non-extreme hot days (82–94°F) contribute more total deaths than extreme heat event days (95°F+).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+
+=======================================================================
+2. RACIAL INEQUITY IN HEAT EXPOSURE AND MORTALITY
+=======================================================================
+
+- Black New Yorkers die from heat stress at 2x the rate of white New Yorkers (0.8 vs. 0.4 per million; some data periods show 1.2 vs. 0.5 per million).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+  Source: https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+- 50% of heat-related deaths in NYC (2000–2012) were Black New Yorkers, who make up only 25% of the population.
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- Formerly redlined areas have land surface temperatures 2.6°C (4.7°F) warmer than non-redlined areas due to less tree canopy and more impervious surface.
+  Source: https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+- For every 1% increase in Black residents in a census tract: +0.54°F surface temperature (Landsat-8, 2016); adjusted for geography and nature cover: +0.43°F.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- In Manhattan specifically: +5.27°F surface temperature per 1-unit increase in % Black residents (95% CI: 3.52–7.03).
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Formerly redlined areas have land surface temperatures 12°F (7°C) higher than non-redlined areas.
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- Rural Black non-Hispanic residents have the highest relative risk for heat-related illness: RR = 2.38 (95% CI: 1.78–3.19) per 5°F heat index increase.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Black New Yorkers: utility shutoff rate of 37% over five years — 8x higher than white New Yorkers (5%).
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Latino New Yorkers: utility shutoff rate of 33% — also 8x higher than white New Yorkers.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 33% of Black households and 33% of Latino households are energy burdened (>6% of income spent on energy).
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+
+=======================================================================
+3. AIR CONDITIONING ACCESS
+=======================================================================
+
+- ~850,000 New Yorkers lack home air conditioning — 11% of all households.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- 0% of heat-stress decedents with documented AC status had or used AC at the time of death.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- AC coverage ranges from 98% in high-income neighborhoods to 76% in lower-income neighborhoods.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- Citywide AC penetration: approximately 91% of households (HVI baseline).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- 21% of older NYCHA residents lack a working air conditioner.
+  Source: https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+- Over 1 in 3 NYCHA residents cited monthly AC surcharge fees as a barrier to AC ownership (2020 survey).
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- 21% of renters (~493,000 units) have AC but do not use it due to cost.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Get Cool NYC (2020): 73,000 free AC units distributed and installed to low-income adults aged 60+ without working home AC; $70 million in state aid secured for electricity bills.
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- AC ownership disparities by race: highest among white respondents, lowest among Black and Latinx respondents (WE ACT survey during COVID-19).
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- Electricity demand for AC increases 1–9% for each 2°F rise in temperature.
+  Source: https://www.epa.gov/green-infrastructure/reduce-heat-islands
+
+
+=======================================================================
+4. ENERGY INSECURITY
+=======================================================================
+
+- 30% of New Yorkers are energy insecure.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 34% of energy-insecure New Yorkers reduced or stopped using AC during hot weather due to cost.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 3.5 million New Yorkers (42%) fell behind on utility payments in the last five years.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 1.9 million New Yorkers (23%) experienced utility shutoffs due to inability to pay.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 406,000 households owe $560 million in unpaid ConEd bills; utility debt has doubled since pre-pandemic.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- NYC electricity costs are 54.4% above the national average; average monthly bill: $103.24.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Summer cooling costs have increased 50%+ over the past decade.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Bronx residents: 32% utility shutoff rate — highest of any borough.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Households below 100% poverty line: 62% fell behind on utilities; 43% experienced shutoffs.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- Only 3% of statewide LIHEAP funding went to cooling assistance in 2023 ($549 million total pool).
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 25% of all NYC households have high energy burden (>6% of income spent on energy).
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+
+=======================================================================
+5. COOLING CENTERS: PROXIMITY DOES NOT EQUAL ACCESS
+=======================================================================
+
+- 542 cooling centers were activated during the July 19–25, 2022 heat emergency citywide.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- 47% of all cooling centers (254 of 542) were senior centers — restricted to people aged 60+.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- 83% of cooling centers were closed on Sundays; 50% closed on Saturdays.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- Only 11% of cooling centers offered evening hours (6–11 PM); two-thirds offered no extended hours at all.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- ~30% of cooling centers closed before 4 PM on weekdays.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- 16% of all cooling centers were not wheelchair accessible; 22% of senior center sites lacked wheelchair access.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- Citywide average: 6.2 cooling centers per 100,000 people. Manhattan: 7.1 per 100,000 (highest). Queens: 5.0 per 100,000 (lowest).
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- East Flatbush, Brooklyn (HVI 5, 85% Black, 162,446 residents): only 2 cooling centers = 1.2 per 100,000.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- Elmhurst & Corona (HVI 4, 181,025 residents): only 4 cooling centers = 2.2 per 100,000.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- People in socioeconomically disadvantaged neighborhoods showed little or no reduction in subway use on hot days — meaning residents cannot behaviorally avoid heat exposure.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- Lower-income jobs are less likely to permit remote work and more likely to require weekend travel, further limiting heat avoidance.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- No school facilities were listed as activated cooling centers during the July 2022 heat emergency.
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+
+=======================================================================
+6. HEAT VULNERABILITY INDEX (HVI)
+=======================================================================
+
+- HVI scale: 1 (lowest risk) to 5 (highest risk); geographic unit: Neighborhood Tabulation Areas (NTAs).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- Extreme heat event definition: 2+ consecutive days with heat index ≥95°F, OR 1 day ≥100°F.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- Citywide median daytime summer surface temperature: 87.0°F.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- Citywide median green space: 25.0%.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- Citywide median household income: $67,046.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- HVI components: average surface temperature, % green space, % homes with AC, median income, % Black residents (included as a proxy for structural racism's effects on heat risk).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- Since 2017, 15,677 trees have been planted in HVI-5 neighborhoods; 5,700+ new plantings in 2023 alone.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+- High-risk neighborhoods include: Morrisania/East Tremont (Bronx), University Heights/Fordham (Bronx), Brownsville (Brooklyn), Jamaica (Queens), Rockaways (Queens), Mott Haven/Hunts Point (Bronx). All have 20%+ households lacking AC.
+  Source: https://council.nyc.gov/data/heat/
+
+- Nearly half of all heat-related deaths are among New Yorkers living in neighborhoods with high or very high poverty levels.
+  Source: https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+
+=======================================================================
+7. TEMPERATURE TRENDS AND PROJECTIONS
+=======================================================================
+
+- Days above 86°F have doubled over 50 years: from 14 to 32 days per summer.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- 1981–2020: Central Park averaged 18 days/year at or above 90°F.
+  Source: https://nychazardmitigation.com/documentation/hazard-profiles/extreme-heat/
+
+- Trend: +0.47 additional days above 90°F per decade at Central Park (1900–2020); +1.35 per decade at Newark.
+  Source: https://nychazardmitigation.com/documentation/hazard-profiles/extreme-heat/
+
+- July average daily maximum temperature rose from 83°F (1971–75) to 88°F (2016–20), a +5°F increase.
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- Non-extreme hot days increased: 52 days (1971–75) → 74 days (2016–20).
+  Source: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+- By 2050s: number of 90°F days could double; heat waves could triple or quadruple in frequency.
+  Source: https://nyc-eja.org/campaigns/extreme-heat-and-air-quality/
+
+- 2030s projection: 54 days ≥90°F, average heat wave duration of 6 days.
+  Source: https://nychazardmitigation.com/documentation/hazard-profiles/extreme-heat/
+
+- 2080s projection: 108 days ≥90°F, average heat wave duration of 10 days.
+  Source: https://nychazardmitigation.com/documentation/hazard-profiles/extreme-heat/
+
+- Urban daytime temperatures are already 1–7°F hotter than surrounding areas; urban nighttime temperatures are 2–5°F higher.
+  Source: https://www.epa.gov/green-infrastructure/reduce-heat-islands
+
+- Conventional rooftops can reach up to 66°F above surrounding air temperature.
+  Source: https://www.epa.gov/green-infrastructure/reduce-heat-islands
+
+- Cities can be up to 22°F (12°C) hotter than surrounding areas due to urban heat island effect.
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+
+=======================================================================
+8. NYCHA AND PUBLIC HOUSING
+=======================================================================
+
+- NYC Housing Authority (NYCHA) houses more than 300,000 New Yorkers.
+  Source: https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+- 21% of older NYCHA residents lack a working air conditioner.
+  Source: https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+- In 2020, more than one-third of NYCHA residents cited the monthly AC surcharge fee as a barrier to air conditioner ownership.
+  Source: https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+- NYCHA residents self-report approximately 50% AC ownership (likely undercounted due to appliance surcharge fees).
+  Source: https://comptroller.nyc.gov/reports/overheated-underserved/
+
+- Hottest NYC borough by average summer surface temperature: Bronx at 106.3°F; coolest: Staten Island at 103.0°F.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+
+=======================================================================
+9. HEAT-RELATED ILLNESS (HRI) — EPIDEMIOLOGICAL DATA
+=======================================================================
+
+- 23,853 total HRI cases in NY State, 2008–2019 (86% ED visits, 14% hospitalizations), May–September only.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Overall relative risk per 5°F heat index increase: RR = 1.71 (95% CI: 1.68–1.73).
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Highest-risk age group: 85+ years, at 22.2 HRI cases per 100,000; RR = 1.83 per 5°F increase.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Males account for 58.66% of HRI cases (rate: 12.2 per 100,000 vs. 8.1 for females).
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- July accounts for 44.5% of annual HRI cases statewide.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- Black non-Hispanic rate: 11.8 per 100,000 vs. White non-Hispanic: 10.2 per 100,000; Asian/Pacific Islander: 2.0 per 100,000.
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+- NYC has the lowest HRI rate of all NY regions: 7.5 per 100,000 (likely reflecting underreporting and better access to cooling relative to rural areas).
+  Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+
+=======================================================================
+10. BEHAVIORAL ADAPTATION INEQUALITY
+=======================================================================
+
+- Peak subway use in NYC occurred at 11.5°C (~53°F); at the hottest recorded temperature (34.5°C / 94°F), overall ridership fell by 10.5% (95% CI: 6.0–14.0).
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- In disadvantaged neighborhoods, subway ridership showed little or no reduction on hot days — residents could not avoid heat exposure through behavioral adaptation.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- Subway stations can be up to 6°C hotter than above-ground temperatures.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- Beach-accessible neighborhoods showed increased mobility during warm periods — a proxy for functional cooling access.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+- Structural drivers of constrained adaptation: lower-income jobs, smaller apartments, no AC, no health insurance, and no remote-work flexibility.
+  Source: https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+
+=======================================================================
+PEER-REVIEWED CITATIONS FOR DIRECT USE
+=======================================================================
+
+Rosenthal, J. K., Kinney, P. L., & Metzger, K. B. (2014). Intra-urban vulnerability to heat-related mortality in New York City, 1997–2006. Health & Place, 30.
+https://doi.org/10.1016/j.healthplace.2014.07.014
+
+Madrigano, J., Ito, K., Johnson, S., Kinney, P. L., & Matte, T. (2015). A case-only study of vulnerability to heat wave–related mortality in New York City (2000–2011). Environmental Health Perspectives, 123(7).
+https://doi.org/10.1289/ehp.1408178
+
+Shaker, R. R., Altman, Y., Deng, C., & Vaz, E. (2019). Investigating urban heat island through spatial analysis of New York City streetscapes. Journal of Cleaner Production, 233.
+https://doi.org/10.1016/j.jclepro.2019.05.389
+
+Petkova, E. P., Gasparrini, A., & Kinney, P. L. (2014). Heat and mortality in New York City since the beginning of the 20th century. Epidemiology, 25(4).
+https://doi.org/10.1097/EDE.0000000000000123
+
+Matte, T. et al. (2024). Climate change and New York City's health risk. Annals of the New York Academy of Sciences, 1539, 185–240.
+https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.15115
+
+NYC DOHMH. (n.d.). Heat-related mortality data.
+https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/
+
+NYC DOHMH. (n.d.). Heat Vulnerability Index (HVI).
+https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/hvi/
+
+NYC Comptroller. (2022). Overheated & underserved: Expanding cooling center access across New York City.
+https://comptroller.nyc.gov/reports/overheated-underserved/
+
+NYC Comptroller. (n.d.). Record highs: Tackling energy insecurity in the heat of the climate crisis.
+https://comptroller.nyc.gov/reports/record-highs-tackling-energy-insecurity-in-the-heat-of-the-climate-crisis/
+
+NYC Council Data Team. (n.d.). Heat and cooling equity.
+https://council.nyc.gov/data/heat/
+
+NYC Hazard Mitigation Plan. (n.d.). Extreme heat profile.
+https://nychazardmitigation.com/documentation/hazard-profiles/extreme-heat/
+
+NYC Environmental Justice Alliance. (n.d.). Extreme heat and air quality.
+https://nyc-eja.org/campaigns/extreme-heat-and-air-quality/
+
+Columbia Climate School. (2021, September 27). 8 ways NYC can help vulnerable communities survive summer heat.
+https://news.climate.columbia.edu/2021/09/27/nyc-vulnerable-communities-summer-extreme-heat/
+
+PMC / NIH. (2025). Heat-related illness in New York State, 2008–2019.
+https://pmc.ncbi.nlm.nih.gov/articles/PMC12294469/
+
+The Lancet Planetary Health. (2023). Inequality in behavioural heat adaptation: An empirical study with mobility data from NYC.
+https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(23)00195-X/fulltext
+
+U.S. EPA. (n.d.). Reduce heat islands (green infrastructure).
+https://www.epa.gov/green-infrastructure/reduce-heat-islands
