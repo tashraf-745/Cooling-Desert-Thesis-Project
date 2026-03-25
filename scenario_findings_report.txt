@@ -1,0 +1,558 @@
+POLICY SCENARIO FINDINGS REPORT
+Cooling Deserts for Renters: Heat Equity Inside the NYC Housing System
+=======================================================================
+Prepared by: Tahreem Ashraf
+Date: March 2026
+Script: analysis/06_scenarios/policy_scenarios.py
+Data:   data/final/scenario_outputs/scenario_results.json
+=======================================================================
+
+
+=======================================================================
+OVERVIEW
+=======================================================================
+
+This report documents four policy intervention scenarios modelled
+against the Cooling Desert Index (CDI) framework. Each scenario
+simulates a feasible, real-world policy change and estimates:
+
+  - How many census tracts exit cooling desert status
+  - How many renters are directly reached
+  - Which boroughs and cluster typologies benefit most
+  - What the intervention cannot fix (residual risk)
+
+The cooling desert definition used throughout:
+  HVI_RANK >= 4  AND  pct_rent_burden_50_plus > 30%
+  557 qualifying tracts | 25.0% of NYC | ~1.47 million renters
+
+Baseline context:
+  - 246 of 551 CDI-complete cooling desert tracts (45%) have no
+    Cool It! NYC outdoor cooling site within 0.5 miles
+  - 160 tracts are NYCHA-adjacent; NYCHA median CDI = 51.6
+    vs private renter median CDI = 39.6 (+12.0 pts)
+  - Mean CDI in cooling deserts: 55.6 (vs 34.0 citywide)
+  - Bronx holds 185 of 557 cooling deserts (33%) and 54%
+    of all LISA spatial hot-spot tracts
+
+
+=======================================================================
+SCENARIO SUMMARY TABLE
+=======================================================================
+
+  Scenario                                    Tracts     Renters
+  ---------------------------------------------------------------
+  S1: 49 new Cool It! sites (realistic)          205     504,569
+  S2: AC retrofit + greening (CDI quintile)      260     694,259
+  S3: NYCHA surcharge + $100/mo LIHEAP            12      65,729
+  S4: 10pp rent burden reduction                 289     842,732
+  Combined (S2 + S3 + S4)                        294     864,426
+  ---------------------------------------------------------------
+  Residual deserts after all interventions       257         —
+
+  Note on S2: tracts "improving CDI quintile" rather than exiting
+  the binary desert definition — see Section 3 for explanation.
+
+
+=======================================================================
+SECTION 1 — SCENARIO 1: ADD COOL IT! SITES TO UNCOVERED DESERTS
+=======================================================================
+
+1.1 Intervention Description
+------------------------------
+Place new Cool It! NYC outdoor cooling features (misting stations or
+spray adapters) within 0.5 miles of every confirmed cooling desert
+tract that currently has no coverage.
+
+1.2 Baseline Problem
+---------------------
+Of 551 cooling desert tracts with CDI scores:
+  - 305 (55%) are within 0.5 miles of at least one Cool It! site
+  - 246 (45%) have no site within walking distance
+  - 504,569 renters live in these uncovered desert tracts
+
+Uncovered cooling deserts by borough:
+  Brooklyn:      130 tracts  (59% of Brooklyn's cooling deserts)
+  Queens:         76 tracts  (68% of Queens's cooling deserts)
+  Bronx:          29 tracts  (16% of Bronx's cooling deserts)
+  Staten Island:   9 tracts  (100% — zero program presence)
+  Manhattan:       2 tracts   (7%)
+
+1.3 Method
+-----------
+Maximum scenario: one new site placed at the centroid of each of
+the 246 uncovered cooling desert tracts — the minimum number of
+sites needed to achieve full program coverage.
+
+Realistic scenario: K-means clustering (k=49) of uncovered tract
+centroids to find optimal placement locations, targeting one site
+per approximately 5 tracts — consistent with park-based siting
+constraints in the Cool It! program.
+
+1.4 Results
+------------
+  Maximum scenario (246 new sites):
+    All 246 uncovered cooling desert tracts served
+    All 504,569 renters reached
+    Coverage rate: 100%
+
+  Realistic scenario (49 new sites):
+    205 tracts newly covered
+    Coverage rate: 93% (up from 55%)
+    49 sites vs 218 currently — a 22% increase in program size
+
+  New sites needed by borough (maximum scenario):
+    Brooklyn:      130  |  301,714 renters served
+    Queens:         76  |  107,042 renters served
+    Bronx:          29  |   68,335 renters served
+    Staten Island:   9  |   15,041 renters served
+    Manhattan:       2  |   12,437 renters served
+
+1.5 Interpretation
+-------------------
+Brooklyn requires 130 of the 246 new sites — more than any other
+borough — because it has the largest absolute number of cooling desert
+tracts and the lowest existing Cool It! coverage rate (28.4% of all
+Brooklyn tracts are within 0.5 miles of any site).
+
+The Bronx, despite having the highest CDI scores, needs only 29 new
+sites because existing program coverage is relatively better there
+(65.7% of Bronx tracts are already within 0.5 miles). This reflects
+a real pattern: the Bronx has historically received more Cool It!
+investment in response to its known heat vulnerability.
+
+Staten Island has zero Cool It! program presence. All 9 cooling desert
+tracts there are uncovered by design, not by gap — the program does not
+operate on Staten Island. This is a structural program equity issue.
+
+1.6 What This Scenario Cannot Fix
+-----------------------------------
+Cool It! sites are outdoor, daytime-accessible features. They do not
+address:
+  - Indoor home temperatures (where 45% of heat deaths occur)
+  - Night-time heat exposure
+  - Energy costs that prevent AC use even when owned
+  - Mobility barriers for elderly and disabled residents
+  - The 83% of cooling centers closed on Sundays (emergency network)
+
+Proximity coverage is a necessary but not sufficient condition for
+cooling access. This scenario closes the geographic gap without
+addressing the socioeconomic and physical constraints within the home.
+
+
+=======================================================================
+SECTION 2 — SCENARIO 2: AC RETROFIT + GREEN INFRASTRUCTURE
+=======================================================================
+
+2.1 Intervention Description
+------------------------------
+A targeted investment program — combining AC subsidies, cool roof
+installations, and green space expansion — reduces the Heat Vulnerability
+Index rank of the city's most exposed tracts from HVI 5 to HVI 4.
+
+This simulates the effect of sustained physical infrastructure investment
+in the 460 tracts currently classified at the highest heat vulnerability
+level. It does not change rent burden or income — it directly reduces
+the environmental and infrastructural component of heat risk.
+
+2.2 Why HVI Rank Is the Right Lever Here
+------------------------------------------
+HVI rank already encodes AC ownership, surface temperature, and green
+space. Improving all three simultaneously — by subsidising AC units,
+planting trees, and retrofitting roofs — is precisely what a rank
+improvement represents. A 1-rank improvement (5 → 4) corresponds to:
+
+  - AC access rising from 83.6% → 89.9% (the HVI-4 mean)
+  - Surface temperature index dropping ~1.0 point
+  - Green space coverage increasing toward the HVI-4 mean
+
+2.3 Method
+-----------
+For every tract with HVI_RANK = 5, the simulated HVI is set to 4.
+The CDI is recomputed using the updated HVI value with all other
+variables held constant. Quintile classification is then re-applied
+to the new CDI distribution to identify tracts that move to a lower
+risk quintile.
+
+Note on the binary definition: the binary cooling desert definition
+requires HVI_RANK >= 4. A tract moving from HVI 5 → 4 stays above
+the threshold and does not exit binary desert status. CDI quintile
+improvement is the correct policy metric for this scenario — it
+captures meaningful reduction in structural risk that matters for
+residents even if the tract remains in the broader "high risk" category.
+
+2.4 Results
+------------
+  Targeted tracts (HVI = 5):     460
+  Mean CDI reduction:              6.25 points
+  Tracts moving to lower CDI quintile:  260
+  Renters in improved tracts:     694,259
+
+  By borough (tracts improving quintile):
+    Bronx:         95 tracts  |  321,404 renters
+    Brooklyn:      78 tracts  |  168,022 renters
+    Queens:        62 tracts  |   98,181 renters
+    Manhattan:     25 tracts  |  106,652 renters
+
+2.5 Interpretation
+-------------------
+This is the only scenario that directly addresses environmental heat
+exposure rather than financial constraint. A 6.25-point mean CDI
+reduction moves 260 tracts out of the highest risk quintile into Q4
+or Q3. The Bronx accounts for 37% of improved tracts and 46% of
+renters reached — reflecting that 93% of Bronx NYCHA developments
+and 66% of all Bronx tracts are already at HVI 4–5.
+
+The scenario is the most capital-intensive of the four: AC subsidies,
+cool roofing, and greening at tract scale require sustained multi-year
+investment. However, it produces durable physical change rather than
+financial relief that may expire when programs end.
+
+2.6 What This Scenario Cannot Fix
+-----------------------------------
+Physical HVI improvement does not reduce rent burden. Tracts that
+improve from HVI 5 → 4 still carry the same financial constraints —
+they remain cooling deserts under the binary definition. This confirms
+that heat infrastructure investment and housing affordability policy
+must be pursued simultaneously, not as substitutes for each other.
+
+
+=======================================================================
+SECTION 3 — SCENARIO 3: NYCHA SURCHARGE REMOVAL + ENERGY RELIEF
+=======================================================================
+
+3.1 Intervention Description
+------------------------------
+Two sub-scenarios modelled for NYCHA-adjacent census tracts (n=160):
+
+  S3a — Remove the NYCHA AC surcharge only ($27/month, $324/year)
+  S3b — Remove the surcharge AND expand LIHEAP to provide an
+         additional $100/month ($1,200/year) in energy assistance
+
+NYCHA currently charges residents a monthly surcharge for each air
+conditioner unit. Over one-third of NYCHA residents cited this fee
+as a barrier to AC ownership in a 2020 survey. This scenario
+tests whether removing it is sufficient to meaningfully reduce
+housing cost burden, and whether broader energy assistance changes
+the outcome.
+
+3.2 Method
+-----------
+The burden reduction for each NYCHA tract is computed as:
+
+  reduction_pp = annual_relief / median_household_income × 100
+
+Where median_household_income is the ACS tract-level median.
+The simulated rent burden is then tested against the 30% threshold
+to determine whether the tract exits binary desert status.
+
+NYCHA median household income in this dataset: approximately $43,000
+(significantly below the NYC median of $82,000).
+
+3.3 Results
+------------
+  S3a — Surcharge removal only:
+    Annual savings per household:      $324
+    Mean burden reduction:              0.84 percentage points
+    Tracts exiting cooling desert:      3
+    Renters reached:                   14,568
+
+  S3b — Surcharge + $100/mo LIHEAP expansion:
+    Annual savings per household:      $1,524
+    Mean burden reduction:              3.93 percentage points
+    Tracts exiting cooling desert:      12
+    Renters reached:                   65,729
+
+  NYCHA cooling desert context:
+    NYCHA-adjacent cooling desert tracts: ~97 (estimated from overlap)
+    Median burden in NYCHA cooling deserts: approximately 34.7%
+    Average gap above 30% threshold: ~7.5 percentage points
+    Relief needed to exit: ~7.5pp on average
+
+3.4 Interpretation
+-------------------
+The surcharge removal alone is demonstrably insufficient. At 0.84pp
+mean burden reduction, it moves only 3 tracts across the 30% threshold.
+This is not a failure of the intervention's intent — it is a product of
+NYCHA's income structure. When annual income is approximately $43,000,
+$324 in annual savings represents less than 1% of income and therefore
+less than 1 percentage point of rent burden.
+
+Even the extended scenario (S3b) with $1,524 in annual energy relief
+only reaches 12 tracts. The arithmetic is clear: NYCHA residents need
+roughly $3,000+ in annual housing cost relief to move from their
+current median burden (~34.7%) below the 30% threshold. That is a
+policy scope well beyond energy assistance programs alone.
+
+The finding that 3 tracts do exit on surcharge removal alone is
+not trivial — it identifies specific households at the margin — but
+the broader case is more important: this scenario reveals that NYCHA's
+cooling access problem is structural. It is not the surcharge that
+creates the cooling desert. The surcharge amplifies an underlying
+affordability crisis that requires rent relief, not just energy policy.
+
+3.5 What This Scenario Cannot Fix
+-----------------------------------
+Energy assistance targeted to NYCHA does not reach the 391 cooling
+desert tracts outside NYCHA. The private rental market — which carries
+the majority of cooling desert tracts — is entirely unaddressed by
+this intervention. LIHEAP expansion is valuable but must be paired
+with broader rent relief policy to achieve citywide impact.
+
+
+=======================================================================
+SECTION 4 — SCENARIO 4: RENT BURDEN RELIEF
+=======================================================================
+
+4.1 Intervention Description
+------------------------------
+An expanded rent stabilisation or direct housing subsidy program reduces
+pct_rent_burden_50_plus in all cooling desert tracts by a fixed number
+of percentage points. Three levels tested: 5pp, 10pp, and 15pp.
+
+This scenario represents the combined effect of instruments such as:
+  - Expanded NYC rent stabilisation coverage
+  - Section 8 / Housing Choice Voucher expansion
+  - Targeted rental subsidy programs for heat-vulnerable households
+  - Emergency Rental Assistance Program (ERAP) extensions
+
+4.2 Method
+-----------
+For each reduction level, a simulated rent burden is computed:
+  burden_simulated = pct_rent_burden_50_plus − reduction (clipped at 0)
+
+A tract exits the cooling desert definition when:
+  HVI_RANK >= 4  AND  burden_simulated <= 30%
+
+Tracts that remain above the 30% threshold after the reduction stay
+classified as cooling deserts. Those that cross it exit.
+
+4.3 Results
+------------
+  5pp reduction:
+    Tracts exiting cooling desert:     158
+    Renters reached:                   479,566
+    Remaining deserts:                 393
+
+  10pp reduction (headline scenario):
+    Tracts exiting cooling desert:     289
+    Renters reached:                   842,732
+    Remaining deserts:                 262
+
+  15pp reduction:
+    Tracts exiting cooling desert:     395
+    Renters reached:                 1,083,007
+    Remaining deserts:                 156
+
+  10pp reduction by borough:
+    Brooklyn:      121 tracts  |  309,977 renters
+    Bronx:          87 tracts  |  294,709 renters
+    Queens:         51 tracts  |  107,964 renters
+    Manhattan:      26 tracts  |  120,380 renters
+    Staten Island:   4 tracts  |    9,702 renters
+
+4.4 Interpretation
+-------------------
+Rent burden relief is the single most powerful intervention modelled.
+A 10pp reduction exits 289 tracts — more than any other scenario —
+and reaches 842,732 renters. Brooklyn and the Bronx together account
+for 72% of exiting tracts, consistent with their combined share of the
+cooling desert geography.
+
+The near-linear scaling between reduction level and tracts exiting
+(158 at 5pp, 289 at 10pp, 395 at 15pp) indicates that cooling desert
+tracts are not clustered tightly at one burden level. They span a
+range — some tracts need only 1–2pp relief to exit, others need 20pp
+or more. This means incremental rent relief has immediate impact even
+at modest policy scale.
+
+The 262 tracts remaining after a 10pp reduction are structurally
+different from the 289 that exit. The remaining tracts have median
+burden above 40% — they require more than 10pp relief to cross the
+threshold. Many are also concentrated in neighborhoods with the highest
+HVI ranks, where rent burden reductions alone cannot compensate for
+the severity of physical heat exposure. These are the most entrenched
+cooling deserts in the dataset.
+
+Importantly, this scenario produces the sharpest equity outcomes:
+because burden relief applies to all tracts simultaneously, the
+boroughs and cluster typologies that exit first are those closest to
+the threshold — often tracts that are high-risk but not extreme. The
+extreme cases (Cluster 5: Compound Deprivation) have both very high
+HVI and very high burden, making them the last to exit under any
+single-lever intervention.
+
+4.5 What This Scenario Cannot Fix
+-----------------------------------
+Rent burden reduction does not change the physical heat environment.
+Tracts with the highest HVI ranks remain hot regardless of whether
+residents can afford AC. The 262 tracts that remain after 10pp relief
+are still exposed to baseline temperatures averaging above 86°F.
+Residents in those tracts need both financial relief AND physical
+infrastructure improvement to achieve meaningful cooling access.
+
+
+=======================================================================
+SECTION 5 — COMBINED SCENARIO: S2 + S3 + S4 SIMULTANEOUSLY
+=======================================================================
+
+5.1 Description
+----------------
+All three financial and infrastructure interventions applied at once:
+  S2: HVI rank lifted from 5 → 4 in targeted tracts
+  S3: NYCHA surcharge removed + $100/mo LIHEAP for NYCHA tracts
+  S4: 10pp rent burden reduction citywide
+
+5.2 Results
+------------
+  Tracts exiting cooling desert:    294
+  Renters reached:                  864,426
+  Remaining deserts:                257
+
+5.3 Interpretation
+-------------------
+The combined scenario reaches only 294 tracts — barely more than
+S4 alone (289 tracts). This is not a rounding error. It reveals
+a structural ceiling: the marginal tracts that S2 and S3 reach beyond
+S4 are a small set of tracts where the combination of interventions
+crosses the threshold when no single intervention does.
+
+The residual 257 tracts after all three interventions are the most
+entrenched cooling deserts in the city. They share two properties:
+
+  1. HVI_RANK = 5 (physical heat exposure that S2 does not eliminate,
+     since HVI 5 → 4 keeps them at the >= 4 threshold)
+  2. pct_rent_burden_50_plus > 40% (burden so high that 10pp relief
+     still leaves them above the 30% threshold)
+
+These 257 tracts represent the policy hard case: they need both a
+greater magnitude of rent relief (> 10pp) AND physical HVI reduction
+below the rank-4 threshold. No incremental intervention will reach them.
+They are the core argument for a fully integrated, sustained cooling
+desert investment framework — not a collection of separate program fixes.
+
+
+=======================================================================
+SECTION 6 — CROSS-CUTTING FINDINGS
+=======================================================================
+
+6.1 The Most Important Finding
+--------------------------------
+Rent burden relief (S4) is the single most effective intervention
+modelled, reaching 289 tracts and 842,732 renters. This holds even
+though the CDI gives income and rent burden only 40% combined weight
+(HVI_RANK carries 25%). The reason is arithmetic: the binary desert
+threshold turns on the 30% burden condition, and rent reduction
+directly moves tracts across that specific threshold.
+
+Policy implication: investments in cooling infrastructure — however
+necessary — cannot substitute for housing affordability policy. The
+city's approach to heat equity must be rooted in rent relief, not
+only in outdoor misting stations and tree planting.
+
+6.2 The Infrastructure vs Affordability Trade-off
+---------------------------------------------------
+S1 (cooling sites) and S2 (AC retrofit + greening) address
+environmental exposure and cooling access infrastructure. They reach
+tracts and people that rent relief cannot reach — specifically those
+whose burden is very high but whose main constraint is the physical
+absence of a cooling option, not financial inability to use one.
+
+The two types of intervention are complements, not substitutes.
+A tract in Cluster 4 (Racial Heat Burden: HVI=4.5, low burden,
+majority Black) needs infrastructure. A tract in Cluster 5 (Compound
+Deprivation: high burden, low income, high disability) needs both
+infrastructure and direct financial relief.
+
+6.3 NYCHA Is a Special Case, Not a Representative One
+-------------------------------------------------------
+NYCHA tracts have CDI = 51.6 vs 39.6 for private renters (+12 points).
+But the surcharge scenario shows that NYCHA's cooling desert problem
+is not primarily created by the surcharge — it is created by low
+household incomes that make any energy or housing cost feel burdensome.
+The appropriate framing for NYCHA policy is not "fix the surcharge"
+but "provide comprehensive income-based energy assistance to public
+housing residents at the scale of their actual cost burden."
+
+6.4 What No Scenario Can Model
+--------------------------------
+All four scenarios are constrained by the available data. Three
+critical factors that are not captured:
+
+  a) Energy burden within the home: DOE LEAD data (not yet acquired)
+     would allow modelling of the gap between AC ownership and AC use
+     — the 21% of renters who own AC but cannot afford to run it.
+     This is the most policy-relevant gap in the current framework.
+
+  b) AC usage as a function of energy costs: the NYCHVS UTILCOSTS_SUMMER
+     and INTERUPT_UTIL variables would allow modelling of actual cooling
+     behavior under different energy cost scenarios, not just ownership.
+
+  c) Building-level infrastructure constraints: HPD Heat & Hot Water
+     Violations data would identify buildings where landlord failure,
+     not tenant income, is the primary constraint. These require a
+     different policy lever — enforcement — not subsidy.
+
+
+=======================================================================
+SECTION 7 — POLICY RECOMMENDATIONS BY INTERVENTION TYPE
+=======================================================================
+
+IMMEDIATE (operational, no legislation required):
+  - Prioritise 49 new Cool It! site placements in Brooklyn and Queens
+    using the K-means optimal placement coordinates in scenario_results.json
+  - Immediately register Staten Island in the Cool It! program
+    (currently zero sites — a program design gap, not a resources gap)
+
+SHORT-TERM (1–2 years, budget cycle):
+  - Expand LIHEAP cooling assistance to NYCHA tenants at $100+/month
+    beyond surcharge removal, targeting 160 NYCHA-adjacent tracts
+  - Target the 158 tracts nearest the 30% burden threshold for priority
+    emergency rental assistance (5pp or less relief needed to exit)
+
+MEDIUM-TERM (3–5 years, legislative):
+  - Extend rent stabilisation to cover the 289 tracts that exit at 10pp
+    burden reduction — these are the addressable cooling deserts
+  - Fund sustained HVI-5 physical investment (AC subsidies, greening,
+    cool roofs) targeting the 460 HVI-5 tracts, prioritising the
+    95 Bronx tracts where quintile improvement is largest
+
+LONG-TERM (structural):
+  - The 257 residual tracts require a comprehensive cooling desert
+    investment framework combining physical retrofits, energy assistance,
+    and rent relief at magnitudes beyond any single program
+  - Acquire DOE LEAD, HPD violations, and emergency cooling center
+    data to model the energy burden and enforcement dimensions of
+    the problem currently invisible to this analysis
+
+
+=======================================================================
+OUTPUT FILES
+=======================================================================
+
+  analysis/06_scenarios/policy_scenarios.py
+    Full simulation script with methodology and reproducible code
+
+  data/final/scenario_outputs/scenario_results.json
+    Machine-readable results: all scenario statistics, borough
+    breakdowns, and policy notes
+
+  data/final/scenario_outputs/scenario_tract_flags.geojson
+    Per-tract binary flags for each scenario:
+      s1_newly_covered        — gains Cool It! coverage in S1
+      s2_improved_quintile    — moves to lower CDI quintile in S2
+      s2_cdi_after            — CDI score after S2
+      s3_exits_surcharge      — exits desert under surcharge only
+      s3_exits_liheap         — exits desert under surcharge + LIHEAP
+      s4_exits_10pp           — exits desert under 10pp burden relief
+      s_combined_exits        — exits desert under S2+S3+S4 combined
+
+
+=======================================================================
+END OF REPORT
+=======================================================================
+
+
+
+
+
+
