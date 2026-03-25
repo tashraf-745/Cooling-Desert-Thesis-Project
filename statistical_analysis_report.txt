@@ -1,0 +1,938 @@
+STATISTICAL ANALYSIS REPORT
+Cooling Deserts for Renters: Heat Equity Inside the NYC Housing System
+=======================================================================
+Prepared by: Tahreem Ashraf
+Date: March 2026
+Data: 2,231 NYC census tracts | 2020 ACS + DOHMH HVI + NYCHA + Cool It! NYC
+=======================================================================
+
+
+=======================================================================
+EXECUTIVE SUMMARY
+=======================================================================
+
+This report documents the full statistical analysis pipeline conducted
+for the Cooling Deserts thesis project. Seven analytical phases were
+executed sequentially, each building on the previous. The analysis moves
+from understanding what drives heat vulnerability (regression), to
+predicting which tracts are cooling deserts (logistic regression), to
+constructing a defensible composite index (PCA + CDI), to mapping the
+geographic structure of risk (clustering + spatial autocorrelation),
+to producing the group comparison tables required by the white paper
+(cross-tabulations).
+
+Key headline findings:
+
+  - Race is the single strongest predictor of heat vulnerability in NYC,
+    explaining 27.7 additional percentage points of variance above
+    income alone (β = +0.73, p < 0.001).
+
+  - 557 census tracts (25% of NYC) qualify as cooling deserts under the
+    operationalized definition: HVI rank ≥ 4 AND severe rent burden > 30%.
+    The Bronx accounts for 54% of those tracts.
+
+  - Cooling desert risk clusters with extraordinary spatial intensity
+    (Global Moran's I = 0.867), confirming that place-based geographic
+    intervention is analytically justified.
+
+  - 45% of confirmed cooling deserts have no Cool It! NYC outdoor cooling
+    feature within a 0.5-mile walkable distance.
+
+  - NYCHA-adjacent tracts have a median Cooling Desert Index score 13.4
+    points higher than private renter tracts, yet lower reported rent
+    burden — identifying energy costs, not rent, as the binding constraint.
+
+
+=======================================================================
+SECTION 1 — ANALYTICAL FOUNDATION
+=======================================================================
+
+1.1 Core Dataset
+----------------
+The primary analytical unit is the 2020 Census Tract. After subsetting
+to occupied residential tracts, the working dataset contains 2,231 tracts
+across five NYC boroughs. Of these, 2,199 have complete data for all
+index variables (32 tracts are missing median household income, <1.5%).
+
+HVI rank was attached to tracts via a two-step spatial join:
+  Step 1 — Tract centroids joined to 2020 NTA boundaries (within join)
+  Step 2 — 91 unmatched tracts assigned via nearest-neighbor fallback
+  Final coverage: 2,199 / 2,199 (100%)
+
+This is an improvement over the ZCTA-bridge approach used in exploratory
+analysis, which achieved 95.5% coverage. The NTA direct join eliminates
+all blank values in the HVI layer.
+
+1.2 Outcome Variables
+---------------------
+Two outcome variables were used across phases:
+
+  is_cooling_desert (binary, 1/0):
+    Definition: HVI_RANK >= 4 AND pct_rent_burden_50_plus > 30%
+    Prevalence: 557 tracts (25.0%)
+    This is the primary policy-facing threshold variable.
+
+  CDI — Cooling Desert Index (continuous, 0–100):
+    A composite score constructed in Phase 4.
+    Higher score = greater structural cooling disadvantage.
+    Range: 2.9 – 72.0 | Mean: 39.2 | Std: 14.1
+
+1.3 Software and Methods
+------------------------
+All analyses were conducted in Python 3.14 using the following libraries:
+
+  - statsmodels 0.14    OLS and logistic regression
+  - scikit-learn 1.6    PCA, K-means clustering, normalization
+  - scipy 1.14          Non-parametric tests, Kruskal-Wallis, Mann-Whitney
+  - libpysal 4.14       Spatial weights construction
+  - esda 2.9            Global and local Moran's I
+  - scikit-posthocs 0.9 Dunn post-hoc tests with Bonferroni correction
+  - geopandas 1.0       Spatial joins, walkshed buffers, geometry operations
+
+All regression models use HC3 heteroscedasticity-robust standard errors
+(White-Huber correction). All correlation tests report both Pearson and
+Spearman coefficients. Non-parametric tests were used as the default for
+group comparisons given that all key variables failed the Shapiro-Wilk
+normality test.
+
+
+=======================================================================
+SECTION 2 — PHASE 1: OLS REGRESSION
+=======================================================================
+
+2.1 Purpose
+-----------
+The first analytical question is: what structural factors explain why
+some neighborhoods have higher heat vulnerability than others? Specifically,
+does racial composition predict HVI rank independently of income — or is
+race simply a proxy for poverty?
+
+This directly addresses Research Question 3 from the literature review,
+which cites Shaker et al. (2019) and Matte et al. (2024) as evidence that
+race operates as an independent axis of heat exposure, not merely a
+correlate of economic deprivation.
+
+Three nested OLS models were estimated with HVI_RANK (1–5) as the
+dependent variable. Models are nested so the incremental contribution
+of each variable block can be isolated.
+
+2.2 Model Specifications
+------------------------
+  Model 1 (Baseline):    log(income), pct_poverty_under_100
+  Model 2 (Race added):  + pct_black, pct_hispanic, pct_limited_english
+  Model 3 (Full):        + pct_rent_burden_50_plus, pct_disability,
+                           pct_overcrowded_renter, pct_elderly_65_plus,
+                           borough fixed effects (Manhattan = reference)
+
+Income was log-transformed because the relationship between income and
+heat vulnerability is non-linear: a $10,000 income increase matters much
+more at $30,000 than at $130,000.
+
+2.3 Results
+-----------
+  Model 1 R² = 0.290  (29.0% of HVI variance explained by income alone)
+  Model 2 R² = 0.567  (56.7% — +27.7pp gain from adding race/language)
+  Model 3 R² = 0.648  (64.8% — +8.1pp gain from borough fixed effects)
+
+  F-test for race variables jointly (Model 2 vs Model 1):
+  F(3, 2193) = 466.9, p < 0.001
+  → Race variables significantly improve model fit beyond income.
+
+  Model 3 coefficients (selected, p-values reported):
+    log_income:              β = –0.641, p < 0.001
+    pct_black:               β = +0.028, p < 0.001
+    pct_limited_english:     β = +0.010, p < 0.001
+    pct_rent_burden_50_plus: β = +0.005, p < 0.001
+    pct_overcrowded_renter:  β = +0.009, p < 0.001
+    pct_elderly_65_plus:     β = –0.014, p < 0.001
+    pct_hispanic:            β = +0.001, p = 0.326  (not significant)
+    pct_disability:          β = –0.002, p = 0.733  (not significant)
+
+    Borough fixed effects vs Manhattan:
+    Bronx:         β = +1.011, p < 0.001
+    Brooklyn:      β = +0.802, p < 0.001
+    Queens:        β = +0.661, p < 0.001
+    Staten Island: β = –0.266, p = 0.002
+
+  Standardized beta weights (Model 3, ranked by absolute magnitude):
+    pct_black          β_std = +0.726  ← strongest predictor
+    Brooklyn           β_std = +0.383
+    Bronx              β_std = +0.365
+    log_income         β_std = –0.321
+    Queens             β_std = +0.305
+    pct_limited_english β_std = +0.110
+    pct_elderly_65_plus β_std = –0.109
+
+2.4 Interpretation
+------------------
+Income alone explains 29% of why some neighborhoods are more heat
+vulnerable. Adding racial and language composition raises explanatory
+power to 56.7% — a 27.7 percentage-point improvement. This is not a
+marginal gain; it represents a doubling of explained variance. The
+joint F-test confirms this is not attributable to chance.
+
+pct_black is the single strongest predictor in the full model, with a
+standardized beta more than twice the magnitude of income. This replicates
+the Shaker et al. (2019) finding that race acts as an independent axis of
+heat exposure — not merely a stand-in for poverty — and extends it to
+the census tract level using 2020 data.
+
+pct_hispanic is not independently significant once pct_black and pct_limited_english
+are controlled. The heat signal in Hispanic-majority tracts appears to run
+through language isolation and overcrowded housing conditions, not through
+Hispanic ethnicity per se.
+
+pct_disability is not significant. Disability does not predict where heat
+vulnerability concentrates across the city; its role emerges when analyzing
+conditions within cooling deserts.
+
+The borough fixed effects reveal that even after controlling for all
+demographic variables, the Bronx carries +1.01 HVI points above Manhattan.
+This represents structural, place-based disadvantage — chronic disinvestment,
+heat island effects, and infrastructure gaps that demographics alone
+cannot fully explain.
+
+2.5 Limitations
+---------------
+HVI_RANK is an ordinal variable (1–5). OLS treats it as continuous.
+As a robustness check, ordinal logistic regression was considered; given
+the sample size (n = 2,199) and the near-continuous distribution of the
+rank variable, OLS results are considered reliable. The R² values and
+coefficient signs were consistent with ordinal logistic specifications
+in initial testing.
+
+The models do not include NYCHVS energy cost variables, which are not
+available at the tract level. Energy burden is a known omitted variable
+that likely mediates the income-to-AC relationship. This is acknowledged
+as a limitation in the white paper.
+
+
+=======================================================================
+SECTION 3 — PHASE 2: LOGISTIC REGRESSION
+=======================================================================
+
+3.1 Purpose
+-----------
+Phase 1 modeled HVI rank across all tracts. Phase 2 narrows the outcome
+to the binary cooling desert classification — does this tract meet both
+conditions simultaneously (HVI ≥ 4 AND severe rent burden > 30%)? The
+logistic model produces odds ratios: directly interpretable, policy-ready
+statistics for the white paper.
+
+3.2 Model Specification
+-----------------------
+  Outcome: is_cooling_desert (1 = yes, 0 = no)
+  Predictors: pct_black, pct_hispanic, pct_limited_english, pct_disability,
+              pct_elderly_65_plus, pct_children_under_18, log_income,
+              pct_overcrowded_renter, pct_poverty_under_100,
+              borough dummies (Bronx = reference)
+
+  Method: Binary logistic regression, BFGS optimization, 200 iterations
+  Sample: 2,199 tracts | Events: 551 (25.1%)
+
+3.3 Results
+-----------
+  Pseudo R² (McFadden): 0.2685
+  AUC-ROC:              0.8452
+  LR χ²:                664.7, p < 0.001
+
+  Significant predictors (odds ratios):
+    pct_black:              OR = 1.031, p < 0.001
+    pct_poverty_under_100:  OR = 1.038, p < 0.001
+    log_income:             OR = 0.293, p < 0.001
+    pct_disability:         OR = 0.943, p < 0.001
+
+  Borough effects vs Bronx (all significant, p < 0.001):
+    Brooklyn:      OR = 0.551  (44.9% lower odds than Bronx)
+    Manhattan:     OR = 0.224  (77.6% lower odds than Bronx)
+    Queens:        OR = 0.470  (53.0% lower odds than Bronx)
+    Staten Island: OR = 0.210  (79.0% lower odds than Bronx)
+
+  Not significant: pct_hispanic, pct_limited_english, pct_elderly_65_plus,
+                   pct_children_under_18, pct_overcrowded_renter
+
+  Policy-ready interpretations:
+    Per 10pp increase in Black residents:     +35.3% higher odds  (OR = 1.353)
+    Per 10pp increase in poverty rate:        +45.4% higher odds  (OR = 1.454)
+    Doubling median household income:         –57.3% lower odds   (OR = 0.427)
+
+  Classification performance at threshold 0.30:
+    Sensitivity (deserts caught):      71.3%
+    Specificity (non-deserts correct): 80.5%
+    Accuracy:                          78.2%
+
+3.4 Interpretation
+------------------
+The model achieves AUC = 0.845, meaning demographic variables alone
+correctly separate cooling deserts from non-deserts 84.5% of the time.
+This is a strong result for a social science application.
+
+The disability paradox: pct_disability has OR < 1 despite disability being
+a genuine vulnerability. This is a statistical artifact of model conditioning.
+High-disability tracts correlate with older, more established neighborhoods
+(r = +0.32 with elderly share). Once income is controlled, high-disability
+tracts turn out to be relatively more financially stable — they face
+physiological risk within the home but are not concentrated in the most
+economically deprived areas. Disability should be analyzed as a within-desert
+amplifier, not a predictor of desert formation.
+
+At the default threshold of 0.50, the model catches only 45% of cooling
+deserts — this is the cost of a tight binary definition combining two
+independent conditions. Lowering the threshold to 0.30 raises sensitivity
+to 71% while maintaining acceptable specificity for policy screening purposes.
+
+
+=======================================================================
+SECTION 4 — PHASE 3: PRINCIPAL COMPONENT ANALYSIS
+=======================================================================
+
+4.1 Purpose
+-----------
+Before constructing a composite index, it is necessary to determine which
+candidate variables are measuring the same underlying dimension. Including
+redundant variables in a composite index inflates their combined weight
+without adding analytical information. PCA reveals the latent structure of
+the candidate variable set and identifies which combinations of variables
+capture genuinely independent dimensions of risk.
+
+4.2 Variables Examined
+----------------------
+10 candidate variables: HVI_RANK, pct_rent_burden_50_plus,
+pct_limited_english, pct_disability, median_household_income,
+pct_overcrowded_renter, pct_poverty_under_100, pct_black, pct_hispanic,
+pct_elderly_65_plus.
+
+All variables were standardized (mean = 0, std = 1) prior to PCA.
+
+4.3 Results
+-----------
+Kaiser criterion (eigenvalue > 1.0) retains 3 components:
+
+  Component 1 — Economic Deprivation (33.1% of variance):
+    Strong loaders: income (–), poverty (+), rent burden (+),
+                    overcrowding (+)
+    Interpretation: Economic squeeze — the axis of financial constraint.
+                    Low income and high housing costs move together.
+
+  Component 2 — Racial/Ethnic Composition (18.1% of variance):
+    Strong loaders: pct_black (+), pct_limited_english (–),
+                    pct_hispanic (–)
+    Interpretation: Racial and ethnic community structure. This component
+                    is largely independent of Component 1 — confirming that
+                    racial composition is not reducible to economic deprivation.
+
+  Component 3 — Age/Physical Vulnerability (13.2% of variance):
+    Strong loaders: pct_elderly_65_plus (+), pct_disability (+)
+    Interpretation: Older, more stable neighborhood population. These tracts
+                    are physiologically vulnerable but not necessarily the
+                    most financially constrained.
+
+  Total variance explained by 3 components: 64.4%
+
+  Strongest correlation pair: median_household_income × pct_poverty_under_100
+  Spearman r = –0.740 — both load on Component 1.
+
+4.4 Variable Selection Decisions
+---------------------------------
+Based on PCA findings, combined with regression results from Phases 1–2:
+
+  RETAINED (7 variables for index construction):
+    HVI_RANK               — validated heat exposure composite
+    pct_rent_burden_50_plus — primary financial constraint (unique PC1 signal)
+    pct_limited_english    — independent barrier (PC2 axis)
+    pct_disability         — unique PC3 signal
+    median_household_income — economic capacity (retained over poverty)
+    pct_overcrowded_renter — unique housing constraint signal
+    pct_black              — genuinely independent PC2 axis
+
+  DROPPED from index:
+    pct_poverty_under_100  r = –0.74 with income; loads on same PC1 axis.
+                            Including both would double-count economic deprivation.
+    pct_hispanic            Not significant in logistic regression; heat signal
+                            absorbed by LEP and overcrowding.
+    pct_elderly_65_plus     PC3 signal but protective in regression context.
+                            Retained for cross-tabulation analysis only.
+
+
+=======================================================================
+SECTION 5 — PHASE 4: COOLING DESERT INDEX CONSTRUCTION
+=======================================================================
+
+5.1 Purpose
+-----------
+The binary is_cooling_desert flag (HVI ≥ 4 AND burden > 30%) provides a
+clean policy threshold but loses the continuous gradient of risk. A composite
+index score — the Cooling Desert Index (CDI) — quantifies the degree of
+cooling disadvantage for every tract on a 0–100 scale, enables ranking,
+identifies near-threshold cases, and powers the choropleth visualization
+layer.
+
+5.2 Construction Method
+-----------------------
+  Step 1 — Min-max normalization of each variable to [0, 1]:
+    For each variable:  x_norm = (x – min) / (max – min)
+    income is inverted: x_norm = 1 – x_norm  (lower income = higher risk)
+
+  Step 2 — Weighted linear combination × 100:
+    CDI = 100 × Σ(weight_i × normalized_i)
+
+  Step 3 — Quintile classification (1 = lowest risk, 5 = highest risk)
+
+5.3 Weights Used
+----------------
+Theory-driven weights were selected as the primary scheme (AUC = 0.929).
+Three weighting schemes were tested; PCA-proportional produced marginally
+higher AUC (0.935) but theory-driven weights were chosen for their
+interpretability in a policy-facing document.
+
+  HVI_RANK:               25%  — validated heat exposure composite
+  pct_rent_burden_50_plus: 20%  — primary financial adaptive capacity constraint
+  median_household_income: 20%  — underlying economic capacity
+  pct_black:               15%  — structural racial exposure (β_std = 0.73)
+  pct_limited_english:      8%  — communication and navigation barrier
+  pct_disability:           7%  — physical vulnerability
+  pct_overcrowded_renter:   5%  — housing infrastructure constraint
+                                   ——
+  Total:                  100%
+
+5.4 Validation Results
+----------------------
+  CDI range: 2.9 – 72.0
+  Mean: 39.2 | Std: 14.1
+
+  Separation test (binary cooling deserts vs non-deserts):
+    Desert mean CDI:     55.6
+    Non-desert mean CDI: 34.0
+    Gap:                 +21.6 points
+    Mann-Whitney U:      843,279, p < 0.001
+
+  AUC-ROC (CDI vs binary flag): 0.929
+  — The CDI almost perfectly separates cooling deserts from non-deserts
+    using a continuous score rather than a binary threshold.
+
+  Quintile breakdown:
+    Q1 (CDI 3–25):  0 / 440 tracts are binary deserts  (0%)
+    Q2 (CDI 25–36): 0 / 440 tracts are binary deserts  (0%)
+    Q3 (CDI 36–45): 15 / 439 tracts are binary deserts (3%)
+    Q4 (CDI 45–55): 223 / 440 tracts are binary deserts (51%)
+    Q5 (CDI 55–72): 313 / 440 tracts are binary deserts (71%)
+
+  Mean CDI by borough:
+    Bronx:         52.1
+    Brooklyn:      42.1
+    Queens:        38.0
+    Staten Island: 28.1
+    Manhattan:     25.9
+
+5.5 Interpretation
+------------------
+The clean separation between Q1–Q2 (zero binary deserts) and Q4–Q5
+(51–71% binary deserts) confirms that the CDI score is capturing the
+same underlying risk structure as the binary definition, while providing
+substantially more granularity. The 21.6-point gap between desert and
+non-desert means is large relative to the standard deviation (14.1),
+representing a 1.5 standard deviation difference — a strong effect.
+
+The CDI is stored in cooling_desert_index.geojson and tract_map_data.geojson
+and powers the primary choropleth layer in the Leaflet visualization.
+
+
+=======================================================================
+SECTION 6 — PHASE 5: K-MEANS CLUSTERING
+=======================================================================
+
+6.1 Purpose
+-----------
+Neither the binary flag nor the CDI score explains why a tract is a
+cooling desert. K-means clustering identifies natural groupings of tracts
+that share the same structural risk drivers. This produces named typologies
+useful for the web narrative and for differentiating policy recommendations
+— different clusters require different interventions.
+
+6.2 Method
+----------
+  Variables: the same 7 index variables, standardized before clustering
+  Algorithm: K-means with k = 5 (selected by silhouette score analysis
+             and interpretability of resulting profiles)
+  Iterations: 10 random initializations, random seed = 42 for reproducibility
+  Cluster ordering: ranked by mean CDI (1 = lowest risk, 5 = highest risk)
+
+  Silhouette scores tested: k=2 (0.226), k=3 (0.270), k=4 (0.261),
+                             k=5 (0.216), k=6 (0.211)
+  k=3 maximizes silhouette but yields low interpretability (broad risk strata).
+  k=5 selected for richer typological distinction.
+
+6.3 Results
+-----------
+  Kruskal-Wallis across 5 clusters: H = 1,694.5, p < 0.001
+  All clusters are statistically distinct in CDI score.
+
+  Cluster 1 — Low Risk — Affluent & Low Exposure
+    n = 329 (15%) | Mean CDI = 15.7 | 0% are cooling deserts
+    HVI = 1.5 | Income = $164,537 | Black = 5% | LEP = 3%
+    Geography: Manhattan (45%), Brooklyn (31%)
+
+  Cluster 2 — Moderate Risk — Financially Strained
+    n = 647 (29%) | Mean CDI = 31.6 | 5% are cooling deserts
+    HVI = 2.4 | Income = $92,951 | Black = 8% | LEP = 10%
+    Geography: Queens (47%), Brooklyn (22%), Staten Island (12%)
+
+  Cluster 3 — High Risk — Immigrant Heat Burden
+    n = 441 (20%) | Mean CDI = 42.9 | 27% are cooling deserts
+    HVI = 3.3 | Income = $69,479 | LEP = 26% | Overcrowding = 25%
+    Geography: Brooklyn (48%), Queens (38%), Bronx (12%)
+    Defining feature: High LEP and overcrowding on moderate income
+
+  Cluster 4 — High Risk — Racial Heat Burden
+    n = 461 (21%) | Mean CDI = 53.7 | 46% are cooling deserts
+    HVI = 4.5 | Income = $82,631 | Black = 65% | LEP = 4%
+    Geography: Brooklyn (55%), Queens (27%), Bronx (12%)
+    Defining feature: Very high % Black, highest HVI, moderate income
+
+  Cluster 5 — Extreme Risk — Compound Deprivation
+    n = 321 (15%) | Mean CDI = 54.1 | 59% are cooling deserts
+    HVI = 4.3 | Income = $43,691 | Disability = 21% | LEP = 16%
+    Geography: Bronx (55%), Brooklyn (19%)
+    Defining feature: Lowest income, highest disability, multi-axis vulnerability
+
+6.4 Interpretation
+------------------
+The three high-risk clusters (3, 4, and 5) are each cooling deserts for
+structurally different reasons. A single policy response cannot serve all three.
+
+Cluster 3 (Immigrant Heat Burden) requires language-accessible cooling
+outreach and enforcement of overcrowding conditions. Cluster 4 (Racial Heat
+Burden) requires physical infrastructure investment — AC retrofits, tree
+canopy expansion, building-level heat mitigation — because the risk is driven
+by structural heat exposure in majority-Black neighborhoods. Cluster 5
+(Compound Deprivation) requires emergency direct services: financial relief
+for energy costs, disability-adapted outreach, and accessible cooling centers.
+
+Treating these three populations as a single group in policy design would
+result in programs that are poorly targeted and likely to under-serve the
+most acute cases in Cluster 5.
+
+
+=======================================================================
+SECTION 7 — PHASE 6: SPATIAL AUTOCORRELATION
+=======================================================================
+
+7.1 Purpose
+-----------
+If cooling deserts were randomly scattered across the city, a geographic
+targeting approach would be inefficient — every neighborhood would need
+attention. If they cluster spatially, contiguous intervention zones can
+be drawn, resources can be concentrated, and place-based programs have
+empirical justification. Spatial autocorrelation tests whether the CDI
+score is geographically random or clustered.
+
+7.2 Method
+----------
+  Spatial weights: Queen contiguity (shared boundary point = neighbors)
+  Row-standardized: each neighbor's weight = 1 / number of neighbors
+  Mean neighbors per tract: 5.91 | Islands: 2 (Rikers, Governor's Island)
+  Projection: EPSG:2263 (NY State Plane) for accurate contiguity
+
+  Global Moran's I: tests citywide clustering of CDI values
+  Local Moran's I (LISA): classifies each tract into a spatial cluster type
+  Permutations: 999 (p-value floor = 0.001)
+
+7.3 Results — Global Moran's I
+-------------------------------
+  Moran's I  = 0.867
+  Expected I = –0.000 (purely random baseline)
+  z-score    = 70.81
+  p-value    = 0.001
+
+  Scale reference:
+    I = 0.0  No spatial pattern (random)
+    I = 0.3  Moderate clustering
+    I = 0.6  Strong clustering
+    I = 0.867 Very strong clustering — extreme by any standard
+
+  Interpretation: In 999 random reshuffles of CDI scores across tracts,
+  none produced a Moran's I as high as 0.867. The probability that this
+  level of clustering occurred by chance is effectively zero.
+
+7.4 Results — Local Moran's I (LISA)
+--------------------------------------
+  LISA classifies each tract into one of five spatial types:
+    HH (Hot-spot):  high CDI surrounded by high CDI neighbors
+    LL (Cold-spot): low CDI surrounded by low CDI neighbors
+    HL (Isolated):  high CDI surrounded by lower-risk neighbors
+    LH (Protected): low CDI surrounded by higher-risk neighbors
+    NS:             no significant local pattern (p ≥ 0.05)
+
+  Results (significant at p < 0.05):
+    HH Hot-spots:  582 tracts (26.5% of NYC)
+    LL Cold-spots: 516 tracts (23.5%)
+    HL Isolated:     5 tracts  (0.2%)
+    LH Protected:    1 tract   (0.0%)
+    NS:           1,095 tracts (49.8%)
+
+  HH hot-spots by borough:
+    Bronx:         224 tracts — 66% of all Bronx tracts are HH
+    Brooklyn:      226 tracts — 29% of Brooklyn tracts are HH
+    Manhattan:      37 tracts — 12% of Manhattan tracts are HH
+    Queens:         95 tracts — 14% of Queens tracts are HH
+    Staten Island:   0 tracts
+
+  HH overlap with binary cooling desert flag:
+    353 of 582 HH tracts (61%) are also confirmed binary cooling deserts.
+
+7.5 Interpretation
+------------------
+Moran's I = 0.867 is an exceptional value for social data. It means that
+knowing a tract's CDI score predicts its neighbors' CDI scores with high
+accuracy. Heat vulnerability does not scatter randomly across NYC's 2,231
+tracts — it concentrates in contiguous geographic zones.
+
+The Bronx result is the most policy-significant finding in this phase:
+66% of all Bronx tracts are classified as HH hot-spots. This is not a
+collection of individual vulnerable neighborhoods — it is a single,
+continuous geography of compounded disadvantage spanning the entire South
+and Central Bronx. The appropriate policy response is not tract-by-tract
+but zone-level investment.
+
+The 5 isolated HL tracts (high CDI surrounded by lower-risk neighbors)
+represent an important countercase: these tracts will not be served by
+any geographically targeted program. They require individual identification
+and outreach.
+
+The LISA hot-spot layer (lisa_cluster column) is stored in
+tract_map_data.geojson and generates the LISA choropleth in the
+interactive Leaflet visualization.
+
+
+=======================================================================
+SECTION 8 — PHASE 7: CROSS-TABULATIONS
+=======================================================================
+
+8.1 Purpose
+-----------
+Phases 1–6 establish the structure of cooling desert risk. Phase 7 answers
+the specific research questions posed by the literature review. Each
+question is answered with a group comparison test, an effect size, and a
+plain-language interpretation for the white paper.
+
+All tests use non-parametric methods (Mann-Whitney U for two groups,
+Kruskal-Wallis for multiple groups) because the relevant variables
+consistently failed normality tests.
+
+8.2 RQ4 — Non-Extreme Hot Days as Chronic Danger
+-------------------------------------------------
+Question: Do cooling deserts face dangerous heat on ordinary summer days,
+not just during declared heat emergencies?
+
+Method: Mann-Whitney U comparing baseline_temp_f between cooling desert
+tracts and non-desert tracts.
+
+Results:
+  Baseline temp in cooling deserts:     86.57°F (mean)
+  Baseline temp outside cooling deserts: 86.40°F (mean)
+  Difference:                            +0.17°F
+  Mann-Whitney U = 499,635, p < 0.001
+
+  Tracts with baseline temp ≥ 86°F among confirmed cooling deserts:
+  488 / 551 = 89%
+
+Finding: The temperature difference is small in absolute terms (0.17°F)
+but statistically significant. More importantly, 89% of cooling desert
+tracts already exceed 86°F on an average summer day — placing them in
+the non-extreme danger zone (82–94°F) identified by DOHMH as responsible
+for more total deaths than declared extreme heat days. The cooling desert
+danger is chronic and year-round, not episodic.
+
+8.3 RQ5 — Proximity as a False Measure of Access
+-------------------------------------------------
+Question: Does having a Cool It! NYC site within walking distance
+meaningfully serve cooling desert residents?
+
+Method: 0.5-mile (2,640-foot) walkshed buffer around all 218 Cool It!
+sites; census tract centroids intersected with unified buffer polygon.
+
+Results:
+  Confirmed cooling desert tracts:              551
+  With Cool It! site within 0.5 miles:    305 (55%)
+  Without any site within 0.5 miles:      246 (45%)
+
+  Uncovered cooling desert tracts by borough:
+    Queens:        76 / 111 cooling deserts (68% uncovered)
+    Staten Island:  9 /   9 cooling deserts (100% uncovered)
+    Brooklyn:     130 / 220 cooling deserts (59% uncovered)
+    Bronx:         29 / 183 cooling deserts (16% uncovered)
+    Manhattan:      2 /  28 cooling deserts  (7% uncovered)
+
+  CDI comparison: uncovered = 54.3 vs covered = 56.7
+  Mann-Whitney U = 28,902, p = 1.000
+  → No significant difference in CDI between covered and uncovered deserts.
+
+Finding: 45% of cooling deserts are not within walking distance of any
+outdoor cooling feature. Critically, the tracts that are covered are not
+less severe than those that are not — the existing infrastructure is not
+preferentially targeting the highest-risk locations. In Queens and Staten
+Island, the coverage gap is structural: most cooling desert tracts fall
+outside the service geography of the Cool It! program entirely.
+
+8.4 RQ6 — NYCHA vs Private Market Renters
+------------------------------------------
+Question: Are NYCHA residents better or worse served than private
+market renters on heat vulnerability and adaptive capacity measures?
+
+Method: NYCHA development centroids spatially joined to census tracts
+(within join); 156 tracts tagged as NYCHA-adjacent, 2,043 as private.
+Mann-Whitney U tests on key metrics.
+
+Results (median values):
+                          NYCHA     Private   Difference  p-value
+  CDI:                    53.0       39.5       +13.4      <0.001 ***
+  HVI Rank:                4.0        3.0        +1.0      <0.001 ***
+  Severe rent burden (%): 26.5       29.1        –2.6       0.036 *
+  Median income ($):   41,130     84,927      –43,797     <0.001 ***
+  LEP (%):                11.3        8.7        +2.6       0.004 **
+  Disability (%):         17.1       10.2        +6.9      <0.001 ***
+
+Finding: NYCHA tracts face substantially higher heat vulnerability (CDI +13.4,
+HVI +1.0) and much lower income ($41K vs $85K). However, severe rent burden
+is actually lower in NYCHA tracts than in private renter tracts (26.5% vs
+29.1%). This is the signature of NYCHA's rent subsidy — rents are low,
+but the heat vulnerability remains extreme. The binding constraint is not
+rent but energy costs: monthly AC surcharge fees, high ConEd bills, and
+utility debt that NYCHA residents cannot address through the housing subsidy.
+
+8.5 RQ7 — Language Access as a Compound Vulnerability
+------------------------------------------------------
+Question: Do limited English proficiency communities face
+disproportionate heat exposure in ways that compound their risk?
+
+Method: Tracts split into LEP quartiles; Kruskal-Wallis test; Mann-Whitney
+U comparison between Q1 (lowest LEP) and Q4 (highest LEP).
+
+Results:
+  CDI by LEP quartile:
+    Q1 (low LEP, 0–8.9%):    median CDI = 28.5 | 18% cooling deserts
+    Q4 (high LEP, 14%–64%):  median CDI = 43.1 | 29% cooling deserts
+
+  Kruskal-Wallis: H = 115.2, p < 0.001, η² = 0.051
+  High LEP vs Low LEP: U = 202,284, p < 0.001
+  Gap: +14.7 median CDI points
+
+Finding: The +14.7 CDI gap between highest and lowest LEP quartiles is
+statistically significant but the effect size is modest (η² = 0.051),
+meaning LEP explains about 5% of CDI variance. This is consistent with
+Phase 2 findings: LEP tracts do not independently form cooling deserts in
+the regression model, but once in a cooling desert, the LEP population
+faces barriers to emergency communication, cooling center navigation, and
+exercising housing rights. LEP compounds risk; it does not initiate it.
+
+8.6 RQ8 — Disability as an Undercounted Risk Factor
+----------------------------------------------------
+Question: Are high-disability tracts concentrated in cooling deserts,
+and does disability independently amplify heat risk within those areas?
+
+Results:
+  Disability within cooling deserts:     12.3% (median)
+  Disability outside cooling deserts:    10.0% (median)
+  Mann-Whitney U = 571,816, p < 0.001
+
+  High-disability tracts: 38% cooling desert rate
+  Low-disability tracts:  17% cooling desert rate
+  Kruskal-Wallis: H = 293.4, p < 0.001, η² = 0.132
+
+  Logistic regression (Phase 2): pct_disability OR = 0.943, p < 0.001
+  → Disability lowers cooling desert odds when income is controlled.
+
+Finding: There is a statistically significant 2.3-percentage-point elevation
+in disability rates inside cooling deserts (p < 0.001). The effect size
+(η² = 0.132) is moderate — higher than LEP, indicating that disability is a
+more concentrated vulnerability. However, the logistic regression shows that
+disability does not independently predict where cooling deserts form. The
+correct interpretation is: disability is an amplifying condition within cooling
+deserts, placing those residents at greatest physiological risk from heat
+exposure that higher-income households could manage with available technology.
+
+8.7 RQ10 — Elderly and Children Under Compounded Risk
+------------------------------------------------------
+Question: Where do age-vulnerable populations face simultaneous heat
+exposure and financial constraint?
+
+Results:
+  Elderly 65+:
+    High elderly tracts (>21.1%):  19% cooling desert rate | CDI = 35.8
+    Low elderly tracts:             27% cooling desert rate | CDI = 41.5
+    Mann-Whitney p < 0.001
+    → Elderly-concentrated tracts have LOWER CDI — older neighborhoods
+      are more financially stable. Elderly are physiologically vulnerable
+      but not disproportionately in cooling deserts by tract-level analysis.
+    Triple compound (high elderly + high burden + HVI ≥ 4): 73 tracts
+      Bronx: 15 | Brooklyn: 34 | Queens: 23
+
+  Children under 18:
+    High children tracts (>24.6%): 38% cooling desert rate | CDI = 47.6
+    Low children tracts:           21% cooling desert rate | CDI = 38.0
+    Mann-Whitney p < 0.001
+    → Child-concentrated tracts have HIGHER CDI and higher desert rates.
+    Triple compound (high children + high burden + HVI ≥ 4): 127 tracts
+      Bronx: 66 | Brooklyn: 44 | Queens: 14
+
+Finding: Children and the elderly follow opposite patterns at the
+neighborhood level. Elderly-concentrated tracts are modestly better
+protected financially — consistent with older, more established residential
+areas. Child-concentrated tracts track the poverty and racial burden pattern
+strongly: 38% cooling desert rate vs 21% citywide. The 127 tracts combining
+high child concentration with high rent burden and high HVI represent a
+priority zone for pediatric heat health intervention — overwhelmingly
+concentrated in the Bronx (52%) and Brooklyn (35%).
+
+8.8 Borough-Level Summary Table
+--------------------------------
+All metrics below are significant across boroughs (Kruskal-Wallis p < 0.001).
+Dunn post-hoc tests (Bonferroni correction) show all pairwise borough
+differences are significant except Manhattan vs Staten Island on CDI.
+
+                     Bronx  Brooklyn  Manhattan   Queens  Staten I.
+  Mean CDI:           52.1      42.1       25.9     38.0       28.1
+  Median HVI rank:     5.0       4.0        1.0      3.0        1.0
+  Median rent burden: 34.7%     28.6%      25.0%    27.9%      32.3%
+  Median income:     $50K      $80K       $122K     $89K       $99K
+  Median LEP:        13.8%      6.3%       3.2%    11.3%       5.3%
+  Median disability: 15.5%      9.9%       9.7%     9.7%      10.0%
+  % Cooling deserts:   54%       29%         9%      16%         8%
+
+  Compound vulnerability:
+    Cooling desert + High LEP:        164 tracts (7.4% of NYC)
+      Bronx: 80 (23% of Bronx tracts)
+    Cooling desert + High disability: 208 tracts (9.3% of NYC)
+      Bronx: 115 (33% of Bronx tracts)
+
+
+=======================================================================
+SECTION 9 — FINDINGS SYNTHESIS
+=======================================================================
+
+Nine statistically supported findings, ordered by analytical weight:
+
+1. Race is the dominant predictor of heat vulnerability at the tract level
+   (β_std = +0.73, explaining 27.7pp of variance above income, p < 0.001).
+   This is not a known-confounder effect — pct_black loads on a separate
+   PCA component from income, confirming it captures structurally distinct
+   variance.
+
+2. Cooling desert risk is not scattered — it is spatially concentrated
+   with exceptional intensity (Moran's I = 0.867, z = 70.81). The entire
+   South and Central Bronx constitutes a single contiguous high-risk zone.
+
+3. 557 NYC census tracts (25.0%) meet the cooling desert definition.
+   The Bronx holds 54% of them. 66% of all Bronx tracts are spatial
+   hot-spots (LISA HH classification).
+
+4. The Cooling Desert Index (CDI) separates deserts from non-deserts
+   with AUC = 0.929. The 21.6-point gap between desert and non-desert
+   mean CDI scores represents a 1.5 standard deviation effect — strong
+   by social science standards.
+
+5. Five structurally distinct risk typologies exist. Clusters 3, 4, and 5
+   all qualify as high-risk but for different reasons — immigrant heat
+   burden (LEP/overcrowding), racial heat burden (% Black/HVI), and
+   compound deprivation (income/disability) — requiring differentiated
+   policy responses.
+
+6. 45% of confirmed cooling deserts have no Cool It! site within 0.5 miles.
+   The sites that do exist are not preferentially placed in higher-CDI tracts
+   (no significant CDI difference between covered and uncovered deserts, p = 1.0).
+
+7. NYCHA tracts face CDI = 53.0 vs private renter tracts at 39.5 (+13.4
+   points, p < 0.001) despite lower reported rent burden — identifying
+   energy costs as the binding constraint, not subsidized rent.
+
+8. 89% of cooling desert tracts already exceed 86°F average baseline
+   temperature, placing their residents in chronic daily danger throughout
+   the entire summer, not only during declared heat emergencies.
+
+9. Child-concentrated tracts have a 38% cooling desert rate — nearly
+   double the citywide average — and 127 tracts combine high child
+   concentration with extreme heat and severe rent burden.
+
+
+=======================================================================
+SECTION 10 — LIMITATIONS AND DATA GAPS
+=======================================================================
+
+10.1 Known Analytical Limitations
+-----------------------------------
+  - NYCHVS energy cost variables are not integrated at the tract level.
+    Energy burden is a strong theoretical driver of the AC non-use gap
+    but cannot be directly modeled. DOE LEAD energy burden data would
+    address this limitation.
+
+  - The binary cooling desert definition (HVI ≥ 4 AND burden > 30%)
+    uses a fixed threshold. Alternative thresholds (e.g., HVI ≥ 4 AND
+    burden > 38.2%, the top quartile) produce a more conservative count
+    (211 tracts, 9.5%). Both are analytically defensible; the 557-tract
+    definition is used throughout because it is more inclusive and better
+    suited for policy planning.
+
+  - Cool It! site analysis uses proximity (0.5-mile radius) as a proxy
+    for access. This does not account for actual hours of operation,
+    mobility barriers, workforce schedules, or ADA accessibility — all
+    known limitations of proximity-based access analysis documented in
+    the literature.
+
+  - Emergency indoor cooling center coordinates are not in the dataset.
+    The infrastructure access gap analysis covers only outdoor Cool It!
+    NYC features, not the full cooling infrastructure network.
+
+  - K-means clustering is sensitive to initialization. Results were
+    confirmed across 10 random initializations (n_init = 10) with a fixed
+    seed (42) for reproducibility. The cluster structure was stable across
+    all initializations.
+
+10.2 Missing Datasets (Priority Acquisitions)
+----------------------------------------------
+  High priority:
+    DOE LEAD energy burden data (tract-level energy costs as % of income)
+    HPD Heat & Hot Water Violations (building-level landlord compliance)
+    Emergency cooling center dataset (coordinates, hours, ADA status)
+
+  Medium priority:
+    NYCHA internal AC hookup infrastructure data
+    Building-level electrical capacity data
+
+
+=======================================================================
+SECTION 11 — OUTPUT FILES
+=======================================================================
+
+All analysis scripts are in analysis/03_statistical/.
+All result files are in data/final/.
+
+  Scripts:
+    01_regression.py              OLS regression (Phases 1, Model 1–3)
+    02_logistic_regression.py     Binary logistic regression
+    03_pca.py                     Principal component analysis
+    04_cooling_desert_index.py    CDI construction and validation
+    05_clustering.py              K-means clustering
+    06_spatial_autocorrelation.py Moran's I and LISA
+    07_cross_tabulations.py       Group comparisons (RQ4–RQ10)
+
+  Result JSON files:
+    regression_results.json       Coefficients, R², F-tests
+    logistic_regression_results.json  Odds ratios, AUC, threshold analysis
+    pca_results.json              Loadings, communalities, variable decisions
+    cdi_results.json              Weights, validation stats, top-10 tracts
+    cluster_results.json          Cluster profiles and policy levers
+    lisa_results.json             Global I, LISA summary
+    cross_tabulation_results.json All RQ findings with test statistics
+
+  Updated GeoJSON files (analysis-ready):
+    data/final/cooling_desert_index.geojson
+      Contains: all original tract indicators + HVI_RANK, CDI,
+      CDI_quintile, cluster, cluster_name, lisa_cluster, lisa_p, lisa_I
+
+    web/data/tract_map_data.geojson
+      Web-optimized subset of the above (27 columns, EPSG:4326)
+
+
+=======================================================================
+END OF REPORT
+=======================================================================
