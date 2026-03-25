@@ -8,7 +8,9 @@ Purpose:
 
 Three components found:
   PC1 (33.1%) — Economic Deprivation (income, poverty, rent burden)
-  PC2 (18.1%) — Racial/Ethnic Composition (% Black, % Hispanic, LEP)
+  PC2 (18.1%) — Black vs. Hispanic/LEP Contrast (pct_black +0.619,
+                  pct_limited_english -0.489; bipolar axis separating
+                  majority-Black English-speaking from Hispanic/immigrant tracts)
   PC3 (13.2%) — Age/Physical Vulnerability (elderly, disability)
 
 Decision: 7 of 10 candidates retained for index.
@@ -22,7 +24,6 @@ Run from project root:
 
 import json
 import warnings
-import numpy as np
 import pandas as pd
 import geopandas as gpd
 from sklearn.preprocessing import StandardScaler
@@ -68,11 +69,14 @@ for i, (ev, vr) in enumerate(zip(pca_full.explained_variance_,
 pca3 = PCA(n_components=3)
 scores = pca3.fit_transform(X_std)
 
+# PC2 is a CONTRAST axis: pct_black (+0.619) vs pct_limited_english (-0.489)
+# High PC2 = majority Black, English-speaking; Low PC2 = Hispanic/immigrant/LEP
+# Not a single "racial composition" dimension — renamed accordingly
 loadings = pd.DataFrame(
     pca3.components_.T,
     index=candidates,
     columns=["PC1_econ_deprivation",
-             "PC2_racial_composition",
+             "PC2_black_vs_hispanic_lep",
              "PC3_age_vulnerability"]
 )
 
@@ -94,16 +98,19 @@ component_info = {
         "top_loaders": ["median_household_income(-)", "pct_poverty_under_100(+)",
                         "pct_rent_burden_50_plus(+)"],
     },
-    "PC2_racial_composition": {
+    "PC2_black_vs_hispanic_lep": {
         "variance_pct": round(float(pca3.explained_variance_ratio_[1]*100), 1),
-        "name": "Racial/Ethnic Composition",
+        "name": "Black vs. Hispanic/LEP Contrast",
         "description": (
-            "High scores = higher % Black residents. "
-            "Largely independent of income — confirms race as a separate "
-            "axis of heat exposure, not just a poverty proxy."
+            "Bipolar axis: pct_black loads +0.619, pct_limited_english loads -0.489. "
+            "High scores = majority Black, English-speaking neighborhoods "
+            "(South Bronx, East Brooklyn). Low scores = majority Hispanic, "
+            "immigrant/LEP neighborhoods (Jackson Heights, Sunset Park). "
+            "Both sit apart from PC1 — community racial/ethnic structure is "
+            "independent of economic deprivation."
         ),
-        "top_loaders": ["pct_black(+)", "pct_limited_english(-)",
-                        "pct_hispanic(-)"],
+        "top_loaders": ["pct_black(+0.619)", "pct_limited_english(-0.489)",
+                        "pct_hispanic(-0.262)"],
     },
     "PC3_age_vulnerability": {
         "variance_pct": round(float(pca3.explained_variance_ratio_[2]*100), 1),
