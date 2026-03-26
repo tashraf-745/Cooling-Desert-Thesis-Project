@@ -10,17 +10,17 @@
   function tractTooltip(p) {
     const desert = p.is_cooling_desert === 1;
     const pct = v => v != null ? v.toFixed(1) + '%' : '—';
-    return '<b class="tt-' + (desert ? 'desert' : 'safe') + '">' + (desert ? '● Cooling Desert' : '○ Not a Desert') + '</b>' +
+    return '<b class="tt-' + (desert ? 'desert' : 'safe') + '">' + (desert ? '● Cooling Desert' : '○ Not a Cooling Desert') + '</b>' +
       '<div class="tt-loc">' + (p.borough || '') + '</div>' +
       '<div class="tt-rows">' +
-        '<span>CDI</span><span>' + (p.CDI != null ? p.CDI.toFixed(1) : '—') + ' (Q' + (Math.round(p.CDI_quintile) || '—') + ')</span>' +
-        '<span>HVI</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' / 5</span>' +
-        '<span>Rent ≥50%</span><span>' + pct(p.pct_rent_burden_50_plus) + '</span>' +
+        '<span>Heat risk score</span><span>' + (p.CDI != null ? p.CDI.toFixed(1) : '—') + '</span>' +
+        '<span>Heat danger level</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' out of 5</span>' +
+        '<span>Paying 50%+ on rent</span><span>' + pct(p.pct_rent_burden_50_plus) + '</span>' +
       '</div>';
   }
 
   function siteTooltip(p) {
-    return '<b class="tt-site">Cool It! Site</b>' +
+    return '<b class="tt-site">Public Cooling Spot</b>' +
       '<div class="tt-loc">' + (p.property_name || '') + '</div>' +
       '<div class="tt-loc">' + (p.feature_type || '') + ' · ' + (p.borough || '') + '</div>';
   }
@@ -49,12 +49,12 @@
   };
 
   const LEGEND_CFG = {
-    cdi:     { title: 'CDI Quintile',          items: [['Q1 — Lowest risk','#EAF2FB'],['Q2','#7FB3D3'],['Q3','#F5C26B'],['Q4','#E07B39'],['Q5 — Highest risk','#922B21']] },
-    binary:  { title: 'Cooling Desert',        items: [['Cooling Desert','#922B21'],['Not a Desert','#EAF2FB']] },
-    lisa:    { title: 'LISA Cluster',          items: [['HH — Hot-spot','#C0392B'],['LL — Cold-spot','#2471A3'],['HL — Isolated high','#F39C12'],['LH — Protected','#A569BD'],['Not significant','#D5D8DC']] },
-    cluster: { title: 'Risk Typology',         items: [['Low Risk','#56B4E9'],['Financially Strained','#F0E442'],['Immigrant Heat Burden','#E69F00'],['Racial Heat Burden','#CC79A7'],['Compound Deprivation','#D55E00']] },
-    hvi:     { title: 'HVI Rank',              items: [['Rank 1 — Lowest','#EAF2FB'],['Rank 2','#7FB3D3'],['Rank 3','#F5C26B'],['Rank 4','#E07B39'],['Rank 5 — Highest','#922B21']] },
-    temp:    { title: 'Baseline Temp (°F)',    items: [['Coolest','#EAF2FB'],['','#7FB3D3'],['','#F5C26B'],['','#E07B39'],['Hottest','#922B21']] }
+    cdi:     { title: 'Heat Risk Score',         items: [['Lowest risk','#EAF2FB'],['Low risk','#7FB3D3'],['Moderate risk','#F5C26B'],['High risk','#E07B39'],['Highest risk','#922B21']] },
+    binary:  { title: 'Cooling Desert',          items: [['Cooling Desert','#922B21'],['Not a Cooling Desert','#EAF2FB']] },
+    lisa:    { title: 'Neighborhood Risk Clusters', items: [['High-risk cluster (surrounded by high-risk areas)','#C0392B'],['Low-risk cluster','#2471A3'],['Isolated high-risk area','#F39C12'],['Low-risk island inside a risky zone','#A569BD'],['No clear cluster pattern','#D5D8DC']] },
+    cluster: { title: 'Neighborhood Type',       items: [['Low Risk','#56B4E9'],['Financially Stretched','#F0E442'],['Language & Heat Barriers','#E69F00'],['Racial Heat Burden','#CC79A7'],['Multiple Compounding Barriers','#D55E00']] },
+    hvi:     { title: 'Heat Danger Level (1–5)', items: [['1 — Lowest danger','#EAF2FB'],['2','#7FB3D3'],['3','#F5C26B'],['4','#E07B39'],['5 — Highest danger','#922B21']] },
+    temp:    { title: 'Average Summer Temperature', items: [['Cooler','#EAF2FB'],['','#7FB3D3'],['','#F5C26B'],['','#E07B39'],['Hotter','#922B21']] }
   };
 
   // ── Map init ───────────────────────────────────────────────
@@ -198,19 +198,19 @@
         <span class="info-borough">${p.borough || ''}</span>
       </div>
       <span class="info-badge ${desert ? 'badge-desert' : 'badge-safe'}">
-        ${desert ? 'Cooling Desert' : 'Not a Desert'}
+        ${desert ? 'Cooling Desert' : 'Not a Cooling Desert'}
       </span>
       <dl class="info-grid">
-        <dt>CDI Score</dt>        <dd>${p.CDI != null ? p.CDI.toFixed(1) : '—'} <span class="muted">(Q${Math.round(p.CDI_quintile) || '—'})</span></dd>
-        <dt>Cluster</dt>          <dd>${p.cluster_name || '—'}</dd>
-        <dt>HVI Rank</dt>         <dd>${Math.round(p.HVI_RANK) || '—'} / 5</dd>
-        <dt>Rent burden 50%+</dt> <dd>${fmtPct(p.pct_rent_burden_50_plus)}</dd>
-        <dt>Median income</dt>    <dd>${fmtMoney(p.median_household_income)}</dd>
-        <dt>% Black</dt>          <dd>${fmtPct(p.pct_black)}</dd>
-        <dt>% Hispanic</dt>       <dd>${fmtPct(p.pct_hispanic)}</dd>
+        <dt>Heat risk score</dt>       <dd>${p.CDI != null ? p.CDI.toFixed(1) : '—'}</dd>
+        <dt>Neighborhood type</dt>     <dd>${(p.cluster_name || '—').split('—')[0].trim()}</dd>
+        <dt>Heat danger level</dt>     <dd>${Math.round(p.HVI_RANK) || '—'} out of 5</dd>
+        <dt>Paying 50%+ on rent</dt>   <dd>${fmtPct(p.pct_rent_burden_50_plus)}</dd>
+        <dt>Median household income</dt><dd>${fmtMoney(p.median_household_income)}</dd>
+        <dt>Black residents</dt>       <dd>${fmtPct(p.pct_black)}</dd>
+        <dt>Hispanic residents</dt>    <dd>${fmtPct(p.pct_hispanic)}</dd>
       </dl>
       ${helps.length ? `<div class="info-scenarios">
-        <span class="info-scen-label">Policy scenarios that help:</span>
+        <span class="info-scen-label">Policies that could help this area:</span>
         ${helps.map(h => `<span class="info-scen-tag">${h}</span>`).join('')}
       </div>` : ''}
     `;

@@ -10,25 +10,25 @@
   function tractTooltip(p) {
     const desert = p.is_cooling_desert === 1;
     const pct = v => v != null ? v.toFixed(1) + '%' : '—';
-    return '<b class="tt-' + (desert ? 'desert' : 'safe') + '">' + (desert ? '● Cooling Desert' : '○ Not a Desert') + '</b>' +
+    return '<b class="tt-' + (desert ? 'desert' : 'safe') + '">' + (desert ? '● Cooling Desert' : '○ Not a Cooling Desert') + '</b>' +
       '<div class="tt-loc">' + (p.borough || '') + '</div>' +
       '<div class="tt-rows">' +
-        '<span>CDI</span><span>' + (p.CDI != null ? p.CDI.toFixed(1) : '—') + ' (Q' + (Math.round(p.CDI_quintile) || '—') + ')</span>' +
-        '<span>HVI</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' / 5</span>' +
-        '<span>Rent ≥50%</span><span>' + pct(p.pct_rent_burden_50_plus) + '</span>' +
+        '<span>Heat risk score</span><span>' + (p.CDI != null ? p.CDI.toFixed(1) : '—') + '</span>' +
+        '<span>Heat danger level</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' out of 5</span>' +
+        '<span>Paying 50%+ on rent</span><span>' + pct(p.pct_rent_burden_50_plus) + '</span>' +
       '</div>';
   }
 
   function ntaTooltip(p) {
     return '<b class="tt-loc">' + (p.ntaname || p.boroname || '') + '</b>' +
       '<div class="tt-rows">' +
-        '<span>HVI Rank</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' / 5</span>' +
-        '<span>Surface temp</span><span>' + (p.SURFACE_TEMP != null ? p.SURFACE_TEMP.toFixed(1) + '°F' : '—') + '</span>' +
+        '<span>Heat danger level</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' out of 5</span>' +
+        '<span>Surface temperature</span><span>' + (p.SURFACE_TEMP != null ? p.SURFACE_TEMP.toFixed(1) + '°F' : '—') + '</span>' +
       '</div>';
   }
 
   function siteTooltip(p) {
-    return '<b class="tt-site">Cool It! Site</b>' +
+    return '<b class="tt-site">Public Cooling Spot</b>' +
       '<div class="tt-loc">' + (p.property_name || '') + '</div>' +
       '<div class="tt-loc">' + (p.feature_type || '') + ' · ' + (p.borough || '') + '</div>';
   }
@@ -65,16 +65,22 @@
   Promise.all([
     fetch('data/tract_map_data.geojson').then(r => r.json()),
     fetch('data/nta_hvi_layer.geojson').then(r => r.json()),
-    fetch('data/cool_it_sites.geojson').then(r => r.json())
-  ]).then(([tracts, ntas, sites]) => {
-    buildLayers(tracts, ntas, sites);
+    fetch('data/cool_it_sites.geojson').then(r => r.json()),
+    fetch('data/nyc_boundary.geojson').then(r => r.json())
+  ]).then(([tracts, ntas, sites, boundary]) => {
+    buildLayers(tracts, ntas, sites, boundary);
     initObserver();
   }).catch(err => console.error('[Narrative] Data load failed:', err));
 
   // ── Build layers once ──────────────────────────────────────
-  function buildLayers(tracts, ntas, sites) {
+  function buildLayers(tracts, ntas, sites, boundary) {
 
     const onTract = (f, l) => l.bindTooltip(tractTooltip(f.properties), TT_OPTS);
+
+    // NYC outline — shown on panel 0 to orient the viewer
+    L_.nycBorder = L.geoJSON(boundary, {
+      style: { fillColor: 'transparent', color: '#1A252F', weight: 2.5, opacity: 0.7 }
+    });
 
     // Panel 0 — base grey tracts
     L_.base = L.geoJSON(tracts, { style: BASE_STYLE, onEachFeature: onTract });
@@ -163,6 +169,7 @@
       case 0:
         L_.base.setStyle(BASE_STYLE);
         L_.base.addTo(map);
+        L_.nycBorder.addTo(map);
         map.flyTo([40.72, -73.97], 10, { duration: 0.8 });
         break;
       case 1:
