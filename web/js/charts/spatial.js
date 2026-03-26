@@ -34,10 +34,10 @@
 
     // Quadrant backgrounds
     [
-      { x1: x(0), y1: 0,    x2: iw,  y2: y(0), fill: '#FEF3F2', label: 'HH', lx: iw - 8, ly: 14, anchor: 'end'   },
-      { x1: 0,    y1: 0,    x2: x(0),y2: y(0), fill: '#F5EEF8', label: 'LH', lx: 8,      ly: 14, anchor: 'start' },
-      { x1: 0,    y1: y(0), x2: x(0),y2: ih,   fill: '#EBF5FB', label: 'LL', lx: 8,      ly: ih - 8, anchor: 'start' },
-      { x1: x(0), y1: y(0), x2: iw,  y2: ih,   fill: '#FEF9E7', label: 'HL', lx: iw - 8, ly: ih - 8, anchor: 'end'   },
+      { x1: x(0), y1: 0,    x2: iw,  y2: y(0), fill: '#FEF3F2', label: 'High–High', lx: iw - 8, ly: 14, anchor: 'end'   },
+      { x1: 0,    y1: 0,    x2: x(0),y2: y(0), fill: '#F5EEF8', label: 'Low–High',  lx: 8,      ly: 14, anchor: 'start' },
+      { x1: 0,    y1: y(0), x2: x(0),y2: ih,   fill: '#EBF5FB', label: 'Low–Low',   lx: 8,      ly: ih - 8, anchor: 'start' },
+      { x1: x(0), y1: y(0), x2: iw,  y2: ih,   fill: '#FEF9E7', label: 'High–Low',  lx: iw - 8, ly: ih - 8, anchor: 'end'   },
     ].forEach(q => {
       svg.append('rect').attr('x', q.x1).attr('y', q.y1)
         .attr('width', q.x2 - q.x1).attr('height', q.y2 - q.y1).attr('fill', q.fill);
@@ -70,10 +70,10 @@
         .attr('stroke', 'none');
     });
 
-    // Moran's I annotation
-    svg.append('text').attr('x', iw - 6).attr('y', 14).attr('text-anchor', 'end')
+    // Clustering strength annotation
+    svg.append('text').attr('x', iw - 6).attr('y', 30).attr('text-anchor', 'end')
       .attr('font-size', 11).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
-      .text("Moran's I = 0.867 · p < 0.001");
+      .text('Clustering strength: 0.87 out of 1.0 (very strong)');
 
     // Axes
     svg.append('g').attr('transform', `translate(0,${ih})`)
@@ -90,12 +90,12 @@
     svg.append('text').attr('x', iw / 2).attr('y', ih + 42)
       .attr('text-anchor', 'middle').attr('font-size', 11)
       .attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
-      .text('Standardized CDI (z-score)');
+      .text('Neighborhood heat risk score');
 
     svg.append('text').attr('transform', 'rotate(-90)').attr('x', -ih / 2).attr('y', -44)
       .attr('text-anchor', 'middle').attr('font-size', 11)
       .attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
-      .text('Spatial lag (Wz)');
+      .text('Avg. risk of surrounding neighborhoods');
 
     // Hover tooltip
     const tip = d3.select(container).append('div').attr('class', 'spatial-tooltip');
@@ -104,7 +104,7 @@
       .on('mouseover', function (event, d) {
         const [px, py] = d3.pointer(event, container);
         tip.style('display', 'block').style('left', (px + 14) + 'px').style('top', (py - 10) + 'px')
-          .html(`<b>${d.borough}</b><br>CDI: ${d.cdi} · ${d.cluster}`);
+          .html(`<b>${d.borough}</b><br>Heat risk: ${d.cdi}`);
       })
       .on('mouseout', () => tip.style('display', 'none'));
   }
@@ -142,8 +142,8 @@
         const legend = L.control({ position: 'bottomright' });
         legend.onAdd = () => {
           const div = L.DomUtil.create('div', 'leaflet-legend');
-          [['HH — Hot-spot', '#C0392B'], ['LL — Cold-spot', '#2471A3'],
-           ['HL — Isolated high', '#F39C12'], ['Not significant', '#D5D8DC']]
+          [['High-risk cluster', '#C0392B'], ['Low-risk cluster', '#2471A3'],
+           ['Isolated high-risk area', '#F39C12'], ['No clear pattern', '#D5D8DC']]
             .forEach(([label, color]) => {
               div.innerHTML += `<div class="legend-item"><span class="legend-swatch" style="background:${color}"></span><span class="legend-label">${label}</span></div>`;
             });

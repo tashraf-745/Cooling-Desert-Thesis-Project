@@ -1247,6 +1247,14 @@ section {
   border-left: 3px solid var(--color-border);
 }
 
+.meth-abbr {
+  font-size: 10px;
+  color: #9BA3AE;
+  font-weight: var(--weight-regular);
+  display: block;
+  margin-top: 1px;
+}
+
 .meth-note code {
   font-family: monospace;
   background: var(--color-bg-subtle);

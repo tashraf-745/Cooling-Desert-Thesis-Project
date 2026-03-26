@@ -36,7 +36,7 @@
   const DEMO_SERIES = [
     { key: 'black',      label: '% Black',    color: '#CC79A7' },
     { key: 'hispanic',   label: '% Hispanic', color: '#E69F00' },
-    { key: 'lep',        label: '% LEP',      color: '#56B4E9' },
+    { key: 'lep',        label: '% Limited English', color: '#56B4E9' },
     { key: 'disability', label: '% Disability', color: '#D55E00' },
   ];
 
@@ -113,9 +113,9 @@
     if (!el) return;
 
     const panels = [
-      { key: 'pct_desert', title: '% Cooling Deserts', color: '#922B21', fmt: d => d + '%',   max: 60  },
-      { key: 'mean_cdi',   title: 'Mean CDI Score',    color: '#E07B39', fmt: d => d,          max: 60  },
-      { key: 'income_k',   title: 'Median Income ($K)',color: '#7FB3D3', fmt: d => '$' + d + 'K', max: 140 },
+      { key: 'pct_desert', title: '% in a Cooling Desert', color: '#922B21', fmt: d => d + '%',   max: 60  },
+      { key: 'mean_cdi',   title: 'Avg. Heat Risk Score',  color: '#E07B39', fmt: d => d,          max: 60  },
+      { key: 'income_k',   title: 'Median Income ($K)',    color: '#7FB3D3', fmt: d => '$' + d + 'K', max: 140 },
     ];
 
     el.className = 'chart-borough-wrap';

@@ -220,7 +220,7 @@
     <section id="typologies" class="section-typologies" aria-label="Risk typologies">
       <div class="container">
         <h2 class="section-heading">Five Risk Typologies</h2>
-        <p class="section-desc">NYC's cooling desert tracts cluster into five distinct risk profiles — each reflecting a different combination of heat vulnerability, income constraints, and structural barriers to cooling.</p>
+        <p class="section-desc">New York City's at-risk neighborhoods fall into five groups. Each group faces a different set of problems — some mostly financial, some tied to language access, and some facing every challenge at once.</p>
       </div>
       <div class="cards-scroll">
         <div class="cards-track" id="cards-track"></div>
@@ -231,24 +231,24 @@
     <section id="demographics" class="section-demographics" aria-label="Who bears the burden">
       <div class="container">
         <h2 class="section-heading">Who Bears the Burden</h2>
-        <p class="section-desc">Three statistical findings on the distribution of heat risk across New York City's renter population.</p>
+        <p class="section-desc">Three findings on which communities bear the most heat risk — and why race, income, and neighborhood shape who gets left behind.</p>
 
         <div class="chart-block">
-          <p class="chart-finding">Race is the single strongest predictor of heat vulnerability — a standardized β of +0.726, more influential than income, rent burden, or language access.</p>
+          <p class="chart-finding">Race is the single most powerful driver of heat risk — more influential than income, rent costs, or language barriers, even after all other factors are accounted for.</p>
           <div id="chart-regression"></div>
-          <p class="chart-source">OLS regression on HVI rank &middot; standardized &beta; coefficients &middot; Model 3 (R&sup2; = 0.567, n = 2,197 tracts) &middot; grey bars not significant (p &gt; 0.05)</p>
+          <p class="chart-source">Statistical analysis of 2,197 NYC neighborhoods &middot; bar length shows how strongly each factor drives heat risk &middot; grey bars did not reach statistical significance &middot; see Methodology for technical details</p>
         </div>
 
         <div class="chart-block">
           <p class="chart-finding">The Bronx concentrates the highest share of cooling deserts (53.8%) and the lowest median income ($50K) — a borough-level gap that demographics alone cannot fully explain.</p>
           <div id="chart-borough"></div>
-          <p class="chart-source">Cooling Desert Index &middot; ACS 5-Year 2022 &middot; Hover any bar to highlight that borough across all three panels</p>
+          <p class="chart-source">Heat risk data &middot; U.S. Census 2022 &middot; Hover any bar to highlight that borough across all three charts</p>
         </div>
 
         <div class="chart-block">
-          <p class="chart-finding">The Black resident share rises twelvefold across the CDI distribution — from 4.5% in the lowest-risk tracts to 54.1% in the highest-risk tracts.</p>
+          <p class="chart-finding">The share of Black residents rises twelvefold — from 4.5% in the safest neighborhoods to 54.1% in the most at-risk ones. No other group shows this pattern as starkly.</p>
           <div id="chart-quintile"></div>
-          <p class="chart-source">Mean demographic shares by CDI quintile &middot; ACS 5-Year 2022 &middot; n = 440 tracts per quintile</p>
+          <p class="chart-source">Average demographic shares across five heat risk levels &middot; U.S. Census 2022 &middot; ~440 neighborhoods per group</p>
         </div>
       </div>
     </section>
@@ -268,7 +268,7 @@
           <button class="scen-btn" data-scenario="S2">
             <b class="scen-id">S2</b>
             <span class="scen-name">AC Retrofit &amp; Greening</span>
-            <span class="scen-desc">Lift HVI rank 5&rarr;4 via AC retrofits and urban tree cover</span>
+            <span class="scen-desc">Improve heat danger levels via AC retrofits and urban greening in the most at-risk neighborhoods</span>
           </button>
           <button class="scen-btn" data-scenario="S3">
             <b class="scen-id">S3</b>
@@ -278,7 +278,7 @@
           <button class="scen-btn" data-scenario="S4">
             <b class="scen-id">S4</b>
             <span class="scen-name">Rent Burden Relief</span>
-            <span class="scen-desc">10pp rent stabilization for lowest-income renters</span>
+            <span class="scen-desc">10% reduction in rent burden for lowest-income renters</span>
           </button>
         </div>
 
@@ -326,18 +326,18 @@
     <section id="spatial" class="section-spatial" aria-label="Where risk concentrates">
       <div class="container">
         <h2 class="section-heading">Where Risk Concentrates</h2>
-        <p class="section-desc">Two spatial findings show that cooling deserts are not scattered — they cluster systematically, forming a continuous geography of compounded disadvantage.</p>
+        <p class="section-desc">Two findings show that high-risk neighborhoods don't stand alone — they're almost always surrounded by other high-risk neighborhoods, forming connected zones of danger rather than isolated pockets.</p>
 
         <div class="chart-block">
-          <p class="chart-finding">With a Moran's I of 0.867, cooling deserts are among the most spatially clustered phenomena measured in NYC — high-risk tracts are almost always surrounded by other high-risk tracts.</p>
+          <p class="chart-finding">Each dot on this chart is a neighborhood. The strong upward slope shows that high-risk neighborhoods are almost always surrounded by other high-risk neighborhoods — one of the strongest clustering patterns found in the city's data.</p>
           <div id="moran-scatter" class="moran-container"></div>
-          <p class="chart-source">Moran scatterplot &middot; x = standardized CDI &middot; y = spatial lag (Wz) &middot; n = 2,122 tracts &middot; PySAL queen contiguity weights &middot; 999 permutations</p>
+          <p class="chart-source">Neighborhood clustering chart &middot; x-axis = neighborhood heat risk score &middot; y-axis = average risk of surrounding neighborhoods &middot; 2,122 neighborhoods plotted &middot; see Methodology for technical details</p>
         </div>
 
         <div class="chart-block">
-          <p class="chart-finding">66% of Bronx tracts form HH hot-spots — a continuous geography of compounded disadvantage, not scattered pockets. Brooklyn follows with 29% HH coverage.</p>
+          <p class="chart-finding">66% of Bronx neighborhoods are surrounded on all sides by other high-risk neighborhoods — a connected zone of compounded heat danger, not isolated pockets. Brooklyn follows, with 29% of its neighborhoods in this situation.</p>
           <div id="lisa-map"></div>
-          <p class="chart-source">LISA clusters (Local Indicators of Spatial Association) &middot; significant at p &lt; 0.05 &middot; 999 permutations &middot; HH: 582 tracts &middot; LL: 516 tracts</p>
+          <p class="chart-source">Neighborhood risk clustering map &middot; only statistically significant results shown &middot; High-risk clusters: 582 neighborhoods &middot; Low-risk clusters: 516 neighborhoods &middot; see Methodology for technical details</p>
         </div>
       </div>
     </section>
@@ -367,7 +367,7 @@
                   <tr><th>Variable</th><th>Weight</th><th>Direction</th><th>Role in index</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>HVI Rank</td><td><span class="weight-bar" style="width:83%"></span> 25%</td><td>↑ Higher = more risk</td><td>Primary heat exposure</td></tr>
+                  <tr><td>HVI Rank <span class="meth-abbr">(Heat Vulnerability Index — NYC Dept. of Health 1–5 scale)</span></td><td><span class="weight-bar" style="width:83%"></span> 25%</td><td>↑ Higher = more risk</td><td>Primary heat exposure</td></tr>
                   <tr><td>Rent burden ≥50%</td><td><span class="weight-bar" style="width:67%"></span> 20%</td><td>↑</td><td>Financial cooling constraint</td></tr>
                   <tr><td>Median income</td><td><span class="weight-bar" style="width:67%"></span> 20%</td><td>↓ Inverted</td><td>Economic adaptive capacity</td></tr>
                   <tr><td>% Black residents</td><td><span class="weight-bar" style="width:50%"></span> 15%</td><td>↑</td><td>Race as independent risk factor</td></tr>
@@ -396,7 +396,7 @@
             <div class="acc-body">
               <dl class="meth-methods">
                 <div class="meth-method">
-                  <dt>OLS Regression on HVI Rank</dt>
+                  <dt>Linear Regression on Heat Vulnerability Index (OLS — Ordinary Least Squares)</dt>
                   <dd>Three nested models tested whether race predicts heat vulnerability independently of income. Model 3 (full specification with borough fixed effects) achieved R² = 0.567 — a +27.7 percentage-point gain over income alone. The standardized β for % Black (0.726) was the strongest predictor in the model. n = 2,197 tracts.</dd>
                 </div>
                 <div class="meth-method">
