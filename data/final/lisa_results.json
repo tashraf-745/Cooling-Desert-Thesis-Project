@@ -2,7 +2,7 @@
   "global_morans_I": {
     "I": 0.8672,
     "EI": -0.0005,
-    "z_score": 71.86,
+    "z_score": 67.93,
     "p_value": 0.001,
     "n_permutations": 999,
     "interpretation": "Extremely strong positive spatial autocorrelation. High-CDI tracts cluster together; p=0.001 is the minimum possible with 999 permutations."

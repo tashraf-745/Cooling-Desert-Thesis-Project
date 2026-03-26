@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooling Deserts for Renters — NYC</title>
+  <meta name="description" content="A spatial analysis of heat vulnerability, rent burden, and cooling access across New York City's renter households." />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ── Navigation ─────────────────────────────────────── -->
+  <nav id="site-nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Cooling Deserts <span>NYC</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#narrative">The Story</a></li>
+        <li><a href="#map">Explore</a></li>
+        <li><a href="#typologies">Risk Profiles</a></li>
+        <li><a href="#demographics">Who's Affected</a></li>
+        <li><a href="#scenarios">What If?</a></li>
+        <li><a href="#spatial">Spatial Analysis</a></li>
+        <li><a href="#methodology">Methods</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ───────────────────────────────────── -->
+  <main id="main-content">
+
+    <!-- Step 2: Hero -->
+    <section id="hero" class="section-hero" aria-label="Introduction">
+      <div class="hero-content container">
+        <p class="hero-eyebrow">New York City &middot; Heat Equity Analysis</p>
+        <h1 class="hero-title">Cooling Deserts for Renters</h1>
+        <p class="hero-tagline">Heat Equity Inside the NYC Housing System</p>
+        <p class="hero-subtitle">
+          Mapping where heat vulnerability, rent burden, and absent cooling infrastructure
+          converge, and what it means for the renters who cannot escape the heat.
+        </p>
+        <div class="hero-stats" aria-label="Key statistics">
+          <div class="hero-stat">
+            <span class="stat-number" data-target="557">0</span>
+            <span class="stat-label">cooling desert tracts</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="1470000" data-format="millions">0</span>
+            <span class="stat-label">renters at risk</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="25" data-format="percent">0</span>
+            <span class="stat-label">of New York City</span>
+          </div>
+        </div>
+        <a href="#narrative" class="hero-scroll" aria-label="Scroll to the story">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Step 3: Scrollytelling Narrative -->
+    <section id="narrative" class="section-narrative" aria-label="How we got here">
+      <div class="narrative-layout">
+
+        <!-- Left: scrolling panels -->
+        <div class="narrative-panels">
+
+          <div class="narrative-panel is-active" data-step="0">
+            <span class="panel-step">01</span>
+            <h3 class="panel-heading">A City of 2,231 Tracts</h3>
+            <p class="panel-body">New York City's five boroughs contain 2,231 census tracts — the geographic units used to measure where heat risk, rent burden, and cooling access converge across the city's renter population.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">2,231</span>
+              <span class="panel-stat-detail">census tracts across 5 boroughs</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="1">
+            <span class="panel-step">02</span>
+            <h3 class="panel-heading">Where Heat Strikes Hardest</h3>
+            <p class="panel-body">The NYC Heat Vulnerability Index ranks each neighborhood 1–5 by expected heat mortality risk, combining surface temperature, green space, air conditioning access, and poverty. Rank 4–5 neighborhoods bear a disproportionate share of heat-related deaths.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">3×</span>
+              <span class="panel-stat-detail">higher heat mortality risk in HVI rank 5 neighborhoods</span>
+              <span class="panel-source">Rosenthal et al., 2014 &middot; DOHMH HVI</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="2">
+            <span class="panel-step">03</span>
+            <h3 class="panel-heading">When You Can't Afford to Cool Down</h3>
+            <p class="panel-body">Rent burden compounds heat risk. Households spending over 50% of income on rent have little left for electricity. The HVI counts AC ownership — but 21% of renters who own air conditioning do not use it due to cost, making high AC ownership a misleading signal of protection.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">21%</span>
+              <span class="panel-stat-detail">of renters with AC don't use it due to cost</span>
+              <span class="panel-source">NYC Comptroller Energy Insecurity Report, 2022</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="3">
+            <span class="panel-step">04</span>
+            <h3 class="panel-heading">557 Cooling Deserts</h3>
+            <p class="panel-body">When heat vulnerability is high and the household capacity to respond is structurally blocked, a cooling desert emerges. These 557 tracts — 25% of New York City — are places where the system offers no realistic path to cooling.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">557</span>
+              <span class="panel-stat-detail">cooling desert tracts — 1.47 million renters</span>
+              <span class="panel-source">Cooling Desert Index &middot; CDI &ge; 0.5, HVI rank &ge; 3</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="4">
+            <span class="panel-step">05</span>
+            <h3 class="panel-heading">Race Is an Independent Risk Factor</h3>
+            <p class="panel-body">After controlling for income and green space, a 1% increase in a tract's Black population is associated with a 0.43°F increase in surface temperature. In Manhattan the effect reaches 5.27°F. Race is not merely a proxy for poverty — it is its own axis of heat exposure.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">+0.43°F</span>
+              <span class="panel-stat-detail">surface temperature per 1% increase in Black residents</span>
+              <span class="panel-source">Shaker et al., 2019 &middot; Manhattan: +5.27°F</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="5">
+            <span class="panel-step">06</span>
+            <h3 class="panel-heading">The Bronx: Compounded at Scale</h3>
+            <p class="panel-body">Cooling deserts are not isolated pockets. 66% of Bronx tracts are surrounded by other high-risk tracts, forming a continuous geography of compounded disadvantage. The spatial autocorrelation index confirms this pattern is structural, not coincidental.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">0.867</span>
+              <span class="panel-stat-detail">Moran's I — cooling deserts cluster systematically</span>
+              <span class="panel-source">PySAL spatial weights &middot; p &lt; 0.001</span>
+            </div>
+          </div>
+
+          <div class="narrative-panel" data-step="6">
+            <span class="panel-step">07</span>
+            <h3 class="panel-heading">Public Cooling Is Not Enough</h3>
+            <p class="panel-body">NYC operates 218 outdoor Cool It! cooling features — but coverage is uneven. Many cooling desert tracts have no site within walking distance, and 83% of indoor cooling centers are closed on Sundays, when resting heat mortality risk is highest.</p>
+            <div class="panel-stat">
+              <span class="panel-stat-number">83%</span>
+              <span class="panel-stat-detail">of cooling centers closed on Sundays</span>
+              <span class="panel-source">NYC Comptroller "Overheated &amp; Underserved," 2022</span>
+            </div>
+          </div>
+
+        </div><!-- /narrative-panels -->
+
+        <!-- Right: sticky map -->
+        <div class="narrative-map-sticky" aria-hidden="true">
+          <div id="narrative-map"></div>
+        </div>
+
+      </div><!-- /narrative-layout -->
+    </section>
+
+    <!-- Step 4: Interactive Map -->
+    <section id="map" class="section-map" aria-label="Interactive map">
+      <div class="map-layout">
+
+        <aside class="map-controls" aria-label="Map controls">
+
+          <div class="ctrl-header">
+            <h2 class="ctrl-title">Explore the Map</h2>
+            <p class="ctrl-subtitle">Click any tract to see details</p>
+          </div>
+
+          <div class="ctrl-group">
+            <p class="ctrl-label">Layer</p>
+            <div class="ctrl-radio-list">
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="cdi" checked> Cooling Desert Index</label>
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="binary"> Cooling Deserts</label>
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="lisa"> LISA Hot-Spots</label>
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="cluster"> Risk Cluster Typology</label>
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="hvi"> HVI Rank</label>
+              <label class="ctrl-radio"><input type="radio" name="map-layer" value="temp"> Baseline Temperature</label>
+            </div>
+          </div>
+
+          <div class="ctrl-group">
+            <p class="ctrl-label">Overlays</p>
+            <label class="ctrl-check"><input type="checkbox" id="overlay-coolit"> Cool It! Sites</label>
+            <label class="ctrl-check"><input type="checkbox" id="overlay-nycha"> NYCHA Developments</label>
+          </div>
+
+          <div class="ctrl-group">
+            <p class="ctrl-label">Borough</p>
+            <div class="borough-btns">
+              <button class="borough-btn active" data-borough="all">All NYC</button>
+              <button class="borough-btn" data-borough="Bronx">Bronx</button>
+              <button class="borough-btn" data-borough="Brooklyn">Brooklyn</button>
+              <button class="borough-btn" data-borough="Manhattan">Manhattan</button>
+              <button class="borough-btn" data-borough="Queens">Queens</button>
+              <button class="borough-btn" data-borough="Staten Island">S.I.</button>
+            </div>
+            <div class="borough-stats" id="borough-stats"></div>
+          </div>
+
+          <div class="ctrl-group" id="map-legend"></div>
+
+          <div class="map-info-panel" id="map-info" aria-live="polite">
+            <p class="info-hint">Click any tract to see details</p>
+          </div>
+
+        </aside>
+
+        <div id="interactive-map" role="img" aria-label="Interactive choropleth map of NYC cooling deserts"></div>
+
+      </div>
+    </section>
+
+    <!-- Step 5: Cluster Profile Cards -->
+    <section id="typologies" class="section-typologies" aria-label="Risk typologies">
+      <div class="container">
+        <h2 class="section-heading">Five Risk Typologies</h2>
+        <p class="section-desc">NYC's cooling desert tracts cluster into five distinct risk profiles — each reflecting a different combination of heat vulnerability, income constraints, and structural barriers to cooling.</p>
+      </div>
+      <div class="cards-scroll">
+        <div class="cards-track" id="cards-track"></div>
+      </div>
+    </section>
+
+    <!-- Step 6: Demographic Evidence -->
+    <section id="demographics" class="section-demographics" aria-label="Who bears the burden">
+      <div class="container">
+        <h2 class="section-heading">Who Bears the Burden</h2>
+        <p class="section-desc">Three statistical findings on the distribution of heat risk across New York City's renter population.</p>
+
+        <div class="chart-block">
+          <p class="chart-finding">Race is the single strongest predictor of heat vulnerability — a standardized β of +0.726, more influential than income, rent burden, or language access.</p>
+          <div id="chart-regression"></div>
+          <p class="chart-source">OLS regression on HVI rank &middot; standardized &beta; coefficients &middot; Model 3 (R&sup2; = 0.567, n = 2,197 tracts) &middot; grey bars not significant (p &gt; 0.05)</p>
+        </div>
+
+        <div class="chart-block">
+          <p class="chart-finding">The Bronx concentrates the highest share of cooling deserts (53.8%) and the lowest median income ($50K) — a borough-level gap that demographics alone cannot fully explain.</p>
+          <div id="chart-borough"></div>
+          <p class="chart-source">Cooling Desert Index &middot; ACS 5-Year 2022 &middot; Hover any bar to highlight that borough across all three panels</p>
+        </div>
+
+        <div class="chart-block">
+          <p class="chart-finding">The Black resident share rises twelvefold across the CDI distribution — from 4.5% in the lowest-risk tracts to 54.1% in the highest-risk tracts.</p>
+          <div id="chart-quintile"></div>
+          <p class="chart-source">Mean demographic shares by CDI quintile &middot; ACS 5-Year 2022 &middot; n = 440 tracts per quintile</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 7: Scenario Simulator -->
+    <section id="scenarios" class="section-scenarios" aria-label="Policy scenario simulator">
+      <div class="container">
+        <h2 class="section-heading">What If?</h2>
+        <p class="section-desc">Toggle policy interventions to see how many cooling desert tracts could be improved — and how many would remain.</p>
+
+        <div class="scen-toggles">
+          <button class="scen-btn" data-scenario="S1">
+            <b class="scen-id">S1</b>
+            <span class="scen-name">New Cooling Sites</span>
+            <span class="scen-desc">Add Cool It! sites to all uncovered cooling desert tracts</span>
+          </button>
+          <button class="scen-btn" data-scenario="S2">
+            <b class="scen-id">S2</b>
+            <span class="scen-name">AC Retrofit &amp; Greening</span>
+            <span class="scen-desc">Lift HVI rank 5&rarr;4 via AC retrofits and urban tree cover</span>
+          </button>
+          <button class="scen-btn" data-scenario="S3">
+            <b class="scen-id">S3</b>
+            <span class="scen-name">NYCHA Energy Assist</span>
+            <span class="scen-desc">Remove AC surcharge and expand LIHEAP in NYCHA buildings</span>
+          </button>
+          <button class="scen-btn" data-scenario="S4">
+            <b class="scen-id">S4</b>
+            <span class="scen-name">Rent Burden Relief</span>
+            <span class="scen-desc">10pp rent stabilization for lowest-income renters</span>
+          </button>
+        </div>
+
+        <div class="scen-layout">
+          <div id="scenario-map"></div>
+          <div class="scen-stats">
+
+            <div class="scen-counters">
+              <div class="scen-kpi">
+                <span class="scen-count" id="count-helped">—</span>
+                <span class="scen-kpi-label">tracts improved</span>
+              </div>
+              <div class="scen-kpi">
+                <span class="scen-count" id="count-renters">—</span>
+                <span class="scen-kpi-label">renters reached</span>
+              </div>
+              <div class="scen-kpi">
+                <span class="scen-count" id="count-remaining">557</span>
+                <span class="scen-kpi-label">deserts remaining</span>
+              </div>
+            </div>
+
+            <div class="impact-wrap">
+              <p class="impact-title">Impact on 557 cooling deserts</p>
+              <div class="impact-track">
+                <div class="impact-exits" id="impact-exits"></div>
+                <div class="impact-left"  id="impact-left"></div>
+              </div>
+              <div class="impact-legend">
+                <span><span class="dot dot-teal"></span>Improved by scenario</span>
+                <span><span class="dot dot-red"></span>Remaining deserts</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <blockquote class="scen-callout">
+          Even with all four interventions combined, <strong>257 tracts remain</strong> — the most structurally entrenched cooling deserts in the city, where high HVI, extreme poverty, and rent burden exceed what any single policy lever can address.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Step 8: Spatial Story -->
+    <section id="spatial" class="section-spatial" aria-label="Where risk concentrates">
+      <div class="container">
+        <h2 class="section-heading">Where Risk Concentrates</h2>
+        <p class="section-desc">Two spatial findings show that cooling deserts are not scattered — they cluster systematically, forming a continuous geography of compounded disadvantage.</p>
+
+        <div class="chart-block">
+          <p class="chart-finding">With a Moran's I of 0.867, cooling deserts are among the most spatially clustered phenomena measured in NYC — high-risk tracts are almost always surrounded by other high-risk tracts.</p>
+          <div id="moran-scatter" class="moran-container"></div>
+          <p class="chart-source">Moran scatterplot &middot; x = standardized CDI &middot; y = spatial lag (Wz) &middot; n = 2,122 tracts &middot; PySAL queen contiguity weights &middot; 999 permutations</p>
+        </div>
+
+        <div class="chart-block">
+          <p class="chart-finding">66% of Bronx tracts form HH hot-spots — a continuous geography of compounded disadvantage, not scattered pockets. Brooklyn follows with 29% HH coverage.</p>
+          <div id="lisa-map"></div>
+          <p class="chart-source">LISA clusters (Local Indicators of Spatial Association) &middot; significant at p &lt; 0.05 &middot; 999 permutations &middot; HH: 582 tracts &middot; LL: 516 tracts</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 9: Methodology -->
+    <section id="methodology" class="section-methodology" aria-label="Methodology and data sources">
+      <div class="container">
+        <h2 class="section-heading">Methodology</h2>
+        <p class="section-desc">How the Cooling Desert Index was built, what statistical methods were used, and where this analysis has known limits.</p>
+
+        <div class="accordion">
+
+          <!-- Panel 1 -->
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span class="acc-num">01</span>
+              <span class="acc-title">How the Cooling Desert Index Was Built</span>
+              <svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="acc-body">
+              <p>The Cooling Desert Index (CDI) is a composite score combining seven census-tract-level variables into a single continuous measure of structural heat vulnerability. Each variable is min-max normalized to 0–100 and multiplied by its assigned weight. The CDI ranges from 2.9 (lowest risk) to 72.0 (highest risk), with a citywide mean of 39.4.</p>
+              <p>Variables were selected using principal component analysis (PCA). Three components were retained explaining 64.4% of total variance. Variables with redundant axes (poverty and income) or non-significant regression coefficients (Hispanic ethnicity, elderly share) were excluded.</p>
+              <table class="meth-table">
+                <thead>
+                  <tr><th>Variable</th><th>Weight</th><th>Direction</th><th>Role in index</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>HVI Rank</td><td><span class="weight-bar" style="width:83%"></span> 25%</td><td>↑ Higher = more risk</td><td>Primary heat exposure</td></tr>
+                  <tr><td>Rent burden ≥50%</td><td><span class="weight-bar" style="width:67%"></span> 20%</td><td>↑</td><td>Financial cooling constraint</td></tr>
+                  <tr><td>Median income</td><td><span class="weight-bar" style="width:67%"></span> 20%</td><td>↓ Inverted</td><td>Economic adaptive capacity</td></tr>
+                  <tr><td>% Black residents</td><td><span class="weight-bar" style="width:50%"></span> 15%</td><td>↑</td><td>Race as independent risk factor</td></tr>
+                  <tr><td>% Limited English</td><td><span class="weight-bar" style="width:27%"></span> 8%</td><td>↑</td><td>Communication access barrier</td></tr>
+                  <tr><td>% Disability</td><td><span class="weight-bar" style="width:23%"></span> 7%</td><td>↑</td><td>Mobility and physiological risk</td></tr>
+                  <tr><td>% Overcrowded renter</td><td><span class="weight-bar" style="width:17%"></span> 5%</td><td>↑</td><td>Physical cooling constraint</td></tr>
+                </tbody>
+              </table>
+              <div class="meth-stats">
+                <div class="meth-stat"><b>0.929</b><span>AUC-ROC vs binary desert classification</span></div>
+                <div class="meth-stat"><b>p &lt; 10⁻²⁰⁰</b><span>Mann-Whitney U test (desert vs non-desert)</span></div>
+                <div class="meth-stat"><b>+21.6 pts</b><span>Mean CDI gap: deserts (55.6) vs non-deserts (34.0)</span></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Panel 2 -->
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span class="acc-num">02</span>
+              <span class="acc-title">Statistical Methods</span>
+              <svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="acc-body">
+              <dl class="meth-methods">
+                <div class="meth-method">
+                  <dt>OLS Regression on HVI Rank</dt>
+                  <dd>Three nested models tested whether race predicts heat vulnerability independently of income. Model 3 (full specification with borough fixed effects) achieved R² = 0.567 — a +27.7 percentage-point gain over income alone. The standardized β for % Black (0.726) was the strongest predictor in the model. n = 2,197 tracts.</dd>
+                </div>
+                <div class="meth-method">
+                  <dt>Principal Component Analysis</dt>
+                  <dd>PCA on 10 candidate variables identified 3 components explaining 64.4% of total variance. Component 1 captures economic deprivation (income, poverty, rent burden). Component 2 captures racial heat exposure. Component 3 captures language and overcrowding barriers. Variables with eigenvalues &lt; 1 or theoretical redundancy were excluded from the CDI.</dd>
+                </div>
+                <div class="meth-method">
+                  <dt>K-Means Clustering (k = 5)</dt>
+                  <dd>Tracts were clustered on 7 normalized CDI variables. The optimal k was determined by elbow method on within-cluster sum of squares and silhouette scores. Five typologies emerged with distinct risk profiles: Low Risk, Financially Strained, Immigrant Heat Burden, Racial Heat Burden, and Compound Deprivation.</dd>
+                </div>
+                <div class="meth-method">
+                  <dt>Spatial Autocorrelation (Moran's I)</dt>
+                  <dd>Global Moran's I = 0.867 (z = 67.9, p &lt; 0.001, 999 permutations) using PySAL queen contiguity weights. Local Indicators of Spatial Association (LISA) identified 582 HH hot-spots and 516 LL cold-spots at p &lt; 0.05. This is the highest Moran's I of any variable tested in the analysis.</dd>
+                </div>
+              </dl>
+              <p class="meth-note">All scripts are reproducible Python (pandas, geopandas, scikit-learn, PySAL, statsmodels). Source code is available in the <code>analysis/</code> directory of this repository.</p>
+            </div>
+          </details>
+
+          <!-- Panel 3 -->
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span class="acc-num">03</span>
+              <span class="acc-title">Data Sources</span>
+              <svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="acc-body">
+              <table class="meth-table">
+                <thead>
+                  <tr><th>Dataset</th><th>Source</th><th>Vintage</th><th>Known limitation</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Heat Vulnerability Index</b></td>
+                    <td>NYC DOHMH</td>
+                    <td>2022</td>
+                    <td>NTA-level only; counts AC ownership, not usage</td>
+                  </tr>
+                  <tr>
+                    <td><b>American Community Survey</b></td>
+                    <td>U.S. Census Bureau</td>
+                    <td>5-Year 2018–2022</td>
+                    <td>5-year pooled estimates; margins of error in small tracts</td>
+                  </tr>
+                  <tr>
+                    <td><b>NYC Housing Vacancy Survey</b></td>
+                    <td>NYC Dept of City Planning</td>
+                    <td>2021</td>
+                    <td>Borough-level microdata only; not tract-disaggregatable</td>
+                  </tr>
+                  <tr>
+                    <td><b>Cool It! NYC Sites</b></td>
+                    <td>NYC Parks Dept</td>
+                    <td>2024</td>
+                    <td>Outdoor cooling features only; no indoor emergency centers</td>
+                  </tr>
+                  <tr>
+                    <td><b>NYCHA Developments</b></td>
+                    <td>NYC Housing Authority / NYC Open Data</td>
+                    <td>2024</td>
+                    <td>No building-level AC infrastructure data available</td>
+                  </tr>
+                  <tr>
+                    <td><b>Census Tract Boundaries</b></td>
+                    <td>U.S. Census Bureau TIGER/Line</td>
+                    <td>2020</td>
+                    <td>2020 tract definitions; minor boundary changes from 2010</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <!-- Panel 4 -->
+          <details class="accordion-item">
+            <summary class="accordion-summary">
+              <span class="acc-num">04</span>
+              <span class="acc-title">What This Analysis Cannot Show</span>
+              <svg class="acc-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="acc-body">
+              <p>Three data gaps limit the scope of this analysis. Future work with these datasets would materially improve the accuracy of the Cooling Desert Index and the policy scenario models.</p>
+              <dl class="meth-gaps">
+                <div class="gap-item">
+                  <dt>Energy burden at the tract level</dt>
+                  <dd>The U.S. Department of Energy's LEAD (Low-Income Energy Affordability Data) tool provides energy burden estimates by census tract. This analysis uses rent burden as a proxy for unaffordable cooling costs, but energy burden data would directly measure whether households can afford to run air conditioning — a more precise measure of the constraint identified in the NYC Comptroller's energy insecurity research.</dd>
+                </div>
+                <div class="gap-item">
+                  <dt>Emergency indoor cooling center accessibility</dt>
+                  <dd>This analysis includes outdoor Cool It! NYC features but lacks geocoded data for the city's indoor emergency cooling centers — including their hours of operation, ADA accessibility status, capacity, and actual utilization during heat events. Without this, the "access gap" measure in Panel 7 captures only outdoor cooling proximity, not the full emergency cooling infrastructure.</dd>
+                </div>
+                <div class="gap-item">
+                  <dt>Building-level heat and hot water failures</dt>
+                  <dd>NYC's Housing Preservation and Development (HPD) tracks heat and hot water violations at the building level. These violations are concentrated in the same neighborhoods identified as cooling deserts, but the building-level linkage would allow this analysis to connect structural landlord failures directly to individual cooling desert tracts — strengthening the evidence base for enforcement-based interventions.</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+
+        </div><!-- /accordion -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <p>Cooling Deserts for Renters — NYC &copy; 2026. Data: NYC Open Data, U.S. Census, NYCHVS, NYCHA.</p>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+
+  <!-- Step 8: Spatial story -->
+  <script src="js/charts/spatial.js"></script>
+
+  <!-- Step 7: Scenario simulator -->
+  <script src="js/charts/scenarios.js"></script>
+
+  <!-- Step 6: Demographic charts -->
+  <script src="js/charts/demographics.js"></script>
+
+  <!-- Step 5: Typology cards -->
+  <script src="js/charts/typologies.js"></script>
+
+  <!-- Step 4: Interactive map -->
+  <script src="js/maps/interactive.js"></script>
+
+  <!-- Step 3: Scrollytelling narrative -->
+  <script src="js/narrative/scrollytelling.js"></script>
+
+  <!-- Hero counter animation -->
+  <script>
+    function runCounters() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = +el.dataset.target;
+        const fmt    = el.dataset.format;
+        const duration = 2000;
+        const start    = performance.now();
+
+        function display(val) {
+          if (fmt === 'millions') return (val / 1e6).toFixed(2) + 'M';
+          if (fmt === 'percent')  return Math.round(val) + '%';
+          return Math.round(val).toLocaleString();
+        }
+
+        function tick(now) {
+          const t     = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+          el.textContent = display(eased * target);
+          if (t < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', runCounters);
+  </script>
+
+  <!-- Scroll reveal -->
+  <script>
+    (function () {
+      const SELECTORS = [
+        '#demographics .chart-block',
+        '#spatial .chart-block',
+        '#typologies .section-heading',
+        '#typologies .section-desc',
+        '#demographics .section-heading',
+        '#demographics .section-desc',
+        '#scenarios .section-heading',
+        '#scenarios .section-desc',
+        '#scenarios .scen-callout',
+        '#spatial .section-heading',
+        '#spatial .section-desc',
+        '#methodology .section-heading',
+        '#methodology .section-desc',
+        '#methodology .accordion-item'
+      ];
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+      document.querySelectorAll(SELECTORS.join(',')).forEach(el => {
+        el.classList.add('reveal');
+        obs.observe(el);
+      });
+    }());
+  </script>
+
+  <!-- Active nav highlight on scroll -->
+  <script>
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === id);
+          });
+        }
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
+  </script>
+
+</body>
+</html>
