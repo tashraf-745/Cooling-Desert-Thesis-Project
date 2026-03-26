@@ -1,0 +1,130 @@
+{
+  "S1_cooling_sites": {
+    "description": "Add Cool It! sites to all uncovered cooling deserts",
+    "baseline_uncovered_tracts": 246,
+    "baseline_uncovered_renters": 504569,
+    "max_scenario_new_sites": 246,
+    "max_scenario_tracts_served": 246,
+    "realistic_scenario_new_sites": 49,
+    "realistic_scenario_tracts_served": 205,
+    "by_borough": {
+      "Bronx": {
+        "sites": 29,
+        "renters_reached": 68335
+      },
+      "Brooklyn": {
+        "sites": 130,
+        "renters_reached": 301714
+      },
+      "Manhattan": {
+        "sites": 2,
+        "renters_reached": 12437
+      },
+      "Queens": {
+        "sites": 76,
+        "renters_reached": 107042
+      },
+      "Staten Island": {
+        "sites": 9,
+        "renters_reached": 15041
+      }
+    },
+    "policy_note": "Maximum scenario closes the full coverage gap but requires 246 new park-based sites \u2014 implausible in the near term. Clustered placement (49 sites) achieves 93% coverage. Brooklyn (130 sites needed) and Queens (76 sites needed) have the largest absolute gaps."
+  },
+  "S2_ac_retrofit": {
+    "description": "AC retrofit + greening lifts HVI rank 5\u21924 in targeted tracts",
+    "targeted_tracts": 460,
+    "mean_cdi_reduction_pts": 6.25,
+    "tracts_improving_quintile": 260,
+    "renters_in_improved_tracts": 694259,
+    "by_borough": {
+      "Bronx": {
+        "tracts": 95,
+        "renters": 321404
+      },
+      "Brooklyn": {
+        "tracts": 78,
+        "renters": 168022
+      },
+      "Manhattan": {
+        "tracts": 25,
+        "renters": 106652
+      },
+      "Queens": {
+        "tracts": 62,
+        "renters": 98181
+      }
+    },
+    "policy_note": "HVI rank improvement does not exit the binary desert definition (HVI\u22654 condition still met). CDI quintile improvement is the correct policy metric \u2014 260 tracts (694K renters) move to lower risk."
+  },
+  "S3_nycha_energy": {
+    "description": "NYCHA AC surcharge removal and extended LIHEAP energy assistance",
+    "nycha_tracts": 160,
+    "surcharge_only": {
+      "annual_savings": 324,
+      "mean_burden_reduction_pp": 0.84,
+      "tracts_exiting": 3,
+      "renters_reached": 14568
+    },
+    "surcharge_plus_liheap": {
+      "annual_savings": 1524,
+      "mean_burden_reduction_pp": 3.93,
+      "tracts_exiting": 12,
+      "renters_reached": 65729
+    },
+    "policy_note": "AC surcharge removal ($324/yr) is insufficient alone \u2014 provides only 0.84pp burden reduction. NYCHA cooling deserts need ~7.5pp reduction on average to cross the threshold. Expanded energy assistance ($100/mo LIHEAP) combined with surcharge removal provides meaningful relief."
+  },
+  "S4_rent_burden_relief": {
+    "description": "Expanded rent stabilisation reduces severe burden by 5, 10, or 15pp",
+    "scenarios": {
+      "5pp": {
+        "reduction_pp": 5,
+        "tracts_exiting": 158,
+        "renters_reached": 479566,
+        "remaining_deserts": 393
+      },
+      "10pp": {
+        "reduction_pp": 10,
+        "tracts_exiting": 289,
+        "renters_reached": 842732,
+        "remaining_deserts": 262
+      },
+      "15pp": {
+        "reduction_pp": 15,
+        "tracts_exiting": 395,
+        "renters_reached": 1083007,
+        "remaining_deserts": 156
+      }
+    },
+    "headline_10pp_by_borough": {
+      "Bronx": {
+        "tracts": 87,
+        "renters": 294709
+      },
+      "Brooklyn": {
+        "tracts": 121,
+        "renters": 309977
+      },
+      "Manhattan": {
+        "tracts": 26,
+        "renters": 120380
+      },
+      "Queens": {
+        "tracts": 51,
+        "renters": 107964
+      },
+      "Staten Island": {
+        "tracts": 4,
+        "renters": 9702
+      }
+    },
+    "policy_note": "10pp burden reduction (headline) exits 289 tracts (842K renters) from cooling desert status \u2014 the single most impactful intervention modelled. Tracts with burden between 30\u201340% are most responsive; those above 50% require more than 10pp relief. Bronx and Brooklyn together account for 72% of exiting tracts."
+  },
+  "S_combined": {
+    "description": "S2 + S3 + S4 applied simultaneously",
+    "tracts_exiting": 294,
+    "renters_reached": 864426,
+    "remaining_deserts": 257,
+    "policy_note": "Combined intervention (HVI rank improvement + rent burden relief + NYCHA energy assistance) moves more tracts out of desert status than any single intervention. Residual deserts after all four interventions are the most structurally entrenched \u2014 highest HVI AND highest burden."
+  }
+}
