@@ -7,16 +7,104 @@
   // ── Tooltip options ───────────────────────────────────────
   const TT_OPTS = { sticky: true, className: 'map-tooltip', offset: [12, 0] };
 
+  // Tooltip lookups
+  const CDI_LEVEL  = ['', 'Safest group', 'Low-risk group', 'Moderate-risk group', 'High-risk group', 'Highest-risk group'];
+  const HVI_DESC   = ['', 'Low danger: least at risk during heat waves.', 'Below-average heat danger.', 'Moderate heat danger.', 'High danger: serious risk during heat emergencies.', 'Extreme danger: highest risk category in the city.'];
+  const LISA_TIP   = {
+    HH: { label: 'High-Risk Cluster',         desc: 'Surrounded by other high-risk neighborhoods. No safer area within walking distance.' },
+    LL: { label: 'Low-Risk Cluster',           desc: 'Surrounded by other lower-risk neighborhoods.' },
+    HL: { label: 'Isolated High-Risk Area',    desc: 'High heat risk here, but lower-risk neighbors nearby.' },
+    LH: { label: 'Protected Low-Risk Island',  desc: 'Lower risk here, but surrounded by higher-risk neighbors.' },
+    NS: { label: 'No Cluster Pattern',         desc: 'No strong clustering pattern detected in this area.' },
+  };
+  const CLUSTER_TIP = {
+    1: { name: 'Low Risk',                    desc: 'Well-resourced neighborhood with lower overall heat risk and stronger ability to stay cool.' },
+    2: { name: 'Financially Stretched',       desc: 'High rent leaves little for electricity. Many residents own an AC unit they cannot afford to run.' },
+    3: { name: 'Language & Heat Barriers',    desc: 'Language barriers reduce access to emergency cooling information and assistance programs.' },
+    4: { name: 'Racial Heat Burden',          desc: 'Predominantly Black neighborhood running measurably hotter, reflecting decades of racial disinvestment.' },
+    5: { name: 'Multiple Compounding Barriers', desc: 'Every risk factor elevated at once: highest heat, lowest incomes, highest disability rates, fewest cooling options.' },
+  };
+
+  // Layer-aware tooltip — called at hover time, reads current activeLayer
   function tractTooltip(p) {
+    const pct   = v => v != null ? v.toFixed(1) + '%' : 'N/A';
+    const money = v => v != null ? '$' + Math.round(v).toLocaleString() : 'N/A';
     const desert = p.is_cooling_desert === 1;
-    const pct = v => v != null ? v.toFixed(1) + '%' : '—';
-    return '<b class="tt-' + (desert ? 'desert' : 'safe') + '">' + (desert ? '● Cooling Desert' : '○ Not a Cooling Desert') + '</b>' +
-      '<div class="tt-loc">' + (p.borough || '') + '</div>' +
-      '<div class="tt-rows">' +
-        '<span>Heat risk score</span><span>' + (p.CDI != null ? p.CDI.toFixed(1) : '—') + '</span>' +
-        '<span>Heat danger level</span><span>' + (Math.round(p.HVI_RANK) || '—') + ' out of 5</span>' +
-        '<span>Paying 50%+ on rent</span><span>' + pct(p.pct_rent_burden_50_plus) + '</span>' +
-      '</div>';
+    const cdi    = p.CDI != null ? p.CDI.toFixed(1) : 'N/A';
+    const hvi    = Math.round(p.HVI_RANK) || 0;
+    const qrow   = (label, val) => `<span>${label}</span><span>${val}</span>`;
+
+    switch (activeLayer) {
+
+      case 'cdi': {
+        const level = CDI_LEVEL[Math.round(p.CDI_quintile)] || '';
+        return `<b class="tt-${desert ? 'desert' : 'safe'}">${desert ? '● Cooling Desert' : '○ Not a Cooling Desert'}</b>` +
+          `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div class="tt-rows">` +
+            qrow('Heat risk score', cdi + ' / 72') +
+            qrow('Risk group', level) +
+            qrow('Paying 50%+ on rent', pct(p.pct_rent_burden_50_plus)) +
+          `</div>`;
+      }
+
+      case 'binary': {
+        const note = desert
+          ? 'Heat danger is high and financial or physical barriers prevent cooling this home.'
+          : 'Below the threshold that defines a cooling desert.';
+        return `<b class="tt-${desert ? 'desert' : 'safe'}">${desert ? '● Cooling Desert' : '○ Not a Cooling Desert'}</b>` +
+          `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin:3px 0">${note}</div>` +
+          `<div class="tt-rows">` +
+            qrow('Heat danger level', hvi + ' out of 5') +
+            qrow('Median income', money(p.median_household_income)) +
+          `</div>`;
+      }
+
+      case 'lisa': {
+        const cl = LISA_TIP[p.lisa_cluster] || LISA_TIP.NS;
+        const sig = p.lisa_p != null && +p.lisa_p < 0.05 && p.lisa_cluster !== 'NS';
+        return `<b style="display:block;font-size:11px;font-weight:700;color:${sig ? LISA_COLORS[p.lisa_cluster] || '#D5D8DC' : '#D5D8DC'};margin-bottom:2px">${cl.label}</b>` +
+          `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin:3px 0">${cl.desc}</div>` +
+          `<div class="tt-rows">${qrow('Heat risk score', cdi + ' / 72')}</div>`;
+      }
+
+      case 'cluster': {
+        const c = Math.round(p.cluster || 1);
+        const ct = CLUSTER_TIP[c] || CLUSTER_TIP[1];
+        return `<b style="display:block;font-size:11px;font-weight:700;color:${CLUSTER_COLORS[c] || '#fff'};margin-bottom:2px">${ct.name}</b>` +
+          `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin:3px 0">${ct.desc}</div>` +
+          `<div class="tt-rows">` +
+            qrow('In a cooling desert', desert ? 'Yes' : 'No') +
+            qrow('Heat risk score', cdi + ' / 72') +
+          `</div>`;
+      }
+
+      case 'hvi': {
+        const desc = HVI_DESC[hvi] || '';
+        return `<b class="tt-loc">${p.borough || ''}</b>` +
+          `<div style="font-size:18px;font-weight:700;color:#fff;margin:4px 0">${hvi} <span style="font-size:12px;color:rgba(255,255,255,0.6)">/ 5</span></div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin-bottom:4px">${desc}</div>` +
+          `<div class="tt-rows">${qrow('Heat risk score', cdi + ' / 72')}</div>`;
+      }
+
+      case 'temp': {
+        const temp = p.baseline_temp_f;
+        const ctx  = temp >= 86.5 ? 'Among the hottest areas in the city.'
+                   : temp >= 86.0 ? 'Above the city average.'
+                   : temp >= 85.5 ? 'Near the city average.'
+                   : 'Below the city average.';
+        return `<b class="tt-loc">${p.borough || ''}</b>` +
+          `<div style="font-size:18px;font-weight:700;color:#fff;margin:4px 0">${temp != null ? temp.toFixed(1) : '—'}<span style="font-size:12px;color:rgba(255,255,255,0.6)">°F</span></div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin-bottom:4px">${ctx}</div>` +
+          `<div class="tt-rows">${qrow('Heat danger level', hvi + ' out of 5')}</div>`;
+      }
+
+      default:
+        return `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div class="tt-rows">${qrow('Heat risk score', cdi + ' / 72')}</div>`;
+    }
   }
 
   function siteTooltip(p) {
@@ -53,13 +141,13 @@
     binary:  { title: 'Cooling Desert',          items: [['Cooling Desert','#922B21'],['Not a Cooling Desert','#EAF2FB']] },
     lisa:    { title: 'Neighborhood Risk Clusters', items: [['High-risk cluster (surrounded by high-risk areas)','#C0392B'],['Low-risk cluster','#2471A3'],['Isolated high-risk area','#F39C12'],['Low-risk island inside a risky zone','#A569BD'],['No clear cluster pattern','#D5D8DC']] },
     cluster: { title: 'Neighborhood Type',       items: [['Low Risk','#56B4E9'],['Financially Stretched','#F0E442'],['Language & Heat Barriers','#E69F00'],['Racial Heat Burden','#CC79A7'],['Multiple Compounding Barriers','#D55E00']] },
-    hvi:     { title: 'Heat Danger Level (1–5)', items: [['1 — Lowest danger','#EAF2FB'],['2','#7FB3D3'],['3','#F5C26B'],['4','#E07B39'],['5 — Highest danger','#922B21']] },
+    hvi:     { title: 'Heat Danger Level (1 to 5)', items: [['1: Lowest danger','#EAF2FB'],['2','#7FB3D3'],['3','#F5C26B'],['4','#E07B39'],['5: Highest danger','#922B21']] },
     temp:    { title: 'Average Summer Temperature', items: [['Cooler','#EAF2FB'],['','#7FB3D3'],['','#F5C26B'],['','#E07B39'],['Hotter','#922B21']] }
   };
 
   // ── Map init ───────────────────────────────────────────────
-  const map = L.map('interactive-map', { zoomControl: true })
-    .setView([40.72, -73.97], 10);
+  const map = L.map('interactive-map', { zoomControl: true });
+  map.fitBounds([[40.49, -74.27], [40.93, -73.68]], { animate: false, padding: [5, 5] });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://carto.com/attributions">CartoDB</a>',
@@ -70,6 +158,7 @@
   // ── State ──────────────────────────────────────────────────
   let activeLayer   = 'cdi';
   let activeCluster = 0;     // 0 = no filter; 1-5 = highlight that cluster
+  let activeBorough = 'all'; // 'all' or a borough name
   let tractData     = null;
   let tempBreaks  = [];
   let boroughStats = {};
@@ -134,6 +223,9 @@
   // ── Style function ─────────────────────────────────────────
   function tractStyle(feature) {
     const p = feature.properties;
+    if (activeBorough !== 'all' && p.borough !== activeBorough) {
+      return { fillColor: '#D8DCE0', fillOpacity: 0.18, color: '#C8CDD4', weight: 0.2 };
+    }
     switch (activeLayer) {
       case 'cdi': {
         const idx = Math.round(p.CDI_quintile || 1) - 1;
@@ -177,7 +269,8 @@
 
   // ── Feature interaction ────────────────────────────────────
   function bindFeature(feature, layer) {
-    layer.bindTooltip(tractTooltip(feature.properties), TT_OPTS);
+    // Use function form so tooltip reads current activeLayer at hover time, not at bind time
+    layer.bindTooltip(() => tractTooltip(feature.properties), TT_OPTS);
     layer.on('click',     () => showInfo(feature.properties));
     layer.on('mouseover', function () { this.setStyle({ weight: 1.5, color: '#1A252F' }); });
     layer.on('mouseout',  function () { mainLayer.resetStyle(this); });
@@ -282,6 +375,8 @@
       document.querySelectorAll('.borough-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
       const b = this.dataset.borough;
+      activeBorough = b;
+      if (mainLayer) mainLayer.setStyle(tractStyle);
       updateBoroughStats(b);
       if (b === 'all') {
         map.flyTo([40.72, -73.97], 10, { duration: 0.8 });

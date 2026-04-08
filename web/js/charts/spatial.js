@@ -100,11 +100,19 @@
     // Hover tooltip
     const tip = d3.select(container).append('div').attr('class', 'spatial-tooltip');
 
+    const CLUSTER_LABEL = {
+      HH: 'Surrounded by other high-risk neighborhoods',
+      LL: 'Surrounded by other low-risk neighborhoods',
+      HL: 'High-risk area surrounded by low-risk neighbors',
+      LH: 'Low-risk area surrounded by high-risk neighbors',
+      NS: 'No strong clustering pattern'
+    };
+
     svg.selectAll('circle')
       .on('mouseover', function (event, d) {
         const [px, py] = d3.pointer(event, container);
         tip.style('display', 'block').style('left', (px + 14) + 'px').style('top', (py - 10) + 'px')
-          .html(`<b>${d.borough}</b><br>Heat risk: ${d.cdi}`);
+          .html(`<b>${d.borough}</b><br>Heat risk score: ${d.cdi}<br>${CLUSTER_LABEL[d.cluster] || ''}`);
       })
       .on('mouseout', () => tip.style('display', 'none'));
   }
@@ -121,21 +129,72 @@
       subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
 
+    // Borough-level context for HH clusters
+    const BOROUGH_HH_CONTEXT = {
+      'Bronx':    'Part of a connected high-risk zone covering 66% of the Bronx, the highest concentration of any borough.',
+      'Brooklyn': 'Part of a high-risk cluster covering 29% of Brooklyn neighborhoods.',
+      'Manhattan':'Part of a high-risk cluster covering 12% of Manhattan neighborhoods.',
+      'Queens':   'Part of a high-risk cluster covering 14% of Queens neighborhoods.',
+    };
+
+    const CLUSTER_DETAIL = {
+      HH: (p) => {
+        const ctx = BOROUGH_HH_CONTEXT[p.borough] || '';
+        return `<b class="tt-desert">High-Risk Cluster</b>` +
+          `<div class="tt-loc">${p.borough || ''}</div>` +
+          `<div style="font-size:11px;color:rgba(255,255,255,0.85);margin-bottom:4px">` +
+          `This neighborhood is dangerous during heat waves, and so are all the neighborhoods surrounding it. There is no safer nearby area within walking distance.</div>` +
+          (ctx ? `<div style="font-size:11px;color:rgba(255,255,255,0.6)">${ctx}</div>` : '') +
+          (p.CDI != null ? `<div class="tt-rows"><span>Heat risk score</span><span>${p.CDI.toFixed(0)} / 72</span></div>` : '');
+      },
+      LL: (p) =>
+        `<b class="tt-safe">Low-Risk Cluster</b>` +
+        `<div class="tt-loc">${p.borough || ''}</div>` +
+        `<div style="font-size:11px;color:rgba(255,255,255,0.85)">This neighborhood and its neighbors are relatively protected from heat risk.</div>` +
+        (p.CDI != null ? `<div class="tt-rows" style="margin-top:4px"><span>Heat risk score</span><span>${p.CDI.toFixed(0)} / 72</span></div>` : ''),
+      HL: (p) =>
+        `<b style="display:block;font-size:11px;font-weight:700;color:#F39C12;margin-bottom:2px">Isolated High-Risk Area</b>` +
+        `<div class="tt-loc">${p.borough || ''}</div>` +
+        `<div style="font-size:11px;color:rgba(255,255,255,0.85)">High heat danger here, but lower-risk neighborhoods nearby.</div>`,
+      LH: (p) =>
+        `<b style="display:block;font-size:11px;font-weight:700;color:#A569BD;margin-bottom:2px">Protected Low-Risk Island</b>` +
+        `<div class="tt-loc">${p.borough || ''}</div>` +
+        `<div style="font-size:11px;color:rgba(255,255,255,0.85)">Lower heat risk here, but surrounded by higher-risk neighborhoods.</div>`,
+    };
+
+    const TT = { sticky: true, className: 'map-tooltip', offset: [10, 0] };
+
     fetch('data/tract_map_data.geojson')
       .then(r => r.json())
       .then(data => {
-        // Base grey
+        // Base grey — tooltip for non-clustered tracts
         L.geoJSON(data, {
-          style: { fillColor: '#F0F2F5', fillOpacity: 0.5, color: '#DEE2E6', weight: 0.3 }
+          style: { fillColor: '#F0F2F5', fillOpacity: 0.5, color: '#DEE2E6', weight: 0.3 },
+          onEachFeature: (ft, layer) => {
+            const p = ft.properties;
+            if (!p.lisa_cluster || p.lisa_cluster === 'NS') {
+              layer.bindTooltip(
+                `<div class="tt-loc">${p.borough || ''}</div>` +
+                `<div style="font-size:11px;color:rgba(255,255,255,0.75)">No strong clustering pattern in this area.</div>` +
+                (p.CDI != null ? `<div class="tt-rows" style="margin-top:4px"><span>Heat risk score</span><span>${p.CDI.toFixed(0)} / 72</span></div>` : ''),
+                TT
+              );
+            }
+          }
         }).addTo(map);
 
-        // LISA clusters
+        // LISA clusters — rich contextual tooltip
         L.geoJSON(data, {
           filter: ft => +ft.properties.lisa_p < 0.05 && ft.properties.lisa_cluster !== 'NS',
           style: ft => ({
             fillColor: LISA_COLORS[ft.properties.lisa_cluster] || '#D5D8DC',
             fillOpacity: 0.82, color: 'transparent', weight: 0
-          })
+          }),
+          onEachFeature: (ft, layer) => {
+            const p = ft.properties;
+            const fn = CLUSTER_DETAIL[p.lisa_cluster];
+            if (fn) layer.bindTooltip(fn(p), TT);
+          }
         }).addTo(map);
 
         // Legend

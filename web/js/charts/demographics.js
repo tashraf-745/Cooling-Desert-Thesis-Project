@@ -5,14 +5,22 @@
 
   // ── Chart A data: standardized β from Model 3 (OLS on HVI rank) ──
   const REGRESSION = [
-    { label: '% Black residents',    beta:  0.726, sig: true  },
-    { label: 'Income (negative)',     beta: -0.321, sig: true  },
-    { label: '% Limited English',    beta:  0.110, sig: true  },
-    { label: '% Elderly 65+',        beta: -0.109, sig: true  },
-    { label: '% Overcrowded renter', beta:  0.098, sig: true  },
-    { label: '% Rent burden ≥50%',   beta:  0.070, sig: true  },
-    { label: '% Hispanic',           beta:  0.027, sig: false },
-    { label: '% Disability',         beta: -0.012, sig: false },
+    { label: '% Black residents',    beta:  0.726, sig: true,
+      tip: 'The single most powerful driver of heat risk. Predominantly Black neighborhoods run measurably hotter, even after income levels and green space are accounted for. This reflects decades of racial segregation and disinvestment.' },
+    { label: 'Income (negative)',    beta: -0.321, sig: true,
+      tip: 'Higher household incomes reduce heat risk. Wealthier neighborhoods are better able to afford air conditioning, maintain green space, and live in well-insulated housing.' },
+    { label: '% Limited English',   beta:  0.110, sig: true,
+      tip: 'Language barriers make it harder for residents to access emergency cooling information, apply for energy assistance programs, or report housing violations during a heat emergency.' },
+    { label: '% Elderly 65+',       beta: -0.109, sig: true,
+      tip: 'Areas with more elderly residents show slightly lower heat danger levels in the model, likely reflecting the types of neighborhoods older New Yorkers tend to live in rather than lower risk for the individuals themselves.' },
+    { label: '% Overcrowded renter',beta:  0.098, sig: true,
+      tip: 'Overcrowded apartments have worse airflow, fewer options to set up cooling, and more people generating body heat in a small space, all of which raise indoor temperatures.' },
+    { label: '% Rent burden ≥50%',  beta:  0.070, sig: true,
+      tip: 'When more than half of income goes to rent, there\'s almost nothing left for electricity. Many renters in these neighborhoods own an air conditioner they cannot afford to turn on.' },
+    { label: '% Hispanic',          beta:  0.027, sig: false,
+      tip: 'Not a significant driver of heat risk once income, language access, and housing overcrowding are already accounted for. The risk signal for Hispanic residents runs through those other factors.' },
+    { label: '% Disability',        beta: -0.012, sig: false,
+      tip: 'Disability rates do not independently predict higher neighborhood-level heat risk at the tract level. Once someone lives in a high-risk area, however, disability creates serious barriers to reaching public cooling spaces.' },
   ];
 
   // ── Chart B data: borough comparison ─────────────────────────────
@@ -26,11 +34,11 @@
 
   // ── Chart C data: demographics across CDI quintiles ───────────────
   const QUINTILES = [
-    { q: 'Q1', black:  4.5, hispanic: 13.8, lep:  4.1, disability:  8.5 },
-    { q: 'Q2', black:  7.0, hispanic: 27.0, lep: 12.5, disability: 10.7 },
-    { q: 'Q3', black: 13.7, hispanic: 33.4, lep: 18.6, disability: 11.0 },
-    { q: 'Q4', black: 34.1, hispanic: 29.4, lep: 13.7, disability: 12.1 },
-    { q: 'Q5', black: 54.1, hispanic: 33.0, lep: 10.7, disability: 15.1 },
+    { q: 'Safest',       black:  4.5, hispanic: 13.8, lep:  4.1, disability:  8.5 },
+    { q: 'Low Risk',     black:  7.0, hispanic: 27.0, lep: 12.5, disability: 10.7 },
+    { q: 'Moderate',     black: 13.7, hispanic: 33.4, lep: 18.6, disability: 11.0 },
+    { q: 'High Risk',    black: 34.1, hispanic: 29.4, lep: 13.7, disability: 12.1 },
+    { q: 'Most at Risk', black: 54.1, hispanic: 33.0, lep: 10.7, disability: 15.1 },
   ];
 
   const DEMO_SERIES = [
@@ -40,13 +48,27 @@
     { key: 'disability', label: '% Disability', color: '#D55E00' },
   ];
 
+  // ── Shared tooltip ────────────────────────────────────────────────
+  const tip = Object.assign(document.createElement('div'), { className: 'd3-tip' });
+  document.body.appendChild(tip);
+
+  function showTip(event, html) {
+    tip.innerHTML = html;
+    tip.style.display = 'block';
+    tip.style.left = (event.pageX + 14) + 'px';
+    tip.style.top  = (event.pageY - 10) + 'px';
+  }
+  const hideTip = () => { tip.style.display = 'none'; };
+
   // ── Chart A: Regression beta weights ─────────────────────────────
   function drawRegression() {
     const el = document.getElementById('chart-regression');
     if (!el) return;
 
-    const m = { top: 10, right: 70, bottom: 30, left: 175 };
-    const W = 680, H = REGRESSION.length * 36 + m.top + m.bottom;
+    const data = REGRESSION;
+
+    const m = { top: 10, right: 72, bottom: 28, left: 175 };
+    const W = 680, H = data.length * 36 + m.top + m.bottom;
     const iw = W - m.left - m.right;
     const ih = H - m.top - m.bottom;
 
@@ -56,9 +78,9 @@
       .append('g').attr('transform', `translate(${m.left},${m.top})`);
 
     const x = d3.scaleLinear().domain([-0.85, 0.85]).range([0, iw]);
-    const y = d3.scaleBand().domain(REGRESSION.map(d => d.label)).range([0, ih]).padding(0.35);
+    const y = d3.scaleBand().domain(data.map(d => d.label)).range([0, ih]).padding(0.35);
 
-    // Grid lines at x-axis ticks
+    // Grid lines
     [-0.75, -0.5, -0.25, 0.25, 0.5, 0.75].forEach(v => {
       svg.append('line')
         .attr('x1', x(v)).attr('x2', x(v)).attr('y1', 0).attr('y2', ih)
@@ -71,17 +93,21 @@
       .attr('stroke', '#1A252F').attr('stroke-width', 1);
 
     // Bars
-    svg.selectAll('rect.bar').data(REGRESSION).join('rect')
+    svg.selectAll('rect.bar').data(data).join('rect')
       .attr('class', 'bar')
       .attr('x', d => d.beta >= 0 ? x(0) : x(d.beta))
       .attr('y', d => y(d.label))
       .attr('width', d => Math.abs(x(d.beta) - x(0)))
       .attr('height', y.bandwidth())
       .attr('fill', d => !d.sig ? '#D5D8DC' : d.beta > 0 ? '#E07B39' : '#7FB3D3')
-      .attr('rx', 2);
+      .attr('rx', 2)
+      .style('cursor', 'pointer')
+      .on('mouseover', (event, d) => showTip(event,
+        `<b>${d.label}</b><br>${d.tip}`))
+      .on('mouseout', hideTip);
 
     // Value labels
-    svg.selectAll('text.val').data(REGRESSION).join('text')
+    svg.selectAll('text.val').data(data).join('text')
       .attr('class', 'val')
       .attr('x', d => d.beta >= 0 ? x(d.beta) + 5 : x(d.beta) - 5)
       .attr('y', d => y(d.label) + y.bandwidth() / 2)
@@ -96,12 +122,13 @@
       .call(g => g.select('.domain').remove())
       .selectAll('text')
       .attr('font-size', 12).attr('font-family', 'Satoshi, sans-serif')
-      .attr('fill', d => { const i = REGRESSION.find(r => r.label === d); return i && !i.sig ? '#9BA3AE' : '#1A252F'; })
+      .attr('fill', d => { const i = data.find(r => r.label === d); return i && !i.sig ? '#9BA3AE' : '#1A252F'; })
       .attr('font-weight', d => d === '% Black residents' ? 'bold' : 'normal');
 
     // X axis
     svg.append('g').attr('transform', `translate(0,${ih})`)
-      .call(d3.axisBottom(x).tickValues([-0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75]).tickSize(3))
+      .call(d3.axisBottom(x).tickValues([-0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75]).tickSize(3)
+        .tickFormat(v => v.toFixed(2)))
       .call(g => g.select('.domain').remove())
       .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
       .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
@@ -150,8 +177,17 @@
         .attr('width', x.bandwidth())
         .attr('height', d => ih - y(d[panel.key]))
         .attr('fill', panel.color).attr('rx', 2)
-        .on('mouseover', (_, d) => highlightBorough(d.borough))
-        .on('mouseout', () => highlightBorough(null));
+        .style('cursor', 'pointer')
+        .on('mouseover', (event, d) => {
+          highlightBorough(d.borough);
+          const html = panel.key === 'pct_desert'
+            ? `<b>${d.borough}</b><br>${d.pct_desert}% of its neighborhoods are cooling deserts.${d.pct_desert >= 50 ? '<br><i>Highest of any borough.</i>' : d.pct_desert <= 10 ? '<br><i>Among the lowest of any borough.</i>' : ''}`
+            : panel.key === 'mean_cdi'
+            ? `<b>${d.borough}</b><br>Average heat risk score: <b>${d.mean_cdi} / 72</b><br>${d.mean_cdi >= 50 ? 'Very high heat risk.' : d.mean_cdi >= 40 ? 'High heat risk.' : d.mean_cdi >= 30 ? 'Moderate heat risk.' : 'Relatively low heat risk.'}`
+            : `<b>${d.borough}</b><br>Median household income: <b>$${d.income_k},000/yr</b>${d.income_k <= 55 ? '<br><i>Lowest of any borough.</i>' : d.income_k >= 115 ? '<br><i>Highest of any borough.</i>' : ''}`;
+          showTip(event, html);
+        })
+        .on('mouseout', () => { highlightBorough(null); hideTip(); });
 
       // Value labels on bars
       svg.selectAll('text.bval').data(BOROUGHS).join('text')
@@ -207,12 +243,21 @@
     QUINTILES.forEach(qd => {
       const qx = x0(qd.q);
       DEMO_SERIES.forEach(s => {
+        const extra = s.key === 'black' && qd.q === 'Most at Risk'
+          ? '<br><i>12× higher than in the safest neighborhoods.</i>'
+          : s.key === 'black' && qd.q === 'Safest'
+          ? '<br><i>12× lower than in the most at-risk neighborhoods.</i>'
+          : '';
         svg.append('rect')
           .attr('x', qx + x1(s.key))
           .attr('y', y(qd[s.key]))
           .attr('width', x1.bandwidth())
           .attr('height', ih - y(qd[s.key]))
-          .attr('fill', s.color).attr('rx', 2);
+          .attr('fill', s.color).attr('rx', 2)
+          .style('cursor', 'pointer')
+          .on('mouseover', event => showTip(event,
+            `<b>${qd.q} neighborhoods</b><br>${s.label}: <b>${qd[s.key]}%</b> of residents${extra}`))
+          .on('mouseout', hideTip);
       });
     });
 
