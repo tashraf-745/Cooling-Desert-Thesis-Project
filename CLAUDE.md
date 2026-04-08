@@ -412,3 +412,62 @@ Both groups are physiologically most vulnerable and most dependent on home cooli
 | White Paper Drafting | Write policy analysis, results synthesis, and recommendations | End of March |
 | Review & Revisions | Incorporate advisor feedback and refine analysis and presentation | Mid April |
 | Final Submission & Deposit | Upload final materials to CUNY Academic Works | April 30 |
+
+---
+
+# ANT Theory Section — Design Notes & Outline
+
+## Design Principles
+- No cards, no icons, no emojis — typography and SVG-drawn visualizations only
+- Audience has zero prior knowledge of ANT or cooling deserts
+- Plain language throughout — no statistical jargon
+- Each part builds on the previous; the five questions drive the narrative arc
+- Always reference specific data points from the Data Story path
+- Build one part at a time, one step at a time
+
+## Visual Language
+- Dark background (#1A252F) throughout theory path
+- SVG networks: circles (human actor = white fill; blocking forces = orange #E07B39; measurement systems = blue #7FB3D3; heat exposure = deep red #922B21; physical constraints = warm brown #8B7355)
+- Connection lines: exposure = solid red; block = dashed orange-red; miss = dotted blue
+- Typography: Bogart (headings), Satoshi (body)
+- Color palette: same Civic Heat tokens as rest of site
+- No cards, no emoji, no icon libraries — all illustration is SVG drawn in code
+
+## Section Structure
+
+### Part 1 — Introduction (IN PROGRESS)
+Interactive 6-step scene builder: narrates a single renter's (Maria, South Bronx) hot July night and introduces each non-human actor that traps her in the heat, one at a time. An SVG network builds on screen as each actor appears. After the final step a plain-language ANT definition fades in, followed by a numbered preview of the 5 questions. No jargon in any step.
+
+Scene actors in order:
+1. Maria — the renter (center node, white)
+2. Heat — 94°F July night (top, deep red)
+3. The electricity bill — $80 extra/month she doesn't have (right, orange)
+4. The pre-1938 building — wiring can't safely run AC overnight (bottom, warm brown)
+5. The city's heat risk index — scores her neighborhood moderate; resources go elsewhere (left, blue)
+6. Reveal — full network labeled "COOLING DESERT"
+
+### Part 2 — Five Questions (COMPLETE)
+Five full sections, one per question, each with a visualization:
+
+**Q1: Why does the city's own heat map make some neighborhoods invisible?**
+ANT concept: Black-boxing + Inscription
+Data anchors: 21% of AC owners can't afford to use it (NYC Comptroller 2022); 214 tracts where HVI underestimates vulnerability; all climate-adaptation funding flows through the HVI as an Obligatory Passage Point.
+
+**Q2: What does a building's age have to do with who survives a heat wave?**
+ANT concept: Non-human actants (the building as an actor with its own agency)
+Data anchors: 47% NYC housing stock pre-1980; building age is a statistically significant negative predictor of AC access controlling for income (p < 0.001).
+
+**Q3: How does a rent bill become a heat weapon?**
+ANT concept: Translation + Enrollment (Michel Callon, 1986)
+Data anchors: 21% of renters with AC can't afford to run it; NYCHA $25/mo surcharge deters 1-in-3 seniors; 557 cooling deserts map the outcome of this translation failure.
+
+**Q4: Why can't a cooling center cool the people who need it most?**
+ANT concept: Scripts + Network misalignment (Latour)
+Data anchors: 83% of indoor emergency cooling centers closed Sundays (NYC Comptroller 2022); 47% age-restricted; 38% of high-HVI, high-rent-burden tracts have no outdoor cooling within walking distance.
+
+**Q5: What would it actually take to break a cooling desert?**
+ANT concept: Obligatory Passage Points + Network disruption (non-linear)
+Data anchors: Combined scenario → 67% reduction in cooling desert tracts vs. 12–23% for any single intervention tested independently.
+
+### Part 3 — Synthesis (COMPLETE)
+Full network visualization assembling all actants from the 5 questions with labeled connections (#ant-synthesis section). Bridges back to the Data Story path via CTA. Policy implications tied to scenario findings.

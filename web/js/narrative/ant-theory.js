@@ -651,6 +651,7 @@
     buildActorViz();
     buildTranslationFlow();
     buildPolicyViz();
+    buildSynthesis();
     initActorTabs();
     initScrollytelling();
   }
@@ -1019,6 +1020,220 @@
       .attr('font-size', '11px').attr('fill', '#374151')
       .text(d => d.label);
   }
+
+  // ══════════════════════════════════════════════════════════════
+  // SYNTHESIS — assembled full network closing section
+  // ══════════════════════════════════════════════════════════════
+  function buildSynthesis() {
+    const wrap = document.getElementById('ant-synthesis-viz');
+    if (!wrap) return;
+
+    // Nodes: 4 constraint clusters + central desert + 2 population nodes
+    const SYN_NODES = [
+      // Central outcome
+      { id: 'desert',   label: 'Cooling Desert',      sub: '557 neighborhoods',       cx: 380, cy: 230, r: 46, fill: '#922B21', stroke: '#6B1A14', textFill: '#fff' },
+
+      // Constraint cluster nodes (Q1–Q4)
+      { id: 'hvi',      label: 'Risk Index',           sub: 'Q1 — Measurement gap',    cx: 380, cy: 68,  r: 30, fill: '#2471A3', stroke: '#1A5276', textFill: '#fff' },
+      { id: 'bill',     label: 'Energy Cost',          sub: 'Q3 — Financial chain',    cx: 568, cy: 155, r: 30, fill: '#E07B39', stroke: '#A0541F', textFill: '#fff' },
+      { id: 'building', label: 'Old Buildings',        sub: 'Q2 — Infrastructure',     cx: 568, cy: 310, r: 30, fill: '#8B6914', stroke: '#5A430D', textFill: '#fff' },
+      { id: 'centers',  label: 'Cooling Centers',      sub: 'Q4 — Access mismatch',    cx: 192, cy: 310, r: 30, fill: '#1F6999', stroke: '#145374', textFill: '#fff' },
+      { id: 'rent',     label: 'Rent Burden',          sub: 'Q3 — Financial chain',    cx: 192, cy: 155, r: 30, fill: '#C0392B', stroke: '#7B1F1B', textFill: '#fff' },
+
+      // Population nodes (outer)
+      { id: 'renters',  label: 'Renters',              sub: '1.47M affected',          cx: 100, cy: 230, r: 22, fill: '#4A5568', stroke: '#2D3748', textFill: '#fff' },
+      { id: 'nycha',    label: 'NYCHA Residents',      sub: '1-in-3 deters from AC',   cx: 660, cy: 230, r: 22, fill: '#5D6D7E', stroke: '#3B4450', textFill: '#fff' },
+    ];
+
+    // Labeled connections
+    const SYN_LINKS = [
+      { from: 'hvi',      to: 'desert',  label: '214 tracts\nunderscored',    stroke: '#2471A3',  dash: '6,3',  labelSide: 'top' },
+      { from: 'bill',     to: 'desert',  label: '21% can\'t\nafford to run it', stroke: '#E07B39', dash: '4,3',  labelSide: 'right' },
+      { from: 'building', to: 'desert',  label: '47% pre-1980\nwiring',        stroke: '#8B6914',  dash: '4,3',  labelSide: 'right' },
+      { from: 'centers',  to: 'desert',  label: '83% closed\nSundays',         stroke: '#1F6999',  dash: '6,3',  labelSide: 'left' },
+      { from: 'rent',     to: 'desert',  label: '50%+ income\nto rent',         stroke: '#C0392B',  dash: '4,3',  labelSide: 'left' },
+      { from: 'rent',     to: 'bill',    label: '',                             stroke: '#999',     dash: '3,4',  labelSide: null },
+      { from: 'renters',  to: 'desert',  label: '',                             stroke: '#4A5568',  dash: '3,5',  labelSide: null },
+      { from: 'nycha',    to: 'desert',  label: '',                             stroke: '#5D6D7E',  dash: '3,5',  labelSide: null },
+    ];
+
+    const W = Math.min(wrap.clientWidth || 760, 760);
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 760 420');
+    svg.setAttribute('width', '100%');
+    svg.style.maxWidth = W + 'px';
+    svg.style.overflow = 'visible';
+    svg.setAttribute('class', 'synthesis-svg');
+
+    // Defs: arrowhead
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    const mkr = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+    mkr.setAttribute('id', 'syn-arr'); mkr.setAttribute('viewBox', '0 -4 8 8');
+    mkr.setAttribute('refX', '7'); mkr.setAttribute('refY', '0');
+    mkr.setAttribute('markerWidth', '5'); mkr.setAttribute('markerHeight', '5');
+    mkr.setAttribute('orient', 'auto');
+    const arrPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    arrPath.setAttribute('d', 'M0,-4L8,0L0,4Z'); arrPath.setAttribute('fill', '#94A3B8');
+    mkr.appendChild(arrPath); defs.appendChild(mkr); svg.appendChild(defs);
+
+    // Helper: find node by id
+    function sn(id) { return SYN_NODES.find(n => n.id === id); }
+
+    // Helper: midpoint for label placement
+    function midpoint(n1, n2) {
+      return { x: (n1.cx + n2.cx) / 2, y: (n1.cy + n2.cy) / 2 };
+    }
+
+    // Helper: shorten line so it ends at node edge
+    function shortenLine(x1, y1, x2, y2, r1, r2) {
+      const dx = x2 - x1, dy = y2 - y1;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      if (len === 0) return { x1, y1, x2, y2 };
+      const ux = dx / len, uy = dy / len;
+      return {
+        x1: x1 + ux * r1,
+        y1: y1 + uy * r1,
+        x2: x2 - ux * (r2 + 3),
+        y2: y2 - uy * (r2 + 3),
+      };
+    }
+
+    // Tooltip
+    const tip = document.createElement('div');
+    tip.className = 'synthesis-tip';
+    tip.style.cssText = 'position:absolute;display:none;max-width:200px;background:#1A252F;color:#F5F0E6;font-size:12px;line-height:1.5;padding:9px 12px;border-radius:6px;pointer-events:none;z-index:100;box-shadow:0 4px 14px rgba(0,0,0,0.35)';
+    wrap.style.position = 'relative';
+    wrap.appendChild(tip);
+
+    const NODE_DETAILS = {
+      desert:   '557 cooling desert neighborhoods. 1.47M renters. The stable outcome of the full network.',
+      hvi:      'The Heat Vulnerability Index scores 214 tracts as "moderate" while over half their renters can\'t afford to cool their homes.',
+      bill:     '21% of renter AC owners cannot afford to run their unit. For severely rent-burdened households, energy costs consume 10.3% of income.',
+      building: '47% of NYC housing is pre-1980. These buildings were never wired to support air conditioning safely.',
+      centers:  '83% of indoor emergency cooling centers are closed on Sundays. 47% are age-restricted.',
+      rent:     'Severely rent-burdened households spend 50%+ of income on rent, leaving nothing for cooling costs.',
+      renters:  '1.47 million renters live in identified cooling deserts. They bear the full cost of heat without owning their building.',
+      nycha:    'NYCHA\'s $25/month AC surcharge deters 1 in 3 public housing residents from running air conditioning.',
+    };
+
+    // Draw links first (under nodes)
+    const linksG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    SYN_LINKS.forEach(lk => {
+      const a = sn(lk.from), b = sn(lk.to);
+      if (!a || !b) return;
+      const pts = shortenLine(a.cx, a.cy, b.cx, b.cy, a.r, b.r);
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', pts.x1); line.setAttribute('y1', pts.y1);
+      line.setAttribute('x2', pts.x2); line.setAttribute('y2', pts.y2);
+      line.setAttribute('stroke', lk.stroke); line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-dasharray', lk.dash);
+      line.setAttribute('marker-end', 'url(#syn-arr)');
+      line.setAttribute('opacity', '0.7');
+      linksG.appendChild(line);
+
+      // Edge label (multi-line via foreignObject workaround: two text els)
+      if (lk.label) {
+        const mp = midpoint(a, b);
+        const lines = lk.label.split('\n');
+        const offsetX = lk.labelSide === 'right' ? 10 : lk.labelSide === 'left' ? -10 : 0;
+        const anchor = lk.labelSide === 'right' ? 'start' : lk.labelSide === 'left' ? 'end' : 'middle';
+        lines.forEach((ln, li) => {
+          const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          t.setAttribute('x', mp.x + offsetX);
+          t.setAttribute('y', mp.y - 4 + li * 13);
+          t.setAttribute('text-anchor', anchor);
+          t.setAttribute('font-size', '9.5');
+          t.setAttribute('font-weight', '600');
+          t.setAttribute('fill', lk.stroke);
+          t.setAttribute('pointer-events', 'none');
+          t.textContent = ln;
+          linksG.appendChild(t);
+        });
+      }
+    });
+    svg.appendChild(linksG);
+
+    // Draw nodes
+    SYN_NODES.forEach((n, i) => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'syn-node syn-node--' + n.id);
+      g.style.cursor = 'pointer';
+      g.style.opacity = '0';
+      g.style.transition = 'opacity 0.5s ease';
+
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', n.cx); circle.setAttribute('cy', n.cy); circle.setAttribute('r', n.r);
+      circle.setAttribute('fill', n.fill); circle.setAttribute('stroke', n.stroke);
+      circle.setAttribute('stroke-width', n.id === 'desert' ? '3' : '2');
+
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', n.cx); label.setAttribute('y', n.sub ? n.cy - 2 : n.cy + 4);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('font-size', n.id === 'desert' ? '12' : '10');
+      label.setAttribute('font-weight', '700');
+      label.setAttribute('fill', n.textFill);
+      label.setAttribute('pointer-events', 'none');
+      label.textContent = n.label;
+
+      g.appendChild(circle);
+      g.appendChild(label);
+
+      if (n.sub) {
+        const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        sub.setAttribute('x', n.cx); sub.setAttribute('y', n.cy + 12);
+        sub.setAttribute('text-anchor', 'middle');
+        sub.setAttribute('font-size', '8.5');
+        sub.setAttribute('fill', n.textFill);
+        sub.setAttribute('opacity', '0.8');
+        sub.setAttribute('pointer-events', 'none');
+        sub.textContent = n.sub;
+        g.appendChild(sub);
+      }
+
+      // Hover
+      g.addEventListener('mouseenter', ev => {
+        circle.setAttribute('stroke-width', n.id === 'desert' ? '5' : '3.5');
+        const detail = NODE_DETAILS[n.id] || n.label;
+        tip.textContent = detail;
+        tip.style.display = 'block';
+        const wr = wrap.getBoundingClientRect();
+        tip.style.left = Math.min(ev.clientX - wr.left + 10, wr.width - 215) + 'px';
+        tip.style.top = (ev.clientY - wr.top - 12) + 'px';
+      });
+      g.addEventListener('mousemove', ev => {
+        const wr = wrap.getBoundingClientRect();
+        tip.style.left = Math.min(ev.clientX - wr.left + 10, wr.width - 215) + 'px';
+        tip.style.top = (ev.clientY - wr.top - 12) + 'px';
+      });
+      g.addEventListener('mouseleave', () => {
+        circle.setAttribute('stroke-width', n.id === 'desert' ? '3' : '2');
+        tip.style.display = 'none';
+      });
+
+      svg.appendChild(g);
+
+      // Stagger animate in
+      setTimeout(() => { g.style.opacity = '1'; }, 80 + i * 70);
+    });
+
+    wrap.insertBefore(svg, tip);
+
+    // IntersectionObserver: animate links on enter
+    const linkLines = linksG.querySelectorAll('line');
+    linkLines.forEach(l => { l.style.strokeDashoffset = '200'; l.style.transition = 'stroke-dashoffset 0.6s ease'; });
+
+    const synthObs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      linkLines.forEach((l, i) => {
+        setTimeout(() => { l.style.strokeDashoffset = '0'; }, i * 80);
+      });
+      synthObs.disconnect();
+    }, { threshold: 0.3 });
+    synthObs.observe(wrap);
+  }
+
 
   // ── Viz 3: HVI "lens" — two columns what's IN vs MISSING ───
   function buildHviLens() {
