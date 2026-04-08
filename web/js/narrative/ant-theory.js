@@ -1471,21 +1471,21 @@
     ];
 
     // Values represent relative importance (out of 100 entering the pipeline).
-    // Flow links carry what moves forward; drop links carry what gets excluded.
+    // source/target must match node id strings (nodeId: d => d.id).
     const links = [
       // stage transitions — forward flow
-      { source: 0, target: 1, value: 100, drop: false },
-      { source: 1, target: 2, value: 60,  drop: false },
-      { source: 2, target: 3, value: 48,  drop: false },
-      { source: 3, target: 4, value: 34,  drop: false },
+      { source: 'heat',   target: 'data',   value: 100, drop: false },
+      { source: 'data',   target: 'hvi',    value: 60,  drop: false },
+      { source: 'hvi',    target: 'policy', value: 48,  drop: false },
+      { source: 'policy', target: 'action', value: 34,  drop: false },
       // drop streams — what each stage excludes
-      { source: 1, target: 5, value: 40,  drop: true,
+      { source: 'data',   target: 'drop',   value: 40,  drop: true,
         label: 'Rent burden, building age, language access excluded from measurement' },
-      { source: 2, target: 5, value: 12,  drop: true,
+      { source: 'hvi',    target: 'drop',   value: 12,  drop: true,
         label: '21% of AC owners cannot afford to run it — invisible to the score' },
-      { source: 3, target: 5, value: 14,  drop: true,
+      { source: 'policy', target: 'drop',   value: 14,  drop: true,
         label: 'Households too constrained to travel to cooling centers' },
-      { source: 4, target: 5, value: 34,  drop: true,
+      { source: 'action', target: 'drop',   value: 34,  drop: true,
         label: '83% of cooling centers closed Sundays; 47% age-restricted; alerts English-only' },
     ];
 
@@ -1670,19 +1670,17 @@
     ];
 
     const margin = { top: 28, right: 40, bottom: 52, left: 168 };
-    const wrapW = svgEl.closest('.ibar-wrap')
-      ? svgEl.closest('.ibar-wrap').clientWidth || 560
-      : 560;
+    // Use a fixed layout width — section is hidden at init time so clientWidth is 0
+    const wrapW = 600;
     const totalH = 320;
-    const W = Math.max(wrapW - margin.left - margin.right, 200);
-    const H = totalH - margin.top - margin.bottom;
+    const W = wrapW - margin.left - margin.right;   // 392
+    const H = totalH - margin.top - margin.bottom;  // 240
 
     const barH = Math.min(32, Math.floor((H - (SCENARIOS.length - 1) * 8) / SCENARIOS.length));
     const barGap = (H - barH * SCENARIOS.length) / (SCENARIOS.length - 1);
 
     svgEl.setAttribute('viewBox', `0 0 ${wrapW} ${totalH}`);
     svgEl.setAttribute('width', '100%');
-    svgEl.style.maxWidth = wrapW + 'px';
     svgEl.style.height = totalH + 'px';
 
     const svg = d3.select(svgEl);
@@ -1743,18 +1741,16 @@
         .attr('width', W).attr('height', barH)
         .attr('fill', '#F3EFE6').attr('rx', 3);
 
-      // Segmented bar
+      // Segmented bar — rendered at full width immediately (IntersectionObserver animates)
       let xOff = 0;
       sc.segments.forEach(seg => {
         const segW = xScale(sc.total * seg.share);
         const col = CONSTRAINTS.find(c => c.id === seg.id);
         rowG.append('rect')
           .attr('x', xOff).attr('y', y)
-          .attr('width', 0).attr('height', barH)
+          .attr('width', segW).attr('height', barH)
           .attr('fill', col ? col.color : '#999').attr('rx', 3)
-          .attr('opacity', sc.id === 'combined' ? 1 : 0.82)
-          .transition().duration(700).delay(i * 120)
-          .attr('width', segW);
+          .attr('opacity', sc.id === 'combined' ? 1 : 0.82);
         xOff += segW;
       });
 
@@ -1810,10 +1806,8 @@
         const segW = xScale(sc.total * seg.share / SCENARIOS.length * 2);
         bandG.append('rect')
           .attr('x', cumX).attr('y', bandY)
-          .attr('width', 0).attr('height', bandH)
-          .attr('fill', con.color).attr('rx', 2).attr('opacity', 0.75)
-          .transition().duration(600).delay(ci * 100)
-          .attr('width', segW);
+          .attr('width', segW).attr('height', bandH)
+          .attr('fill', con.color).attr('rx', 2).attr('opacity', 0.75);
         cumX += segW + 4;
       });
     });
