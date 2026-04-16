@@ -1,4 +1,4 @@
-// Conclusion visualization — waffle chart of all 2,231 NYC census tracts
+// Conclusion visualization - waffle chart of all 2,231 NYC census tracts
 
 (function () {
   'use strict';

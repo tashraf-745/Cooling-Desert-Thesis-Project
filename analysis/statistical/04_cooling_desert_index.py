@@ -30,7 +30,7 @@ Outputs:
   data/final/cdi_results.json             — weights, stats, top tracts
 
 Run from project root:
-  python analysis/03_statistical/04_cooling_desert_index.py
+  python analysis/statistical/04_cooling_desert_index.py
 """
 
 import json

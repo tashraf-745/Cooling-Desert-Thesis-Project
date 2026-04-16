@@ -1,5 +1,5 @@
-// Step 3: Scrollytelling Narrative
-// Sticky Leaflet map driven by 7 scroll panels via IntersectionObserver
+// Scrollytelling Narrative
+// Sticky Leaflet map driven by 6 scroll panels via IntersectionObserver
 
 (function () {
   'use strict';
@@ -81,7 +81,6 @@
   const STEP_LEGENDS = [
     null,
     { title: 'Heat Danger Level', items: [['1 Lowest', SEQ[0]], ['2', SEQ[1]], ['3', SEQ[2]], ['4', SEQ[3]], ['5 Highest', SEQ[4]]] },
-    { title: 'Renters Paying 50%+ on Rent', items: [['Under 10%', SEQ[0]], ['10 to 20%', SEQ[1]], ['20 to 30%', SEQ[2]], ['30 to 40%', SEQ[3]], ['Over 40%', SEQ[4]]] },
     { title: 'Cooling Desert Status', items: [['Cooling Desert', '#922B21'], ['Not a Cooling Desert', '#DEE2E6']] },
     { title: 'Share of Black Residents', items: [['Under 10%', SEQ[0]], ['10 to 25%', SEQ[1]], ['25 to 40%', SEQ[2]], ['40 to 60%', SEQ[3]], ['Over 60%', SEQ[4]]] },
     { title: 'Heat Risk Clustering', items: [['High-risk cluster', '#C0392B'], ['Low-risk cluster', '#2471A3'], ['Isolated high-risk area', '#F39C12'], ['Low-risk island', '#A569BD'], ['No pattern', '#D5D8DC']] },
@@ -131,15 +130,15 @@
 
     const onTract = (f, l) => l.bindTooltip(tractTooltip(f.properties), TT_OPTS);
 
-    // NYC outline — shown on panel 0 to orient the viewer
+    // NYC outline - shown on panel 0 to orient the viewer
     L_.nycBorder = L.geoJSON(boundary, {
       style: { fillColor: 'transparent', color: '#1A252F', weight: 2.5, opacity: 0.7 }
     });
 
-    // Panel 0 — base grey tracts
+    // Panel 0 - base grey tracts
     L_.base = L.geoJSON(tracts, { style: BASE_STYLE, onEachFeature: onTract });
 
-    // Panel 1 — HVI choropleth by NTA
+    // Panel 1 - HVI choropleth by NTA
     L_.hvi = L.geoJSON(ntas, {
       style: f => ({
         fillColor: SEQ[Math.round(f.properties.HVI_RANK || 1) - 1] || SEQ[0],
@@ -150,7 +149,7 @@
       onEachFeature: (f, l) => l.bindTooltip(ntaTooltip(f.properties), TT_OPTS)
     });
 
-    // Panel 2 — rent burden choropleth by tract (AC affordability tooltip)
+    // Panel 2 - rent burden choropleth by tract (AC affordability tooltip)
     L_.rentBurden = L.geoJSON(tracts, {
       style: f => ({
         fillColor: seqColor(f.properties.pct_rent_burden_50_plus, [10, 20, 30, 40]),
@@ -161,14 +160,14 @@
       onEachFeature: (f, l) => l.bindTooltip(rentBurdenTooltip(f.properties), TT_OPTS)
     });
 
-    // Panel 3 & 6 — cooling desert tracts only (is_cooling_desert is int 0/1)
+    // Panel 3 & 6 - cooling desert tracts only (is_cooling_desert is int 0/1)
     L_.deserts = L.geoJSON(tracts, {
       filter: f => f.properties.is_cooling_desert === 1,
       style: { fillColor: '#922B21', fillOpacity: 0.82, color: 'transparent', weight: 0 },
       onEachFeature: onTract
     });
 
-    // Panel 4 — % Black choropleth (race + temperature tooltip)
+    // Panel 4 - % Black choropleth (race + temperature tooltip)
     L_.black = L.geoJSON(tracts, {
       style: f => ({
         fillColor: seqColor(f.properties.pct_black, [10, 25, 40, 60]),
@@ -179,7 +178,7 @@
       onEachFeature: (f, l) => l.bindTooltip(raceHeatTooltip(f.properties), TT_OPTS)
     });
 
-    // Panel 5 — significant LISA clusters
+    // Panel 5 - significant LISA clusters
     L_.lisa = L.geoJSON(tracts, {
       filter: f => f.properties.lisa_cluster && f.properties.lisa_cluster !== 'NS' && +f.properties.lisa_p < 0.05,
       style: f => ({
@@ -191,7 +190,7 @@
       onEachFeature: onTract
     });
 
-    // Panel 6 — Cool It! point layer
+    // Panel 6 - Cool It! point layer
     L_.coolIt = L.geoJSON(sites, {
       pointToLayer: (_, ll) => L.circleMarker(ll, {
         radius: 5,
@@ -248,23 +247,20 @@
         L_.hvi.addTo(map);
         break;
       case 2:
-        L_.rentBurden.addTo(map);
-        break;
-      case 3:
         L_.base.setStyle(GHOST_STYLE);
         L_.base.addTo(map);
         L_.deserts.addTo(map);
         break;
-      case 4:
+      case 3:
         L_.black.addTo(map);
         break;
-      case 5:
+      case 4:
         L_.base.setStyle(GHOST_STYLE);
         L_.base.addTo(map);
         L_.lisa.addTo(map);
         map.flyTo([40.837, -73.865], 11, { duration: 1 });
         break;
-      case 6:
+      case 5:
         L_.base.setStyle(GHOST_STYLE);
         L_.base.addTo(map);
         L_.deserts.addTo(map);

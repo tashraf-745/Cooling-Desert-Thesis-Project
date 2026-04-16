@@ -7,7 +7,7 @@ RAW  = BASE / "data" / "raw"
 OUT  = BASE / "data" / "processed"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Step 1: Load HVI rankings and filter to NYC ZCTAs
+# Load HVI rankings and filter to NYC ZCTAs
 df_hvi = pd.read_csv(RAW / "hvi" / "Heat_Vulnerability_Index_Rankings_2024.csv")
 df_hvi.columns = ["zcta", "hvi_score"]
 df_hvi["zcta"]      = df_hvi["zcta"].astype(str).str.strip().str.zfill(5)
@@ -18,14 +18,14 @@ print(df_hvi["hvi_score"].value_counts().sort_index().to_string())
 
 nyc_zctas = set(df_hvi["zcta"].dropna())
 
-# Step 2: Load ZCTA shapefile and filter to NYC
+# Load ZCTA shapefile and filter to NYC
 print("\nLoading ZCTA shapefile...")
 gdf_zcta = gpd.read_file(str(RAW / "shapefile" / "tl_2020_us_zcta520" / "tl_2020_us_zcta520.shp"))
 gdf_zcta["ZCTA5CE20"] = gdf_zcta["ZCTA5CE20"].astype(str).str.zfill(5)
 gdf_nyc_zcta = gdf_zcta[gdf_zcta["ZCTA5CE20"].isin(nyc_zctas)].copy()
 print(f"NYC ZCTAs matched: {len(gdf_nyc_zcta)} / {len(nyc_zctas)}")
 
-# Step 3: Join HVI to geometry and export
+# Join HVI to geometry and export
 gdf_nyc_zcta = gdf_nyc_zcta.to_crs("EPSG:4326")
 gdf_merged = gdf_nyc_zcta.merge(df_hvi, left_on="ZCTA5CE20", right_on="zcta", how="left")
 gdf_merged = gdf_merged[["ZCTA5CE20", "hvi_score", "geometry"]].rename(columns={"ZCTA5CE20": "zcta"})
@@ -35,7 +35,7 @@ gdf_merged.to_file(str(OUT / "hvi_zcta.geojson"), driver="GeoJSON")
 print("  → hvi_zcta.geojson")
 
 
-# Step 4: Load and clean outdoor heat forecast
+# Load and clean outdoor heat forecast
 df_heat = pd.read_csv(
     RAW / "hvi" / "NYC_Climate_Budgeting_Report__Resiliency_Exposure_Forecast_-_Outdoor_Heat_20260212.csv"
 )

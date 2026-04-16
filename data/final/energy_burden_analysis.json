@@ -1,0 +1,416 @@
+{
+  "A_summer_util_by_burden": {
+    "description": "Monthly summer utility cost (electricity + gas) by rent burden category",
+    "n_valid_responses": 2803,
+    "pct_renters_with_valid_util": 55.7,
+    "note_on_missing": "55.7% of renters have valid summer utility cost responses. -2 = utilities included in rent or not applicable; -3 = didn't live there last summer.",
+    "by_burden": {
+      "severely_burdened": {
+        "label": "Severely burdened (>50%)",
+        "n": 785,
+        "mean": 188.6,
+        "median": 130.0,
+        "p25": 90.0,
+        "p75": 200.0
+      },
+      "moderately_burdened": {
+        "label": "Moderately burdened (30\u201350%)",
+        "n": 546,
+        "mean": 166.6,
+        "median": 120.0,
+        "p25": 80.0,
+        "p75": 200.0
+      },
+      "not_burdened": {
+        "label": "Not burdened (\u226430%)",
+        "n": 1232,
+        "mean": 172.5,
+        "median": 130.0,
+        "p25": 99.0,
+        "p75": 200.0
+      },
+      "means_tested": {
+        "label": "Means-tested (NYCHA/voucher)",
+        "n": 240,
+        "mean": 178.8,
+        "median": 130.0,
+        "p25": 79.2,
+        "p75": 200.0
+      }
+    },
+    "kruskal_wallis_H": 6.09,
+    "kruskal_wallis_p": 0.107232,
+    "sev_vs_not_mwu_p": 0.9338,
+    "finding": "Severely burdened renters pay $189/mo (median $130) in summer utilities \u2014 $16/mo more than non-burdened renters ($172/mo mean). Difference is significant (Kruskal-Wallis p=0.1072)."
+  },
+  "B_utility_interruption": {
+    "description": "Utility interruption (inability to pay) among renters",
+    "overall_interruption_rate_pct": 1.7,
+    "n_interrupted": 83,
+    "n_not_interrupted": 4797,
+    "interrupted_mean_summer_util": 238.1,
+    "not_interrupted_mean_summer_util": 176.1,
+    "interrupted_median_summer_util": 150.0,
+    "not_interrupted_median_summer_util": 130.0,
+    "mwu_p": 0.01,
+    "interruption_by_burden": {
+      "severely_burdened": {
+        "label": "Severely burdened (>50%)",
+        "n_total": 1173,
+        "n_interrupted": 29,
+        "pct_interrupted": 2.5
+      },
+      "moderately_burdened": {
+        "label": "Moderately burdened (30\u201350%)",
+        "n_total": 806,
+        "n_interrupted": 15,
+        "pct_interrupted": 1.9
+      },
+      "not_burdened": {
+        "label": "Not burdened (\u226430%)",
+        "n_total": 1787,
+        "n_interrupted": 21,
+        "pct_interrupted": 1.2
+      },
+      "means_tested": {
+        "label": "Means-tested (NYCHA/voucher)",
+        "n_total": 1114,
+        "n_interrupted": 18,
+        "pct_interrupted": 1.6
+      }
+    },
+    "chi2_interruption_vs_burden": 7.3,
+    "chi2_p": 0.062894,
+    "finding": "Renters who experienced utility interruptions paid $238/mo (median $150) in summer utilities \u2014 $62/mo more than those who did not. This confirms energy insecurity is NOT low usage \u2014 it is inability to sustain payment despite HIGHER bills. Severely burdened renters have 2.5% interruption rate vs 1.2% for non-burdened (chi-square p=0.0629)."
+  },
+  "C_borough_breakdown": {
+    "description": "Summer utility costs and interruption rates by borough",
+    "by_borough": {
+      "Bronx": {
+        "n_renters": 1041,
+        "mean_summer_util": 226.9,
+        "median_summer_util": 150.0,
+        "interruption_rate_pct": 3.3,
+        "n_severely_burdened": 305,
+        "pct_severely_burdened": 29.3,
+        "severely_burdened_mean_util": 280.9
+      },
+      "Brooklyn": {
+        "n_renters": 1696,
+        "mean_summer_util": 142.2,
+        "median_summer_util": 115.5,
+        "interruption_rate_pct": 1.2,
+        "n_severely_burdened": 372,
+        "pct_severely_burdened": 21.9,
+        "severely_burdened_mean_util": 141.8
+      },
+      "Manhattan": {
+        "n_renters": 1269,
+        "mean_summer_util": 176.4,
+        "median_summer_util": 120.0,
+        "interruption_rate_pct": 1.2,
+        "n_severely_burdened": 254,
+        "pct_severely_burdened": 20.0,
+        "severely_burdened_mean_util": 175.6
+      },
+      "Queens": {
+        "n_renters": 893,
+        "mean_summer_util": 170.8,
+        "median_summer_util": 135.0,
+        "interruption_rate_pct": 1.6,
+        "n_severely_burdened": 265,
+        "pct_severely_burdened": 29.7,
+        "severely_burdened_mean_util": 155.8
+      },
+      "Staten Island": {
+        "n_renters": 133,
+        "mean_summer_util": 257.8,
+        "median_summer_util": 166.5,
+        "interruption_rate_pct": 0.8,
+        "n_severely_burdened": 38,
+        "pct_severely_burdened": 28.6,
+        "severely_burdened_mean_util": 181.0
+      }
+    }
+  },
+  "D_energy_burden_ratio": {
+    "description": "Annual energy burden = (MUTIL \u00d7 12) / HHINC_REC1. Excludes renters with utilities included in rent (UTIL_INCLUDED=1) and households with income < $5,000.",
+    "n_valid": 2413,
+    "overall_mean_pct": 5.1,
+    "overall_median_pct": 2.4,
+    "pct_above_6pct_threshold": 22.8,
+    "pct_above_10pct_threshold": 12.3,
+    "doe_threshold_note": "DOE defines >6% of income as 'high energy burden'; >10% as 'severe'.",
+    "by_burden": {
+      "severely_burdened": {
+        "label": "Severely burdened (>50%)",
+        "n": 553,
+        "mean_energy_burden_pct": 10.3,
+        "median_energy_burden_pct": 6.2,
+        "pct_above_6pct": 50.5,
+        "pct_above_10pct": 28.0
+      },
+      "moderately_burdened": {
+        "label": "Moderately burdened (30\u201350%)",
+        "n": 518,
+        "mean_energy_burden_pct": 4.5,
+        "median_energy_burden_pct": 2.7,
+        "pct_above_6pct": 18.9,
+        "pct_above_10pct": 10.0
+      },
+      "not_burdened": {
+        "label": "Not burdened (\u226430%)",
+        "n": 1150,
+        "mean_energy_burden_pct": 2.4,
+        "median_energy_burden_pct": 1.3,
+        "pct_above_6pct": 7.9,
+        "pct_above_10pct": 3.4
+      },
+      "means_tested": {
+        "label": "Means-tested (NYCHA/voucher)",
+        "n": 192,
+        "mean_energy_burden_pct": 8.1,
+        "median_energy_burden_pct": 5.2,
+        "pct_above_6pct": 43.2,
+        "pct_above_10pct": 26.0
+      }
+    },
+    "by_borough": {
+      "Bronx": {
+        "n": 427,
+        "mean_pct": 7.7,
+        "median_pct": 4.2,
+        "pct_above_6pct": 36.1
+      },
+      "Brooklyn": {
+        "n": 816,
+        "mean_pct": 3.8,
+        "median_pct": 1.9,
+        "pct_above_6pct": 14.7
+      },
+      "Manhattan": {
+        "n": 589,
+        "mean_pct": 4.6,
+        "median_pct": 1.9,
+        "pct_above_6pct": 22.1
+      },
+      "Queens": {
+        "n": 514,
+        "mean_pct": 4.9,
+        "median_pct": 2.4,
+        "pct_above_6pct": 22.4
+      },
+      "Staten Island": {
+        "n": 67,
+        "mean_pct": 10.4,
+        "median_pct": 5.8,
+        "pct_above_6pct": 47.8
+      }
+    },
+    "kruskal_wallis_H": 779.5,
+    "kruskal_wallis_p": 0.0
+  },
+  "E_utilities_included": {
+    "description": "Whether utilities are included in rent by burden category",
+    "overall_pct_included": 26.9,
+    "by_burden": {
+      "severely_burdened": {
+        "label": "Severely burdened (>50%)",
+        "n_total": 1234,
+        "n_util_included": 263,
+        "pct_util_included": 21.3
+      },
+      "moderately_burdened": {
+        "label": "Moderately burdened (30\u201350%)",
+        "n_total": 823,
+        "n_util_included": 132,
+        "pct_util_included": 16.0
+      },
+      "not_burdened": {
+        "label": "Not burdened (\u226430%)",
+        "n_total": 1842,
+        "n_util_included": 320,
+        "pct_util_included": 17.4
+      },
+      "means_tested": {
+        "label": "Means-tested (NYCHA/voucher)",
+        "n_total": 1133,
+        "n_util_included": 637,
+        "pct_util_included": 56.2
+      }
+    },
+    "chi2": 649.88,
+    "chi2_p": 0.0,
+    "finding": "Whether utilities are included in rent is not evenly distributed across burden categories. Severely burdened renters paying utilities directly face the full combined cost of rent AND energy bills."
+  },
+  "F_household_composition": {
+    "description": "Summer utility costs and interruption rates by household composition",
+    "by_composition": {
+      "households_with_elderly_62plus": {
+        "n_with": 874,
+        "mean_util_with": 155.0,
+        "median_util_with": 120.0,
+        "n_without": 1929,
+        "mean_util_without": 186.1,
+        "median_util_without": 135.0,
+        "mwu_p": 0.0,
+        "interruption_rate_with_pct": 1.4,
+        "interruption_rate_without_pct": 1.8
+      },
+      "households_with_children_under18": {
+        "n_with": 611,
+        "mean_util_with": 212.3,
+        "median_util_with": 175.0,
+        "n_without": 2192,
+        "mean_util_without": 166.4,
+        "median_util_without": 120.0,
+        "mwu_p": 0.0,
+        "interruption_rate_with_pct": 2.7,
+        "interruption_rate_without_pct": 1.4
+      }
+    }
+  },
+  "viz_summary": {
+    "key_numbers": {
+      "mean_summer_util_severely_burdened": 188.6,
+      "mean_summer_util_not_burdened": 172.5,
+      "mean_summer_util_means_tested": 178.8,
+      "pct_renters_utility_interrupted": 1.7,
+      "interrupted_vs_not_util_diff": 61.9,
+      "median_energy_burden_severely_burdened_pct": 6.2,
+      "median_energy_burden_not_burdened_pct": 1.3,
+      "pct_severely_burdened_above_6pct_energy_burden": 50.5,
+      "n_renters_valid_summer_util": 2803,
+      "pct_renters_valid_summer_util": 55.7
+    },
+    "chart_data": {
+      "summer_util_by_burden": [
+        {
+          "key": "severely_burdened",
+          "label": "Severely burdened (>50%)",
+          "mean": 188.6,
+          "median": 130.0,
+          "n": 785
+        },
+        {
+          "key": "moderately_burdened",
+          "label": "Moderately burdened (30\u201350%)",
+          "mean": 166.6,
+          "median": 120.0,
+          "n": 546
+        },
+        {
+          "key": "not_burdened",
+          "label": "Not burdened (\u226430%)",
+          "mean": 172.5,
+          "median": 130.0,
+          "n": 1232
+        },
+        {
+          "key": "means_tested",
+          "label": "Means-tested (NYCHA/voucher)",
+          "mean": 178.8,
+          "median": 130.0,
+          "n": 240
+        }
+      ],
+      "interruption_by_burden": [
+        {
+          "key": "severely_burdened",
+          "label": "Severely burdened (>50%)",
+          "pct_interrupted": 2.5,
+          "n": 1173
+        },
+        {
+          "key": "moderately_burdened",
+          "label": "Moderately burdened (30\u201350%)",
+          "pct_interrupted": 1.9,
+          "n": 806
+        },
+        {
+          "key": "not_burdened",
+          "label": "Not burdened (\u226430%)",
+          "pct_interrupted": 1.2,
+          "n": 1787
+        },
+        {
+          "key": "means_tested",
+          "label": "Means-tested (NYCHA/voucher)",
+          "pct_interrupted": 1.6,
+          "n": 1114
+        }
+      ],
+      "energy_burden_by_burden": [
+        {
+          "key": "severely_burdened",
+          "label": "Severely burdened (>50%)",
+          "mean_pct": 10.3,
+          "median_pct": 6.2,
+          "pct_above_6pct": 50.5,
+          "pct_above_10pct": 28.0
+        },
+        {
+          "key": "moderately_burdened",
+          "label": "Moderately burdened (30\u201350%)",
+          "mean_pct": 4.5,
+          "median_pct": 2.7,
+          "pct_above_6pct": 18.9,
+          "pct_above_10pct": 10.0
+        },
+        {
+          "key": "not_burdened",
+          "label": "Not burdened (\u226430%)",
+          "mean_pct": 2.4,
+          "median_pct": 1.3,
+          "pct_above_6pct": 7.9,
+          "pct_above_10pct": 3.4
+        },
+        {
+          "key": "means_tested",
+          "label": "Means-tested (NYCHA/voucher)",
+          "mean_pct": 8.1,
+          "median_pct": 5.2,
+          "pct_above_6pct": 43.2,
+          "pct_above_10pct": 26.0
+        }
+      ],
+      "borough_util_and_interruption": [
+        {
+          "borough": "Bronx",
+          "mean_summer_util": 226.9,
+          "interruption_rate_pct": 3.3,
+          "pct_severely_burdened": 29.3,
+          "severely_burdened_mean_util": 280.9
+        },
+        {
+          "borough": "Brooklyn",
+          "mean_summer_util": 142.2,
+          "interruption_rate_pct": 1.2,
+          "pct_severely_burdened": 21.9,
+          "severely_burdened_mean_util": 141.8
+        },
+        {
+          "borough": "Manhattan",
+          "mean_summer_util": 176.4,
+          "interruption_rate_pct": 1.2,
+          "pct_severely_burdened": 20.0,
+          "severely_burdened_mean_util": 175.6
+        },
+        {
+          "borough": "Queens",
+          "mean_summer_util": 170.8,
+          "interruption_rate_pct": 1.6,
+          "pct_severely_burdened": 29.7,
+          "severely_burdened_mean_util": 155.8
+        },
+        {
+          "borough": "Staten Island",
+          "mean_summer_util": 257.8,
+          "interruption_rate_pct": 0.8,
+          "pct_severely_burdened": 28.6,
+          "severely_burdened_mean_util": 181.0
+        }
+      ]
+    }
+  }
+}

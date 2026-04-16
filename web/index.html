@@ -6,6 +6,11 @@
   <title>Cooling Deserts for Renters: NYC</title>
   <meta name="description" content="Mapping heat vulnerability, rent burden, and cooling access across New York City's renter households, neighborhood by neighborhood." />
 
+  <!-- Google Fonts: Bree Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -24,6 +29,7 @@
       <div class="hero-content container">
         <h1 class="hero-title">Cooling Deserts for Renters</h1>
         <p class="hero-tagline">Heat Equity Inside the NYC Housing System</p>
+        <p class="hero-byline">by Tahreem Ashraf</p>
         <p class="hero-subtitle">
           Mapping where heat vulnerability, rent burden, and absent cooling infrastructure
           converge, and what it means for the renters who cannot escape the heat.
@@ -83,7 +89,7 @@
           <button class="pc-choice pc-choice--theory" id="btn-path-theory">
             <span class="pc-choice-eyebrow">Actor-Network Theory</span>
             <span class="pc-choice-title">The Theory</span>
-            <span class="pc-choice-desc">How buildings, rent bills, data systems, and heat itself are all actors holding cooling deserts in place — and what that means for breaking them.</span>
+            <span class="pc-choice-desc">How buildings, rent bills, data systems, and heat itself are all actors holding cooling deserts in place - and what that means for breaking them.</span>
             <span class="pc-choice-cta">Enter the theory →</span>
           </button>
         </div>
@@ -95,7 +101,7 @@
       <div class="container narrative-intro">
         <h2 class="section-heading">Where a Hot Day Becomes Dangerous</h2>
         <p class="section-question">Every summer, the same weather passes over every borough. It does not land the same way.</p>
-        <p class="section-context">Heat risk does not arrive fully formed. It accumulates. In some neighborhoods, decades of choices about where to plant trees, how to maintain buildings, and which households can absorb the cost of cooling have quietly compounded the odds against residents. The seven panels below trace that accumulation layer by layer: from the official heat danger ratings, to the financial constraints that make cooling unaffordable even when AC exists, to the geographic lock-in that leaves entire communities without any nearby refuge.</p>
+        <p class="section-context">Heat risk does not arrive fully formed. It accumulates. In some neighborhoods, decades of choices about where to plant trees, how to maintain buildings, and which households can absorb the cost of cooling have quietly compounded the odds against residents. The six panels below trace that accumulation layer by layer: from the official heat danger ratings, to the structural barriers that lock residents out of cooling, to the geographic concentration that leaves entire communities without any nearby refuge.</p>
       </div>
       <div class="narrative-layout">
 
@@ -125,17 +131,6 @@
 
           <div class="narrative-panel" data-step="2">
             <span class="panel-step">03</span>
-            <h3 class="panel-heading">Owning an Air Conditioner Is Not the Same as Using One</h3>
-            <p class="panel-body">The city's heat danger index counts households that own an air conditioner as protected. But ownership and use are not the same thing. When rent takes more than half of a household's income, running a window unit for the summer can add $50 to $100 to an already impossible electric bill. One in five New York City renters who owns an air conditioner reports not being able to afford to turn it on. The result is a hidden layer of vulnerability that standard heat risk metrics systematically miss.</p>
-            <div class="panel-stat">
-              <span class="panel-stat-number">1 in 5</span>
-              <span class="panel-stat-detail">renters with AC cannot afford to run it</span>
-              <span class="panel-source">NYC Comptroller Energy Insecurity Report, 2022</span>
-            </div>
-          </div>
-
-          <div class="narrative-panel" data-step="3">
-            <span class="panel-step">04</span>
             <h3 class="panel-heading">557 Neighborhoods Without a Way Out of the Heat</h3>
             <p class="panel-body">When high heat danger and structural barriers to cooling overlap in the same neighborhood, the result is a cooling desert. In 557 neighborhoods across New York City, residents face elevated heat danger and one or more compounding constraints: extreme rent burden that makes electricity unaffordable, overcrowded housing that makes cooling impossible, language barriers that cut off access to emergency resources, or buildings so old their wiring cannot support air conditioning. These are not neighborhoods where people need more information. They are neighborhoods where the conditions that make cooling possible are simply absent.</p>
             <div class="panel-stat">
@@ -145,8 +140,8 @@
             </div>
           </div>
 
-          <div class="narrative-panel" data-step="4">
-            <span class="panel-step">05</span>
+          <div class="narrative-panel" data-step="3">
+            <span class="panel-step">04</span>
             <h3 class="panel-heading">Heat Does Not Fall Equally Across Race</h3>
             <p class="panel-body">When researchers control for income, green space, and poverty, one variable continues to predict higher heat danger independently: the racial composition of a neighborhood. For every 1% increase in Black residents, surface temperatures run 0.43 degrees Fahrenheit hotter. In Manhattan, that effect grows to 5.27 degrees. This is not a coincidence. It is the spatial legacy of a century of disinvestment, highway routing, urban renewal, and the systematic exclusion of Black communities from neighborhoods with parks, trees, and maintained housing stock.</p>
             <div class="panel-stat">
@@ -156,8 +151,8 @@
             </div>
           </div>
 
-          <div class="narrative-panel" data-step="5">
-            <span class="panel-step">06</span>
+          <div class="narrative-panel" data-step="4">
+            <span class="panel-step">05</span>
             <h3 class="panel-heading">In the Bronx, There Is No Safer Street to Walk To</h3>
             <p class="panel-body">Cooling deserts do not scatter randomly across a borough. They cluster. In the Bronx, two out of three high-risk neighborhoods are completely surrounded by other high-risk neighborhoods. There is no adjacent street, no nearby park, no walkable location offering meaningful relief. This geographic concentration is not incidental: it reflects the same long-term disinvestment patterns that created heat risk in the first place, now locked into a spatial structure that compounds itself.</p>
             <div class="panel-stat">
@@ -167,8 +162,8 @@
             </div>
           </div>
 
-          <div class="narrative-panel" data-step="6">
-            <span class="panel-step">07</span>
+          <div class="narrative-panel" data-step="5">
+            <span class="panel-step">06</span>
             <h3 class="panel-heading">Public Cooling Infrastructure Misses the Neighborhoods That Need It Most</h3>
             <p class="panel-body">The city maintains 218 outdoor cooling features in parks: spray showers, misting stations, and fountains. But the distribution of those resources does not align with the distribution of heat danger. Many of the neighborhoods most at risk have no outdoor cooling feature within reasonable walking distance. And the indoor emergency cooling centers that do exist are closed on Sundays, which is the day heat-related deaths peak. A system designed for emergencies, operating on weekday hours, is not a system designed for the people who need it.</p>
             <div class="panel-stat">
@@ -283,7 +278,7 @@
           <p class="chart-context">A statistical model tested which neighborhood characteristics most strongly predict heat danger, controlling for income, language access, overcrowding, and other variables. Race emerged as the dominant predictor. The share of Black residents has a standardized effect size more than twice that of household income, meaning that two neighborhoods with the same income level but different racial compositions will have measurably different heat risk. This is not explained by poverty. It reflects the spatial legacy of racially discriminatory housing policy: neighborhood disinvestment, lower tree canopy, aging building stock, and reduced access to green space, all of which accumulated in predominantly Black neighborhoods over decades of deliberate exclusion from the resources that make a neighborhood livable in summer.</p>
           <p class="chart-finding">Race is the single most powerful driver of heat risk, more influential than income, rent costs, or language barriers, even after all other factors are accounted for.</p>
           <div id="chart-regression"></div>
-          <p class="chart-source">Statistical examination of 2,197 NYC neighborhoods &middot; bars show relative influence as a percentage of the strongest predictor (race, set at 100%) &middot; grey bars did not reach statistical significance &middot; see Behind the Cooling Desert Index for technical details</p>
+          <p class="chart-source">Statistical examination of 2,197 NYC neighborhoods &middot; bars show relative influence as a percentage of the strongest predictor (race, set at 100%) &middot; grey bars did not reach statistical significance</p>
         </div>
 
         <div class="chart-block">
@@ -304,76 +299,20 @@
       </div>
     </section>
 
-    <!-- Step 6b: AC Access & Energy Burden -->
-    <section id="ac-energy" class="section-ac-energy" data-path="data" aria-label="AC access and energy burden">
-      <div class="container">
-        <h2 class="section-heading">The Hidden Cost of Staying Cool</h2>
-        <p class="section-desc">Air conditioning ownership is not the same as air conditioning access. In New York City's highest-risk neighborhoods, the barrier is not hardware — it is the electricity bill. 21% of renters who own AC report they cannot afford to run it. Among very-low-income households, energy costs consume more than 11 cents of every dollar earned. The charts below reveal the financial reality behind the city's cooling gap.</p>
-
-        <div class="stat-cards-row" aria-label="Key statistics">
-          <div class="stat-card stat-card--heat">
-            <span class="stat-card-number" id="ac-stat-1">0%</span>
-            <span class="stat-card-label">of renters with AC can't afford to run it</span>
-          </div>
-          <div class="stat-card stat-card--burden">
-            <span class="stat-card-number" id="ac-stat-2">0%</span>
-            <span class="stat-card-label">of income spent on energy by lowest-income renters</span>
-          </div>
-          <div class="stat-card stat-card--desert">
-            <span class="stat-card-number" id="ac-stat-3">0</span>
-            <span class="stat-card-label">neighborhoods face both high heat risk and severe energy burden</span>
-          </div>
-        </div>
-
-        <div class="chart-block">
-          <h3 class="chart-heading">Severely rent-burdened renters spend 4× more of their income on energy</h3>
-          <p class="chart-context">The DOE LEAD Tool tracks what share of household income goes to energy costs across every census tract in New York City. When neighborhoods are grouped by rent burden level, the pattern is stark. Renters who spend more than half their income on rent also face energy costs that consume 10% or more of their income — well above the DOE's threshold of 6% for "high energy burden." This is not simply a reflection of low income. It is what happens when two essential costs — housing and energy — both extract a disproportionate share of a household's budget simultaneously. The red and orange zones on this chart represent the DOE thresholds beyond which a household is officially in high or severe energy burden.</p>
-          <p class="chart-finding">Severely rent-burdened renters face an energy burden of 10.3% of income — more than four times the 2.4% faced by renters who are not rent-burdened. Both levels exceed the DOE's 6% "high burden" threshold.</p>
-          <div id="chart-energy-burden"></div>
-          <p class="chart-source">DOE LEAD Tool (0–30% AMI renters by tract) + NYC Housing Vacancy Survey 2021 &middot; DOE thresholds: 6% = high burden, 10% = severe burden &middot; Hover bars for detail</p>
-        </div>
-
-        <div class="chart-block">
-          <h3 class="chart-heading">What does a household budget actually look like?</h3>
-          <p class="chart-context">This grid represents 100 cents of every dollar earned by a renter household. Each colored square is one cent. Toggle between four household types to see how rent and energy costs shift with income and housing situation. The severely rent-burdened household leaves almost nothing for food, transportation, childcare, or emergencies. For households in this position, choosing not to run the air conditioner is not a lifestyle preference. It is the only way to keep the lights on.</p>
-          <p class="chart-finding">For severely rent-burdened renters, rent and utilities together consume roughly 60 cents of every dollar earned — leaving less than 40 cents for everything else.</p>
-          <div id="chart-budget-waffle">
-            <div class="waffle-btns"></div>
-            <div class="waffle-layout">
-              <div class="waffle-grid" aria-label="Budget breakdown waffle chart"></div>
-              <div class="waffle-stats-col">
-                <div class="waffle-stats"></div>
-                <p class="waffle-note"></p>
-              </div>
-            </div>
-          </div>
-          <p class="chart-source">NYC Housing Vacancy Survey 2021 &middot; DOE LEAD Tool &middot; Dollar figures reflect NYC median household income by category</p>
-        </div>
-
-        <div class="chart-block">
-          <h3 class="chart-heading">The neighborhoods with the most heat risk have the least AC coverage</h3>
-          <p class="chart-context">The NYC Heat Vulnerability Index ranks every neighborhood from 1 (safest) to 5 (most at risk). When AC ownership rates are plotted against those rankings, the pattern is clear and troubling: the neighborhoods that need cooling the most are the ones least likely to have it. And of those who do have AC, one in five say they cannot afford to run it during summer. The index measures ownership — the actual gap in cooling access is even wider.</p>
-          <p class="chart-finding">The most heat-vulnerable neighborhoods (HVI rank 5) have 17% lower AC ownership than the safest ones — and 1 in 5 owners in any neighborhood cannot afford to use it.</p>
-          <div id="chart-ac-ownership"></div>
-          <p class="chart-source">NYC DOHMH Heat Vulnerability Index 2022 (pct_households_ac by NTA) &middot; The "1 in 5" annotation reflects NYCHVS 2021 utility interruption data</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Step 6c: Tree Canopy & Shade Equity -->
+    <!-- Step 6b: Tree Canopy & Shade Equity -->
     <section id="canopy" class="section-canopy" data-path="data" aria-label="Tree canopy and shade equity">
       <div class="container">
         <h2 class="section-heading">Shade as Infrastructure</h2>
-        <p class="section-desc">Trees are not decoration. They are infrastructure that lowers surface temperatures, reduces the heat island effect, and provides the outdoor cooling that no household budget can substitute. New York City's canopy is growing — but it is not growing where it is needed most. Cooling deserts carry a shade deficit that compounds every other barrier their residents face.</p>
+        <p class="section-desc">Trees lower surface temperatures, reduce the urban heat island effect, and provide outdoor cooling that no budget line can replace. New York City gained canopy between 2010 and 2017 - but the distribution of that shade does not follow income. It follows heat risk. The neighborhoods most exposed to dangerous heat carry a persistent shade deficit that no amount of wealth correlation can explain away.</p>
 
         <div class="stat-cards-row" aria-label="Key canopy statistics">
           <div class="stat-card stat-card--canopy">
             <span class="stat-card-number" id="can-stat-1">0%</span>
-            <span class="stat-card-label">shade gap between cooling deserts and safer neighborhoods</span>
+            <span class="stat-card-label">less canopy in cooling deserts than safer neighborhoods</span>
           </div>
           <div class="stat-card stat-card--growth">
             <span class="stat-card-number" id="can-stat-2">0%</span>
-            <span class="stat-card-label">of cooling deserts are gaining tree cover since 2010</span>
+            <span class="stat-card-label">of city tracts lost canopy between 2010 and 2017</span>
           </div>
           <div class="stat-card stat-card--avg">
             <span class="stat-card-number" id="can-stat-3">0%</span>
@@ -382,27 +321,27 @@
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-heading">The most at-risk neighborhoods have the least shade — and are growing the most trees</h3>
-          <p class="chart-context">Canopy coverage decreases as heat risk increases, from 19% in the city's safest neighborhoods down to 16.7% in the most at-risk ones. But the right-side dots reveal something more complex: the neighborhoods losing the shade battle are actually receiving the most tree planting investment. The "Most at Risk" quintile shows the highest growth rate of any group — 2.31 percentage points since 2010. This is a signal that the city's urban greening programs are beginning to target the right places. The question is whether the rate of investment will close the existing gap before the next heat wave.</p>
-          <p class="chart-finding">The Most at Risk neighborhoods have 2.6% less canopy than the safest, yet are growing trees faster than any other group — evidence of targeted investment that has not yet closed the gap.</p>
+          <h3 class="chart-heading">The most vulnerable neighborhoods have the least shade - and are now growing trees fastest</h3>
+          <p class="chart-context">Canopy coverage falls as heat vulnerability rises, from 19.3% in the city's least vulnerable neighborhoods down to 16.7% in the most vulnerable. The gap is 2.6 percentage points - real, but modest. What the growth dots reveal is more significant: the most vulnerable quintile is adding canopy faster than any other group, at 2.31 percentage points since 2010, compared to 1.88 for the least vulnerable. This is evidence that urban greening programs are beginning to reach the right places. Two things remain true at once: the city is investing in shade where it is needed most, and the accumulated deficit is too large for tree planting alone to close.</p>
+          <p class="chart-finding">The most vulnerable neighborhoods have 2.6 percentage points less canopy than the safest, yet are growing trees faster than any other group. The investment is real. The gap has not closed yet.</p>
           <div id="chart-canopy-quintile"></div>
-          <p class="chart-source">NYC Urban Tree Canopy Assessment 2010 &amp; 2017 &middot; CDI quintile groupings &middot; Dots show average canopy growth rate since 2010 &middot; Hover for detail</p>
+          <p class="chart-source">NYC Urban Tree Canopy Assessment 2010 &amp; 2017 &middot; CDI quintile groupings &middot; Bars show 2017 canopy coverage &middot; Dots show average growth rate since 2010 &middot; Hover for detail</p>
         </div>
 
         <div class="chart-block">
-          <h3 class="chart-heading">Where the trees aren't: cooling deserts cluster at lower canopy levels</h3>
-          <p class="chart-context">Each dot is one of 500 sampled census tracts, plotted by its heat vulnerability score and its tree canopy coverage. Red dots are cooling deserts — they cluster toward the right (higher CDI) and toward the bottom (lower canopy). Blue dots are neighborhoods not classified as cooling deserts. The dashed trend line shows that, on average, higher vulnerability correlates with lower canopy, but the relationship is noisy. Some high-CDI tracts have meaningful canopy. Some low-CDI tracts are relatively treeless. These outliers represent places where the other CDI dimensions — rent burden, income, AC access — are carrying more weight in determining vulnerability than the canopy deficit alone.</p>
-          <p class="chart-finding">Cooling deserts concentrate in the high-CDI, low-canopy region of this chart, confirming that shade deprivation is part of the structural signature of heat inequality — not just a symptom of it.</p>
+          <h3 class="chart-heading">Shade deprivation tracks heat vulnerability - but income does not explain it</h3>
+          <p class="chart-context">Each dot is one of roughly 600 sampled census tracts, plotted by its Cooling Desert Index score and its 2017 tree canopy coverage. Cooling deserts cluster toward the upper right: higher vulnerability scores, lower canopy. The relationship exists but it is noisy. Some high-CDI tracts have substantial shade. Some low-CDI tracts are almost treeless. The most striking finding from the full dataset is what is absent: the correlation between canopy coverage and median household income is essentially zero (r = 0.002). Shade inequality in New York City is not a function of neighborhood wealth. It reflects land use history, block density, and the persistence of environmental disinvestment in specific communities. Tracts with high proportions of limited-English-speaking residents show the strongest negative association with canopy of any demographic variable measured.</p>
+          <p class="chart-finding">Cooling deserts have less shade, but the income-canopy correlation is near zero. Shade deprivation in NYC is not about wealth. It follows language access and heat risk more than any other factor.</p>
           <div id="chart-canopy-scatter"></div>
-          <p class="chart-source">500 randomly sampled census tracts &middot; CDI = Cooling Desert Index (higher = more vulnerable) &middot; Canopy = 2017 coverage &middot; Hover any dot for borough and values</p>
+          <p class="chart-source">~600 randomly sampled census tracts &middot; CDI = Cooling Desert Index (higher = more vulnerable) &middot; Canopy = 2017 coverage &middot; Hover any dot for borough and values</p>
         </div>
 
         <div class="chart-block">
           <h3 class="chart-heading">Staten Island leads on canopy; the Bronx leads on cooling deserts</h3>
-          <p class="chart-context">Tree coverage varies dramatically across boroughs. Staten Island, with the lowest density and most green space, carries 26% canopy coverage and only 7.6% cooling deserts. Manhattan, the densest borough, has just 14.8% canopy but relatively few cooling deserts — because many high-income Manhattan neighborhoods have the financial resources to compensate through other means. The Bronx combines moderate canopy (17.7%) with the highest cooling desert share (54%) of any borough, illustrating that trees alone cannot close the gap when economic constraints are this severe. Green infrastructure matters — but only as part of a multi-pronged intervention.</p>
-          <p class="chart-finding">The Bronx and Brooklyn together account for 82% of the city's cooling deserts despite having near-average tree canopy — showing that income and rent burden, not just shade, drive the desert designation.</p>
+          <p class="chart-context">Tree coverage varies dramatically across boroughs. Staten Island, with the lowest density and most undeveloped land, carries 25.9% canopy and only 7.4% cooling deserts. Manhattan is the densest borough and has just 14.7% canopy - yet only 9.3% of its tracts are cooling deserts, because many high-income Manhattan neighborhoods have the financial and structural resources to compensate. The Bronx tells a different story: 18% canopy, near the city average, yet 53.8% of its tracts qualify as cooling deserts - the highest share of any borough. Queens had the most individual tracts lose canopy between 2010 and 2017, 149 in total, while Brooklyn saw the most severe losses by magnitude. Trees are necessary. They are not sufficient.</p>
+          <p class="chart-finding">The Bronx has near-average canopy but the city's highest cooling desert rate, at 53.8%. Brooklyn and Queens account for the bulk of tracts that lost canopy. Shade and heat safety do not move together automatically.</p>
           <div id="chart-canopy-borough"></div>
-          <p class="chart-source">NYC Urban Tree Canopy Assessment 2017 &middot; CDI borough aggregates &middot; Hover bars for detail</p>
+          <p class="chart-source">NYC Urban Tree Canopy Assessment 2017 &middot; CDI borough aggregates &middot; Green bar = canopy coverage, orange bar = cooling desert share &middot; Hover bars for detail</p>
         </div>
       </div>
     </section>
@@ -491,7 +430,7 @@
           <p class="chart-context">Each dot in this chart represents one neighborhood. Its position on the horizontal axis shows its own heat risk score. Its position on the vertical axis shows the average heat risk score of all surrounding neighborhoods. If risk were distributed randomly, the dots would form a flat cloud. Instead, they form a strong upward slope: neighborhoods at high risk are almost universally surrounded by other high-risk neighborhoods. Neighborhoods at low risk are almost universally surrounded by other low-risk neighborhoods. That clustering can be measured. On a scale where 0 means risk is distributed randomly and 1 means every neighborhood perfectly predicts its neighbors, heat risk in New York City scores 0.867. That is one of the highest scores recorded for any urban variable in the city's data. Higher than how income clusters across the city. Higher than how race clusters. Once a neighborhood is in a danger zone, the neighborhoods around it almost certainly are too. Heat risk in New York City is spatially locked in.</p>
           <p class="chart-finding">The strong upward slope confirms that high-risk neighborhoods are almost always surrounded by other high-risk neighborhoods. This is one of the strongest geographic clustering patterns in the city's data.</p>
           <div id="moran-scatter" class="moran-container"></div>
-          <p class="chart-source">Neighborhood clustering chart &middot; x-axis: neighborhood heat risk score &middot; y-axis: average risk score of surrounding neighborhoods &middot; 2,122 neighborhoods plotted &middot; see Behind the Cooling Desert Index for technical details</p>
+          <p class="chart-source">Neighborhood clustering chart &middot; x-axis: neighborhood heat risk score &middot; y-axis: average risk score of surrounding neighborhoods &middot; 2,122 neighborhoods plotted</p>
         </div>
 
         <div class="chart-block">
@@ -499,7 +438,7 @@
           <p class="chart-context">This map shows which neighborhoods form statistically significant clusters of high risk (red) and low risk (blue). A high-risk cluster means a neighborhood is not just at risk itself but is surrounded by other at-risk neighborhoods, amplifying the problem: residents cannot find relief nearby, emergency responders are stretched across an entire zone rather than a single block, and the resources that might reduce heat danger, parks, trees, well-maintained buildings, are absent across an entire area rather than just one street. In the Bronx, 66% of all neighborhoods sit inside such a zone. Brooklyn shows a significant cluster in Brownsville and East New York. Staten Island and parts of eastern Queens form the city's largest low-risk cluster, where proximity to cool, well-resourced neighborhoods is protective in itself.</p>
           <p class="chart-finding">66% of Bronx neighborhoods are embedded in a continuous high-risk zone, not isolated pockets. Brooklyn follows, with 29% of its neighborhoods in the same situation.</p>
           <div id="lisa-map"></div>
-          <p class="chart-source">Neighborhood risk clustering map &middot; only statistically significant clusters shown &middot; High-risk clusters: 582 neighborhoods &middot; Low-risk clusters: 516 neighborhoods &middot; see Behind the Cooling Desert Index for technical details</p>
+          <p class="chart-source">Neighborhood risk clustering map &middot; only statistically significant clusters shown &middot; High-risk clusters: 582 neighborhoods &middot; Low-risk clusters: 516 neighborhoods</p>
         </div>
       </div>
     </section>
@@ -748,7 +687,7 @@
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         THEORY PATH — Actor-Network Theory
+         THEORY PATH - Actor-Network Theory
          ════════════════════════════════════════════════════════ -->
 
     <!-- Floating path switcher -->
@@ -757,7 +696,7 @@
       <button class="ps-btn" data-switch="theory">Theory</button>
     </div>
 
-    <!-- ANT: Introduction — scrollytelling scene -->
+    <!-- ANT: Introduction - scrollytelling scene -->
     <section id="ant-intro" class="section-ant-intro" data-path="theory" hidden aria-label="Theory introduction: building the cooling desert network">
 
       <!-- ── Scrollytelling: panels left, sticky SVG right ── -->
@@ -767,12 +706,12 @@
         <div class="ant-scene-panels" id="ant-scene-panels">
 
           <div class="ant-scene-panel" data-step="0">
-            <p class="ant-scene-narrative">It is July 15th. Maria pays $1,650 a month for her apartment in the South Bronx — 58 cents of every dollar she earns. She has lived here for eleven years. Tonight it is 94°F and rising.</p>
+            <p class="ant-scene-narrative">It is July 15th. Maria pays $1,650 a month for her apartment in the South Bronx - 58 cents of every dollar she earns. She has lived here for eleven years. Tonight it is 94°F and rising.</p>
           </div>
 
           <div class="ant-scene-panel" data-step="1">
             <p class="ant-scene-narrative">She reaches for the air conditioner in the window. The apartment has held the day's heat since morning. But there is a problem she has faced every summer for years.</p>
-            <p class="ant-scene-annotation">Heat is not just weather. Anything that changes what is possible for people is a force — and this heat acts differently on different bodies in different neighborhoods.</p>
+            <p class="ant-scene-annotation">Heat is not just weather. Anything that changes what is possible for people is a force - and this heat acts differently on different bodies in different neighborhoods.</p>
           </div>
 
           <div class="ant-scene-panel" data-step="2">
@@ -782,16 +721,16 @@
 
           <div class="ant-scene-panel" data-step="3">
             <p class="ant-scene-narrative">Even if she could afford it, her building was constructed in 1938. The electrical panels were never designed for air conditioning. Running the unit overnight risks tripping the circuits. The landlord has not upgraded the wiring in thirty years.</p>
-            <p class="ant-scene-annotation">47% of New York City's housing was built before 1980. The building does not choose to block cooling — but it does.</p>
+            <p class="ant-scene-annotation">47% of New York City's housing was built before 1980. The building does not choose to block cooling - but it does.</p>
           </div>
 
           <div class="ant-scene-panel" data-step="4">
-            <p class="ant-scene-narrative">The city scores her neighborhood 3 out of 5 on its official heat danger index — moderate risk. Cooling resources go to the 4s and 5s. Maria's street does not make the priority list.</p>
+            <p class="ant-scene-narrative">The city scores her neighborhood 3 out of 5 on its official heat danger index - moderate risk. Cooling resources go to the 4s and 5s. Maria's street does not make the priority list.</p>
             <p class="ant-scene-annotation">The index counts whether households own an AC. It does not count whether they can afford to use it. That single omission shapes where the city sends help.</p>
           </div>
 
           <div class="ant-scene-panel" data-step="5">
-            <p class="ant-scene-narrative">This is not a string of bad luck. The electricity bill, the old wiring, the city's measurement tool — these forces are connected. Each reinforces the others. Together they form a structure that makes cooling unreachable.</p>
+            <p class="ant-scene-narrative">This is not a string of bad luck. The electricity bill, the old wiring, the city's measurement tool - these forces are connected. Each reinforces the others. Together they form a structure that makes cooling unreachable.</p>
             <p class="ant-scene-reveal">This is a cooling desert.</p>
           </div>
 
@@ -824,90 +763,27 @@
 
       </div><!-- /ant-scene-layout -->
 
-      <!-- ── ANT definition — in normal flow below scene ── -->
+      <!-- ── ANT definition - in normal flow below scene ── -->
       <div class="ant-what-section">
         <div class="container ant-what-inner">
           <p class="ant-what-eyebrow">The framework behind the map</p>
           <h2 class="ant-what-heading">Actor-Network Theory</h2>
-          <p class="ant-what-body">Developed in the 1980s by sociologists Bruno Latour, Michel Callon, and John Law, Actor-Network Theory makes one foundational claim: outcomes in the world — inequality, risk, exclusion — are not produced by people alone. They are produced by networks of both human and non-human forces working together.</p>
-          <p class="ant-what-body">An air conditioner sitting unused in a window is not just a household decision. It is the end result of a chain: a rent burden that consumes most of the household's income, an electricity tariff that makes cooling unaffordable, a building whose wiring cannot safely carry the load, and a government index that marks the neighborhood as moderate risk and routes resources elsewhere. Each of these — the bill, the building, the index — is an <em>actor</em>. Together they form a network. ANT is the framework that makes that network visible.</p>
-          <p class="ant-what-body">The 1.47 million renters living in NYC's 557 cooling deserts are not there because of bad choices or bad luck. They are held there by a network assembled over decades through decisions made at every level — by landlords, city agencies, utility companies, federal housing policy, and the data systems that define what risk even looks like. Understanding that network is the first step toward breaking it.</p>
-        </div>
-      </div>
-
-      <!-- ── Five questions — in normal flow ── -->
-      <div class="ant-questions-preview">
-        <div class="container">
-          <p class="ant-qp-lead">Five questions. Each one opens the network further.</p>
-          <ol class="ant-qp-list" aria-label="Five questions about the cooling desert network">
-            <li class="ant-qp-item">
-              <span class="ant-qp-num">01</span>
-              <div class="ant-qp-content">
-                <span class="ant-qp-question">Why does the city's own heat map make some neighborhoods invisible?</span>
-                <span class="ant-qp-hint">The measurement tool at the center of all heat policy was built with an assumption that quietly excludes the most vulnerable households.</span>
-              </div>
-            </li>
-            <li class="ant-qp-item">
-              <span class="ant-qp-num">02</span>
-              <div class="ant-qp-content">
-                <span class="ant-qp-question">What does a building's age have to do with who survives a heat wave?</span>
-                <span class="ant-qp-hint">47% of New York City's housing was built before 1980. The decisions made in those buildings' construction are still acting on the people inside them today.</span>
-              </div>
-            </li>
-            <li class="ant-qp-item">
-              <span class="ant-qp-num">03</span>
-              <div class="ant-qp-content">
-                <span class="ant-qp-question">How does a rent bill become a heat weapon?</span>
-                <span class="ant-qp-hint">1 in 5 renters who own an air conditioner say they cannot afford to turn it on. The appliance exists. The electricity bill prevents its use.</span>
-              </div>
-            </li>
-            <li class="ant-qp-item">
-              <span class="ant-qp-num">04</span>
-              <div class="ant-qp-content">
-                <span class="ant-qp-question">Why can't a cooling center cool the people who need it most?</span>
-                <span class="ant-qp-hint">83% of emergency cooling centers are closed on Sundays — the day heat deaths peak. The system was designed without the actual users in mind.</span>
-              </div>
-            </li>
-            <li class="ant-qp-item">
-              <span class="ant-qp-num">05</span>
-              <div class="ant-qp-content">
-                <span class="ant-qp-question">What would it actually take to break a cooling desert?</span>
-                <span class="ant-qp-hint">Scenario modeling shows: fixing one thing reduces cooling deserts by 12–23%. Fixing all of them at once reduces them by 67%. The network resists single-point repairs.</span>
-              </div>
-            </li>
-          </ol>
-          <!-- Begin investigation button removed; Five Questions section follows -->
-
+          <p class="ant-what-body">Developed in the 1980s by sociologists Bruno Latour, Michel Callon, and John Law, Actor-Network Theory makes one foundational claim: outcomes in the world - inequality, risk, exclusion - are not produced by people alone. They are produced by networks of both human and non-human forces working together.</p>
+          <p class="ant-what-body">An air conditioner sitting unused in a window is not just a household decision. It is the end result of a chain: a rent burden that consumes most of the household's income, an electricity tariff that makes cooling unaffordable, a building whose wiring cannot safely carry the load, and a government index that marks the neighborhood as moderate risk and routes resources elsewhere. Each of these - the bill, the building, the index - is an <em>actor</em>. Together they form a network. ANT is the framework that makes that network visible.</p>
+          <p class="ant-what-body">The 1.47 million renters living in NYC's 557 cooling deserts are not there because of bad choices or bad luck. They are held there by a network assembled over decades through decisions made at every level - by landlords, city agencies, utility companies, federal housing policy, and the data systems that define what risk even looks like. Understanding that network is the first step toward breaking it.</p>
         </div>
       </div>
 
     </section>
 
-    <!-- ANT: Five Questions Scrollytelling — progressive network reveal -->
+    <!-- ANT: Five Questions Scrollytelling - progressive network reveal -->
     <section id="ant-questions" class="section-ant-questions" data-path="theory" hidden aria-label="Five questions about cooling deserts">
       <div class="aq-scroll-layout">
 
-        <!-- Sticky network side -->
+        <!-- Sticky illustration side - JS injects per-question SVG here -->
         <div class="aq-sticky-wrap" aria-hidden="true">
-          <svg id="aq-network-svg" class="aq-network-svg" viewBox="0 0 460 420" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <marker id="aq-arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#922B21"/>
-              </marker>
-              <marker id="aq-arr-org" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#C96A28"/>
-              </marker>
-              <marker id="aq-arr-grn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#27AE60"/>
-              </marker>
-              <marker id="aq-arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L8,3 z" fill="#1F6999"/>
-              </marker>
-            </defs>
-            <g id="aq-links"></g>
-            <g id="aq-nodes"></g>
-          </svg>
           <p class="aq-viz-label" id="aq-viz-label">Each question reveals another layer of the network.</p>
+          <div id="aq-viz-container" class="aq-viz-container"></div>
         </div>
 
         <!-- Scrolling panels -->
@@ -917,8 +793,8 @@
             <span class="aq-q-num">01</span>
             <h3 class="aq-q-heading">Why does the city's own heat map make some neighborhoods invisible?</h3>
             <p class="aq-concept-tag">ANT concept: Black-boxing + Inscription</p>
-            <p class="aq-body">The city's Heat Vulnerability Index is not just a number — it is the number that determines where cooling resources go. When the index scores a neighborhood at 3 out of 5, emergency cooling centers are sent elsewhere. The index's design is not neutral: what it counts shapes what gets funded.</p>
-            <p class="aq-body">The HVI counts whether households <em>own</em> an air conditioner. It does not count whether they can afford to run it. That single omission means that the 21% of renter AC owners who cannot afford to use their units are invisible to the measurement system that is supposed to protect them. And because the HVI is the obligatory passage point — the one tool every resource flows through — its blind spot becomes everyone's blind spot.</p>
+            <p class="aq-body">The city's Heat Vulnerability Index is not just a number - it is the number that determines where cooling resources go. When the index scores a neighborhood at 3 out of 5, emergency cooling centers are sent elsewhere. The index's design is not neutral: what it counts shapes what gets funded.</p>
+            <p class="aq-body">The HVI counts whether households <em>own</em> an air conditioner. It does not count whether they can afford to run it. That single omission means that the 21% of renter AC owners who cannot afford to use their units are invisible to the measurement system that is supposed to protect them. And because the HVI is the obligatory passage point - the one tool every resource flows through - its blind spot becomes everyone's blind spot.</p>
             <div class="aq-data-callout">
               <span class="aq-callout-num">214</span>
               <span class="aq-callout-text">census tracts where the HVI assigns a moderate risk score, yet more than half of renters are severely rent-burdened and cannot afford to cool their homes.</span>
@@ -930,7 +806,7 @@
             <h3 class="aq-q-heading">What does a building's age have to do with who survives a heat wave?</h3>
             <p class="aq-concept-tag">ANT concept: Non-human actants</p>
             <p class="aq-body">47% of New York City's housing was built before 1980. Buildings from that era were not designed to support air conditioning. A window AC unit draws 1,000–1,500 watts. Many pre-1940 buildings still run on electrical systems that cannot safely carry that load without tripping circuits or creating fire hazards.</p>
-            <p class="aq-body">The building is not making a choice — but its physical structure enforces a decision made decades ago into every summer heat emergency. Statistical analysis confirms this directly: building age is a significant negative predictor of AC access, independent of household income. The building itself is an actor holding the cooling desert in place.</p>
+            <p class="aq-body">The building is not making a choice - but its physical structure enforces a decision made decades ago into every summer heat emergency. Statistical analysis confirms this directly: building age is a significant negative predictor of AC access, independent of household income. The building itself is an actor holding the cooling desert in place.</p>
             <div class="aq-data-callout">
               <span class="aq-callout-num">47%</span>
               <span class="aq-callout-text">of NYC housing was built before 1980, with electrical infrastructure never designed for air conditioning. Only 15% of pre-1940 units can safely support a modern window AC unit.</span>
@@ -941,11 +817,11 @@
             <span class="aq-q-num">03</span>
             <h3 class="aq-q-heading">How does a rent bill become a heat weapon?</h3>
             <p class="aq-concept-tag">ANT concept: Translation + Enrollment</p>
-            <p class="aq-body">When rent consumes more than half a household's income, the arithmetic of survival becomes extremely tight. Severely rent-burdened renters face energy costs that consume more than 10% of income — more than four times the rate of unburdened renters, and well above the DOE's 6% threshold for "high energy burden."</p>
-            <p class="aq-body">The result is a chain: the rent check translates directly into an electric bill that cannot be paid in full. NYCHA's monthly AC surcharge — around $25 — deters one in three public housing seniors from using cooling at all. What looks like a personal decision not to use the AC is actually the endpoint of a financial chain that the measurement system never traces back to its source.</p>
+            <p class="aq-body">When rent consumes more than half a household's income, the arithmetic of survival becomes extremely tight. Severely rent-burdened renters face energy costs that consume more than 10% of income - more than four times the rate of unburdened renters, and well above the DOE's 6% threshold for "high energy burden."</p>
+            <p class="aq-body">The result is a chain: the rent check translates directly into an electric bill that cannot be paid in full. NYCHA's monthly AC surcharge - around $25 - deters one in three public housing seniors from using cooling at all. What looks like a personal decision not to use the AC is actually the endpoint of a financial chain that the measurement system never traces back to its source.</p>
             <div class="aq-data-callout">
               <span class="aq-callout-num">10.3%</span>
-              <span class="aq-callout-text">of income consumed by energy costs for severely rent-burdened renters — compared to 2.4% for renters without rent burden. Both figures are from actual NYC households.</span>
+              <span class="aq-callout-text">of income consumed by energy costs for severely rent-burdened renters - compared to 2.4% for renters without rent burden. Both figures are from actual NYC households.</span>
             </div>
           </div>
 
@@ -953,11 +829,11 @@
             <span class="aq-q-num">04</span>
             <h3 class="aq-q-heading">Why can't a cooling center cool the people who need it most?</h3>
             <p class="aq-concept-tag">ANT concept: Scripts + Network misalignment</p>
-            <p class="aq-body">New York City maintains emergency indoor cooling centers throughout the five boroughs. But the system was designed with assumptions built in — about who would use it, when they would come, and how they would get there. Those assumptions do not match the actual constraints of the people most at risk.</p>
-            <p class="aq-body">83% of indoor emergency cooling centers are closed on Sundays — the day heat-related deaths peak in New York City. 47% are age-restricted to seniors. 38% of high-risk, high-rent-burden neighborhoods have no outdoor cooling feature within walking distance. The infrastructure has scripts encoded into it. Those scripts exclude the households the system is supposed to serve.</p>
+            <p class="aq-body">New York City maintains emergency indoor cooling centers throughout the five boroughs. But the system was designed with assumptions built in - about who would use it, when they would come, and how they would get there. Those assumptions do not match the actual constraints of the people most at risk.</p>
+            <p class="aq-body">83% of indoor emergency cooling centers are closed on Sundays - the day heat-related deaths peak in New York City. 47% are age-restricted to seniors. 38% of high-risk, high-rent-burden neighborhoods have no outdoor cooling feature within walking distance. The infrastructure has scripts encoded into it. Those scripts exclude the households the system is supposed to serve.</p>
             <div class="aq-data-callout">
               <span class="aq-callout-num">83%</span>
-              <span class="aq-callout-text">of indoor emergency cooling centers are closed on Sundays — the peak day for heat-related deaths in NYC, according to the Department of Health.</span>
+              <span class="aq-callout-text">of indoor emergency cooling centers are closed on Sundays - the peak day for heat-related deaths in NYC, according to the Department of Health.</span>
             </div>
           </div>
 
@@ -965,11 +841,11 @@
             <span class="aq-q-num">05</span>
             <h3 class="aq-q-heading">What would it actually take to break a cooling desert?</h3>
             <p class="aq-concept-tag">ANT concept: Obligatory Passage Points + Network disruption</p>
-            <p class="aq-body">Scenario modeling tests four interventions: adding cooling sites, AC retrofits and urban greening, NYCHA energy assistance, and rent burden reduction. Applied separately, each removes 12–23% of cooling deserts. Applied all at once, they remove 67% — but 257 neighborhoods remain.</p>
-            <p class="aq-body">This is the strongest evidence for the ANT framework's core claim. A cooling desert is not caused by one actor. It is held in place by a network of constraints that are mutually reinforcing. Removing one actor leaves the others intact. Only multi-point disruption — interventions that simultaneously address financial constraints, building infrastructure, measurement systems, and access barriers — can destabilize the assemblage that produces the cooling desert.</p>
+            <p class="aq-body">Scenario modeling tests four interventions: adding cooling sites, AC retrofits and urban greening, NYCHA energy assistance, and rent burden reduction. Applied separately, each removes 12–23% of cooling deserts. Applied all at once, they remove 67% - but 257 neighborhoods remain.</p>
+            <p class="aq-body">This is the strongest evidence for the ANT framework's core claim. A cooling desert is not caused by one actor. It is held in place by a network of constraints that are mutually reinforcing. Removing one actor leaves the others intact. Only multi-point disruption - interventions that simultaneously address financial constraints, building infrastructure, measurement systems, and access barriers - can destabilize the assemblage that produces the cooling desert.</p>
             <div class="aq-data-callout">
               <span class="aq-callout-num">67%</span>
-              <span class="aq-callout-text">reduction in cooling desert tracts when all four interventions are combined — versus 12–23% for any single policy tested independently. The network resists single-point repairs.</span>
+              <span class="aq-callout-text">reduction in cooling desert tracts when all four interventions are combined - versus 12–23% for any single policy tested independently. The network resists single-point repairs.</span>
             </div>
           </div>
 
@@ -977,13 +853,39 @@
       </div><!-- /aq-scroll-layout -->
     </section>
 
-    <!-- ANT: Scrollytelling — sticky network + scroll panels -->
+    <!-- ANT: Scrollytelling - sticky network + scroll panels -->
     <section id="ant-scroll" class="section-ant-scroll" data-path="theory" hidden aria-label="ANT scrollytelling">
+
+      <div class="container ant-network-intro">
+        <h2 class="section-heading">Mapping the Network</h2>
+        <p class="section-desc">The visualization to the right maps every actor involved in producing a cooling desert: people, objects, and systems, and the connections between them. As you scroll through the panels, the network highlights the specific actors and relationships each concept describes. Hover any shape to see its role in the data.</p>
+        <div class="ant-concept-glossary">
+          <div class="ant-concept-item">
+            <span class="ant-concept-name">Actants</span>
+            <span class="ant-concept-def">Any entity that changes outcomes for others. Heat is an actant. The electricity bill is an actant. So is the city's risk index. ANT counts objects and systems as actors alongside people.</span>
+          </div>
+          <div class="ant-concept-item">
+            <span class="ant-concept-name">Translation</span>
+            <span class="ant-concept-def">The process by which one actor reshapes another's situation to serve its own goals. Heat gets translated into a risk score. That score gets translated into where cooling centers go. Each step removes something from the picture.</span>
+          </div>
+          <div class="ant-concept-item">
+            <span class="ant-concept-name">Black box</span>
+            <span class="ant-concept-def">Something so widely accepted that nobody questions its assumptions anymore. The HVI is a black box: it produces a number that drives policy, but the choices built into that number are no longer visible to the people using it.</span>
+          </div>
+          <div class="ant-concept-item">
+            <span class="ant-concept-name">Assemblage</span>
+            <span class="ant-concept-def">A situation produced by multiple actors locking into a pattern that reinforces itself. A cooling desert is an assemblage: not one cause, but a stable network of constraints that holds itself in place.</span>
+          </div>
+        </div>
+      </div>
+
       <div class="ant-scroll-layout">
 
         <!-- Sticky visualization side -->
         <div class="ant-sticky-wrap">
           <div class="ant-sticky" id="ant-viz-container">
+            <!-- State description at top so users read it before the network -->
+            <div class="ant-viz-label" id="ant-viz-label">Hover any shape to learn its role. The network highlights as you scroll through the concepts.</div>
             <div class="ant-legend-row">
               <span class="ant-leg-item"><span class="ant-leg-circle"></span>Person</span>
               <span class="ant-leg-item"><span class="ant-leg-diamond"></span>Object / System</span>
@@ -995,7 +897,6 @@
               <span class="ant-ll-item"><span class="ant-ll-line ant-ll-constraint"></span>Blocks cooling access</span>
               <span class="ant-ll-item"><span class="ant-ll-line ant-ll-resource"></span>Could help</span>
             </div>
-            <div class="ant-viz-label" id="ant-viz-label">Hover any shape to learn its role. Drag to rearrange. Watch how the connections change as you scroll.</div>
           </div>
         </div>
 
@@ -1003,48 +904,48 @@
         <div class="ant-panels-wrap" id="ant-panels">
 
           <div class="ant-panel ant-panel-active" data-state="0">
-            <div class="ant-panel-tag">Concept 1 — Actants</div>
+            <div class="ant-panel-tag">Concept 1 - Actants</div>
             <h3 class="ant-panel-heading">Not Just People</h3>
-            <p class="ant-panel-body">Traditional sociology asks what social forces explain heat inequality. Actor-Network Theory starts differently: it asks which actors — human and non-human — are involved in producing the situation. In ANT, <strong>anything that makes a difference to the outcome is an actant</strong>.</p>
-            <p class="ant-panel-body">For cooling deserts, that means heat itself is an actor. So is the electricity bill that prevents a household from running AC. So is the pre-1940 building that lacks the electrical capacity to support a window unit. So is the HVI dataset, which defines risk in a way that excludes affordability. Hover any node to see its role.</p>
-            <div class="ant-panel-quote">"As soon as actors are treated not merely as intermediaries but as mediators, they start having their own agency." — Bruno Latour, <em>Reassembling the Social</em></div>
+            <p class="ant-panel-body">ANT asks a specific question: which actors, human and non-human, produce this situation? In ANT, <strong>anything that changes the outcome for someone counts as an actant</strong>. That means heat itself is an actor in this network. So is the electricity bill that stops a household from running AC. So is the pre-1940 building whose wiring cannot carry the load. So is the HVI dataset, which defines risk in a way that leaves affordability out.</p>
+            <p class="ant-panel-body">Hover any shape to see exactly what role it plays. Drag nodes to rearrange. Each shape connects to others through the lines on screen.</p>
+            <div class="ant-panel-quote">"As soon as actors are treated not merely as intermediaries but as mediators, they start having their own agency." - Bruno Latour, <em>Reassembling the Social</em></div>
           </div>
 
           <div class="ant-panel" data-state="1">
-            <div class="ant-panel-tag">Concept 1 — Human Actors</div>
-            <h3 class="ant-panel-heading">Five Human Actors, Five Constrained Positions</h3>
-            <p class="ant-panel-body"><strong>Renters</strong> bear the full exposure to heat without owning the building. <strong>Landlords</strong> control building infrastructure and decide whether upgrades happen. <strong>City agencies</strong> define what "heat risk" means through the data systems they choose to use. <strong>NYCHA</strong> manages 178,000 units under a separate set of financial constraints. <strong>Policymakers</strong> allocate interventions based on what the data shows them.</p>
-            <p class="ant-panel-body">Each makes decisions — but each is also enrolled in and constrained by the broader network. Agency in ANT is always distributed. No single actor holds full control.</p>
+            <div class="ant-panel-tag">Concept 1 - Human Actors</div>
+            <h3 class="ant-panel-heading">Five People. Five Constrained Positions.</h3>
+            <p class="ant-panel-body"><strong>Renters</strong> absorb the full heat exposure without owning the building. <strong>Landlords</strong> control infrastructure and decide whether cooling upgrades happen. <strong>City agencies</strong> define heat risk through the data tools they choose. <strong>NYCHA</strong> runs 178,000 units under a separate financial structure. <strong>Policymakers</strong> direct resources based on what the data shows them.</p>
+            <p class="ant-panel-body">Each group makes decisions. Each group is also shaped by the network around it. No single actor holds full control, and no single actor bears full blame.</p>
           </div>
 
           <div class="ant-panel" data-state="2">
-            <div class="ant-panel-tag">Concept 1 — Non-Human Actors</div>
-            <h3 class="ant-panel-heading">Objects That Act</h3>
-            <p class="ant-panel-body">This is ANT's most challenging idea: the objects in the network are not passive. They act. The <strong>electricity bill</strong> prevents AC use in households where 21% of owners say they cannot afford to run it. The <strong>pre-1940 building</strong> blocks installation because it lacks the wiring. The <strong>NYCHA AC surcharge</strong> is a policy artifact that, by existing, rations cooling access.</p>
-            <p class="ant-panel-body">The <strong>English-only emergency alert system</strong> excludes 10.5% of NYC renters who are limited English proficient. These are not metaphors. Each produces a measurable effect found in the data.</p>
+            <div class="ant-panel-tag">Concept 1 - Non-Human Actors</div>
+            <h3 class="ant-panel-heading">Objects That Do Things</h3>
+            <p class="ant-panel-body">The objects in this network act. The <strong>electricity bill</strong> stops AC use in 21% of households where owners say they cannot afford to run it. The <strong>pre-1940 building</strong> blocks installation because its wiring fails under load. The <strong>NYCHA AC surcharge</strong> rations cooling access in public housing by existing as a monthly line item.</p>
+            <p class="ant-panel-body">The <strong>English-only emergency alert system</strong> shuts out 10.5% of NYC renters who are limited English proficient. These are not background conditions. Each one produces a measurable effect you can find in the data.</p>
           </div>
 
           <div class="ant-panel" data-state="3">
-            <div class="ant-panel-tag">Concepts 2–3 — Networks & Translation</div>
-            <h3 class="ant-panel-heading">How Heat Becomes Policy — and What Falls Off</h3>
-            <p class="ant-panel-body">ANT's concept of <strong>translation</strong> describes how actors connect: each one translates another's interests to align with its own. Heat gets translated into a spatial risk score by DOHMH. That score gets translated into cooling center locations by city agencies. This is the official translation chain — follow the highlighted path.</p>
-            <p class="ant-panel-body">But rent burden — the financial constraint that prevents households from using cooling — never enters this chain. It is background context, not a measurable variable in the system that drives resource allocation.</p>
-            <div class="ant-panel-quote">"Translation creates a chain of equivalences. What gets left off the chain is as important as what gets on it." — Michel Callon, 1986</div>
+            <div class="ant-panel-tag">Concepts 2-3 - Networks and Translation</div>
+            <h3 class="ant-panel-heading">How Heat Becomes Policy</h3>
+            <p class="ant-panel-body">ANT calls it translation: each actor reshapes another's situation to fit its own goals. Heat becomes a spatial risk score at DOHMH. That score becomes cooling center locations at city agencies. Follow the highlighted path on the left. This is the official chain that turns a heat emergency into a government response.</p>
+            <p class="ant-panel-body">Rent burden, the financial constraint that stops households from using cooling, never enters this chain. It stays background context. The system responds to what it measures, and it does not measure this.</p>
+            <div class="ant-panel-quote">"Translation creates a chain of equivalences. What gets left off the chain is as important as what gets on it." - Michel Callon, 1986</div>
           </div>
 
           <div class="ant-panel" data-state="4">
-            <div class="ant-panel-tag">Concept 4 — Black Boxes</div>
-            <h3 class="ant-panel-heading">Opening the HVI Black Box</h3>
-            <p class="ant-panel-body">In ANT, a <strong>black box</strong> is something so widely accepted that its internal workings are no longer examined. The HVI is a black box. It produces a risk score — and that number drives policy. But inside it, a series of choices were made: which variables to include, what scale to aggregate at, what counts as protective.</p>
-            <p class="ant-panel-body">One of those choices: the HVI counts <em>AC ownership</em>, not <em>AC use</em>. When this project opened that black box using NYCHVS data and DOE LEAD Tool energy burden data, we found that 21% of renter AC owners cannot afford to run it — and that energy costs consume over 10% of income for severely rent-burdened households.</p>
+            <div class="ant-panel-tag">Concept 4 - Black Boxes</div>
+            <h3 class="ant-panel-heading">What the HVI Hides</h3>
+            <p class="ant-panel-body">ANT calls it a <strong>black box</strong>: something so accepted that nobody looks inside it anymore. The HVI is a black box. It produces a number and that number drives policy. But someone made choices when building it: which variables to include, which scale to use, what counts as protective.</p>
+            <p class="ant-panel-body">One of those choices: the HVI counts <em>AC ownership</em>, not <em>AC use</em>. When we opened that box using NYCHVS data, we found that 21% of renter AC owners report not being able to afford to run it. The box counted the machine. It missed the gap between having a unit and being able to turn it on.</p>
           </div>
 
           <div class="ant-panel" data-state="5">
-            <div class="ant-panel-tag">Concept 5 — Assemblage</div>
-            <h3 class="ant-panel-heading">557 Cooling Deserts. One Network Failure.</h3>
-            <p class="ant-panel-body">The final ANT concept is the <strong>assemblage</strong>: a social phenomenon produced not by one cause but by multiple heterogeneous actors stabilizing into a self-reinforcing configuration. A cooling desert is an assemblage. No single actor creates it. It emerges when heat exposure, rent burden, absent infrastructure, aging buildings, and language exclusion hold each other in place.</p>
-            <p class="ant-panel-body">This is why single-intervention policies fall short. Even all four scenario interventions combined — cooling sites, AC retrofits, NYCHA energy relief, and rent reduction — leaves 257 neighborhoods as cooling deserts. The assemblage requires multi-point disruption to break apart.</p>
-            <div class="ant-panel-quote">"The city is not the sum of its parts. It is the result of their associations." — Farías &amp; Bender, <em>Urban Assemblages</em></div>
+            <div class="ant-panel-tag">Concept 5 - Assemblage</div>
+            <h3 class="ant-panel-heading">557 Cooling Deserts. One Network.</h3>
+            <p class="ant-panel-body">ANT calls this an <strong>assemblage</strong>: a situation produced by multiple actors locking into a pattern that reinforces itself. No single actor creates a cooling desert. It forms when heat exposure, rent burden, aging buildings, absent cooling infrastructure, and language exclusion all hold each other in place at once.</p>
+            <p class="ant-panel-body">This is why single fixes fall short. All four scenario interventions combined, cooling sites, AC retrofits, NYCHA energy relief, and rent reduction, still leave 257 neighborhoods as cooling deserts. You need to break the pattern at multiple points simultaneously. Scroll down to see what that looks like.</p>
+            <div class="ant-panel-quote">"The city is not the sum of its parts. It is the result of their associations." - Farias &amp; Bender, <em>Urban Assemblages</em></div>
           </div>
 
         </div><!-- /ant-panels -->
@@ -1068,8 +969,8 @@
           <div class="aat-left">
             <div class="aat-tag" style="--tag-color:#922B21">Object acting on people</div>
             <h3 class="aat-title">The Electricity Bill</h3>
-            <p class="aat-body">An air conditioner sitting in the window is not the same as a cool apartment. The bill decides whether the switch gets flipped. For households spending more than half their income on rent, energy costs can consume another 10% — leaving almost nothing left for summer electricity.</p>
-            <p class="aat-body">This is how a physical appliance that <em>exists</em> in the home becomes effectively inaccessible — not because of ignorance or choice, but because of arithmetic.</p>
+            <p class="aat-body">An air conditioner sitting in the window is not the same as a cool apartment. The bill decides whether the switch gets flipped. For households spending more than half their income on rent, energy costs can consume another 10% - leaving almost nothing left for summer electricity.</p>
+            <p class="aat-body">This is how a physical appliance that <em>exists</em> in the home becomes effectively inaccessible - not because of ignorance or choice, but because of arithmetic.</p>
             <div class="aat-callout" style="--callout-color:#922B21">
               <strong>21 out of 100</strong> NYC renters who own an AC say they cannot afford to turn it on during a heat emergency.
             </div>
@@ -1079,7 +980,7 @@
             <div id="viz-bill-people"></div>
             <div class="aat-viz-key">
               <span class="aat-key-item"><span class="aat-key-dot" style="background:#27AE60"></span>Turns AC on when it's hot</span>
-              <span class="aat-key-item"><span class="aat-key-dot" style="background:#922B21"></span>Has AC — can't afford to run it</span>
+              <span class="aat-key-item"><span class="aat-key-dot" style="background:#922B21"></span>Has AC - can't afford to run it</span>
             </div>
           </div>
         </div>
@@ -1090,13 +991,13 @@
             <div class="aat-tag" style="--tag-color:#E07B39">Object acting on people</div>
             <h3 class="aat-title">The Pre-1940 Building</h3>
             <p class="aat-body">Buildings constructed before modern electrical codes were not wired for air conditioning. A window AC unit draws roughly 1,000–1,500 watts. Many older NYC apartments cannot safely support that load without tripping circuits or creating fire hazards.</p>
-            <p class="aat-body">The building is not making a choice — but its physical structure enforces a 1930s decision into today's heat emergency. No amount of financial assistance helps if the wiring cannot carry the load.</p>
+            <p class="aat-body">The building is not making a choice - but its physical structure enforces a 1930s decision into today's heat emergency. No amount of financial assistance helps if the wiring cannot carry the load.</p>
             <div class="aat-callout" style="--callout-color:#E07B39">
-              <strong>72% of NYC housing</strong> was built before 1970. In cooling desert neighborhoods, the share is higher — and the buildings are older.
+              <strong>72% of NYC housing</strong> was built before 1970. In cooling desert neighborhoods, the share is higher - and the buildings are older.
             </div>
           </div>
           <div class="aat-right">
-            <div class="aat-viz-label">Cooling capacity by building era — hover each era</div>
+            <div class="aat-viz-label">Cooling capacity by building era - hover each era</div>
             <div id="viz-building-eras"></div>
           </div>
         </div>
@@ -1106,7 +1007,7 @@
           <div class="aat-left">
             <div class="aat-tag" style="--tag-color:#2471A3">Measurement tool acting on policy</div>
             <h3 class="aat-title">The Heat Vulnerability Index</h3>
-            <p class="aat-body">The HVI is not just a number — it is the number that determines where the city sends resources during a heat emergency. When the index says a neighborhood scores 3 out of 5, cooling centers go elsewhere. The index's design is not neutral. What it counts shapes what gets funded. What it leaves out shapes who gets ignored.</p>
+            <p class="aat-body">The HVI is not just a number - it is the number that determines where the city sends resources during a heat emergency. When the index says a neighborhood scores 3 out of 5, cooling centers go elsewhere. The index's design is not neutral. What it counts shapes what gets funded. What it leaves out shapes who gets ignored.</p>
             <p class="aat-body">The HVI counts whether households <em>own</em> an AC unit. It does not count whether they can afford to run it. That single omission means 21% of AC owners are invisible to the policy system that should be protecting them.</p>
             <div class="aat-callout" style="--callout-color:#2471A3">
               <strong>0 variables</strong> in the HVI formula account for whether households can afford to use the cooling they already own.
@@ -1121,50 +1022,76 @@
       </div>
     </section>
 
-    <!-- ANT: Sankey Flow — How Heat Becomes Policy -->
+    <!-- ANT: Dot Grid - How Heat Becomes Policy -->
     <section id="ant-translation" class="section-ant-translation" data-path="theory" hidden aria-label="Translation chain visualization">
       <div class="container">
-        <h2 class="section-heading">How Heat Becomes Policy — And Who Gets Left Out</h2>
-        <p class="section-desc">From a heat event to the city's response, information travels through a pipeline. At each stage, some data enters and some is left behind. The width of each stream shows its relative importance. The red streams show what gets dropped — and who gets left out.</p>
-        <div id="sankey-viz"></div>
-        <div class="sankey-legend">
-          <div class="sankey-legend-item">
-            <span class="sankey-legend-swatch" style="background:#7FB3D3"></span>
-            <span>Data that flows through the system</span>
+        <h2 class="section-heading">How Heat Becomes Policy - And Who Gets Left Out</h2>
+        <p class="section-desc">Each dot is one renter. As the city responds to heat, watch how many slip through the cracks at each stage - before a single cooling center opens its doors.</p>
+      </div>
+
+      <div class="dot-scroll-layout">
+
+        <!-- Sticky dot grid -->
+        <div class="dot-sticky-wrap" aria-hidden="true">
+          <div class="dot-sticky" id="dot-sticky">
+            <svg id="dot-grid-svg" viewBox="0 0 284 284" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="dot-legend" id="dot-legend"></div>
           </div>
-          <div class="sankey-legend-item">
-            <span class="sankey-legend-swatch" style="background:#C0392B; opacity:0.6"></span>
-            <span>Data dropped or never collected</span>
+        </div>
+
+        <!-- Scrolling panels -->
+        <div class="dot-panels" id="dot-panels">
+
+          <div class="dot-panel" data-stage="0">
+            <span class="dot-step-num">01</span>
+            <h3 class="dot-step-heading">Heat Event</h3>
+            <p class="dot-step-body">A 94°F July night in the South Bronx. Every renter in the city feels the same heat - but not the same risk. No one has been counted yet. No resources have been deployed.</p>
+            <div class="dot-step-stat">
+              <span class="dot-stat-num">100</span>
+              <span class="dot-stat-label">renters exposed to the heat event</span>
+            </div>
           </div>
+
+          <div class="dot-panel" data-stage="1">
+            <span class="dot-step-num">02</span>
+            <h3 class="dot-step-heading">Data Collection</h3>
+            <p class="dot-step-body">Agencies begin measuring: surface temperature, green space, AC ownership. But rent burden, building age, and language access are never collected. Forty renters vanish from the data before any response begins.</p>
+            <div class="dot-step-stat">
+              <span class="dot-stat-num">40</span>
+              <span class="dot-stat-label">renters never counted - invisible to the system from the start</span>
+            </div>
+          </div>
+
+          <div class="dot-panel" data-stage="2">
+            <span class="dot-step-num">03</span>
+            <h3 class="dot-step-heading">HVI Score</h3>
+            <p class="dot-step-body">The Heat Vulnerability Index scores the 60 remaining neighborhoods. But 21% of renter AC owners cannot afford to run their units. The HVI counts ownership - not use - scoring 12 neighborhoods as "moderate" risk when they are not.</p>
+            <div class="dot-step-stat">
+              <span class="dot-stat-num">12</span>
+              <span class="dot-stat-label">more renters misscored - their neighborhood ranked safer than it is</span>
+            </div>
+          </div>
+
+          <div class="dot-panel" data-stage="3">
+            <span class="dot-step-num">04</span>
+            <h3 class="dot-step-heading">City Response</h3>
+            <p class="dot-step-body">Cooling centers open in HVI-priority neighborhoods. But 83% close on Sundays - the peak mortality day. 47% are age-restricted. Emergency alerts go out in English only. The system was built for a different renter.</p>
+            <div class="dot-step-stat">
+              <span class="dot-stat-num">34</span>
+              <span class="dot-stat-label">of 100 renters actually reached - the rest remain in a cooling desert</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ANT: Policy implications — Interlocking Bars -->
-    <section id="ant-policy" class="section-ant-policy" data-path="theory" hidden aria-label="Policy implications of ANT">
-      <div class="container">
-        <h2 class="section-heading">To Break the Pattern, Target All of It at Once</h2>
-        <p class="section-desc">A cooling desert is not caused by one thing. It is held in place by several constraints simultaneously. Fixing only one leaves the rest intact. Each bar below shows how many cooling deserts a single intervention removes — and why combining all four is the only path to structural change.</p>
-
-        <!-- Interlocking Bars visualization -->
-        <div class="ibar-wrap">
-          <div class="ibar-view-toggle" role="group" aria-label="Visualization view">
-            <button class="ibar-toggle-btn active" data-view="bars">Interlocking Bars</button>
-            <button class="ibar-toggle-btn" data-view="bands">Layered Bands</button>
-          </div>
-          <svg id="ibar-chart" aria-label="Policy scenario impact chart"></svg>
-          <div class="ibar-legend" id="ibar-legend"></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ANT: Synthesis — full assembled network + closing narrative -->
+    <!-- ANT: Synthesis - full assembled network + closing narrative -->
     <section id="ant-synthesis" class="section-ant-synthesis" data-path="theory" hidden aria-label="ANT synthesis: the full cooling desert network">
       <div class="container">
 
         <h2 class="section-heading">A Network That Holds the Desert in Place</h2>
-        <p class="section-desc">Each of the five questions revealed one layer. Assembled together, they show why a cooling desert is so stable — and why single-point repairs fail. The network below is not a metaphor. It is the actual structure of constraints that produce 557 cooling desert neighborhoods in New York City.</p>
+        <p class="section-desc">Each of the five questions revealed one layer. Assembled together, they show why a cooling desert stays stable and why fixing one piece changes little. The network below is not a metaphor. It is the actual structure of constraints that produce 557 cooling desert neighborhoods in New York City. Hover each node to read what it does.</p>
 
         <!-- Synthesis network SVG -->
         <div id="ant-synthesis-viz" class="synthesis-viz-wrap"></div>
@@ -1181,20 +1108,23 @@
           </div>
           <div class="synthesis-stat">
             <span class="synthesis-stat-num">67%</span>
-            <span class="synthesis-stat-label">of deserts can be eliminated — but only by targeting the full network</span>
+            <span class="synthesis-stat-label">of deserts can be eliminated - but only by targeting the full network</span>
           </div>
         </div>
 
-        <!-- Closing paragraph -->
+        <!-- Policy recommendations -->
         <div class="synthesis-closing">
-          <p>Actor-Network Theory does not offer a single cause or a single fix. It offers a method for seeing how apparently separate systems — a building's wiring, a city's measurement tool, a monthly surcharge, a rent check — are enrolled together to produce a specific outcome. The cooling desert is that outcome. Breaking it requires disrupting the enrollment, not just replacing one actor.</p>
-          <p>The data story shows where these deserts are, who lives in them, and what the policy levers look like from the outside. The theory path shows why they persist.</p>
+          <h3 style="font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-text);margin-bottom:var(--space-5);">What the Network Tells Us About Policy</h3>
+          <p>ANT does not offer a single cause or a single fix. It offers a way to see how separate systems, a building's wiring, a city's measurement tool, a monthly surcharge, a rent check, connect into one outcome. The cooling desert is that outcome. Fixing it means disrupting several connections at once.</p>
+          <p>The scenario modeling in the data section tests this directly. Four interventions applied separately each remove 12 to 23 percent of cooling deserts. Applied together, they remove 67 percent. The remaining 257 neighborhoods signal that deeper structural change, in rent regulation, building codes, and energy assistance eligibility, is part of the picture.</p>
+          <p>Three specific policy directions follow from this analysis. First, the HVI needs to count AC use alongside AC ownership. The current measurement gap sends resources to the wrong places. Second, the NYCHA AC surcharge should be suspended for income-qualified residents. One in three NYCHA seniors cite it as the reason they do not cool their apartment. Third, cooling center hours need to extend through Sundays, when heat mortality peaks and 83 percent of centers are closed.</p>
+          <p>None of these changes are technically difficult. Each one addresses a specific actor in the network. The challenge is political, not logistical. The data here makes the case for why the network needs to be addressed as a whole.</p>
         </div>
 
         <!-- CTA back to data path -->
         <div class="ant-switch-back">
-          <p>Ready to see the full spatial and demographic data behind these findings?</p>
-          <button class="btn-switch-path" id="btn-theory-to-data">← Explore the Data Story</button>
+          <p>See the spatial and demographic data behind these findings.</p>
+          <button class="btn-switch-path" id="btn-theory-to-data">Explore the Data Story</button>
         </div>
 
       </div>
@@ -1205,8 +1135,7 @@
   <!-- ── Scripts ────────────────────────────────────────── -->
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
 
   <!-- Step 8: Spatial story -->
   <script src="js/charts/spatial.js"></script>
@@ -1227,7 +1156,6 @@
   <script src="js/maps/context-panel.js"></script>
 
   <!-- AC Access & Energy Burden -->
-  <script src="js/charts/ac_energy.js"></script>
 
   <!-- Tree Canopy & Shade Equity -->
   <script src="js/charts/canopy.js"></script>
@@ -1276,7 +1204,6 @@
       const SELECTORS = [
         '#demographics .chart-block',
         '#spatial .chart-block',
-        '#ac-energy .chart-block',
         '#canopy .chart-block',
         '#typologies .section-heading',
         '#typologies .section-desc',
@@ -1287,8 +1214,6 @@
         '#scenarios .scen-callout',
         '#spatial .section-heading',
         '#spatial .section-desc',
-        '#ac-energy .section-heading',
-        '#ac-energy .section-desc',
         '#canopy .section-heading',
         '#canopy .section-desc',
         '#conclusion .conc-step',

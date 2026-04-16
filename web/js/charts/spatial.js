@@ -1,4 +1,4 @@
-// Step 8: Spatial Story — Moran Scatterplot + LISA Map
+// Spatial Story - Moran Scatterplot + LISA Map
 
 (function () {
   'use strict';
@@ -43,7 +43,7 @@
         .attr('width', q.x2 - q.x1).attr('height', q.y2 - q.y1).attr('fill', q.fill);
       svg.append('text').attr('x', q.lx).attr('y', q.ly)
         .attr('text-anchor', q.anchor).attr('font-size', 11)
-        .attr('font-family', 'Satoshi, sans-serif').attr('fill', '#C8CDD4').attr('font-weight', 'bold')
+        .attr('font-family', 'Bree Serif, serif').attr('fill', '#C8CDD4').attr('font-weight', 'bold')
         .text(q.label);
     });
 
@@ -59,7 +59,7 @@
       .attr('x2', x(2.7)).attr('y2', y(2.7 * 0.867))
       .attr('stroke', '#1A252F').attr('stroke-width', 1.2).attr('stroke-dasharray', '5,3');
 
-    // Dots — NS behind, clusters on top
+    // Dots - NS behind, clusters on top
     ['NS', 'LL', 'HL', 'LH', 'HH'].forEach(cl => {
       svg.selectAll(`.dot-${cl}`).data(data.filter(d => d.cluster === cl)).join('circle')
         .attr('class', `dot-${cl}`)
@@ -72,7 +72,7 @@
 
     // Clustering strength annotation
     svg.append('text').attr('x', iw - 6).attr('y', 30).attr('text-anchor', 'end')
-      .attr('font-size', 11).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
+      .attr('font-size', 11).attr('font-family', 'Bree Serif, serif').attr('fill', '#4A5568')
       .text('Clustering strength: 0.87 out of 1.0 (very strong)');
 
     // Axes
@@ -80,21 +80,21 @@
       .call(d3.axisBottom(x).ticks(6).tickSize(3))
       .call(g => g.select('.domain').attr('stroke', '#DEE2E6'))
       .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
-      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
+      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Bree Serif, serif').attr('fill', '#9BA3AE'));
 
     svg.append('g').call(d3.axisLeft(y).ticks(6).tickSize(3))
       .call(g => g.select('.domain').attr('stroke', '#DEE2E6'))
       .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
-      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
+      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Bree Serif, serif').attr('fill', '#9BA3AE'));
 
     svg.append('text').attr('x', iw / 2).attr('y', ih + 42)
       .attr('text-anchor', 'middle').attr('font-size', 11)
-      .attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
+      .attr('font-family', 'Bree Serif, serif').attr('fill', '#4A5568')
       .text('Neighborhood heat risk score');
 
     svg.append('text').attr('transform', 'rotate(-90)').attr('x', -ih / 2).attr('y', -44)
       .attr('text-anchor', 'middle').attr('font-size', 11)
-      .attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
+      .attr('font-family', 'Bree Serif, serif').attr('fill', '#4A5568')
       .text('Avg. risk of surrounding neighborhoods');
 
     // Hover tooltip
@@ -167,7 +167,7 @@
     fetch('data/tract_map_data.geojson')
       .then(r => r.json())
       .then(data => {
-        // Base grey — tooltip for non-clustered tracts
+        // Base grey - tooltip for non-clustered tracts
         L.geoJSON(data, {
           style: { fillColor: '#F0F2F5', fillOpacity: 0.5, color: '#DEE2E6', weight: 0.3 },
           onEachFeature: (ft, layer) => {
@@ -183,7 +183,7 @@
           }
         }).addTo(map);
 
-        // LISA clusters — rich contextual tooltip
+        // LISA clusters - rich contextual tooltip
         L.geoJSON(data, {
           filter: ft => +ft.properties.lisa_p < 0.05 && ft.properties.lisa_cluster !== 'NS',
           style: ft => ({

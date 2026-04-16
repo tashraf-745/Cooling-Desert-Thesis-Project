@@ -19,7 +19,7 @@ Outputs:
   data/final/cluster_results.json         — profiles + policy notes
 
 Run from project root:
-  python analysis/03_statistical/05_clustering.py
+  python analysis/statistical/05_clustering.py
 """
 
 import json

@@ -1,28 +1,4 @@
-"""
-Policy Scenario Simulations
-============================
-Four intervention scenarios modelling the impact of feasible policy changes
-on the number of cooling desert tracts and renters affected.
 
-Scenarios:
-  S1 — Add Cool It! sites to all uncovered cooling deserts
-  S2 — AC retrofit + green infrastructure (HVI rank improvement)
-  S3 — NYCHA AC surcharge removal (+ extended LIHEAP energy relief)
-  S4 — Rent burden relief via stabilisation or subsidy
-
-Each scenario reports:
-  - Tracts exiting cooling desert status (or improving CDI quintile)
-  - Renters reached
-  - Borough breakdown
-  - What the intervention cannot fix (residual risk)
-
-Outputs:
-  data/final/scenario_outputs/scenario_results.json
-  data/final/scenario_outputs/scenario_tract_flags.geojson
-
-Run from project root:
-  python analysis/06_scenarios/policy_scenarios.py
-"""
 
 import json
 import warnings

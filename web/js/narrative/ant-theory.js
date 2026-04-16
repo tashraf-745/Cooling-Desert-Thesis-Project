@@ -1,12 +1,10 @@
-// ANT Theory Path — Path Switcher + D3 Network + Scrollytelling + Translation Chain
+// ANT Theory Path - Path Switcher + D3 Network + Scrollytelling + Translation Chain
 // Actor-Network Theory applied to NYC heat equity & cooling deserts
 
 (function () {
   'use strict';
 
-  // ══════════════════════════════════════════════════════════════
   // PATH SWITCHING
-  // ══════════════════════════════════════════════════════════════
   const DATA_SECS   = () => document.querySelectorAll('[data-path="data"]');
   const THEORY_SECS = () => document.querySelectorAll('[data-path="theory"]');
   const pathSwitcher = document.getElementById('path-switcher');
@@ -85,71 +83,77 @@
     } else if (hash === 'data') {
       switchPath('data');
     }
-    // Default: no path chosen — path chooser section is visible, both path sections hidden
+    // Default: no path chosen - path chooser section is visible, both path sections hidden
   });
 
 
-  // ══════════════════════════════════════════════════════════════
-  // ANT SCENE BUILDER — Scrollytelling Introduction
-  // ══════════════════════════════════════════════════════════════
+  // ANT SCENE BUILDER - Scrollytelling Introduction
   function initSceneBuilder() {
-    const panels  = document.querySelectorAll('.ant-scene-panel');
-    const linesG  = document.getElementById('ant-svg-lines');
-    const nodesG  = document.getElementById('ant-svg-nodes');
-    const labelG  = document.getElementById('ant-svg-label');
+    const panels = document.querySelectorAll('.ant-scene-panel');
+    const linesG = document.getElementById('ant-svg-lines');
+    const nodesG = document.getElementById('ant-svg-nodes');
+    const labelG = document.getElementById('ant-svg-label');
 
     if (!nodesG || !panels.length) return;
 
-    // ── Node geometry — viewBox 0 0 480 460 ──────────────────────
-    // Large circles; labels rendered inside each circle
     const NODE_DEFS = {
-      maria:    { cx: 240, cy: 228, r: 50,
-                  fill: '#1A252F', stroke: 'none', strokeW: 0,
-                  label: 'Maria', sublabel: 'Renter',
-                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.60)' },
-      heat:     { cx: 240, cy:  60, r: 36,
-                  fill: '#922B21', stroke: 'none', strokeW: 0,
-                  label: 'Heat', sublabel: '94°F',
-                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.65)' },
-      bill:     { cx: 412, cy: 258, r: 36,
-                  fill: '#C96A28', stroke: 'none', strokeW: 0,
-                  label: 'Electric', sublabel: 'bill',
-                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.65)' },
-      building: { cx: 240, cy: 396, r: 36,
-                  fill: '#6B5744', stroke: 'none', strokeW: 0,
-                  label: 'Pre-1938', sublabel: 'building',
-                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.65)' },
-      hvi:      { cx:  68, cy: 258, r: 36,
-                  fill: '#1F6999', stroke: 'none', strokeW: 0,
-                  label: 'City heat', sublabel: 'risk index',
-                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.65)' },
+      maria:    { cx: 240, cy: 232, r: 58,
+                  fill: '#1E2F3C', stroke: '#3A556A', strokeW: 2, strokeDash: '',
+                  label: 'Maria', sublabel: 'South Bronx Renter',
+                  labelSz: '15', subSz: '10',
+                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.55)' },
+      heat:     { cx: 240, cy:  60, r: 44,
+                  fill: '#922B21', stroke: '', strokeW: 0, strokeDash: '',
+                  label: 'Heat', sublabel: '94°F tonight',
+                  labelSz: '13', subSz: '10',
+                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.7)' },
+      bill:     { cx: 416, cy: 232, r: 44,
+                  fill: '#C96A28', stroke: '', strokeW: 0, strokeDash: '',
+                  label: 'Electric', sublabel: 'bill +$80',
+                  labelSz: '13', subSz: '10',
+                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.7)' },
+      building: { cx: 240, cy: 404, r: 44,
+                  fill: '#6B5744', stroke: '', strokeW: 0, strokeDash: '',
+                  label: 'Pre-1938', sublabel: 'building wiring',
+                  labelSz: '12', subSz: '10',
+                  labelColor: '#fff', subColor: 'rgba(255,255,255,0.7)' },
+      hvi:      { cx:  64, cy: 232, r: 44,
+                  fill: '#132B3D', stroke: '#1F6999', strokeW: 2, strokeDash: '6,4',
+                  label: 'City HVI', sublabel: 'scores 3 / 5',
+                  labelSz: '12', subSz: '10',
+                  labelColor: '#7FB3D3', subColor: 'rgba(127,179,211,0.6)',
+                  badge: 'resources elsewhere' },
     };
 
     // ── Line definitions ─────────────────────────────────────────
     const LINE_DEFS = {
-      heat_to_maria:     { from: 'heat',     to: 'maria', stroke: '#922B21',
-                           dash: '',    strokeW: 3,   marker: 'url(#ant-arr-red)' },
-      bill_to_maria:     { from: 'bill',     to: 'maria', stroke: '#C96A28',
-                           dash: '7,5', strokeW: 2,   marker: 'url(#ant-arr-org)' },
-      building_to_maria: { from: 'building', to: 'maria', stroke: '#6B5744',
-                           dash: '7,5', strokeW: 2,   marker: 'url(#ant-arr-tan)' },
-      hvi_redirect:      { from: 'hvi', to: null,          stroke: '#1F6999',
-                           dash: '4,6', strokeW: 2,   marker: 'url(#ant-arr-blu)',
-                           toX: 18, toY: 52 },
+      heat_to_maria:     { from: 'heat',     to: 'maria',
+                           stroke: '#922B21', dash: '',    strokeW: 3.5,
+                           marker: 'url(#ant-arr-red)' },
+      bill_to_maria:     { from: 'bill',     to: 'maria',
+                           stroke: '#C96A28', dash: '9,6', strokeW: 2.5,
+                           marker: 'url(#ant-arr-org)' },
+      building_to_maria: { from: 'building', to: 'maria',
+                           stroke: '#6B5744', dash: '9,6', strokeW: 2.5,
+                           marker: 'url(#ant-arr-tan)' },
+      hvi_note:          { from: 'hvi',      to: 'maria',
+                           stroke: '#1F6999', dash: '4,8', strokeW: 1.5,
+                           marker: 'url(#ant-arr-blu)', weak: true },
     };
 
     // ── Which nodes/lines each scroll step reveals ────────────────
     const STEP_MAP = [
-      { nodes: ['maria'],    lines: [],                 reveal: false },
-      { nodes: ['heat'],     lines: ['heat_to_maria'],  reveal: false },
-      { nodes: ['bill'],     lines: ['bill_to_maria'],  reveal: false },
-      { nodes: ['building'], lines: ['building_to_maria'], reveal: false },
-      { nodes: ['hvi'],      lines: ['hvi_redirect'],   reveal: false },
-      { nodes: [],           lines: [],                 reveal: true  },
+      { nodes: ['maria'],    lines: [] },
+      { nodes: ['heat'],     lines: ['heat_to_maria'] },
+      { nodes: ['bill'],     lines: ['bill_to_maria'] },
+      { nodes: ['building'], lines: ['building_to_maria'] },
+      { nodes: ['hvi'],      lines: ['hvi_note'] },
+      { nodes: [],           lines: [], reveal: true },
     ];
 
     const drawnNodes = new Set();
     const drawnLines = new Set();
+    let revealDrawn  = false;
 
     // ── SVG helper ────────────────────────────────────────────────
     function svgEl(tag, attrs) {
@@ -158,42 +162,76 @@
       return el;
     }
 
+    function fadeIn(el, delay) {
+      el.style.opacity = '0';
+      el.style.transition = 'opacity 0.55s ease ' + (delay || 0) + 'ms';
+      // Append first, then trigger fade on next paint
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; }));
+    }
+
     // ── Draw a node ───────────────────────────────────────────────
     function drawNode(id) {
       const d = NODE_DEFS[id];
       if (!d || drawnNodes.has(id)) return;
       drawnNodes.add(id);
 
-      const g = svgEl('g', { class: 'ant-svg-node',
-        transform: `translate(${d.cx},${d.cy})` });
+      const g = svgEl('g', { transform: `translate(${d.cx},${d.cy})` });
 
-      g.appendChild(svgEl('circle', {
-        r: d.r, fill: d.fill,
-        ...(d.strokeW ? { stroke: d.stroke, 'stroke-width': d.strokeW } : {}),
-      }));
+      // Circle
+      const circleAttrs = { r: d.r, fill: d.fill };
+      if (d.strokeW) {
+        circleAttrs.stroke          = d.stroke;
+        circleAttrs['stroke-width'] = d.strokeW;
+        if (d.strokeDash) circleAttrs['stroke-dasharray'] = d.strokeDash;
+      }
+      g.appendChild(svgEl('circle', circleAttrs));
 
       // Main label
-      g.appendChild(svgEl('text', {
-        'text-anchor': 'middle', dy: '-0.25em',
-        'font-family': "'Satoshi', sans-serif",
-        'font-size': id === 'maria' ? '14' : '11',
+      const lt = svgEl('text', {
+        'text-anchor': 'middle',
+        'font-family': "'Bree Serif', serif",
+        'font-size':   d.labelSz,
         'font-weight': '700',
-        fill: d.labelColor,
+        fill:          d.labelColor,
+        dy:            d.sublabel ? '-0.3em' : '0.35em',
         'pointer-events': 'none',
-      })).textContent = d.label;
+      });
+      lt.textContent = d.label;
+      g.appendChild(lt);
 
       // Sub-label
-      g.appendChild(svgEl('text', {
-        'text-anchor': 'middle', dy: '1.1em',
-        'font-family': "'Satoshi', sans-serif",
-        'font-size': id === 'maria' ? '10' : '9',
-        'font-weight': '400',
-        fill: d.subColor,
-        'pointer-events': 'none',
-      })).textContent = d.sublabel;
+      if (d.sublabel) {
+        const ls = svgEl('text', {
+          'text-anchor': 'middle',
+          'font-family': "'Bree Serif', serif",
+          'font-size':   d.subSz,
+          'font-weight': '400',
+          fill:          d.subColor,
+          dy:            '1.0em',
+          'pointer-events': 'none',
+        });
+        ls.textContent = d.sublabel;
+        g.appendChild(ls);
+      }
+
+      // Badge text below circle (x=0 y=r+16 in group-local coords)
+      if (d.badge) {
+        const bg = svgEl('text', {
+          x:             '0',
+          y:             String(d.r + 16),
+          'text-anchor': 'middle',
+          'font-family': "'Bree Serif', serif",
+          'font-size':   '9',
+          'font-weight': '400',
+          fill:          'rgba(127,179,211,0.45)',
+          'pointer-events': 'none',
+        });
+        bg.textContent = d.badge;
+        g.appendChild(bg);
+      }
 
       nodesG.appendChild(g);
-      requestAnimationFrame(() => g.classList.add('is-visible'));
+      fadeIn(g, 0);
     }
 
     // ── Draw a line ───────────────────────────────────────────────
@@ -203,95 +241,72 @@
       drawnLines.add(id);
 
       const from = NODE_DEFS[d.from];
+      const to   = NODE_DEFS[d.to];
+      const dx   = to.cx - from.cx;
+      const dy   = to.cy - from.cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const gap  = 8;
+      const x1   = from.cx + (dx / dist) * (from.r + gap);
+      const y1   = from.cy + (dy / dist) * (from.r + gap);
+      const x2   = to.cx   - (dx / dist) * (to.r   + gap);
+      const y2   = to.cy   - (dy / dist) * (to.r   + gap);
 
-      if (d.to) {
-        const to   = NODE_DEFS[d.to];
-        const dx   = to.cx - from.cx;
-        const dy   = to.cy - from.cy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const gap  = 7;
-        const x1 = from.cx + (dx / dist) * (from.r + gap);
-        const y1 = from.cy + (dy / dist) * (from.r + gap);
-        const x2 = to.cx   - (dx / dist) * (to.r   + gap);
-        const y2 = to.cy   - (dy / dist) * (to.r   + gap);
+      const attrs = {
+        x1, y1, x2, y2,
+        stroke:           d.stroke,
+        'stroke-width':   d.strokeW,
+        'stroke-linecap': 'round',
+        'marker-end':     d.marker,
+      };
+      if (d.dash)  attrs['stroke-dasharray'] = d.dash;
+      if (d.weak)  attrs.opacity = '0.5'; // keep weak line subtle even when "visible"
 
-        const line = svgEl('line', {
-          class: 'ant-svg-line',
-          x1, y1, x2, y2,
-          stroke: d.stroke, 'stroke-width': d.strokeW,
-          'stroke-linecap': 'round',
-          'marker-end': d.marker,
-          ...(d.dash ? { 'stroke-dasharray': d.dash } : {}),
-        });
-        linesG.appendChild(line);
-        requestAnimationFrame(() => line.classList.add('is-visible'));
-
-      } else {
-        // HVI redirect — dashed line pointing away toward "Resources"
-        const dx   = d.toX - from.cx;
-        const dy   = d.toY - from.cy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const x1   = from.cx + (dx / dist) * (from.r + 7);
-        const y1   = from.cy + (dy / dist) * (from.r + 7);
-
-        const line = svgEl('line', {
-          class: 'ant-svg-line',
-          x1, y1, x2: d.toX, y2: d.toY,
-          stroke: d.stroke, 'stroke-width': d.strokeW,
-          'stroke-dasharray': d.dash, 'stroke-linecap': 'round',
-          'marker-end': d.marker,
-        });
-        linesG.appendChild(line);
-        requestAnimationFrame(() => line.classList.add('is-visible'));
-
-        // "Resources go elsewhere" text at line end
-        const grp = svgEl('g', { class: 'ant-svg-reveal-label' });
-        const t1  = svgEl('text', {
-          x: d.toX, y: d.toY - 10, 'text-anchor': 'middle',
-          'font-family': "'Satoshi', sans-serif",
-          'font-size': '10', 'font-weight': '600', fill: '#1F6999',
-        });
-        t1.textContent = 'Resources';
-        const t2 = svgEl('text', {
-          x: d.toX, y: d.toY + 2, 'text-anchor': 'middle',
-          'font-family': "'Satoshi', sans-serif",
-          'font-size': '10', 'font-weight': '400', fill: '#1F6999',
-        });
-        t2.textContent = 'go elsewhere';
-        grp.appendChild(t1);
-        grp.appendChild(t2);
-        linesG.appendChild(grp);
-        requestAnimationFrame(() => grp.classList.add('is-visible'));
-      }
+      const line = svgEl('line', attrs);
+      linesG.appendChild(line);
+      fadeIn(line, 80);
     }
 
-    // ── Final reveal: dashed bounding box labeled "COOLING DESERT"
+    // ── Final reveal: dashed bounding box + label ─────────────────
     function drawReveal() {
+      if (revealDrawn) return;
+      revealDrawn = true;
+
+      // Ensure every node and line from previous steps is visible
+      STEP_MAP.forEach(m => {
+        m.nodes.forEach(drawNode);
+        m.lines.forEach(drawLine);
+      });
+
+      // Full bounding box around all nodes
       const rect = svgEl('rect', {
-        class: 'ant-svg-reveal-label',
-        x: 14, y: 12, width: 452, height: 436, rx: 12,
+        x: 10, y: 10, width: 460, height: 440, rx: 12,
         fill: 'none', stroke: '#922B21',
-        'stroke-width': '1.5', 'stroke-dasharray': '9,6',
+        'stroke-width': '2', 'stroke-dasharray': '10,7',
       });
       labelG.appendChild(rect);
+      fadeIn(rect, 0);
+
+      // Label placed in the clear gap between Heat (bottom y≈104) and Maria (top y≈174)
+      // Background pill so it's readable regardless of what's behind it
+      const lblBg = svgEl('rect', {
+        x: '128', y: '122', width: '224', height: '28', rx: '5',
+        fill: '#FAF8F3',
+      });
+      labelG.appendChild(lblBg);
+      fadeIn(lblBg, 80);
 
       const lbl = svgEl('text', {
-        class: 'ant-svg-reveal-label',
-        x: 240, y: 10, 'text-anchor': 'middle',
-        'font-family': "'Satoshi', sans-serif",
-        'font-size': '11', 'font-weight': '700',
-        'letter-spacing': '0.12em', fill: '#922B21',
+        x: '240', y: '142', 'text-anchor': 'middle',
+        'font-family': "'Bree Serif', serif",
+        'font-size': '13', 'font-weight': '700',
+        'letter-spacing': '0.16em', fill: '#922B21',
       });
       lbl.textContent = 'COOLING DESERT';
       labelG.appendChild(lbl);
-
-      requestAnimationFrame(() => {
-        rect.classList.add('is-visible');
-        lbl.classList.add('is-visible');
-      });
+      fadeIn(lbl, 120);
     }
 
-    // ── Activate a step (draw its nodes/lines) ────────────────────
+    // ── Activate a step ───────────────────────────────────────────
     function activateStep(idx) {
       const map = STEP_MAP[idx];
       if (!map) return;
@@ -300,257 +315,396 @@
       if (map.reveal) drawReveal();
     }
 
-    // ── IntersectionObserver: advance when panel is 40% visible ──
+    // ── IntersectionObserver ──────────────────────────────────────
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-active');
-          const step = Number(entry.target.dataset.step);
-          activateStep(step);
+          activateStep(Number(entry.target.dataset.step));
         } else {
           entry.target.classList.remove('is-active');
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.35 });
 
-    panels.forEach(panel => observer.observe(panel));
-
-    // Activate step 0 immediately (Maria appears without scrolling)
+    panels.forEach(p => observer.observe(p));
     activateStep(0);
     if (panels[0]) panels[0].classList.add('is-active');
   }
 
 
-  // ══════════════════════════════════════════════════════════════
-  // FIVE QUESTIONS — Progressive Network Scrollytelling
-  // ══════════════════════════════════════════════════════════════
+  // FIVE QUESTIONS - Per-question SVG illustrations
   function buildFiveQuestions() {
-    const svg     = document.getElementById('aq-network-svg');
-    const linksG  = document.getElementById('aq-links');
-    const nodesG  = document.getElementById('aq-nodes');
-    const labelEl = document.getElementById('aq-viz-label');
-    const panels  = document.querySelectorAll('#aq-panels .aq-panel');
-    if (!svg || !panels.length) return;
+    const container = document.getElementById('aq-viz-container');
+    const labelEl   = document.getElementById('aq-viz-label');
+    const panels    = document.querySelectorAll('#aq-panels .aq-panel');
+    if (!container || !panels.length) return;
 
-    // ── Node definitions ─────────────────────────────────────
-    // Fixed positions in 460×420 viewBox
-    const AQ_NODES = {
-      maria:    { cx: 230, cy: 210, r: 46, fill: '#1A252F', label: 'Maria', sub: 'Renter' },
-      heat:     { cx: 230, cy:  52, r: 28, fill: '#922B21', label: 'Heat', sub: '94°F' },
-      bill:     { cx: 370, cy: 145, r: 25, fill: '#C96A28', label: 'Electric', sub: 'bill' },
-      building: { cx: 340, cy: 330, r: 25, fill: '#6B5744', label: 'Pre-1938', sub: 'building' },
-      hvi:      { cx:  90, cy: 145, r: 25, fill: '#1F6999', label: 'City HVI', sub: 'score' },
-      rent:     { cx:  90, cy: 330, r: 25, fill: '#A93226', label: 'Rent', sub: 'burden' },
-      // Q1 extras: what HVI misses (shown as dashed ghost nodes)
-      ac_cost:  { cx: 400, cy: 260, r: 20, fill: 'none', stroke: '#C0392B', dash: true,
-                  label: 'AC cost?', sub: null },
-      lang:     { cx: 230, cy: 385, r: 20, fill: 'none', stroke: '#C0392B', dash: true,
-                  label: 'Language?', sub: null },
-      // Q4: cooling centers (broken link)
-      centers:  { cx: 400, cy:  52, r: 22, fill: '#27AE60', label: 'Cooling', sub: 'Centers' },
-      // Q5: intervention nodes
-      int_hvi:  { cx:  28, cy:  75, r: 18, fill: '#27AE60', label: 'Fix HVI', sub: null },
-      int_bill: { cx: 432, cy:  75, r: 18, fill: '#27AE60', label: 'Energy', sub: 'assist' },
-      int_bldg: { cx: 432, cy: 355, r: 18, fill: '#27AE60', label: 'Retrofit', sub: null },
-      int_rent: { cx:  28, cy: 355, r: 18, fill: '#27AE60', label: 'Rent', sub: 'relief' },
-    };
-
-    const AQ_LINKS = {
-      heat_maria:     { from:'heat',     to:'maria',    stroke:'#922B21', dash:'',    w:2.5, marker:'url(#aq-arr-red)' },
-      bill_maria:     { from:'bill',     to:'maria',    stroke:'#C96A28', dash:'7,5', w:2,   marker:'url(#aq-arr-org)' },
-      building_maria: { from:'building', to:'maria',    stroke:'#6B5744', dash:'7,5', w:2,   marker:'url(#aq-arr-org)' },
-      hvi_away:       { from:'hvi',      to:null,       stroke:'#1F6999', dash:'4,6', w:2,   marker:'url(#aq-arr-blue)',
-                        toX: 15, toY: 45 },
-      rent_bill:      { from:'rent',     to:'bill',     stroke:'#A93226', dash:'5,4', w:2,   marker:'url(#aq-arr-red)' },
-      rent_maria:     { from:'rent',     to:'maria',    stroke:'#A93226', dash:'7,5', w:2,   marker:'url(#aq-arr-red)' },
-      centers_broken: { from:'centers',  to:'maria',    stroke:'#27AE60', dash:'8,6', w:1.5, marker:'url(#aq-arr-grn)' },
-      int_hvi_hvi:    { from:'int_hvi',  to:'hvi',      stroke:'#27AE60', dash:'',    w:2,   marker:'url(#aq-arr-grn)' },
-      int_bill_bill:  { from:'int_bill', to:'bill',     stroke:'#27AE60', dash:'',    w:2,   marker:'url(#aq-arr-grn)' },
-      int_bldg_bldg:  { from:'int_bldg', to:'building', stroke:'#27AE60', dash:'',    w:2,   marker:'url(#aq-arr-grn)' },
-      int_rent_rent:  { from:'int_rent', to:'rent',     stroke:'#27AE60', dash:'',    w:2,   marker:'url(#aq-arr-grn)' },
-    };
-
-    // Which nodes/links appear at each question state
-    const Q_STATES = [
-      {
-        nodes: ['maria','heat','hvi'],
-        links: ['heat_maria','hvi_away'],
-        ghosts: ['ac_cost','lang'],
-        label: 'The city\'s Heat Vulnerability Index (blue) defines which neighborhoods get resources. But watch what it leaves unmeasured.',
-      },
-      {
-        nodes: ['maria','heat','hvi','building'],
-        links: ['heat_maria','hvi_away','building_maria'],
-        ghosts: [],
-        label: 'The pre-1938 building (brown) blocks cooling access independently of the household\'s finances. The building itself is an actor.',
-      },
-      {
-        nodes: ['maria','heat','hvi','building','bill','rent'],
-        links: ['heat_maria','hvi_away','building_maria','bill_maria','rent_bill','rent_maria'],
-        ghosts: [],
-        label: 'Rent burden (dark red) drives the electric bill, which blocks the AC switch. A financial chain the HVI never traces.',
-      },
-      {
-        nodes: ['maria','heat','hvi','building','bill','rent','centers'],
-        links: ['heat_maria','hvi_away','building_maria','bill_maria','rent_bill','rent_maria','centers_broken'],
-        ghosts: [],
-        label: 'Cooling centers (green) exist — but their script doesn\'t match reality. Closed Sundays, age-restricted, too far away.',
-      },
-      {
-        nodes: ['maria','heat','hvi','building','bill','rent','centers','int_hvi','int_bill','int_bldg','int_rent'],
-        links: ['heat_maria','hvi_away','building_maria','bill_maria','rent_bill','rent_maria',
-                'int_hvi_hvi','int_bill_bill','int_bldg_bldg','int_rent_rent'],
-        ghosts: [],
-        label: '67% reduction in cooling deserts when all four interventions combine. Single-point fixes leave the other constraints intact.',
-      },
-    ];
-
-    function svgNS(tag, attrs) {
+    // ── SVG helper ────────────────────────────────────────────
+    function ns(tag, attrs, txt) {
       const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
       Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+      if (txt !== undefined) el.textContent = txt;
       return el;
     }
-
-    const drawnNodes = new Set(), drawnLinks = new Set(), drawnGhosts = new Set();
-
-    function drawNode(id) {
-      if (drawnNodes.has(id)) return;
-      drawnNodes.add(id);
-      const d = AQ_NODES[id];
-      const g = svgNS('g', { class: 'aq-node', opacity: '0',
-        transform: `translate(${d.cx},${d.cy})`, style: 'transition: opacity 0.5s ease' });
-
-      if (d.dash) {
-        g.appendChild(svgNS('circle', { r: d.r, fill: 'none',
-          stroke: d.stroke, 'stroke-width': '2', 'stroke-dasharray': '6,4' }));
-      } else {
-        g.appendChild(svgNS('circle', { r: d.r, fill: d.fill }));
-      }
-
-      const lc = d.dash ? (d.stroke || '#C0392B') : '#fff';
-      const lt = svgNS('text', { 'text-anchor': 'middle',
-        'font-family': "'Satoshi',sans-serif", 'font-size': id === 'maria' ? '12' : '9',
-        'font-weight': '700', fill: lc, dy: d.sub ? '-0.25em' : '0.35em',
-        'pointer-events': 'none' });
-      lt.textContent = d.label;
-      g.appendChild(lt);
-      if (d.sub) {
-        const ls = svgNS('text', { 'text-anchor': 'middle',
-          'font-family': "'Satoshi',sans-serif", 'font-size': '8', 'font-weight': '400',
-          fill: d.dash ? lc : 'rgba(255,255,255,0.65)', dy: '1.1em',
-          'pointer-events': 'none' });
-        ls.textContent = d.sub;
-        g.appendChild(ls);
-      }
-      nodesG.appendChild(g);
-      requestAnimationFrame(() => { g.style.opacity = '1'; });
+    function makeSVG(vb) {
+      return ns('svg', {
+        viewBox: vb || '0 0 440 360',
+        xmlns: 'http://www.w3.org/2000/svg',
+        'aria-hidden': 'true',
+      });
+    }
+    function txt(svg, attrs, content) {
+      const f = { 'font-family': "'Bree Serif',serif", ...attrs };
+      svg.appendChild(ns('text', f, content));
     }
 
-    function drawGhost(id) {
-      if (drawnGhosts.has(id)) return;
-      drawnGhosts.add(id);
-      const d = AQ_NODES[id];
-      const g = svgNS('g', { class: 'aq-ghost', opacity: '0',
-        transform: `translate(${d.cx},${d.cy})`, style: 'transition: opacity 0.6s ease' });
-      g.appendChild(svgNS('circle', { r: d.r, fill: 'rgba(192,57,43,0.08)',
-        stroke: '#C0392B', 'stroke-width': '2', 'stroke-dasharray': '5,4' }));
-      const lt = svgNS('text', { 'text-anchor': 'middle',
-        'font-family': "'Satoshi',sans-serif", 'font-size': '9', 'font-weight': '700',
-        fill: '#C0392B', dy: '0.35em', 'pointer-events': 'none' });
-      lt.textContent = d.label;
-      g.appendChild(lt);
-      nodesG.appendChild(g);
-      requestAnimationFrame(() => { g.style.opacity = '1'; });
+    // ── Q1: What the HVI counts vs. misses ───────────────────
+    function buildQ1() {
+      const svg = makeSVG();
+
+      txt(svg, { x:'220', y:'28', 'text-anchor':'middle', 'font-size':'10',
+        'font-weight':'700', 'letter-spacing':'0.12em',
+        fill:'rgba(26,37,47,0.5)' }, 'WHAT THE HVI ACTUALLY MEASURES');
+
+      // Bar total background
+      svg.appendChild(ns('rect', { x:'24', y:'46', width:'392', height:'72',
+        rx:'6', fill:'rgba(26,37,47,0.06)' }));
+
+      // 79% - AC owned (counted)
+      svg.appendChild(ns('rect', { x:'24', y:'46', width:'310', height:'72',
+        rx:'6', fill:'#1F6999' }));
+      txt(svg, { x:'179', y:'78', 'text-anchor':'middle', 'font-size':'26',
+        'font-weight':'700', fill:'#fff' }, '79%');
+      txt(svg, { x:'179', y:'103', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(255,255,255,0.75)' }, 'own an air conditioner');
+
+      // 21% - owns AC but can't run it (invisible to HVI)
+      svg.appendChild(ns('rect', { x:'334', y:'46', width:'82', height:'72',
+        rx:'6', fill:'rgba(192,57,43,0.1)', stroke:'#C0392B',
+        'stroke-width':'2', 'stroke-dasharray':'6,4' }));
+      txt(svg, { x:'375', y:'78', 'text-anchor':'middle', 'font-size':'22',
+        'font-weight':'700', fill:'#C0392B' }, '21%');
+      txt(svg, { x:'375', y:'103', 'text-anchor':'middle', 'font-size':'10',
+        fill:'rgba(192,57,43,0.85)' }, "can't run it");
+
+      // Captions below bar
+      txt(svg, { x:'179', y:'140', 'text-anchor':'middle', 'font-size':'10',
+        fill:'rgba(26,37,47,0.45)' }, 'HVI counts this');
+      txt(svg, { x:'375', y:'140', 'text-anchor':'middle', 'font-size':'10',
+        fill:'#C0392B' }, 'HVI misses this');
+
+      // Divider
+      svg.appendChild(ns('line', { x1:'24', y1:'162', x2:'416', y2:'162',
+        stroke:'rgba(26,37,47,0.1)', 'stroke-width':'1' }));
+
+      // Big stat: 214 tracts
+      txt(svg, { x:'220', y:'236', 'text-anchor':'middle', 'font-size':'84',
+        'font-weight':'700', fill:'#1A252F' }, '214');
+      txt(svg, { x:'220', y:'264', 'text-anchor':'middle', 'font-size':'13',
+        fill:'rgba(26,37,47,0.6)' }, 'census tracts scored "moderate" by the HVI');
+      txt(svg, { x:'220', y:'284', 'text-anchor':'middle', 'font-size':'13',
+        fill:'rgba(26,37,47,0.6)' }, 'where renters cannot afford to cool their homes');
+
+      // Invisible-to-policy badge
+      svg.appendChild(ns('rect', { x:'110', y:'308', width:'220', height:'34',
+        rx:'5', fill:'rgba(192,57,43,0.1)', stroke:'#C0392B', 'stroke-width':'1' }));
+      txt(svg, { x:'220', y:'330', 'text-anchor':'middle', 'font-size':'11',
+        'font-weight':'700', 'letter-spacing':'0.08em', fill:'#C0392B' },
+        'INVISIBLE TO POLICY');
+
+      return svg;
     }
 
-    function drawLink(id) {
-      if (drawnLinks.has(id)) return;
-      drawnLinks.add(id);
-      const d = AQ_LINKS[id];
-      const from = AQ_NODES[d.from];
-      let line;
-      if (d.to) {
-        const to = AQ_NODES[d.to];
-        const dx = to.cx - from.cx, dy = to.cy - from.cy;
-        const dist = Math.sqrt(dx*dx + dy*dy), gap = 6;
-        const x1 = from.cx + (dx/dist)*(from.r+gap), y1 = from.cy + (dy/dist)*(from.r+gap);
-        const x2 = to.cx   - (dx/dist)*(to.r+gap),   y2 = to.cy   - (dy/dist)*(to.r+gap);
-        line = svgNS('line', { x1, y1, x2, y2, stroke: d.stroke,
-          'stroke-width': d.w, 'stroke-linecap': 'round',
-          'marker-end': d.marker, opacity: '0',
-          style: 'transition: opacity 0.5s ease',
-          ...(d.dash ? { 'stroke-dasharray': d.dash } : {}) });
-      } else {
-        const dx = d.toX - from.cx, dy = d.toY - from.cy;
-        const dist = Math.sqrt(dx*dx + dy*dy), gap = 6;
-        const x1 = from.cx + (dx/dist)*(from.r+gap), y1 = from.cy + (dy/dist)*(from.r+gap);
-        line = svgNS('line', { x1, y1, x2: d.toX, y2: d.toY, stroke: d.stroke,
-          'stroke-width': d.w, 'stroke-dasharray': d.dash, 'stroke-linecap': 'round',
-          'marker-end': d.marker, opacity: '0',
-          style: 'transition: opacity 0.5s ease' });
-      }
-      linksG.appendChild(line);
-      requestAnimationFrame(() => { line.setAttribute('opacity', '1'); });
+    // ── Q2: Building age ──────────────────────────────────────
+    function buildQ2() {
+      const svg = makeSVG();
+
+      txt(svg, { x:'220', y:'94', 'text-anchor':'middle', 'font-size':'86',
+        'font-weight':'700', fill:'#8B7355' }, '47%');
+      txt(svg, { x:'220', y:'126', 'text-anchor':'middle', 'font-size':'14',
+        fill:'rgba(26,37,47,0.65)' }, 'of NYC housing built before 1980');
+
+      svg.appendChild(ns('line', { x1:'60', y1:'150', x2:'380', y2:'150',
+        stroke:'rgba(26,37,47,0.1)', 'stroke-width':'1' }));
+
+      // Pre-1940 box
+      svg.appendChild(ns('rect', { x:'24', y:'168', width:'184', height:'142',
+        rx:'8', fill:'rgba(107,87,68,0.18)', stroke:'#8B7355', 'stroke-width':'1.5' }));
+      txt(svg, { x:'116', y:'196', 'text-anchor':'middle', 'font-size':'10',
+        'font-weight':'700', 'letter-spacing':'0.08em', fill:'#8B7355' }, 'PRE-1940 WIRING');
+      txt(svg, { x:'116', y:'224', 'text-anchor':'middle', 'font-size':'24',
+        'font-weight':'700', fill:'rgba(26,37,47,0.65)' }, '15–20A');
+      txt(svg, { x:'116', y:'252', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.6)' }, 'Electrical panels');
+      txt(svg, { x:'116', y:'268', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.6)' }, 'not designed for AC');
+      txt(svg, { x:'116', y:'294', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(192,57,43,0.7)' }, 'Circuit overload risk');
+
+      // Modern box
+      svg.appendChild(ns('rect', { x:'232', y:'168', width:'184', height:'142',
+        rx:'8', fill:'rgba(26,37,47,0.04)', stroke:'rgba(26,37,47,0.15)',
+        'stroke-width':'1' }));
+      txt(svg, { x:'324', y:'196', 'text-anchor':'middle', 'font-size':'10',
+        'font-weight':'700', 'letter-spacing':'0.08em',
+        fill:'rgba(26,37,47,0.5)' }, 'MODERN WIRING');
+      txt(svg, { x:'324', y:'224', 'text-anchor':'middle', 'font-size':'24',
+        'font-weight':'700', fill:'rgba(26,37,47,0.65)' }, '200A');
+      txt(svg, { x:'324', y:'252', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.6)' }, 'Designed to');
+      txt(svg, { x:'324', y:'268', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.6)' }, 'support AC');
+
+      txt(svg, { x:'220', y:'340', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.5)' },
+        'Building age predicts AC access independently of income (p < 0.001)');
+
+      return svg;
     }
 
-    Q_STATES.forEach((s, i) => { s._idx = i; });
+    // ── Q3: Rent as heat weapon ───────────────────────────────
+    function buildQ3() {
+      const svg = makeSVG();
 
-    function applyQStateFull(idx) {
-      const s = Q_STATES[idx];
-      if (!s) return;
-      if (labelEl) {
-        labelEl.style.opacity = '0';
-        setTimeout(() => { labelEl.textContent = s.label; labelEl.style.opacity = '1'; }, 200);
-      }
-      s.nodes.forEach(id => {
-        if (!drawnNodes.has(id)) {
-          drawNode(id);
-          const last = nodesG.lastElementChild;
-          if (last && !last.dataset.nid) last.dataset.nid = id;
+      txt(svg, { x:'28', y:'28', 'font-size':'10', 'letter-spacing':'0.1em',
+        fill:'rgba(26,37,47,0.5)' }, 'MONTHLY INCOME: $2,850');
+
+      // Total income bar background
+      svg.appendChild(ns('rect', { x:'28', y:'44', width:'384', height:'58',
+        rx:'5', fill:'rgba(26,37,47,0.05)' }));
+
+      // Rent: 58% = 223px
+      svg.appendChild(ns('rect', { x:'28', y:'44', width:'223', height:'58',
+        rx:'5', fill:'#A93226' }));
+      txt(svg, { x:'140', y:'68', 'text-anchor':'middle', 'font-size':'14',
+        'font-weight':'700', fill:'#fff' }, 'RENT  $1,650');
+      txt(svg, { x:'140', y:'88', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(255,255,255,0.75)' }, '58 cents of every dollar');
+
+      // Remaining: $237
+      txt(svg, { x:'328', y:'68', 'text-anchor':'middle', 'font-size':'13',
+        'font-weight':'700', fill:'rgba(26,37,47,0.55)' }, '$237');
+      txt(svg, { x:'328', y:'88', 'text-anchor':'middle', 'font-size':'10',
+        fill:'rgba(26,37,47,0.5)' }, 'left for everything');
+
+      // Arrow down to electric bill
+      svg.appendChild(ns('line', { x1:'328', y1:'108', x2:'328', y2:'140',
+        stroke:'#C96A28', 'stroke-width':'2' }));
+      svg.appendChild(ns('polygon', { points:'321,136 335,136 328,150',
+        fill:'#C96A28' }));
+
+      // Electric bill box
+      svg.appendChild(ns('rect', { x:'252', y:'154', width:'152', height:'54',
+        rx:'5', fill:'rgba(201,106,40,0.12)', stroke:'#C96A28', 'stroke-width':'1.5' }));
+      txt(svg, { x:'328', y:'178', 'text-anchor':'middle', 'font-size':'15',
+        'font-weight':'700', fill:'#C96A28' }, '+$80 / month');
+      txt(svg, { x:'328', y:'197', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' }, 'to run AC overnight');
+
+      txt(svg, { x:'328', y:'232', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.5)' }, 'There is no $80 here.');
+
+      svg.appendChild(ns('line', { x1:'28', y1:'256', x2:'412', y2:'256',
+        stroke:'rgba(26,37,47,0.08)', 'stroke-width':'1' }));
+
+      txt(svg, { x:'220', y:'304', 'text-anchor':'middle', 'font-size':'44',
+        'font-weight':'700', fill:'#C96A28' }, '1 in 5');
+      txt(svg, { x:'220', y:'334', 'text-anchor':'middle', 'font-size':'13',
+        fill:'rgba(26,37,47,0.65)' }, 'NYC renters with AC cannot afford to run it');
+
+      return svg;
+    }
+
+    // ── Q4: Cooling centers ───────────────────────────────────
+    function buildQ4() {
+      const svg = makeSVG();
+
+      txt(svg, { x:'220', y:'26', 'text-anchor':'middle', 'font-size':'10',
+        'font-weight':'700', 'letter-spacing':'0.1em',
+        fill:'rgba(26,37,47,0.5)' }, 'EMERGENCY COOLING CENTER SCHEDULE');
+
+      // 7-day row  (Mon = idx 0 … Sun = idx 6)
+      const DAY_ABBR  = ['M','T','W','T','F','S','S'];
+      const DAY_NAMES = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      const CX_START  = 36, CX_STEP = 58;
+
+      DAY_ABBR.forEach((d, i) => {
+        const cx     = CX_START + i * CX_STEP;
+        const isSun  = i === 6;
+        const r      = isSun ? 36 : 26;
+        const cy     = 84;
+
+        svg.appendChild(ns('circle', { cx, cy, r,
+          fill:           isSun ? 'rgba(146,43,33,0.18)' : 'rgba(26,37,47,0.07)',
+          stroke:         isSun ? '#922B21' : 'rgba(26,37,47,0.15)',
+          'stroke-width': isSun ? '2' : '1' }));
+
+        txt(svg, { x: cx, y: cy + 5, 'text-anchor':'middle',
+          'font-size': isSun ? '15' : '12', 'font-weight':'700',
+          fill: isSun ? '#922B21' : 'rgba(26,37,47,0.5)' }, d);
+
+        txt(svg, { x: cx, y: cy + r + 14, 'text-anchor':'middle',
+          'font-size':'9',
+          fill: isSun ? 'rgba(146,43,33,0.75)' : 'rgba(26,37,47,0.4)' },
+          DAY_NAMES[i]);
+
+        if (isSun) {
+          txt(svg, { x: cx, y: cy + r + 28, 'text-anchor':'middle',
+            'font-size':'9', 'font-weight':'700', fill:'#922B21' }, 'CLOSED');
         }
       });
-      s.links.forEach(drawLink);
-      s.ghosts.forEach(drawGhost);
 
-      // Dim nodes not in active set
-      nodesG.querySelectorAll('[data-nid]').forEach(g => {
-        g.style.opacity = s.nodes.includes(g.dataset.nid) ? '1' : '0.18';
-      });
-      // Dim links similarly
-      linksG.children && Array.from(linksG.children).forEach((line, i) => {
-        const drawn = Array.from(drawnLinks);
-        const linkId = drawn[i];
-        if (linkId) line.setAttribute('opacity', s.links.includes(linkId) ? '1' : '0.15');
-      });
+      txt(svg, { x:'220', y:'190', 'text-anchor':'middle', 'font-size':'76',
+        'font-weight':'700', fill:'#1A252F' }, '83%');
+      txt(svg, { x:'220', y:'222', 'text-anchor':'middle', 'font-size':'13',
+        fill:'rgba(26,37,47,0.65)' }, 'of emergency cooling centers closed Sundays');
+      txt(svg, { x:'220', y:'242', 'text-anchor':'middle', 'font-size':'12',
+        fill:'rgba(26,37,47,0.5)' }, 'the day heat-related deaths peak in NYC');
+
+      svg.appendChild(ns('line', { x1:'28', y1:'264', x2:'412', y2:'264',
+        stroke:'rgba(26,37,47,0.08)', 'stroke-width':'1' }));
+
+      // Two secondary stats
+      txt(svg, { x:'130', y:'300', 'text-anchor':'middle', 'font-size':'30',
+        'font-weight':'700', fill:'rgba(26,37,47,0.65)' }, '47%');
+      txt(svg, { x:'130', y:'322', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' }, 'age-restricted');
+      txt(svg, { x:'130', y:'337', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' }, '(seniors only)');
+
+      txt(svg, { x:'310', y:'300', 'text-anchor':'middle', 'font-size':'30',
+        'font-weight':'700', fill:'rgba(26,37,47,0.65)' }, '38%');
+      txt(svg, { x:'310', y:'322', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' }, 'of high-risk tracts have');
+      txt(svg, { x:'310', y:'337', 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' }, 'no cooling within walking distance');
+
+      return svg;
     }
 
-    // Draw initial state immediately
-    applyQStateFull(0);
-    // Tag initial nodes
-    nodesG.querySelectorAll('.aq-node').forEach((g, i) => {
-      const keys = Object.keys(AQ_NODES);
-      if (!g.dataset.nid && i < keys.length) g.dataset.nid = keys[i];
-    });
+    // ── Q5: What it takes to break a cooling desert ──────────
+    function buildQ5() {
+      const svg = makeSVG('0 0 440 390');
 
-    // IntersectionObserver for scroll
+      txt(svg, { x:'220', y:'26', 'text-anchor':'middle', 'font-size':'10',
+        'font-weight':'700', 'letter-spacing':'0.1em',
+        fill:'rgba(26,37,47,0.5)' }, 'COOLING DESERT REDUCTION - BY INTERVENTION');
+
+      const SCENARIOS = [
+        { label:'Add cooling sites',  sub:'outdoor access gap',      pct:12, color:'rgba(26,37,47,0.2)' },
+        { label:'AC retrofits',       sub:'+ urban greening',        pct:17, color:'rgba(26,37,47,0.2)' },
+        { label:'Energy assistance',  sub:'NYCHA surcharge removed',  pct:21, color:'rgba(26,37,47,0.2)' },
+        { label:'Rent relief',        sub:'broadest constraint',      pct:23, color:'rgba(26,37,47,0.2)' },
+        { label:'All four combined',  sub:null,                       pct:67, color:'#27AE60', highlight:true },
+      ];
+
+      // Bars area: label col 0–150, bar col 150–390, pct col 396+
+      const LABEL_W = 150, BAR_START = 154, BAR_MAX = 232, BAR_H = 28, GAP = 12;
+      let y = 46;
+
+      SCENARIOS.forEach((s, i) => {
+        if (i === 4) {
+          svg.appendChild(ns('line', { x1:'28', y1: y - 6, x2:'412', y2: y - 6,
+            stroke:'rgba(26,37,47,0.12)', 'stroke-width':'1' }));
+        }
+
+        const barW = (s.pct / 100) * BAR_MAX;
+        const rowH  = s.highlight ? 44 : BAR_H;
+
+        // Bar track
+        svg.appendChild(ns('rect', { x: BAR_START, y, width: BAR_MAX, height: rowH,
+          rx:'4', fill: s.highlight ? 'rgba(39,174,96,0.08)' : 'rgba(26,37,47,0.06)' }));
+
+        // Bar fill
+        svg.appendChild(ns('rect', { x: BAR_START, y, width: barW, height: rowH,
+          rx:'4', fill: s.color }));
+
+        // Label (left column, right-aligned)
+        txt(svg, { x: LABEL_W, y: y + rowH / 2 + 5, 'text-anchor':'end',
+          'font-size': s.highlight ? '14' : '12',
+          'font-weight': s.highlight ? '700' : '400',
+          fill: s.highlight ? '#1A252F' : 'rgba(26,37,47,0.6)' }, s.label);
+
+        // Sub-label below for non-highlight
+        if (s.sub && !s.highlight) {
+          txt(svg, { x: LABEL_W, y: y + rowH / 2 + 18, 'text-anchor':'end',
+            'font-size':'9', fill:'rgba(26,37,47,0.45)' }, s.sub);
+        }
+
+        // Percentage (right of bar)
+        txt(svg, { x: BAR_START + BAR_MAX + 14, y: y + rowH / 2 + 5,
+          'font-size': s.highlight ? '26' : '14', 'font-weight':'700',
+          fill: s.highlight ? '#27AE60' : 'rgba(26,37,47,0.55)' }, s.pct + '%');
+
+        y += rowH + GAP + (s.sub && !s.highlight ? 10 : 0);
+      });
+
+      // Prominent note - styled as a callout, not a footnote
+      svg.appendChild(ns('rect', { x:'28', y: y + 8, width:'384', height:'48',
+        rx:'6', fill:'rgba(39,174,96,0.08)', stroke:'rgba(39,174,96,0.2)',
+        'stroke-width':'1' }));
+      txt(svg, { x:'220', y: y + 28, 'text-anchor':'middle', 'font-size':'12',
+        'font-weight':'700', fill:'rgba(39,174,96,0.85)' },
+        '257 neighborhoods still remain after all four interventions.');
+      txt(svg, { x:'220', y: y + 45, 'text-anchor':'middle', 'font-size':'11',
+        fill:'rgba(26,37,47,0.55)' },
+        'Structural exclusion requires structural - not single-point - repair.');
+
+      return svg;
+    }
+
+    // ── Per-question captions ─────────────────────────────────
+    const Q_CAPTIONS = [
+      'The measurement tool decides where every dollar goes - but it counts AC ownership, not whether households can afford to run it.',
+      'Old buildings encode old decisions. A 1938 electrical panel is still making choices about who gets to cool their home in 2025.',
+      'The rent check and the electricity bill are the same constraint, just arriving in two different envelopes.',
+      'A cooling center that is closed when you need it, age-restricted, or two miles away is not a cooling center.',
+      'Fix one constraint: 12–23% improvement. Fix all four together: 67%. The network resists single-point repairs.',
+    ];
+
+    const Q_BUILDERS = [buildQ1, buildQ2, buildQ3, buildQ4, buildQ5];
+
+    // ── Show a question ───────────────────────────────────────
+    function showQ(idx) {
+      // Build new SVG
+      const newSVG = Q_BUILDERS[idx]();
+      newSVG.style.opacity = '0';
+      newSVG.style.transition = 'opacity 0.4s ease';
+
+      container.innerHTML = '';
+      container.appendChild(newSVG);
+
+      // Trigger fade-in on next paint
+      requestAnimationFrame(() => requestAnimationFrame(() => { newSVG.style.opacity = '1'; }));
+
+      if (labelEl) {
+        labelEl.style.opacity = '0';
+        labelEl.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+          labelEl.textContent = Q_CAPTIONS[idx];
+          labelEl.style.opacity = '1';
+        }, 180);
+      }
+    }
+
+    // ── IntersectionObserver ──────────────────────────────────
     const obs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
+        panels.forEach(p => p.classList.remove('is-active'));
         entry.target.classList.add('is-active');
-        panels.forEach(p => { if (p !== entry.target) p.classList.remove('is-active'); });
-        const q = parseInt(entry.target.dataset.q || '0', 10);
-        applyQStateFull(q);
+        showQ(parseInt(entry.target.dataset.q || '0', 10));
       });
     }, { rootMargin: '-20% 0px -20% 0px', threshold: 0.2 });
 
     panels.forEach(p => obs.observe(p));
+    showQ(0);
     if (panels[0]) panels[0].classList.add('is-active');
   }
 
 
-  // ══════════════════════════════════════════════════════════════
   // ACTOR-NETWORK DATA
-  // ══════════════════════════════════════════════════════════════
   const NODES = [
     { id: 'renters',   label: 'Renters',        type: 'human',
       detail: 'Bear the full cost of heat without owning their building. Face financial barriers to cooling. Cannot modify infrastructure.' },
@@ -564,26 +718,26 @@
       detail: 'Allocate budgets and design programs. Constrained by what data systems show them. The HVI is the primary input to their heat response.' },
 
     { id: 'heat',      label: 'Heat',            type: 'nonhuman',
-      detail: 'Not a passive backdrop — an actor. Kills more New Yorkers each year than hurricanes, floods, and blizzards combined. Acts differently across neighborhoods.' },
+      detail: 'Not a passive backdrop - an actor. Kills more New Yorkers each year than hurricanes, floods, and blizzards combined. Acts differently across neighborhoods.' },
     { id: 'hvi',       label: 'HVI Index',       type: 'nonhuman',
       detail: 'An "inscription device" (Latour). Translates complex conditions into a single number that drives resource allocation. Counts AC ownership, not AC use.' },
     { id: 'building',  label: 'Pre-1940 Bldg',   type: 'nonhuman',
       detail: 'Lacks wiring capacity for modern AC. Encodes 1930s infrastructure policy into today\'s heat emergency. Negative correlation with AC ownership (r = −0.31).' },
     { id: 'bill',      label: 'Electric Bill',   type: 'nonhuman',
-      detail: '21% of renter AC owners cannot afford to run it. For severely rent-burdened households, energy = 10.3% of income — 4× the non-burdened rate.' },
+      detail: '21% of renter AC owners cannot afford to run it. For severely rent-burdened households, energy = 10.3% of income - 4× the non-burdened rate.' },
     { id: 'rent',      label: 'Rent Check',      type: 'nonhuman',
-      detail: 'Extracts 50%+ of income from severely burdened households — leaving nothing for electricity. The most powerful financial constraint in the network.' },
+      detail: 'Extracts 50%+ of income from severely burdened households - leaving nothing for electricity. The most powerful financial constraint in the network.' },
     { id: 'trees',     label: 'Tree Canopy',     type: 'nonhuman',
       detail: 'Cooling deserts average 2.1% less canopy than safer neighborhoods. Trees reduce surface temperatures and are infrastructure, not decoration.' },
     { id: 'ac',        label: 'Air Conditioner', type: 'nonhuman',
-      detail: 'Technically present in 84–95% of households across HVI ranks. Effectively accessible to far fewer — blocked by bills, buildings, and surcharges.' },
+      detail: 'Technically present in 84–95% of households across HVI ranks. Effectively accessible to far fewer - blocked by bills, buildings, and surcharges.' },
     { id: 'alert',     label: 'Emergency Alert', type: 'nonhuman',
       detail: 'English-only alert system excludes 10.5% of NYC renters who are limited English proficient. A communication infrastructure that participates in exclusion.' },
     { id: 'surcharge', label: 'NYCHA Surcharge', type: 'nonhuman',
       detail: 'A policy artifact that rations cooling access in public housing. 1 in 3 NYCHA residents cite it as a barrier. Removes itself from housing cost calculations.' },
 
     { id: 'desert',    label: 'Cooling Desert',  type: 'outcome',
-      detail: '557 neighborhoods. 1.47M renters. Not a fixed place — a stable network configuration that produces structural vulnerability to heat.' },
+      detail: '557 neighborhoods. 1.47M renters. Not a fixed place - a stable network configuration that produces structural vulnerability to heat.' },
   ];
 
   const LINKS = [
@@ -617,16 +771,16 @@
     },
     {
       hl: ['renters','landlords','city','nycha','policy'], links: null, dim: true,
-      label: 'Human actors — they make decisions, but each one is constrained by the broader network they are enrolled in.'
+      label: 'Human actors - they make decisions, but each one is constrained by the broader network they are enrolled in.'
     },
     {
       hl: ['heat','hvi','building','bill','rent','trees','ac','alert','surcharge'], links: null, dim: true,
-      label: 'Non-human actors — they participate, constrain, and shape outcomes without making decisions in any conventional sense.'
+      label: 'Non-human actors - they participate, constrain, and shape outcomes without making decisions in any conventional sense.'
     },
     {
       hl: ['heat','hvi','city','policy'],
       links: ['heat→hvi','hvi→city','city→policy'], dim: true,
-      label: 'The translation chain: heat → measurement → policy. This is how risk becomes response — but affordability never enters this path.'
+      label: 'The translation chain: heat → measurement → policy. This is how risk becomes response - but affordability never enters this path.'
     },
     {
       hl: ['rent','bill','building','alert','renters','ac'],
@@ -634,95 +788,131 @@
       label: 'The constraint network: non-human actors that together prevent households from accessing cooling even when AC exists.'
     },
     {
-      hl: ['desert','bill','building','rent','alert','hvi'],
-      links: ['bill→desert','building→desert','rent→desert','alert→desert','hvi→desert'], dim: false,
-      label: '557 neighborhoods. The cooling desert is not a place. It is what this network produces — and it persists because the network is stable.'
+      hl: null, links: null, dim: false,
+      label: '557 neighborhoods. The cooling desert is not a place. It is what this network produces - and it persists because the network is stable.'
     },
   ];
 
 
-  // ══════════════════════════════════════════════════════════════
   // MAIN INIT (called once theory path first activated)
-  // ══════════════════════════════════════════════════════════════
   function initTheory() {
     initSceneBuilder();
     buildFiveQuestions();
     buildNetwork();
     buildActorViz();
     buildTranslationFlow();
-    buildPolicyViz();
     buildSynthesis();
     initActorTabs();
     initScrollytelling();
   }
 
 
-  // ══════════════════════════════════════════════════════════════
-  // D3 FORCE NETWORK
-  // ══════════════════════════════════════════════════════════════
+  // FIXED-GRID NETWORK (replaces force simulation)
   function buildNetwork() {
     const wrap = document.getElementById('ant-network-svg');
     if (!wrap || typeof d3 === 'undefined') return;
 
-    const W = wrap.clientWidth  || 500;
-    const H = wrap.clientHeight || 440;
+    // Fixed viewBox — scales to container via CSS
+    const VW = 560, VH = 530;
 
     const svg = d3.select(wrap).append('svg')
       .attr('width', '100%').attr('height', '100%')
-      .attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('viewBox', `0 0 ${VW} ${VH}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
       .style('overflow', 'visible');
 
-    // Arrow markers
+    // Arrow markers — refX=10 so tip lands at edge of shape
     const defs = svg.append('defs');
-    const markerDefs = [
-      { id: 'arr-translation', color: '#F5A623' },
+    [
+      { id: 'arr-translation', color: '#2980B9' },
       { id: 'arr-constraint',  color: '#C0392B' },
-      { id: 'arr-resource',    color: '#27AE60' },
-    ];
-    markerDefs.forEach(m => {
+      { id: 'arr-resource',    color: '#1E8A52' },
+    ].forEach(m => {
       defs.append('marker')
         .attr('id', m.id)
-        .attr('viewBox', '0 -4 8 8').attr('refX', 16).attr('refY', 0)
-        .attr('markerWidth', 5).attr('markerHeight', 5).attr('orient', 'auto')
-        .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', m.color);
+        .attr('viewBox', '0 -5 10 10').attr('refX', 10).attr('refY', 0)
+        .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
+        .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', m.color);
     });
 
-    const nodes = NODES.map(n => ({ ...n }));
-    const links = LINKS.map(l => ({ ...l }));
+    // ── Fixed grid positions ───────────────────────────────────
+    // Row 0: translation chain  — heat → HVI → city agencies → policymakers
+    // Row 1: resource/structural — tree canopy, NYCHA, AC, rent check
+    // Row 2: people + access    — landlords, renters, alert system, electric bill
+    // Row 3: outcome + buildingconstraints
+    const FIXED = {
+      heat:      { x: 70,  y: 80  },
+      hvi:       { x: 200, y: 80  },
+      city:      { x: 335, y: 80  },
+      policy:    { x: 470, y: 80  },
+      trees:     { x: 70,  y: 210 },
+      nycha:     { x: 200, y: 210 },
+      ac:        { x: 335, y: 210 },
+      rent:      { x: 470, y: 210 },
+      landlords: { x: 70,  y: 345 },
+      renters:   { x: 200, y: 345 },
+      alert:     { x: 335, y: 345 },
+      bill:      { x: 470, y: 345 },
+      building:  { x: 70,  y: 460 },
+      surcharge: { x: 200, y: 460 },
+      desert:    { x: 335, y: 460 },
+    };
 
-    const sim = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(d => d.id).distance(85).strength(0.5))
-      .force('charge', d3.forceManyBody().strength(-240))
-      .force('center', d3.forceCenter(W / 2, H / 2))
-      .force('collision', d3.forceCollide(36));
+    const nodes = NODES.map(n => ({ ...n, x: FIXED[n.id].x, y: FIXED[n.id].y }));
+    const nodeById = {};
+    nodes.forEach(n => { nodeById[n.id] = n; });
 
-    // Shared tooltip (reuse existing or create)
+    const links = LINKS.map(l => ({
+      ...l,
+      source: nodeById[typeof l.source === 'string' ? l.source : l.source.id],
+      target: nodeById[typeof l.target === 'string' ? l.target : l.target.id],
+    }));
+
+    // ── Shape radius helpers ───────────────────────────────────
+    function shapeR(n) {
+      if (n.type === 'outcome') return 36;
+      if (n.type === 'human')   return 28;
+      return 32; // diamond half-diagonal (44×44 rotated → √2×22 ≈ 31)
+    }
+
+    // Compute line endpoint on shape surface (+ gap for arrowhead)
+    function edgePt(src, tgt, isSrc) {
+      const dx = tgt.x - src.x, dy = tgt.y - src.y;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const n = isSrc ? src : tgt;
+      const r = shapeR(n) + (isSrc ? 0 : 5); // arrowhead gap at target
+      const sign = isSrc ? 1 : -1;
+      return { x: n.x + sign * (dx / len) * r, y: n.y + sign * (dy / len) * r };
+    }
+
+    // ── Tooltip ────────────────────────────────────────────────
     let tipEl = document.querySelector('.d3-tip.ant-tip');
     if (!tipEl) {
       tipEl = Object.assign(document.createElement('div'), { className: 'd3-tip ant-tip' });
       document.body.appendChild(tipEl);
     }
 
-    // Links
-    const linkG   = svg.append('g').attr('class', 'ant-links');
+    // ── Links ──────────────────────────────────────────────────
+    const EDGE_COLOR = { translation: '#2980B9', constraint: '#C0392B', resource: '#1E8A52' };
+    const linkG = svg.append('g').attr('class', 'ant-links');
     const linkSels = linkG.selectAll('line').data(links).enter().append('line')
       .attr('class', d => 'ant-edge edge-' + d.type)
-      .attr('stroke', d => d.type === 'translation' ? '#F5A623' : d.type === 'constraint' ? '#C0392B' : '#27AE60')
-      .attr('stroke-width', 1.5)
-      .attr('stroke-dasharray', d => d.type === 'constraint' ? '5,3' : 'none')
-      .attr('opacity', 0.3)
+      .attr('x1', d => edgePt(d.source, d.target, true).x)
+      .attr('y1', d => edgePt(d.source, d.target, true).y)
+      .attr('x2', d => edgePt(d.source, d.target, false).x)
+      .attr('y2', d => edgePt(d.source, d.target, false).y)
+      .attr('stroke', d => EDGE_COLOR[d.type])
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', d => d.type === 'constraint' ? '6,4' : 'none')
+      .attr('opacity', 0.55)
       .attr('marker-end', d => `url(#arr-${d.type})`);
 
-    // Nodes
-    const nodeG   = svg.append('g').attr('class', 'ant-nodes');
+    // ── Nodes ──────────────────────────────────────────────────
+    const nodeG = svg.append('g').attr('class', 'ant-nodes');
     const nodeSels = nodeG.selectAll('g').data(nodes).enter().append('g')
       .attr('class', d => 'ant-node node-' + d.type)
+      .attr('transform', d => `translate(${d.x},${d.y})`)
       .style('cursor', 'pointer')
-      .call(d3.drag()
-        .on('start', (ev, d) => { if (!ev.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
-        .on('drag',  (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
-        .on('end',   (ev, d) => { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
-      )
       .on('mouseover', function (ev, d) {
         tipEl.innerHTML = `<strong style="font-size:13px">${d.label}</strong><br><span style="font-size:11px;opacity:0.85;line-height:1.4">${d.detail}</span>`;
         tipEl.style.display = 'block';
@@ -730,58 +920,101 @@
         tipEl.style.top  = (ev.pageY - 12) + 'px';
         d3.select(this).select('.node-shape').attr('stroke-width', 3.5);
       })
-      .on('mousemove', ev => { tipEl.style.left = (ev.pageX+14)+'px'; tipEl.style.top=(ev.pageY-12)+'px'; })
-      .on('mouseout',  function () {
+      .on('mousemove', ev => {
+        tipEl.style.left = (ev.pageX + 14) + 'px';
+        tipEl.style.top  = (ev.pageY - 12) + 'px';
+      })
+      .on('mouseout', function () {
         tipEl.style.display = 'none';
         d3.select(this).select('.node-shape').attr('stroke-width', 2);
       });
 
-    // Outcome: large filled circle
+    // Outcome: large red circle
     nodeSels.filter(d => d.type === 'outcome').append('circle')
       .attr('class', 'node-shape')
-      .attr('r', 26).attr('fill', '#922B21').attr('stroke', '#5D1A14').attr('stroke-width', 2).attr('opacity', 0.95);
+      .attr('r', 36)
+      .attr('fill', '#922B21').attr('stroke', '#5D1A14').attr('stroke-width', 2).attr('opacity', 0.95);
 
-    // Human actors: medium circle
+    // Human actors: blue circle
     nodeSels.filter(d => d.type === 'human').append('circle')
       .attr('class', 'node-shape')
-      .attr('r', 18).attr('fill', '#7FB3D3').attr('stroke', '#2471A3').attr('stroke-width', 2).attr('opacity', 0.9);
+      .attr('r', 28)
+      .attr('fill', '#1F6999').attr('stroke', '#154E73').attr('stroke-width', 2).attr('opacity', 0.9);
 
-    // Non-human: diamond (rotated rect)
+    // Non-human: amber diamond (44×44 rect rotated 45°)
     nodeSels.filter(d => d.type === 'nonhuman').append('rect')
       .attr('class', 'node-shape')
-      .attr('width', 28).attr('height', 28).attr('x', -14).attr('y', -14)
+      .attr('width', 44).attr('height', 44).attr('x', -22).attr('y', -22)
       .attr('transform', 'rotate(45)')
       .attr('fill', '#F5C26B').attr('stroke', '#B7770D').attr('stroke-width', 2).attr('opacity', 0.9);
 
-    // Labels
-    nodeSels.append('text')
+    // ── Labels ─────────────────────────────────────────────────
+    // Two-word labels use tspan for line breaks; single words stay on one line.
+    // Outcome label is centered inside its circle; all others are below their shape.
+    const LABEL_LINES = {
+      heat:      ['Heat',      null],
+      hvi:       ['HVI',       'Index'],
+      city:      ['City',      'Agencies'],
+      policy:    ['Policy-',   'makers'],
+      trees:     ['Tree',      'Canopy'],
+      nycha:     ['NYCHA',     null],
+      ac:        ['Air',       'Conditioner'],
+      rent:      ['Rent',      'Check'],
+      landlords: ['Landlords', null],
+      renters:   ['Renters',   null],
+      alert:     ['Alert',     'System'],
+      bill:      ['Electric',  'Bill'],
+      building:  ['Pre-1940',  'Building'],
+      surcharge: ['NYCHA',     'Surcharge'],
+      desert:    ['Cooling',   'Desert'],
+    };
+
+    // Outcome: label inside circle
+    nodeSels.filter(d => d.type === 'outcome').append('text')
       .attr('class', 'node-label')
       .attr('text-anchor', 'middle')
-      .attr('y', d => d.type === 'outcome' ? 4 : 36)
-      .attr('font-size', d => d.type === 'outcome' ? '9.5px' : '9px')
-      .attr('font-weight', '600')
-      .attr('fill', d => d.type === 'outcome' ? '#fff' : '#1A252F')
+      .attr('font-size', '11px')
+      .attr('font-weight', '700')
+      .attr('fill', '#fff')
       .attr('pointer-events', 'none')
-      .text(d => {
-        if (d.type === 'outcome') return d.label;
-        return d.label.length > 13 ? d.label.slice(0, 12) + '…' : d.label;
+      .each(function (d) {
+        const [l1, l2] = LABEL_LINES[d.id] || [d.label, null];
+        const el = d3.select(this);
+        if (l2) {
+          el.append('tspan').attr('x', 0).attr('dy', '-0.55em').text(l1);
+          el.append('tspan').attr('x', 0).attr('dy', '1.25em').text(l2);
+        } else {
+          el.append('tspan').attr('x', 0).attr('dy', '0.35em').text(l1);
+        }
       });
 
-    sim.on('tick', () => {
-      linkSels
-        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
-      nodeSels.attr('transform', d => `translate(${Math.max(20, Math.min(W-20, d.x))},${Math.max(20, Math.min(H-20, d.y))})`);
-    });
+    // Human + nonhuman: label below shape
+    nodeSels.filter(d => d.type !== 'outcome').append('text')
+      .attr('class', 'node-label')
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '10.5px')
+      .attr('font-weight', '600')
+      .attr('fill', '#1A252F')
+      .attr('pointer-events', 'none')
+      .each(function (d) {
+        const [l1, l2] = LABEL_LINES[d.id] || [d.label, null];
+        const el = d3.select(this);
+        // Place first line below the shape (human r=28+14=42; nonhuman diag≈31+14=45)
+        const baseY = d.type === 'human' ? 42 : 46;
+        if (l2) {
+          el.append('tspan').attr('x', 0).attr('y', baseY).text(l1);
+          el.append('tspan').attr('x', 0).attr('dy', '1.3em').text(l2);
+        } else {
+          el.append('tspan').attr('x', 0).attr('y', baseY + 7).text(l1);
+        }
+      });
 
     // Store for scrollytelling state changes
     window._antViz = { nodeSels, linkSels, nodes, links };
   }
 
 
-  // ══════════════════════════════════════════════════════════════
   // APPLY SCROLL STATE TO NETWORK
-  // ══════════════════════════════════════════════════════════════
   function applyState(idx) {
     if (!window._antViz) return;
     const { nodeSels, linkSels } = window._antViz;
@@ -802,19 +1035,17 @@
 
     linkSels.transition().duration(380)
       .attr('opacity', d => {
-        if (!s.links) return 0.3;
+        if (!s.links) return s.dim ? 0.3 : 0.65;
         return s.links.includes(d.source.id + '→' + d.target.id) ? 0.9 : 0.08;
       })
       .attr('stroke-width', d => {
-        if (!s.links) return 1.5;
+        if (!s.links) return s.dim ? 1.5 : 2.5;
         return s.links.includes(d.source.id + '→' + d.target.id) ? 3 : 1;
       });
   }
 
 
-  // ══════════════════════════════════════════════════════════════
-  // SCROLLYTELLING — panels drive network state
-  // ══════════════════════════════════════════════════════════════
+  // SCROLLYTELLING - panels drive network state
   function initScrollytelling() {
     const panels = document.querySelectorAll('#ant-panels .ant-panel');
     if (!panels.length) return;
@@ -832,9 +1063,7 @@
   }
 
 
-  // ══════════════════════════════════════════════════════════════
-  // ACTOR TABS — tab switching
-  // ══════════════════════════════════════════════════════════════
+  // ACTOR TABS - tab switching
   function initActorTabs() {
     const btns   = document.querySelectorAll('.aat-btn');
     const panels = document.querySelectorAll('.aat-panel');
@@ -848,16 +1077,14 @@
   }
 
 
-  // ══════════════════════════════════════════════════════════════
   // ACTOR VISUALIZATIONS
-  // ══════════════════════════════════════════════════════════════
   function buildActorViz() {
     buildBillPeople();
     buildBuildingEras();
     buildHviLens();
   }
 
-  // ── Viz 1: 10×10 person grid — 79 green, 21 red ────────────
+  // ── Viz 1: 10×10 person grid - 79 green, 21 red ────────────
   function buildBillPeople() {
     const wrap = document.getElementById('viz-bill-people');
     if (!wrap || typeof d3 === 'undefined') return;
@@ -902,7 +1129,7 @@
       .style('cursor', 'pointer')
       .on('mouseover', function (ev, d) {
         tip.innerHTML = d.cant
-          ? '<b>Can\'t afford to run AC</b><br>Owns an air conditioner — but the monthly electric bill during summer is unaffordable.'
+          ? '<b>Can\'t afford to run AC</b><br>Owns an air conditioner - but the monthly electric bill during summer is unaffordable.'
           : '<b>Can run AC when needed</b><br>Has both the appliance and enough income left after rent to use it.';
         tip.style.display = 'block';
         tip.style.left = (ev.pageX + 12) + 'px';
@@ -1021,227 +1248,251 @@
       .text(d => d.label);
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // SYNTHESIS — assembled full network closing section
-  // ══════════════════════════════════════════════════════════════
+  // SYNTHESIS - assembled full network closing section
   function buildSynthesis() {
     const wrap = document.getElementById('ant-synthesis-viz');
     if (!wrap) return;
 
-    // Nodes: 4 constraint clusters + central desert + 2 population nodes
+    // ── Layout: viewBox 900 × 580 ─────────────────────────────
+    // CY=320 gives breathing room above hvi node for external captions.
+    // Constraint node captions sit OUTSIDE the circles so they're always
+    // readable against the cream background (white-on-cream is invisible).
+    const CX = 450, CY = 320;
+
     const SYN_NODES = [
-      // Central outcome
-      { id: 'desert',   label: 'Cooling Desert',      sub: '557 neighborhoods',       cx: 380, cy: 230, r: 46, fill: '#922B21', stroke: '#6B1A14', textFill: '#fff' },
+      // Central outcome - two-line sub inside (large circle, text fits)
+      { id: 'desert',
+        label: 'Cooling Desert', sub1: '557 neighborhoods', sub2: '1.47M renters',
+        cx: CX, cy: CY,
+        r: 74, fill: '#922B21', stroke: '#C0392B', strokeW: 3, textFill: '#fff', labelSz: '17' },
 
-      // Constraint cluster nodes (Q1–Q4)
-      { id: 'hvi',      label: 'Risk Index',           sub: 'Q1 — Measurement gap',    cx: 380, cy: 68,  r: 30, fill: '#2471A3', stroke: '#1A5276', textFill: '#fff' },
-      { id: 'bill',     label: 'Energy Cost',          sub: 'Q3 — Financial chain',    cx: 568, cy: 155, r: 30, fill: '#E07B39', stroke: '#A0541F', textFill: '#fff' },
-      { id: 'building', label: 'Old Buildings',        sub: 'Q2 — Infrastructure',     cx: 568, cy: 310, r: 30, fill: '#8B6914', stroke: '#5A430D', textFill: '#fff' },
-      { id: 'centers',  label: 'Cooling Centers',      sub: 'Q4 — Access mismatch',    cx: 192, cy: 310, r: 30, fill: '#1F6999', stroke: '#145374', textFill: '#fff' },
-      { id: 'rent',     label: 'Rent Burden',          sub: 'Q3 — Financial chain',    cx: 192, cy: 155, r: 30, fill: '#C0392B', stroke: '#7B1F1B', textFill: '#fff' },
-
-      // Population nodes (outer)
-      { id: 'renters',  label: 'Renters',              sub: '1.47M affected',          cx: 100, cy: 230, r: 22, fill: '#4A5568', stroke: '#2D3748', textFill: '#fff' },
-      { id: 'nycha',    label: 'NYCHA Residents',      sub: '1-in-3 deters from AC',   cx: 660, cy: 230, r: 22, fill: '#5D6D7E', stroke: '#3B4450', textFill: '#fff' },
+      // Constraint nodes - NO sub inside circle; caption rendered outside
+      { id: 'hvi',
+        label: 'Risk Index',      caption: 'Q1 - measurement gap',
+        cx: CX,       cy: CY - 200,
+        r: 56, fill: '#1F6999', stroke: '#1A5276', strokeW: 2, textFill: '#fff', labelSz: '15' },
+      { id: 'bill',
+        label: 'Energy Cost',     caption: 'Q3 - AC unaffordable',
+        cx: CX + 215, cy: CY - 85,
+        r: 56, fill: '#C96A28', stroke: '#A0541F', strokeW: 2, textFill: '#fff', labelSz: '15' },
+      { id: 'building',
+        label: 'Old Buildings',   caption: 'Q2 - wiring limits AC',
+        cx: CX + 185, cy: CY + 148,
+        r: 56, fill: '#8B6914', stroke: '#5A430D', strokeW: 2, textFill: '#fff', labelSz: '15' },
+      { id: 'centers',
+        label: 'Cooling Centers', caption: 'Q4 - system mismatch',
+        cx: CX - 185, cy: CY + 148,
+        r: 56, fill: '#1F7A6E', stroke: '#145E54', strokeW: 2, textFill: '#fff', labelSz: '15' },
+      { id: 'rent',
+        label: 'Rent Burden',     caption: 'Q3 - income trap',
+        cx: CX - 215, cy: CY - 85,
+        r: 56, fill: '#A93226', stroke: '#7B1F1B', strokeW: 2, textFill: '#fff', labelSz: '15' },
     ];
 
-    // Labeled connections
     const SYN_LINKS = [
-      { from: 'hvi',      to: 'desert',  label: '214 tracts\nunderscored',    stroke: '#2471A3',  dash: '6,3',  labelSide: 'top' },
-      { from: 'bill',     to: 'desert',  label: '21% can\'t\nafford to run it', stroke: '#E07B39', dash: '4,3',  labelSide: 'right' },
-      { from: 'building', to: 'desert',  label: '47% pre-1980\nwiring',        stroke: '#8B6914',  dash: '4,3',  labelSide: 'right' },
-      { from: 'centers',  to: 'desert',  label: '83% closed\nSundays',         stroke: '#1F6999',  dash: '6,3',  labelSide: 'left' },
-      { from: 'rent',     to: 'desert',  label: '50%+ income\nto rent',         stroke: '#C0392B',  dash: '4,3',  labelSide: 'left' },
-      { from: 'rent',     to: 'bill',    label: '',                             stroke: '#999',     dash: '3,4',  labelSide: null },
-      { from: 'renters',  to: 'desert',  label: '',                             stroke: '#4A5568',  dash: '3,5',  labelSide: null },
-      { from: 'nycha',    to: 'desert',  label: '',                             stroke: '#5D6D7E',  dash: '3,5',  labelSide: null },
+      { from: 'hvi',      to: 'desert', label: '214 tracts misscored',    stroke: '#1F6999', strokeW: 3 },
+      { from: 'bill',     to: 'desert', label: "21% can't afford to run", stroke: '#C96A28', strokeW: 3 },
+      { from: 'building', to: 'desert', label: '47% pre-1980 wiring',     stroke: '#8B6914', strokeW: 3 },
+      { from: 'centers',  to: 'desert', label: '83% closed Sundays',      stroke: '#1F7A6E', strokeW: 3 },
+      { from: 'rent',     to: 'desert', label: '50%+ income to rent',     stroke: '#A93226', strokeW: 3 },
+      { from: 'rent',     to: 'bill',   label: '',  stroke: 'rgba(169,50,38,0.28)', strokeW: 1.5, dash: '5,5', secondary: true },
     ];
 
-    const W = Math.min(wrap.clientWidth || 760, 760);
-
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 760 420');
-    svg.setAttribute('width', '100%');
-    svg.style.maxWidth = W + 'px';
-    svg.style.overflow = 'visible';
-    svg.setAttribute('class', 'synthesis-svg');
-
-    // Defs: arrowhead
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    const mkr = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-    mkr.setAttribute('id', 'syn-arr'); mkr.setAttribute('viewBox', '0 -4 8 8');
-    mkr.setAttribute('refX', '7'); mkr.setAttribute('refY', '0');
-    mkr.setAttribute('markerWidth', '5'); mkr.setAttribute('markerHeight', '5');
-    mkr.setAttribute('orient', 'auto');
-    const arrPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    arrPath.setAttribute('d', 'M0,-4L8,0L0,4Z'); arrPath.setAttribute('fill', '#94A3B8');
-    mkr.appendChild(arrPath); defs.appendChild(mkr); svg.appendChild(defs);
-
-    // Helper: find node by id
-    function sn(id) { return SYN_NODES.find(n => n.id === id); }
-
-    // Helper: midpoint for label placement
-    function midpoint(n1, n2) {
-      return { x: (n1.cx + n2.cx) / 2, y: (n1.cy + n2.cy) / 2 };
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs) {
+      const e = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, String(v)));
+      return e;
+    }
+    function mkTxt(attrs, content) {
+      const t = el('text', { 'font-family': "'Bree Serif',serif", ...attrs });
+      t.textContent = content;
+      return t;
     }
 
-    // Helper: shorten line so it ends at node edge
+    const svg = el('svg', { viewBox: '0 0 900 580', width: '100%', class: 'synthesis-svg' });
+    svg.style.overflow = 'visible';
+
+    // ── Defs: solid arrowheads, larger and clearer ────────────
+    const defs = el('defs', {});
+    SYN_LINKS.filter(lk => !lk.secondary).forEach(lk => {
+      const mkr = el('marker', {
+        id: lk.from + '_arr',
+        viewBox: '0 -5 10 10', refX: '8', refY: '0',
+        markerWidth: '9', markerHeight: '9', orient: 'auto',
+      });
+      mkr.appendChild(el('path', { d: 'M0,-5L10,0L0,5Z', fill: lk.stroke }));
+      defs.appendChild(mkr);
+    });
+    svg.appendChild(defs);
+
+    function sn(id) { return SYN_NODES.find(n => n.id === id); }
     function shortenLine(x1, y1, x2, y2, r1, r2) {
       const dx = x2 - x1, dy = y2 - y1;
       const len = Math.sqrt(dx * dx + dy * dy);
       if (len === 0) return { x1, y1, x2, y2 };
       const ux = dx / len, uy = dy / len;
-      return {
-        x1: x1 + ux * r1,
-        y1: y1 + uy * r1,
-        x2: x2 - ux * (r2 + 3),
-        y2: y2 - uy * (r2 + 3),
-      };
+      return { x1: x1 + ux * (r1 + 4), y1: y1 + uy * (r1 + 4),
+               x2: x2 - ux * (r2 + 9), y2: y2 - uy * (r2 + 9) };
     }
 
-    // Tooltip
-    const tip = document.createElement('div');
-    tip.className = 'synthesis-tip';
-    tip.style.cssText = 'position:absolute;display:none;max-width:200px;background:#1A252F;color:#F5F0E6;font-size:12px;line-height:1.5;padding:9px 12px;border-radius:6px;pointer-events:none;z-index:100;box-shadow:0 4px 14px rgba(0,0,0,0.35)';
-    wrap.style.position = 'relative';
-    wrap.appendChild(tip);
+    // ── Draw links ───────────────────────────────────────────
+    // Lines appended first (behind nodes), labels appended last (on top of nodes)
+    const linksG  = el('g', {});   // arrow lines only
+    const labelsG = el('g', {});   // stat labels — appended after nodes so they're never hidden
 
-    const NODE_DETAILS = {
-      desert:   '557 cooling desert neighborhoods. 1.47M renters. The stable outcome of the full network.',
-      hvi:      'The Heat Vulnerability Index scores 214 tracts as "moderate" while over half their renters can\'t afford to cool their homes.',
-      bill:     '21% of renter AC owners cannot afford to run their unit. For severely rent-burdened households, energy costs consume 10.3% of income.',
-      building: '47% of NYC housing is pre-1980. These buildings were never wired to support air conditioning safely.',
-      centers:  '83% of indoor emergency cooling centers are closed on Sundays. 47% are age-restricted.',
-      rent:     'Severely rent-burdened households spend 50%+ of income on rent, leaving nothing for cooling costs.',
-      renters:  '1.47 million renters live in identified cooling deserts. They bear the full cost of heat without owning their building.',
-      nycha:    'NYCHA\'s $25/month AC surcharge deters 1 in 3 public housing residents from running air conditioning.',
-    };
-
-    // Draw links first (under nodes)
-    const linksG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     SYN_LINKS.forEach(lk => {
       const a = sn(lk.from), b = sn(lk.to);
       if (!a || !b) return;
       const pts = shortenLine(a.cx, a.cy, b.cx, b.cy, a.r, b.r);
 
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', pts.x1); line.setAttribute('y1', pts.y1);
-      line.setAttribute('x2', pts.x2); line.setAttribute('y2', pts.y2);
-      line.setAttribute('stroke', lk.stroke); line.setAttribute('stroke-width', '2');
-      line.setAttribute('stroke-dasharray', lk.dash);
-      line.setAttribute('marker-end', 'url(#syn-arr)');
-      line.setAttribute('opacity', '0.7');
-      linksG.appendChild(line);
+      const lineAttrs = {
+        x1: pts.x1, y1: pts.y1, x2: pts.x2, y2: pts.y2,
+        stroke: lk.stroke, 'stroke-width': lk.strokeW,
+        opacity: '0.92',
+      };
+      if (lk.dash) lineAttrs['stroke-dasharray'] = lk.dash;
+      if (!lk.secondary) lineAttrs['marker-end'] = `url(#${lk.from}_arr)`;
+      linksG.appendChild(el('line', lineAttrs));
 
-      // Edge label (multi-line via foreignObject workaround: two text els)
+      // Edge stat label — added to labelsG (rendered on top of all nodes)
       if (lk.label) {
-        const mp = midpoint(a, b);
-        const lines = lk.label.split('\n');
-        const offsetX = lk.labelSide === 'right' ? 10 : lk.labelSide === 'left' ? -10 : 0;
-        const anchor = lk.labelSide === 'right' ? 'start' : lk.labelSide === 'left' ? 'end' : 'middle';
-        lines.forEach((ln, li) => {
-          const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          t.setAttribute('x', mp.x + offsetX);
-          t.setAttribute('y', mp.y - 4 + li * 13);
-          t.setAttribute('text-anchor', anchor);
-          t.setAttribute('font-size', '9.5');
-          t.setAttribute('font-weight', '600');
-          t.setAttribute('fill', lk.stroke);
-          t.setAttribute('pointer-events', 'none');
-          t.textContent = ln;
-          linksG.appendChild(t);
-        });
+        const mx = (a.cx + b.cx) / 2;
+        const my = (a.cy + b.cy) / 2;
+        const labelW = lk.label.length * 7 + 20;
+        labelsG.appendChild(el('rect', {
+          x: mx - labelW / 2, y: my - 12,
+          width: labelW, height: 22, rx: '4',
+          fill: 'rgba(250,248,243,0.97)',
+          stroke: lk.stroke, 'stroke-width': '0.5',
+        }));
+        labelsG.appendChild(mkTxt({
+          x: mx, y: my + 5,
+          'text-anchor': 'middle',
+          'font-size': '12', 'font-weight': '700',
+          fill: lk.stroke, 'pointer-events': 'none',
+        }, lk.label));
       }
     });
-    svg.appendChild(linksG);
+    svg.appendChild(linksG);  // lines behind nodes
 
-    // Draw nodes
+    // ── Tooltip ──────────────────────────────────────────────
+    const tip = document.createElement('div');
+    tip.style.cssText = 'position:absolute;display:none;max-width:280px;background:#1A252F;color:#F5F0E6;font-size:13.5px;line-height:1.6;padding:12px 16px;border-radius:8px;pointer-events:none;z-index:200;box-shadow:0 6px 20px rgba(0,0,0,0.4)';
+    wrap.style.position = 'relative';
+    wrap.appendChild(tip);
+
+    const NODE_DETAILS = {
+      desert:   '557 cooling desert neighborhoods. 1.47M renters structurally unable to protect themselves from heat. This is what the network produces.',
+      hvi:      'The Heat Vulnerability Index scores 214 tracts as "moderate" while more than half their renters cannot afford to cool their homes. The blind spot becomes the city\'s blind spot.',
+      bill:     '21% of renter AC owners cannot run their unit due to cost. For severely rent-burdened households, energy consumes 10.3% of income - four times the national threshold.',
+      building: '47% of NYC housing was built before 1980. These buildings were never wired for air conditioning. A 1938 electrical panel is still enforcing a 1938 decision.',
+      centers:  '83% of indoor emergency cooling centers are closed on Sundays - the peak day for heat mortality. 47% are age-restricted to seniors. 38% of high-risk tracts have no outdoor cooling within walking distance.',
+      rent:     'Severely rent-burdened households spend 50%+ of income on rent. Nothing remains for electricity, repairs, or emergencies. The rent check and the electric bill are the same constraint arriving twice.',
+    };
+
+    function showTip(ev, id) {
+      tip.innerHTML = `<strong style="display:block;margin-bottom:6px;font-size:14px">${sn(id).label}</strong>${NODE_DETAILS[id] || ''}`;
+      tip.style.display = 'block';
+      const wr = wrap.getBoundingClientRect();
+      tip.style.left = Math.min(ev.clientX - wr.left + 14, wr.width - 300) + 'px';
+      tip.style.top  = Math.max(4, ev.clientY - wr.top - 20) + 'px';
+    }
+
+    // ── Draw nodes ───────────────────────────────────────────
     SYN_NODES.forEach((n, i) => {
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      g.setAttribute('class', 'syn-node syn-node--' + n.id);
+      const g = el('g', { class: 'syn-node syn-node--' + n.id });
       g.style.cursor = 'pointer';
       g.style.opacity = '0';
       g.style.transition = 'opacity 0.5s ease';
 
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', n.cx); circle.setAttribute('cy', n.cy); circle.setAttribute('r', n.r);
-      circle.setAttribute('fill', n.fill); circle.setAttribute('stroke', n.stroke);
-      circle.setAttribute('stroke-width', n.id === 'desert' ? '3' : '2');
-
-      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      label.setAttribute('x', n.cx); label.setAttribute('y', n.sub ? n.cy - 2 : n.cy + 4);
-      label.setAttribute('text-anchor', 'middle');
-      label.setAttribute('font-size', n.id === 'desert' ? '12' : '10');
-      label.setAttribute('font-weight', '700');
-      label.setAttribute('fill', n.textFill);
-      label.setAttribute('pointer-events', 'none');
-      label.textContent = n.label;
-
+      // Circle
+      const circle = el('circle', {
+        cx: n.cx, cy: n.cy, r: n.r,
+        fill: n.fill, stroke: n.stroke, 'stroke-width': n.strokeW,
+      });
       g.appendChild(circle);
-      g.appendChild(label);
 
-      if (n.sub) {
-        const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        sub.setAttribute('x', n.cx); sub.setAttribute('y', n.cy + 12);
-        sub.setAttribute('text-anchor', 'middle');
-        sub.setAttribute('font-size', '8.5');
-        sub.setAttribute('fill', n.textFill);
-        sub.setAttribute('opacity', '0.8');
-        sub.setAttribute('pointer-events', 'none');
-        sub.textContent = n.sub;
-        g.appendChild(sub);
+      // Main label - centered inside circle
+      g.appendChild(mkTxt({
+        x: n.cx, y: n.sub1 ? n.cy - 8 : n.cy + 6,
+        'text-anchor': 'middle', 'font-size': n.labelSz,
+        'font-weight': '700', fill: n.textFill, 'pointer-events': 'none',
+      }, n.label));
+
+      // Desert two-line sub (both lines fit inside r=74 circle)
+      if (n.sub1) {
+        g.appendChild(mkTxt({
+          x: n.cx, y: n.cy + 12,
+          'text-anchor': 'middle', 'font-size': '11.5',
+          'font-weight': '400', fill: 'rgba(255,255,255,0.72)', 'pointer-events': 'none',
+        }, n.sub1));
+        g.appendChild(mkTxt({
+          x: n.cx, y: n.cy + 29,
+          'text-anchor': 'middle', 'font-size': '11.5',
+          'font-weight': '400', fill: 'rgba(255,255,255,0.72)', 'pointer-events': 'none',
+        }, n.sub2));
       }
 
-      // Hover
+      // External caption for constraint nodes - sits OUTSIDE the circle in the
+      // outward direction so it's always on the cream background and fully visible.
+      if (n.caption) {
+        const dx = n.cx - CX, dy = n.cy - CY;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const ux = dx / dist, uy = dy / dist;
+        const OFFSET = n.r + 22;
+        const capX = n.cx + ux * OFFSET;
+        const capY = n.cy + uy * OFFSET + (uy >= 0 ? 10 : -6);
+        const anchor = ux > 0.3 ? 'start' : ux < -0.3 ? 'end' : 'middle';
+        g.appendChild(mkTxt({
+          x: capX, y: capY,
+          'text-anchor': anchor,
+          'font-size': '13', 'font-weight': '600',
+          fill: n.fill, 'pointer-events': 'none',
+        }, n.caption));
+      }
+
       g.addEventListener('mouseenter', ev => {
-        circle.setAttribute('stroke-width', n.id === 'desert' ? '5' : '3.5');
-        const detail = NODE_DETAILS[n.id] || n.label;
-        tip.textContent = detail;
-        tip.style.display = 'block';
-        const wr = wrap.getBoundingClientRect();
-        tip.style.left = Math.min(ev.clientX - wr.left + 10, wr.width - 215) + 'px';
-        tip.style.top = (ev.clientY - wr.top - 12) + 'px';
+        circle.setAttribute('stroke-width', String(n.strokeW + 2));
+        showTip(ev, n.id);
       });
       g.addEventListener('mousemove', ev => {
         const wr = wrap.getBoundingClientRect();
-        tip.style.left = Math.min(ev.clientX - wr.left + 10, wr.width - 215) + 'px';
-        tip.style.top = (ev.clientY - wr.top - 12) + 'px';
+        tip.style.left = Math.min(ev.clientX - wr.left + 14, wr.width - 300) + 'px';
+        tip.style.top  = Math.max(4, ev.clientY - wr.top - 20) + 'px';
       });
       g.addEventListener('mouseleave', () => {
-        circle.setAttribute('stroke-width', n.id === 'desert' ? '3' : '2');
+        circle.setAttribute('stroke-width', String(n.strokeW));
         tip.style.display = 'none';
       });
 
       svg.appendChild(g);
-
-      // Stagger animate in
-      setTimeout(() => { g.style.opacity = '1'; }, 80 + i * 70);
+      setTimeout(() => { g.style.opacity = '1'; }, 60 + i * 80);
     });
+
+    svg.appendChild(labelsG);  // labels on top of all nodes - never hidden by circles
 
     wrap.insertBefore(svg, tip);
 
-    // IntersectionObserver: animate links on enter
+    // ── Animate links in on scroll-into-view ─────────────────
     const linkLines = linksG.querySelectorAll('line');
-    linkLines.forEach(l => { l.style.strokeDashoffset = '200'; l.style.transition = 'stroke-dashoffset 0.6s ease'; });
-
+    linkLines.forEach(l => { l.style.opacity = '0'; l.style.transition = 'opacity 0.5s ease'; });
     const synthObs = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
-      linkLines.forEach((l, i) => {
-        setTimeout(() => { l.style.strokeDashoffset = '0'; }, i * 80);
-      });
+      linkLines.forEach((l, i) => { setTimeout(() => { l.style.opacity = '0.92'; }, i * 100); });
       synthObs.disconnect();
-    }, { threshold: 0.3 });
+    }, { threshold: 0.25 });
     synthObs.observe(wrap);
   }
 
 
-  // ── Viz 3: HVI "lens" — two columns what's IN vs MISSING ───
+  // ── Viz 3: HVI "lens" - two columns what's IN vs MISSING ───
   function buildHviLens() {
     const wrap = document.getElementById('viz-hvi-lens');
     if (!wrap) return;
 
     const PIECES = [
-      // included — green filled
+      // included - green filled
       { id: 'surface_temp',   label: 'Surface Temperature',    type: 'in',
         detail: 'Satellite-measured land surface temperature. Hot pavement and rooftops vs. green, shaded streets.' },
       { id: 'greenspace',     label: 'Green Space Coverage',   type: 'in',
@@ -1249,17 +1500,17 @@
       { id: 'ac_own',         label: 'AC Ownership Rate',      type: 'in',
         detail: 'Share of households with an air conditioner. Does not measure whether it can actually be used.' },
       { id: 'income',         label: 'Household Income',       type: 'in',
-        detail: 'Median income per neighborhood — a rough proxy for adaptive capacity, not a direct measure.' },
+        detail: 'Median income per neighborhood - a rough proxy for adaptive capacity, not a direct measure.' },
       { id: 'social_vuln',    label: 'Social Vulnerability',   type: 'in',
         detail: 'A composite of poverty, age, and isolation. Included, but calculated before rent burden data existed.' },
 
-      // missing — red dashed outlines
+      // missing - red dashed outlines
       { id: 'ac_use',         label: 'AC Affordability',       type: 'out',
         detail: '21% of renter AC owners cannot afford to run it. This is not counted. The HVI sees the machine, not the bill.' },
       { id: 'bldg_wiring',    label: 'Building Wiring Age',    type: 'out',
-        detail: '47% of NYC housing stock is pre-1980. Older wiring cannot safely run AC overnight — a physical barrier the index ignores.' },
+        detail: '47% of NYC housing stock is pre-1980. Older wiring cannot safely run AC overnight - a physical barrier the index ignores.' },
       { id: 'rent_burden',    label: 'Rent Burden',            type: 'out',
-        detail: 'Severely rent-burdened households spend 50%+ of income on rent — nothing left for electricity. Not in the formula.' },
+        detail: 'Severely rent-burdened households spend 50%+ of income on rent - nothing left for electricity. Not in the formula.' },
       { id: 'lang_access',    label: 'Language Access',        type: 'out',
         detail: '10.5% of NYC renters are limited English proficient. Emergency alerts are English-only. Invisible to the HVI.' },
       { id: 'nycha_surcharge',label: 'NYCHA AC Surcharge',     type: 'out',
@@ -1431,7 +1682,7 @@
       svg.appendChild(r); svg.appendChild(t);
     }
     legDot(PAD, legY, '#D1FAE5', '#34D399', false, 'What the HVI counts');
-    legDot(PAD + 180, legY, 'rgba(192,57,43,0.06)', '#C0392B', true, 'What it leaves out — data that exists but was excluded');
+    legDot(PAD + 180, legY, 'rgba(192,57,43,0.06)', '#C0392B', true, 'What it leaves out - data that exists but was excluded');
 
     // Caption
     const cap = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -1447,404 +1698,116 @@
   }
 
 
-  // ══════════════════════════════════════════════════════════════
-  // TRANSLATION FLOW — Sankey diagram (what flows vs what gets dropped)
-  // ══════════════════════════════════════════════════════════════
+  // TRANSLATION FLOW - Sankey diagram (what flows vs what gets dropped)
   function buildTranslationFlow() {
-    const wrap = document.getElementById('sankey-viz');
-    if (!wrap || typeof d3 === 'undefined') return;
-    // d3-sankey may not be loaded — fall back gracefully
-    if (typeof d3.sankey === 'undefined') {
-      console.warn('d3-sankey not available; skipping Sankey render');
-      return;
-    }
+    const svgEl  = document.getElementById('dot-grid-svg');
+    const panels = document.querySelectorAll('#dot-panels .dot-panel');
+    const legEl  = document.getElementById('dot-legend');
+    if (!svgEl || !panels.length) return;
 
-    // Sankey data: nodes are pipeline stages; links show volume that flows vs drops.
-    // "drop" links go to a shared "Lost Data" sink node at the bottom.
-    const nodes = [
-      { id: 'heat',   label: 'Heat Event',          color: '#922B21' },
-      { id: 'data',   label: 'Data Collection',     color: '#C0392B' },
-      { id: 'hvi',    label: 'HVI Score',            color: '#E07B39' },
-      { id: 'policy', label: 'City Response',        color: '#D68910' },
-      { id: 'action', label: 'On the Ground',        color: '#7FB3D3' },
-      { id: 'drop',   label: 'Left Out',             color: '#B03030' }, // sink
-    ];
+    const NS = 'http://www.w3.org/2000/svg';
 
-    // Values represent relative importance (out of 100 entering the pipeline).
-    // source/target must match node id strings (nodeId: d => d.id).
-    const links = [
-      // stage transitions — forward flow
-      { source: 'heat',   target: 'data',   value: 100, drop: false },
-      { source: 'data',   target: 'hvi',    value: 60,  drop: false },
-      { source: 'hvi',    target: 'policy', value: 48,  drop: false },
-      { source: 'policy', target: 'action', value: 34,  drop: false },
-      // drop streams — what each stage excludes
-      { source: 'data',   target: 'drop',   value: 40,  drop: true,
-        label: 'Rent burden, building age, language access excluded from measurement' },
-      { source: 'hvi',    target: 'drop',   value: 12,  drop: true,
-        label: '21% of AC owners cannot afford to run it — invisible to the score' },
-      { source: 'policy', target: 'drop',   value: 14,  drop: true,
-        label: 'Households too constrained to travel to cooling centers' },
-      { source: 'action', target: 'drop',   value: 34,  drop: true,
-        label: '83% of cooling centers closed Sundays; 47% age-restricted; alerts English-only' },
-    ];
+    // ── Grid geometry ─────────────────────────────────────────
+    // 10×10 grid, viewBox 264×264
+    // r=10, spacing=26 center-to-center, pad=15 on all sides
+    // Dot index → outcome group:
+    //   0–39:  never counted   → grey
+    //  40–51:  misscored       → orange
+    //  52–65:  unreachable     → dark red
+    //  66–99:  reached         → green
+    const DOT_R   = 10;
+    const SPACING = 26;
+    const PAD     = 15;
 
-    const margin = { top: 20, right: 24, bottom: 20, left: 24 };
-    const wrapW = Math.min(wrap.clientWidth || 560, 680);
-    const wrapH = 340;
-    const W = wrapW - margin.left - margin.right;
-    const H = wrapH - margin.top - margin.bottom;
-
-    const svg = d3.select(wrap).append('svg')
-      .attr('viewBox', `0 0 ${wrapW} ${wrapH}`)
-      .attr('width', '100%')
-      .style('max-width', wrapW + 'px');
-
-    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
-
-    const sankey = d3.sankey()
-      .nodeId(d => d.id)
-      .nodeWidth(16)
-      .nodePadding(20)
-      .extent([[0, 0], [W, H]]);
-
-    const graph = sankey({
-      nodes: nodes.map((d, i) => Object.assign({ index: i }, d)),
-      links: links.map(d => Object.assign({}, d)),
-    });
-
-    // Tooltip
-    const tip = document.createElement('div');
-    tip.className = 'sankey-tip';
-    tip.style.cssText = 'position:absolute;display:none;max-width:230px;background:#1A252F;color:#F5F0E6;font-size:12px;line-height:1.5;padding:10px 13px;border-radius:6px;pointer-events:none;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,0.35)';
-    wrap.style.position = 'relative';
-    wrap.appendChild(tip);
-
-    function showTip(ev, text) {
-      tip.textContent = text;
-      tip.style.display = 'block';
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = Math.min(ev.clientX - wr.left + 12, wr.width - 245) + 'px';
-      tip.style.top = (ev.clientY - wr.top - 10) + 'px';
-    }
-    function moveTip(ev) {
-      const wr = wrap.getBoundingClientRect();
-      tip.style.left = Math.min(ev.clientX - wr.left + 12, wr.width - 245) + 'px';
-      tip.style.top = (ev.clientY - wr.top - 10) + 'px';
-    }
-    function hideTip() { tip.style.display = 'none'; }
-
-    // Stage descriptions
-    const stageDesc = {
-      heat:   'A heat wave arrives. Extreme temperatures, humidity, and urban heat island effect across the city.',
-      data:   'City agencies measure surface temperature, AC ownership, greenspace, and income.',
-      hvi:    'Variables are compressed into a single score from 1–5 for each of 188 neighborhoods.',
-      policy: 'Agencies use the HVI to place cooling centers and direct emergency communications.',
-      action: 'Cooling centers open. Alerts go out. Physical spaces are made available — to those who can reach them.',
-      drop:   'Information and people that did not make it through the pipeline.',
+    const COLORS = {
+      heat:        '#E07B39',
+      inSystem:    '#1F6999',
+      grey:        '#C8D3DC',
+      misscored:   '#E07B39',
+      unreachable: '#922B21',
+      reached:     '#27AE60',
     };
 
-    // Links
-    g.append('g').selectAll('path')
-      .data(graph.links)
-      .join('path')
-        .attr('class', d => d.drop ? 'sankey-link sankey-link--drop' : 'sankey-link')
-        .attr('d', d3.sankeyLinkHorizontal())
-        .attr('stroke-width', d => Math.max(1, d.width))
-        .attr('stroke', d => d.drop ? 'rgba(176,48,48,0.55)' : 'rgba(127,179,211,0.45)')
-        .attr('fill', 'none')
-        .attr('stroke-dasharray', d => d.drop ? '6,3' : 'none')
-        .on('mouseenter', (ev, d) => {
-          const txt = d.label
-            ? d.label
-            : `${d.source.label} → ${d.target.label}`;
-          showTip(ev, txt);
-          d3.select(ev.currentTarget)
-            .attr('stroke', d.drop ? 'rgba(176,48,48,0.9)' : 'rgba(127,179,211,0.85)');
-        })
-        .on('mousemove', moveTip)
-        .on('mouseleave', (ev, d) => {
-          hideTip();
-          d3.select(ev.currentTarget)
-            .attr('stroke', d.drop ? 'rgba(176,48,48,0.55)' : 'rgba(127,179,211,0.45)');
-        });
+    function stageColor(i, stage) {
+      if (stage === 0) return COLORS.heat;
+      if (stage === 1) return i < 40 ? COLORS.grey : COLORS.inSystem;
+      if (stage === 2) return i < 40 ? COLORS.grey : i < 52 ? COLORS.misscored : COLORS.inSystem;
+      // stage 3
+      if (i < 40)  return COLORS.grey;
+      if (i < 52)  return COLORS.misscored;
+      if (i < 66)  return COLORS.unreachable;
+      return COLORS.reached;
+    }
 
-    // Nodes
-    const nodeG = g.append('g').selectAll('g')
-      .data(graph.nodes)
-      .join('g')
-        .attr('class', 'sankey-node')
-        .style('cursor', 'default');
+    // ── Build 100 dots ────────────────────────────────────────
+    const dots = [];
+    for (let i = 0; i < 100; i++) {
+      const col = i % 10;
+      const row = Math.floor(i / 10);
+      const cx  = PAD + DOT_R + col * SPACING;
+      const cy  = PAD + DOT_R + row * SPACING;
+      const c   = document.createElementNS(NS, 'circle');
+      c.setAttribute('cx', String(cx));
+      c.setAttribute('cy', String(cy));
+      c.setAttribute('r',  String(DOT_R));
+      c.setAttribute('fill', COLORS.heat);
+      c.style.transition = 'fill 0.55s ease';
+      svgEl.appendChild(c);
+      dots.push(c);
+    }
 
-    nodeG.append('rect')
-      .attr('x', d => d.x0)
-      .attr('y', d => d.y0)
-      .attr('height', d => Math.max(1, d.y1 - d.y0))
-      .attr('width', d => d.x1 - d.x0)
-      .attr('fill', d => d.color)
-      .attr('rx', 3)
-      .on('mouseenter', (ev, d) => showTip(ev, stageDesc[d.id] || d.label))
-      .on('mousemove', moveTip)
-      .on('mouseleave', hideTip);
-
-    // Node labels — left nodes get label on left, right/sink nodes on right
-    nodeG.append('text')
-      .attr('x', d => (d.x0 < W / 2) ? d.x1 + 7 : d.x0 - 7)
-      .attr('y', d => (d.y0 + d.y1) / 2)
-      .attr('dy', '0.35em')
-      .attr('text-anchor', d => (d.x0 < W / 2) ? 'start' : 'end')
-      .attr('font-size', '11')
-      .attr('font-weight', '600')
-      .attr('fill', '#2D3748')
-      .text(d => d.label);
-
-    // Annotate drop stream percentages
-    const dropPcts = ['40%', '12%', '14%'];
-    g.selectAll('.sankey-link--drop').each(function(_d, i) {
-      if (i > 2) return; // only annotate first 3 drop links
-      const totalLen = this.getTotalLength ? this.getTotalLength() : 0;
-      if (totalLen > 0) {
-        const mid = this.getPointAtLength(totalLen / 2);
-        g.append('text')
-          .attr('x', mid.x)
-          .attr('y', mid.y - 6)
-          .attr('text-anchor', 'middle')
-          .attr('font-size', '9.5')
-          .attr('fill', '#C0392B')
-          .attr('font-weight', '700')
-          .text(dropPcts[i] || '');
-      }
-    });
-  }
-
-
-  // ══════════════════════════════════════════════════════════════
-  // POLICY VISUALIZATION — Interlocking Bars + Layered Bands toggle
-  // ══════════════════════════════════════════════════════════════
-  function buildPolicyViz() {
-    const svgEl = document.getElementById('ibar-chart');
-    const legendEl = document.getElementById('ibar-legend');
-    if (!svgEl || typeof d3 === 'undefined') return;
-
-    // Scenarios: each bar is one policy scenario.
-    // Each scenario has segments (constraint types it addresses).
-    // "reduction" = % reduction in cooling desert tracts (out of 557 tracts).
-    const CONSTRAINTS = [
-      { id: 'hvi',      label: 'Fix the risk index',   color: '#2471A3' },
-      { id: 'energy',   label: 'Energy cost relief',   color: '#E07B39' },
-      { id: 'building', label: 'Building upgrades',    color: '#8B6914' },
-      { id: 'infra',    label: 'Cooling infrastructure', color: '#7FB3D3' },
+    // ── Legend definitions per stage ──────────────────────────
+    const LEGENDS = [
+      [{ color: COLORS.heat,        label: 'All 100 renters exposed' }],
+      [{ color: COLORS.inSystem,    label: 'Counted by agencies (60)' },
+       { color: COLORS.grey,        label: 'Never counted (40)' }],
+      [{ color: COLORS.inSystem,    label: 'Correctly scored (48)' },
+       { color: COLORS.misscored,   label: 'Misscored by HVI (12)' },
+       { color: COLORS.grey,        label: 'Never counted (40)' }],
+      [{ color: COLORS.reached,     label: 'Reached (34)' },
+       { color: COLORS.unreachable, label: 'Unreachable (14)' },
+       { color: COLORS.misscored,   label: 'Misscored (12)' },
+       { color: COLORS.grey,        label: 'Never counted (40)' }],
     ];
 
-    const SCENARIOS = [
-      {
-        id: 's1', label: 'S1 — Cooling Centers', total: 12,
-        note: 'Adding outdoor cooling sites within half a mile of every high-HVI tract reduces cooling deserts by 12%.',
-        segments: [{ id: 'infra', share: 1.0 }],
-      },
-      {
-        id: 's2', label: 'S2 — AC Retrofit', total: 18,
-        note: 'Universal AC installation in pre-1980 buildings reduces cooling deserts by 18% — but without energy cost relief, 21% of owners still can\'t afford to run them.',
-        segments: [{ id: 'building', share: 0.75 }, { id: 'energy', share: 0.25 }],
-      },
-      {
-        id: 's3', label: 'S3 — Energy Subsidy', total: 23,
-        note: 'Capping electricity costs for severely rent-burdened households at 3% of income reduces cooling deserts by 23%. The strongest single lever.',
-        segments: [{ id: 'energy', share: 0.8 }, { id: 'hvi', share: 0.2 }],
-      },
-      {
-        id: 's4', label: 'S4 — HVI Reform', total: 15,
-        note: 'Reweighting the HVI to include rent burden and AC affordability reallocates resources to 214 currently underserved tracts. Impact is 15% alone.',
-        segments: [{ id: 'hvi', share: 1.0 }],
-      },
-      {
-        id: 'combined', label: 'All Four Together', total: 67,
-        note: 'Combining all four interventions produces a 67% reduction — far greater than any single scenario. The cooling desert is a network problem; it requires a network solution.',
-        segments: [
-          { id: 'hvi',      share: 0.20 },
-          { id: 'energy',   share: 0.30 },
-          { id: 'building', share: 0.25 },
-          { id: 'infra',    share: 0.25 },
-        ],
-      },
-    ];
-
-    const margin = { top: 28, right: 40, bottom: 52, left: 168 };
-    // Use a fixed layout width — section is hidden at init time so clientWidth is 0
-    const wrapW = 600;
-    const totalH = 320;
-    const W = wrapW - margin.left - margin.right;   // 392
-    const H = totalH - margin.top - margin.bottom;  // 240
-
-    const barH = Math.min(32, Math.floor((H - (SCENARIOS.length - 1) * 8) / SCENARIOS.length));
-    const barGap = (H - barH * SCENARIOS.length) / (SCENARIOS.length - 1);
-
-    svgEl.setAttribute('viewBox', `0 0 ${wrapW} ${totalH}`);
-    svgEl.setAttribute('width', '100%');
-    svgEl.style.height = totalH + 'px';
-
-    const svg = d3.select(svgEl);
-    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
-
-    const xScale = d3.scaleLinear().domain([0, 75]).range([0, W]);
-
-    // Tooltip
-    const tip = document.createElement('div');
-    tip.className = 'ibar-tip';
-    tip.style.cssText = 'position:fixed;display:none;max-width:260px;background:#1A252F;color:#F5F0E6;font-size:12.5px;line-height:1.55;padding:11px 14px;border-radius:7px;pointer-events:none;z-index:200;box-shadow:0 4px 18px rgba(0,0,0,0.35)';
-    document.body.appendChild(tip);
-
-    function showTip(ev, text) {
-      tip.textContent = text;
-      tip.style.display = 'block';
-      tip.style.left = Math.min(ev.clientX + 14, window.innerWidth - 280) + 'px';
-      tip.style.top = (ev.clientY - 14) + 'px';
-    }
-    function moveTip(ev) {
-      tip.style.left = Math.min(ev.clientX + 14, window.innerWidth - 280) + 'px';
-      tip.style.top = (ev.clientY - 14) + 'px';
-    }
-    function hideTip() { tip.style.display = 'none'; }
-
-    // X-axis gridlines
-    xScale.ticks(5).forEach(t => {
-      g.append('line')
-        .attr('x1', xScale(t)).attr('x2', xScale(t))
-        .attr('y1', -8).attr('y2', H + 8)
-        .attr('stroke', '#E0D9CC').attr('stroke-width', 1);
-      g.append('text')
-        .attr('x', xScale(t)).attr('y', H + 22)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '11').attr('fill', '#718096')
-        .text(t + '%');
-    });
-
-    // X-axis label
-    g.append('text')
-      .attr('x', W / 2).attr('y', H + 44)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '11').attr('fill', '#4A5568').attr('font-weight', '600')
-      .text('Reduction in cooling desert tracts (%)');
-
-    // Bars group — toggled by view
-    const barsG = g.append('g').attr('class', 'ibar-bars-view');
-    const bandsG = g.append('g').attr('class', 'ibar-bands-view').attr('display', 'none');
-
-    // ── BARS VIEW ──
-    SCENARIOS.forEach((sc, i) => {
-      const y = i * (barH + barGap);
-      const rowG = barsG.append('g').attr('class', 'ibar-row ibar-row--' + sc.id);
-
-      // Background track
-      rowG.append('rect')
-        .attr('x', 0).attr('y', y)
-        .attr('width', W).attr('height', barH)
-        .attr('fill', '#F3EFE6').attr('rx', 3);
-
-      // Segmented bar — rendered at full width immediately (IntersectionObserver animates)
-      let xOff = 0;
-      sc.segments.forEach(seg => {
-        const segW = xScale(sc.total * seg.share);
-        const col = CONSTRAINTS.find(c => c.id === seg.id);
-        rowG.append('rect')
-          .attr('x', xOff).attr('y', y)
-          .attr('width', segW).attr('height', barH)
-          .attr('fill', col ? col.color : '#999').attr('rx', 3)
-          .attr('opacity', sc.id === 'combined' ? 1 : 0.82);
-        xOff += segW;
+    function updateLegend(stage) {
+      legEl.innerHTML = '';
+      LEGENDS[stage].forEach(item => {
+        const div  = document.createElement('div');
+        div.className = 'dot-legend-item';
+        const dot  = document.createElement('span');
+        dot.className = 'dot-legend-dot';
+        dot.style.background = item.color;
+        const lbl  = document.createElement('span');
+        lbl.textContent = item.label;
+        div.appendChild(dot);
+        div.appendChild(lbl);
+        legEl.appendChild(div);
       });
-
-      // Total % label at end of bar
-      rowG.append('text')
-        .attr('x', xScale(sc.total) + 6).attr('y', y + barH / 2 + 4)
-        .attr('font-size', '12').attr('font-weight', '700')
-        .attr('fill', sc.id === 'combined' ? '#922B21' : '#2D3748')
-        .text(sc.total + '%');
-
-      // Scenario label (left)
-      rowG.append('text')
-        .attr('x', -8).attr('y', y + barH / 2 + 4)
-        .attr('text-anchor', 'end')
-        .attr('font-size', sc.id === 'combined' ? '12' : '11')
-        .attr('font-weight', sc.id === 'combined' ? '700' : '500')
-        .attr('fill', sc.id === 'combined' ? '#922B21' : '#2D3748')
-        .text(sc.label);
-
-      // Hover for tooltip
-      rowG.on('mouseenter', ev => showTip(ev, sc.note))
-         .on('mousemove', moveTip)
-         .on('mouseleave', hideTip)
-         .style('cursor', 'default');
-    });
-
-    // ── BANDS VIEW ──
-    // Each constraint type shown as a horizontal band across all scenarios
-    const bandH = Math.floor(H / CONSTRAINTS.length) - 6;
-    CONSTRAINTS.forEach((con, ci) => {
-      const bandY = ci * (bandH + 6);
-      const bandG = bandsG.append('g').attr('class', 'ibar-band');
-
-      // Band label
-      bandG.append('text')
-        .attr('x', -8).attr('y', bandY + bandH / 2 + 4)
-        .attr('text-anchor', 'end')
-        .attr('font-size', '11').attr('font-weight', '600')
-        .attr('fill', con.color)
-        .text(con.label);
-
-      // Background
-      bandG.append('rect')
-        .attr('x', 0).attr('y', bandY)
-        .attr('width', W).attr('height', bandH)
-        .attr('fill', '#F3EFE6').attr('rx', 3);
-
-      // One segment per scenario that includes this constraint
-      let cumX = 0;
-      SCENARIOS.forEach(sc => {
-        const seg = sc.segments.find(s => s.id === con.id);
-        if (!seg) { cumX += xScale(sc.total / SCENARIOS.length); return; }
-        const segW = xScale(sc.total * seg.share / SCENARIOS.length * 2);
-        bandG.append('rect')
-          .attr('x', cumX).attr('y', bandY)
-          .attr('width', segW).attr('height', bandH)
-          .attr('fill', con.color).attr('rx', 2).attr('opacity', 0.75);
-        cumX += segW + 4;
-      });
-    });
-
-    // ── TOGGLE LOGIC ──
-    document.querySelectorAll('.ibar-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.ibar-toggle-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const view = btn.dataset.view;
-        barsG.attr('display', view === 'bars' ? null : 'none');
-        bandsG.attr('display', view === 'bands' ? null : 'none');
-      });
-    });
-
-    // ── LEGEND ──
-    if (legendEl) {
-      legendEl.innerHTML = CONSTRAINTS.map(c => `
-        <span class="ibar-legend-item">
-          <span class="ibar-legend-swatch" style="background:${c.color}"></span>
-          ${c.label}
-        </span>
-      `).join('');
     }
 
-    // Policy link → switch to data path
-    document.querySelectorAll('.apc-link[data-goto]').forEach(el => {
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', ev => {
-        ev.stopPropagation();
-        switchPath('data');
-        setTimeout(() => {
-          const t = document.getElementById(el.dataset.goto);
-          if (t) t.scrollIntoView({ behavior: 'smooth' });
-        }, 500);
+    // ── Activate stage ────────────────────────────────────────
+    let currentStage = -1;
+    function activateStage(stage) {
+      if (stage === currentStage) return;
+      currentStage = stage;
+      dots.forEach((dot, i) => dot.setAttribute('fill', stageColor(i, stage)));
+      panels.forEach(p => p.classList.toggle('is-active', Number(p.dataset.stage) === stage));
+      updateLegend(stage);
+    }
+
+    // ── IntersectionObserver ──────────────────────────────────
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) activateStage(Number(entry.target.dataset.stage));
       });
-    });
+    }, { rootMargin: '-25% 0px -25% 0px', threshold: 0.15 });
+
+    panels.forEach(p => obs.observe(p));
+    activateStage(0);
+    if (panels[0]) panels[0].classList.add('is-active');
+
   }
+
 
 }());

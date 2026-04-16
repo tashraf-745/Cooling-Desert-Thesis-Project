@@ -1,4 +1,4 @@
-// Tree Canopy & Shade Equity — Three D3 Charts
+// Tree Canopy & Shade Equity - Three D3 Charts
 // Data source: NYC 2010/2017 Tree Canopy Assessment + CDI analysis
 
 (function () {
@@ -24,7 +24,7 @@
     const el2 = document.querySelector('#can-stat-2');
     const el3 = document.querySelector('#can-stat-3');
     if (el1) el1.textContent = h.shade_gap.toFixed(1) + '%';
-    if (el2) el2.textContent = h.pct_cd_gaining.toFixed(1) + '%';
+    if (el2) el2.textContent = h.pct_tracts_loss.toFixed(1) + '%';
     if (el3) el3.textContent = h.citywide_mean_2017.toFixed(1) + '%';
   }
 
@@ -167,7 +167,7 @@
       .attr('opacity', 1);
   }
 
-  // ── CHART B: Scatter — CDI vs Canopy Coverage ─────────────────
+  // ── CHART B: Scatter - CDI vs Canopy Coverage ─────────────────
   function drawCanopyScatter(data) {
     const wrap = document.getElementById('chart-canopy-scatter');
     if (!wrap) return;
@@ -211,7 +211,7 @@
     g.append('text')
       .attr('x', w / 2).attr('y', h + 48)
       .attr('text-anchor', 'middle').attr('font-size', '12px').attr('fill', '#6B7280')
-      .text('Cooling Desert Index (CDI) — higher = more vulnerable');
+      .text('Cooling Desert Index (CDI) - higher = more vulnerable');
 
     g.append('text')
       .attr('transform', 'rotate(-90)')
@@ -238,7 +238,7 @@
     const colorCD  = '#922B21';
     const colorOK  = '#7FB3D3';
 
-    // Dots — deserts below, non-deserts above so deserts show on top
+    // Dots - deserts below, non-deserts above so deserts show on top
     const sorted = [...pts].sort((a, b) => a.d - b.d);
     g.selectAll('.scatter-dot')
       .data(sorted).enter().append('circle')
@@ -278,7 +278,7 @@
     });
   }
 
-  // ── CHART C: Borough bars — canopy + desert share ─────────────
+  // ── CHART C: Borough bars - canopy + desert share ─────────────
   function drawBoroughCanopyChart(data) {
     const wrap = document.getElementById('chart-canopy-borough');
     if (!wrap) return;

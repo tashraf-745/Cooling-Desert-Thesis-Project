@@ -6,7 +6,7 @@ RAW  = BASE / "data" / "raw"
 OUT  = BASE / "data" / "processed"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Step 1: Load and filter Cool It! NYC sites
+# Load and filter Cool It! NYC sites
 df1 = pd.read_csv(RAW / "cool_it" / "Cool_It!_NYC_2020_-_Cooling_Sites_20260212.csv")
 print(f"Cool It! total rows: {len(df1)}")
 print("Status:", df1["Status"].value_counts().to_dict())
@@ -34,7 +34,7 @@ df1.to_json(OUT / "cool_it_sites.json", orient="records", indent=2)
 print("  → cool_it_sites.json")
 
 
-# Step 2: Load cooling locations (spray showers and drinking fountains)
+# Load cooling locations (spray showers and drinking fountains)
 df2 = pd.read_csv(RAW / "cooling_centers" / "cooling-locations.csv")
 print(f"\nCooling locations total rows: {len(df2)}")
 print("Types:", df2["Type of Water Feature"].value_counts().to_dict())
@@ -50,7 +50,7 @@ borough_code_map = {"B": "Brooklyn", "Q": "Queens", "M": "Manhattan", "X": "Bron
 df2["borough"] = df2["borough_code"].map(borough_code_map)
 df2 = df2[["property_name", "borough", "feature_type"]]
 
-# Step 3: Export borough-level summary
+# Export borough-level summary
 summary = (
     df2.groupby(["borough", "feature_type"])
     .size()

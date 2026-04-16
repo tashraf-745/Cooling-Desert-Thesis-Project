@@ -25,7 +25,7 @@
     5: { name: 'Multiple Compounding Barriers', desc: 'Every risk factor elevated at once: highest heat, lowest incomes, highest disability rates, fewest cooling options.' },
   };
 
-  // Layer-aware tooltip — called at hover time, reads current activeLayer
+  // Layer-aware tooltip - called at hover time, reads current activeLayer
   function tractTooltip(p) {
     const pct   = v => v != null ? v.toFixed(1) + '%' : 'N/A';
     const money = v => v != null ? '$' + Math.round(v).toLocaleString() : 'N/A';
@@ -96,7 +96,7 @@
                    : temp >= 85.5 ? 'Near the city average.'
                    : 'Below the city average.';
         return `<b class="tt-loc">${p.borough || ''}</b>` +
-          `<div style="font-size:18px;font-weight:700;color:#fff;margin:4px 0">${temp != null ? temp.toFixed(1) : '—'}<span style="font-size:12px;color:rgba(255,255,255,0.6)">°F</span></div>` +
+          `<div style="font-size:18px;font-weight:700;color:#fff;margin:4px 0">${temp != null ? temp.toFixed(1) : '-'}<span style="font-size:12px;color:rgba(255,255,255,0.6)">°F</span></div>` +
           `<div style="font-size:11px;color:rgba(255,255,255,0.82);margin-bottom:4px">${ctx}</div>` +
           `<div class="tt-rows">${qrow('Heat danger level', hvi + ' out of 5')}</div>`;
       }
@@ -114,11 +114,11 @@
   }
 
   function nychaTooltip(p) {
-    const rent = p.avg_monthly_rent_usd ? '$' + Math.round(p.avg_monthly_rent_usd) : '—';
+    const rent = p.avg_monthly_rent_usd ? '$' + Math.round(p.avg_monthly_rent_usd) : '-';
     return '<b class="tt-nycha">NYCHA Development</b>' +
       '<div class="tt-loc">' + (p.name || '') + '</div>' +
       '<div class="tt-rows">' +
-        '<span>HVI</span><span>' + (p.hvi_score_zcta || '—') + ' / 5</span>' +
+        '<span>HVI</span><span>' + (p.hvi_score_zcta || '-') + ' / 5</span>' +
         '<span>Avg rent</span><span>' + rent + '/mo</span>' +
       '</div>';
   }
@@ -192,7 +192,7 @@
         total:   bt.length,
         deserts: ds.length,
         pct:     bt.length ? (ds.length / bt.length * 100).toFixed(1) : 0,
-        meanCDI: cdis.length ? (cdis.reduce((a, b) => a + b, 0) / cdis.length).toFixed(1) : '—'
+        meanCDI: cdis.length ? (cdis.reduce((a, b) => a + b, 0) / cdis.length).toFixed(1) : '-'
       };
     });
 
@@ -294,9 +294,9 @@
         ${desert ? 'Cooling Desert' : 'Not a Cooling Desert'}
       </span>
       <dl class="info-grid">
-        <dt>Heat risk score</dt>       <dd>${p.CDI != null ? p.CDI.toFixed(1) : '—'}</dd>
-        <dt>Neighborhood type</dt>     <dd>${(p.cluster_name || '—').split('—')[0].trim()}</dd>
-        <dt>Heat danger level</dt>     <dd>${Math.round(p.HVI_RANK) || '—'} out of 5</dd>
+        <dt>Heat risk score</dt>       <dd>${p.CDI != null ? p.CDI.toFixed(1) : '-'}</dd>
+        <dt>Neighborhood type</dt>     <dd>${(p.cluster_name || '-').split('-')[0].trim()}</dd>
+        <dt>Heat danger level</dt>     <dd>${Math.round(p.HVI_RANK) || '-'} out of 5</dd>
         <dt>Paying 50%+ on rent</dt>   <dd>${fmtPct(p.pct_rent_burden_50_plus)}</dd>
         <dt>Median household income</dt><dd>${fmtMoney(p.median_household_income)}</dd>
         <dt>Black residents</dt>       <dd>${fmtPct(p.pct_black)}</dd>
@@ -309,8 +309,8 @@
     `;
   }
 
-  function fmtPct(v)   { return v != null ? v.toFixed(1) + '%' : '—'; }
-  function fmtMoney(v) { return v != null ? '$' + Math.round(v).toLocaleString() : '—'; }
+  function fmtPct(v)   { return v != null ? v.toFixed(1) + '%' : '-'; }
+  function fmtMoney(v) { return v != null ? '$' + Math.round(v).toLocaleString() : '-'; }
 
   // ── Legend ─────────────────────────────────────────────────
   function renderLegend() {

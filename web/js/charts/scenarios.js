@@ -1,4 +1,4 @@
-// Step 7: Scenario Simulator — Map + Counters + Impact Bar
+// Scenario Simulator - Map + Counters + Impact Bar
 
 (function () {
   'use strict';
@@ -58,13 +58,13 @@
       .then(data => {
         tractFeatures = data.features;
 
-        // Base desert layer — muted red background
+        // Base desert layer - muted red background
         desertBaseLayer = L.geoJSON(data, {
           filter: ft => ft.properties.is_cooling_desert === 1,
           style:  { fillColor: '#922B21', fillOpacity: 0.25, color: 'transparent', weight: 0 }
         }).addTo(map);
 
-        // Scenario layer — starts empty
+        // Scenario layer - starts empty
         scenLayer = L.geoJSON(null, {
           style: { fillColor: '#1ABC9C', fillOpacity: 0.85, color: '#fff', weight: 0.4 }
         }).addTo(map);

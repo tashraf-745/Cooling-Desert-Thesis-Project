@@ -40,3 +40,7 @@ resources/
 # Editor
 .vscode/
 *.swp
+
+# Claude Code
+.claude/
+CLAUDE.md

@@ -1,26 +1,3 @@
-"""
-Pre-Visualization Fixes
-=======================
-Applies all checklist fixes identified in the EDA phase, then exports
-the final merged GeoDataFrame ready for spatial visualization.
-
-Fixes applied:
-  1. HVI-to-tract join: NTA 2020 direct join + nearest-neighbor fallback (100% coverage)
-  2. Heat forecast: aggregated to cdta2020 (4-char) level for HVI alignment
-  3. HVI: 6 duplicate Staten Island NTAs dropped
-  4. Tract indicators: pct_disability_x and pct_disability_y dropped; pct_disability kept
-  5. NYCHA: community_distirct column renamed; cross-borough records assigned primary borough
-  6. Cooling desert threshold locked: HVI_RANK >= 4 AND pct_rent_burden_50_plus > 30
-  7. pct_housing_pre_1980 excluded from composite index (non-significant in EDA)
-  8. Quantile-based classifications added for income and rent burden
-
-Outputs (EPSG:4326 GeoJSON):
-  data/final/cooling_desert_index.geojson   — full analysis dataset
-  web/data/tract_map_data.geojson           — web-optimized (lighter columns)
-  data/final/nycha_clean.geojson            — cleaned NYCHA with HVI scores
-  data/final/hvi_clean.json                 — deduplicated HVI NTA data
-  data/final/heat_forecast_cdta.json        — heat forecast aggregated to CDTA
-"""
 
 import json
 import warnings
@@ -42,9 +19,7 @@ print("Pre-Visualization Fixes")
 print("=" * 60)
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 1 — HVI deduplication
-# ─────────────────────────────────────────────────────────────
+# HVI deduplication
 
 print("\n[1/7] Fixing HVI: dropping 6 duplicate Staten Island NTA rows...")
 
@@ -67,9 +42,7 @@ with open(f"{FINAL}/hvi_clean.json", "w") as f:
 print(f"  Saved → {FINAL}/hvi_clean.json")
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 2 — Heat forecast aggregated to CDTA level
-# ─────────────────────────────────────────────────────────────
+# Heat forecast aggregated to CDTA level
 
 print("\n[2/7] Aggregating heat forecast to CDTA (4-char) level...")
 
@@ -91,9 +64,7 @@ with open(f"{FINAL}/heat_forecast_cdta.json", "w") as f:
 print(f"  Saved → {FINAL}/heat_forecast_cdta.json")
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 3 — Build tract base with NTA 2020 direct join (100% coverage)
-# ─────────────────────────────────────────────────────────────
+# Build tract base with NTA 2020 direct join (100% coverage)
 
 print("\n[3/7] Joining HVI to tracts via NTA 2020 boundaries (+ NN fallback)...")
 
@@ -150,9 +121,7 @@ coverage = combined["HVI_RANK"].notna().sum()
 print(f"  HVI coverage: {coverage}/{len(combined)} ({coverage/len(combined)*100:.1f}%)")
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 4 — Tract indicators: drop redundant disability columns
-# ─────────────────────────────────────────────────────────────
+# Tract indicators: drop redundant disability columns
 
 print("\n[4/7] Dropping pct_disability_x and pct_disability_y from tract indicators...")
 
@@ -163,9 +132,7 @@ print(f"  Dropped: {[c for c in drop_cols if c in gdf.columns]}")
 print(f"  Keeping: pct_disability, total_with_disability")
 
 
-# ─────────────────────────────────────────────────���───────────
-# FIX 5 — Attach heat forecast (CDTA level) to tracts
-# ─────────────────────────────────────────────────────────────
+# Attach heat forecast (CDTA level) to tracts
 
 print("\n[5/7] Attaching heat forecast via cdta2020 key...")
 
@@ -178,9 +145,7 @@ heat_cov = occ["baseline_temp_f"].notna().sum()
 print(f"  Baseline temp coverage: {heat_cov}/{len(occ)} ({heat_cov/len(occ)*100:.1f}%)")
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 6 — NYCHA: rename typo, resolve cross-borough, attach HVI
-# ─────────────────────────────────────────────────────────────
+# NYCHA: rename typo, resolve cross-borough, attach HVI
 
 print("\n[6/7] Fixing NYCHA data...")
 
@@ -246,9 +211,7 @@ nycha_geo_clean.to_file(f"{FINAL}/nycha_clean.geojson", driver="GeoJSON")
 print(f"  Saved → {FINAL}/nycha_clean.geojson")
 
 
-# ─────────────────────────────────────────────────────────────
-# FIX 7 — Cooling desert classification + quantile variables
-# ─────────────────────────────────────────────────────────────
+# Cooling desert classification + quantile variables
 
 print("\n[7/7] Adding cooling desert classification and quantile columns...")
 
@@ -293,9 +256,8 @@ print(f"  Compound flags: is_cooling_desert_lep={occ['is_cooling_desert_lep'].su
       f"is_cooling_desert_disability={occ['is_cooling_desert_disability'].sum()}")
 
 
-# ─────────────────────────────────────────────────────────────
+
 # EXPORT
-# ─────────────────────────────────────────────────────────────
 
 print("\n" + "=" * 60)
 print("Exporting final datasets (EPSG:4326)")

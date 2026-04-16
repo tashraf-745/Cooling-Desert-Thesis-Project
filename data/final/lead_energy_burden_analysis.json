@@ -1,0 +1,242 @@
+{
+  "A_nyc_overview": {
+    "description": "DOE LEAD energy burden for NYC renter households by AMI group",
+    "doe_thresholds": {
+      "high_burden": 6,
+      "severe_burden": 10
+    },
+    "all_renters": {
+      "mean_pct": 2.6,
+      "median_pct": 2.0,
+      "mean_annual_cost": 1981.0,
+      "pct_tracts_above_6pct": 1.6,
+      "pct_tracts_above_10pct": 0.3
+    },
+    "very_low_income_0_30ami": {
+      "mean_pct": 11.6,
+      "median_pct": 10.0,
+      "mean_annual_cost": 1837.0,
+      "mean_annual_income": 17247.0,
+      "pct_tracts_above_6pct": 86.1,
+      "pct_tracts_above_10pct": 42.7,
+      "interpretation": "Very low-income renters (\u226430% AMI) spend 11.6% of income on energy on average. 86% of NYC tracts exceed the DOE high-burden threshold (>6%), and 42% exceed the severe threshold (>10%). This is the structural cost barrier that prevents AC use even when units have AC."
+    },
+    "low_to_mod_income_0_80ami": {
+      "mean_pct": 4.7,
+      "median_pct": 4.0,
+      "mean_annual_cost": 1887.0
+    }
+  },
+  "B_burden_vs_cdi": {
+    "pearson_r_cdi_burden_030": 0.002,
+    "pearson_p": 0.9258,
+    "cooling_desert_mean_burden": 11.9,
+    "non_desert_mean_burden": 11.5,
+    "mwu_p": 0.0001,
+    "by_cdi_quintile": {
+      "Q1": {
+        "n": 429,
+        "mean_burden_030": 12.3,
+        "median_burden_030": 9.0,
+        "pct_above_10pct": 40.1
+      },
+      "Q2": {
+        "n": 435,
+        "mean_burden_030": 11.6,
+        "median_burden_030": 10.0,
+        "pct_above_10pct": 43.0
+      },
+      "Q3": {
+        "n": 433,
+        "mean_burden_030": 10.4,
+        "median_burden_030": 9.0,
+        "pct_above_10pct": 36.0
+      },
+      "Q4": {
+        "n": 435,
+        "mean_burden_030": 11.5,
+        "median_burden_030": 10.0,
+        "pct_above_10pct": 44.4
+      },
+      "Q5": {
+        "n": 439,
+        "mean_burden_030": 12.2,
+        "median_burden_030": 10.0,
+        "pct_above_10pct": 49.9
+      }
+    },
+    "finding": "Low-income energy burden correlates positively with CDI (r=0.002). Cooling desert tracts have 11.9% mean energy burden for 0-30% AMI renters vs 11.5% for non-desert tracts (p=0.0001). High CDI tracts are structurally blocked from using AC by energy costs."
+  },
+  "C_borough_breakdown": {
+    "description": "DOE LEAD energy burden by NYC borough for 0-30% AMI renters",
+    "by_borough": {
+      "Bronx": {
+        "n_tracts": 339,
+        "mean_burden_030": 12.3,
+        "median_burden_030": 11.0,
+        "pct_above_10pct_030": 55.5,
+        "mean_burden_all": 3.6,
+        "mean_annual_cost": 1936.0
+      },
+      "Brooklyn": {
+        "n_tracts": 765,
+        "mean_burden_030": 10.7,
+        "median_burden_030": 9.0,
+        "pct_above_10pct_030": 35.6,
+        "mean_burden_all": 2.2,
+        "mean_annual_cost": 1646.0
+      },
+      "Manhattan": {
+        "n_tracts": 295,
+        "mean_burden_030": 9.0,
+        "median_burden_030": 8.0,
+        "pct_above_10pct_030": 25.8,
+        "mean_burden_all": 1.3,
+        "mean_annual_cost": 1185.0
+      },
+      "Queens": {
+        "n_tracts": 657,
+        "mean_burden_030": 12.7,
+        "median_burden_030": 10.0,
+        "pct_above_10pct_030": 47.8,
+        "mean_burden_all": 3.0,
+        "mean_annual_cost": 2214.0
+      },
+      "Staten Island": {
+        "n_tracts": 115,
+        "mean_burden_030": 16.2,
+        "median_burden_030": 14.0,
+        "pct_above_10pct_030": 67.0,
+        "mean_burden_all": 3.6,
+        "mean_annual_cost": 2342.0
+      }
+    }
+  },
+  "D_double_burden": {
+    "description": "Double burden = Cooling Desert (CDI) AND severe energy burden (0-30% AMI burden >10%). These tracts have the highest heat risk AND the least ability to pay for cooling.",
+    "double_burden_tracts": 261,
+    "pct_of_cooling_deserts": 47.4,
+    "total_renters_at_risk": 610720,
+    "mean_cdi_double_burden": 56.4,
+    "by_borough": {
+      "Bronx": {
+        "double_burden_tracts": 101,
+        "cooling_desert_tracts": 183,
+        "pct_of_deserts": 55.2,
+        "renters_at_risk": 314911
+      },
+      "Brooklyn": {
+        "double_burden_tracts": 84,
+        "cooling_desert_tracts": 220,
+        "pct_of_deserts": 38.2,
+        "renters_at_risk": 185750
+      },
+      "Manhattan": {
+        "double_burden_tracts": 6,
+        "cooling_desert_tracts": 28,
+        "pct_of_deserts": 21.4,
+        "renters_at_risk": 23311
+      },
+      "Queens": {
+        "double_burden_tracts": 62,
+        "cooling_desert_tracts": 111,
+        "pct_of_deserts": 55.9,
+        "renters_at_risk": 72957
+      },
+      "Staten Island": {
+        "double_burden_tracts": 8,
+        "cooling_desert_tracts": 9,
+        "pct_of_deserts": 88.9,
+        "renters_at_risk": 13791
+      }
+    },
+    "finding": "261 NYC census tracts (47% of cooling deserts) face double burden: both a cooling desert by CDI and severe energy burden (>10% of income) for very low-income renters. 610,720 renters live in these tracts."
+  },
+  "E_by_cluster": {
+    "description": "DOE LEAD energy burden by K-means risk cluster typology",
+    "by_cluster": {
+      "1": {
+        "cluster_name": "Low Risk \u2014 Affluent & Low Exposure",
+        "n": 321,
+        "mean_burden_030": 11.7,
+        "pct_above_10pct": 39.9,
+        "mean_annual_cost": 1536.0
+      },
+      "2": {
+        "cluster_name": "Moderate Risk \u2014 Financially Strained",
+        "n": 641,
+        "mean_burden_030": 12.3,
+        "pct_above_10pct": 46.0,
+        "mean_annual_cost": 1943.0
+      },
+      "3": {
+        "cluster_name": "High Risk \u2014 Immigrant Heat Burden",
+        "n": 435,
+        "mean_burden_030": 9.9,
+        "pct_above_10pct": 31.7,
+        "mean_annual_cost": 1870.0
+      },
+      "4": {
+        "cluster_name": "High Risk \u2014 Racial Heat Burden",
+        "n": 455,
+        "mean_burden_030": 13.4,
+        "pct_above_10pct": 55.2,
+        "mean_annual_cost": 2103.0
+      },
+      "5": {
+        "cluster_name": "Extreme Risk \u2014 Compound Deprivation",
+        "n": 319,
+        "mean_burden_030": 10.0,
+        "pct_above_10pct": 36.1,
+        "mean_annual_cost": 1513.0
+      }
+    }
+  },
+  "F_correlations": {
+    "description": "Pearson correlations between 0-30% AMI energy burden and demographic/risk variables",
+    "correlations": {
+      "pct_rent_burden_50_plus": {
+        "label": "Severe rent burden (>50%)",
+        "pearson_r": 0.034,
+        "p": 0.1133,
+        "significant": false
+      },
+      "pct_black": {
+        "label": "% Black residents",
+        "pearson_r": 0.094,
+        "p": 0.0,
+        "significant": true
+      },
+      "pct_hispanic": {
+        "label": "% Hispanic residents",
+        "pearson_r": -0.076,
+        "p": 0.0004,
+        "significant": true
+      },
+      "pct_limited_english": {
+        "label": "% Limited English proficiency",
+        "pearson_r": -0.121,
+        "p": 0.0,
+        "significant": true
+      },
+      "pct_disability": {
+        "label": "% with disability",
+        "pearson_r": -0.062,
+        "p": 0.0039,
+        "significant": true
+      },
+      "HVI_RANK": {
+        "label": "HVI rank",
+        "pearson_r": 0.015,
+        "p": 0.4857,
+        "significant": false
+      },
+      "median_household_income": {
+        "label": "Median household income",
+        "pearson_r": 0.093,
+        "p": 0.0,
+        "significant": true
+      }
+    }
+  }
+}

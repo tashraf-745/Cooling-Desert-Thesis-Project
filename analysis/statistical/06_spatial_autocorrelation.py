@@ -29,7 +29,7 @@ Outputs:
   data/final/lisa_results.json           — global I + LISA summary
 
 Run from project root:
-  python analysis/03_statistical/06_spatial_autocorrelation.py
+  python analysis/statistical/06_spatial_autocorrelation.py
 """
 
 import json

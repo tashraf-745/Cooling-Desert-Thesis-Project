@@ -19,7 +19,7 @@ Key findings:
         more stable financially but still physiologically vulnerable
 
 Run from project root:
-  python analysis/03_statistical/07_cross_tabulations.py
+  python analysis/statistical/07_cross_tabulations.py
 """
 
 import json

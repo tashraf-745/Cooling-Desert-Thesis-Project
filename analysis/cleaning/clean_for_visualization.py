@@ -21,7 +21,7 @@ def save_json(obj, filename):
     print(f"  → {filename} ({size_kb:.0f} KB)")
 
 
-# ── 1. HVI NTA Components — strip HTML, clean labels, add NTA_6 join key ─────
+# 1. HVI NTA Components — strip HTML, clean labels, add NTA_6 join key
 print("\n[1] HVI NTA Components")
 df = pd.read_csv(RAW / "hvi" / "hvi_nta_components.csv", encoding="utf-8-sig")
 
@@ -62,7 +62,7 @@ save_json(df.to_dict(orient="records"), "hvi_nta_components.json")
 print(f"  {len(df)} NTAs | HTML stripped | columns renamed")
 
 
-# ── 2. HVI Rankings 2024 — standardize column names ──────────────────────────
+# 2. HVI Rankings 2024 — standardize column names 
 print("\n[2] HVI Rankings 2024")
 df2 = pd.read_csv(RAW / "hvi" / "Heat_Vulnerability_Index_Rankings_2024.csv")
 df2.columns = ["zcta", "hvi_score"]
@@ -72,7 +72,7 @@ save_json(df2.to_dict(orient="records"), "hvi_rankings_2024.json")
 print(f"  {len(df2)} ZCTAs")
 
 
-# ── 3. Outdoor Heat Forecast — standardize NTA code to 4-char for HVI join ───
+#  3. Outdoor Heat Forecast — standardize NTA code to 4-char for HVI join 
 print("\n[3] Outdoor Heat Forecast")
 df3 = pd.read_csv(
     RAW / "hvi" / "NYC_Climate_Budgeting_Report__Resiliency_Exposure_Forecast_-_Outdoor_Heat_20260212.csv"
@@ -94,7 +94,7 @@ save_json(df3.to_dict(orient="records"), "outdoor_heat_forecast.json")
 print(f"  {len(df3)} NTAs | nta_code_4 added for HVI join")
 
 
-# ── 4. NTA-ZIP Crosswalk — normalize codes ───────────────────────────────────
+# 4. NTA-ZIP Crosswalk — normalize codes
 print("\n[4] NTA-ZIP Crosswalk")
 with open(RAW / "hvi" / "nta_zip_collapsed.json") as f:
     xwalk = json.load(f)
@@ -105,7 +105,7 @@ save_json(df4.to_dict(orient="records"), "nta_zip_crosswalk.json")
 print(f"  {len(df4)} entries | nta_code_4 added")
 
 
-# ── 5. NYCHA Development Data Book — clean currency, handle nulls ─────────────
+# 5. NYCHA Development Data Book — clean currency, handle nulls 
 print("\n[5] NYCHA Development Data Book")
 df5 = pd.read_csv(RAW / "nycha" / "nycha_development_data_book.csv", encoding="utf-8-sig")
 
@@ -130,7 +130,7 @@ print(f"  {len(df5)} developments | rent parsed | borough_primary added")
 print(f"  avg_monthly_rent_usd nulls: {df5['avg_monthly_rent_usd'].isna().sum()}")
 
 
-# ── 6. ACS Disability — compute total disabled count and rate ─────────────────
+#  6. ACS Disability — compute total disabled count and rate 
 print("\n[6] ACS Disability")
 df6 = pd.read_csv(RAW / "acs" / "disability_b18101_nyc_tracts.csv")
 # Sum all "with a disability" cells (male + female across all age groups)
@@ -144,7 +144,7 @@ save_json(df6_out.to_dict(orient="records"), "acs_disability_b18101.json")
 print(f"  {len(df6_out)} tracts | pct_disability computed")
 
 
-# ── 7. NYC Tract Indicators — merge disability in ─────────────────────────────
+# 7. NYC Tract Indicators — merge disability in 
 print("\n[7] NYC Tract Indicators + Disability merge")
 gdf = gpd.read_file(str(OUT / "nyc_tract_indicators_v2.geojson"))
 gdf = gdf.drop(columns=["total_with_disability", "pct_disability", "geo_id"], errors="ignore")
@@ -154,7 +154,7 @@ gdf.to_file(str(OUT / "nyc_tract_indicators_v2.geojson"), driver="GeoJSON")
 print(f"  {len(gdf)} tracts | disability merged: {gdf['pct_disability'].notna().sum()}")
 
 
-# ── 8. NYCHVS — add BORO from allunits, decode RENTBURDEN_CAT ─────────────────
+#  8. NYCHVS — add BORO from allunits, decode RENTBURDEN_CAT 
 print("\n[8] NYCHVS Occupied — add BORO, decode rent burden")
 df_occ = pd.read_csv(RAW / "nychvs" / "occupied_puf_21.csv")
 df_all = pd.read_csv(RAW / "nychvs" / "allunits_puf_21.csv")
@@ -189,7 +189,7 @@ print(f"  rent_burden distribution: {df_renters['rent_burden'].value_counts().to
 print(f"  borough distribution: {df_renters['borough'].value_counts().to_dict()}")
 
 
-# ── Summary ───────────────────────────────────────────────────────────────────
+#  Summary 
 print("\n[Summary] data/processed/ visualization-ready files:")
 files = sorted(OUT.iterdir())
 for f in files:

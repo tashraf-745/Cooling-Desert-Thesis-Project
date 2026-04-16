@@ -1,4 +1,4 @@
-// Step 6: Demographic Evidence — Three Linked D3 Charts
+// Demographic Evidence - Three Linked D3 Charts
 
 (function () {
   'use strict';
@@ -113,7 +113,7 @@
       .attr('y', d => y(d.label) + y.bandwidth() / 2)
       .attr('text-anchor', d => d.beta >= 0 ? 'start' : 'end')
       .attr('dominant-baseline', 'middle')
-      .attr('font-size', 11).attr('font-family', 'Satoshi, sans-serif')
+      .attr('font-size', 11).attr('font-family', 'Bree Serif, serif')
       .attr('fill', d => d.sig ? '#1A252F' : '#9BA3AE')
       .text(d => (d.beta > 0 ? '+' : '') + d.beta.toFixed(3) + (d.sig ? '' : ' ns'));
 
@@ -121,7 +121,7 @@
     svg.append('g').call(d3.axisLeft(y).tickSize(0))
       .call(g => g.select('.domain').remove())
       .selectAll('text')
-      .attr('font-size', 12).attr('font-family', 'Satoshi, sans-serif')
+      .attr('font-size', 12).attr('font-family', 'Bree Serif, serif')
       .attr('fill', d => { const i = data.find(r => r.label === d); return i && !i.sig ? '#9BA3AE' : '#1A252F'; })
       .attr('font-weight', d => d === '% Black residents' ? 'bold' : 'normal');
 
@@ -131,7 +131,7 @@
         .tickFormat(v => v.toFixed(2)))
       .call(g => g.select('.domain').remove())
       .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
-      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
+      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Bree Serif, serif').attr('fill', '#9BA3AE'));
   }
 
   // ── Chart B: Borough comparison (3 linked panels) ─────────────────
@@ -195,7 +195,7 @@
         .attr('x', d => x(d.borough) + x.bandwidth() / 2)
         .attr('y', d => y(d[panel.key]) - 3)
         .attr('text-anchor', 'middle')
-        .attr('font-size', 9).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#1A252F')
+        .attr('font-size', 9).attr('font-family', 'Bree Serif, serif').attr('fill', '#1A252F')
         .text(d => panel.fmt(d[panel.key]));
 
       // X axis labels (rotated)
@@ -203,14 +203,14 @@
         .call(d3.axisBottom(x).tickSize(0))
         .call(g => g.select('.domain').attr('stroke', '#DEE2E6'))
         .selectAll('text')
-        .attr('font-size', 9).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
+        .attr('font-size', 9).attr('font-family', 'Bree Serif, serif').attr('fill', '#4A5568')
         .attr('transform', 'rotate(-35)').attr('text-anchor', 'end').attr('dx', '-4').attr('dy', '4');
 
       // Y axis (minimal)
       svg.append('g').call(d3.axisLeft(y).ticks(4).tickSize(3))
         .call(g => g.select('.domain').remove())
         .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
-        .call(g => g.selectAll('text').attr('font-size', 9).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
+        .call(g => g.selectAll('text').attr('font-size', 9).attr('font-family', 'Bree Serif, serif').attr('fill', '#9BA3AE'));
     });
   }
 
@@ -266,13 +266,13 @@
       .call(d3.axisBottom(x0).tickSize(0))
       .call(g => g.select('.domain').attr('stroke', '#DEE2E6'))
       .selectAll('text')
-      .attr('font-size', 11).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#1A252F').attr('font-weight', 'bold');
+      .attr('font-size', 11).attr('font-family', 'Bree Serif, serif').attr('fill', '#1A252F').attr('font-weight', 'bold');
 
     // Y axis
     svg.append('g').call(d3.axisLeft(y).ticks(5).tickFormat(d => d + '%').tickSize(3))
       .call(g => g.select('.domain').remove())
       .call(g => g.selectAll('line').attr('stroke', '#DEE2E6'))
-      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#9BA3AE'));
+      .call(g => g.selectAll('text').attr('font-size', 10).attr('font-family', 'Bree Serif, serif').attr('fill', '#9BA3AE'));
 
     // Legend
     const legendX = iw / 2 - (DEMO_SERIES.length * 110) / 2;
@@ -280,7 +280,7 @@
       const lx = legendX + i * 110;
       svg.append('rect').attr('x', lx).attr('y', ih + 32).attr('width', 12).attr('height', 12).attr('fill', s.color).attr('rx', 2);
       svg.append('text').attr('x', lx + 16).attr('y', ih + 42)
-        .attr('font-size', 11).attr('font-family', 'Satoshi, sans-serif').attr('fill', '#4A5568')
+        .attr('font-size', 11).attr('font-family', 'Bree Serif, serif').attr('fill', '#4A5568')
         .text(s.label);
     });
   }

@@ -9,22 +9,22 @@ RAW  = BASE / "data" / "raw"
 OUT  = BASE / "data" / "processed"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Step 1: Load ACS data
+# Load ACS data
 df = pd.read_csv(RAW / "acs" / "nhgis0001_ds272_20245_tract.csv", dtype={"GEO_ID": str}, low_memory=False)
 print(f"Rows: {len(df)} | Columns: {len(df.columns)}")
 
-# Step 2: Drop margin of error columns
+# Drop margin of error columns
 moe_cols = [c for c in df.columns if re.compile(r'M\d{3}$').search(c) or c == "NAME_M"]
 df = df.drop(columns=moe_cols)
 print(f"MOE columns dropped: {len(moe_cols)} | Remaining: {len(df.columns)}")
 
-# Step 3: Rename geography columns and extract 11-digit tract GEOID
+# Rename geography columns and extract 11-digit tract GEOID
 df = df.rename(columns={"GEO_ID": "geo_id", "COUNTY": "county", "STATE": "state"})
 df = df.dropna(subset=["geo_id"])
 df["geo_id"] = df["geo_id"].astype(str).str.strip().str[-11:]
 print(f"Rows after geo cleanup: {len(df)}")
 
-# Step 4: Confirm required columns exist
+# Confirm required columns exist
 needed = [
     "AUUEE001", "AUUEE003",
     "AUWME001", "AUWME007", "AUWME008", "AUWME009", "AUWME010", "AUWME011",
@@ -51,13 +51,13 @@ missing = [c for c in needed if c not in df.columns]
 if missing:
     raise SystemExit(f"Missing required columns: {missing}")
 
-# Step 4b: Replace NHGIS suppression codes with NaN
+# Replace NHGIS suppression codes with NaN
 NHGIS_MISSING = [-666666666, -999999999, -888888888]
 for c in needed:
     df[c] = pd.to_numeric(df[c], errors="coerce").replace(NHGIS_MISSING, np.nan)
 df = df.copy()
 
-# Step 5: Compute derived variables
+# Compute derived variables
 def safe_pct(numer, denom):
     numer = pd.to_numeric(numer, errors="coerce")
     denom = pd.to_numeric(denom, errors="coerce")
@@ -132,7 +132,7 @@ df["renter_population"] = pd.to_numeric(df["AUURE003"], errors="coerce").astype(
 pre1980_num = pd.to_numeric(df[["AUVOE007","AUVOE008","AUVOE009","AUVOE010","AUVOE011"]].stack(), errors="coerce").unstack().sum(axis=1)
 df["pct_housing_pre_1980"] = safe_pct(pre1980_num, df["AUVOE001"])
 
-# Step 5b: Sanity check
+# Sanity check
 pct_cols = [
     "pct_renter","pct_rent_burden_30_plus","pct_rent_burden_50_plus","pct_poverty_under_100",
     "pct_overcrowded_renter","pct_elderly_65_plus","pct_children_under_18",
@@ -146,7 +146,7 @@ for c in pct_cols:
         print(f"  {c}: {bad} tracts")
 print("  Done.")
 
-# Step 6: Export — NYC only
+# Export — NYC only
 out_cols = [c for c in ["geo_id", "county", "state"] if c in df.columns] + [
     "has_occupied_units",
     "pct_renter", "pct_rent_burden_30_plus", "pct_rent_burden_50_plus",
@@ -167,7 +167,7 @@ df_nyc.to_csv(OUT / "nyc_tract_indicators_v2.csv", index=False)
 df_nyc.to_json(OUT / "nyc_tract_indicators_v2.json", orient="records", indent=2)
 print(f"\nNY state rows: {len(df_out)} | NYC rows: {len(df_nyc)}")
 
-# Step 7: Attach geometry and export GeoJSON
+# Attach geometry and export GeoJSON
 gdf = gpd.read_file(str(RAW / "shapefile" / "tl_2024_36_tract" / "tl_2024_36_tract.shp"))
 NYC_FIPS = {"005", "047", "061", "081", "085"}
 gdf_nyc = gdf[gdf["COUNTYFP"].isin(NYC_FIPS)].copy().to_crs("EPSG:4326")

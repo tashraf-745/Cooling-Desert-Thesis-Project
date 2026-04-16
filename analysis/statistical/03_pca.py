@@ -19,7 +19,7 @@ Decision: 7 of 10 candidates retained for index.
   DROP: pct_elderly_65_plus (use in cross-tabulations instead)
 
 Run from project root:
-  python analysis/03_statistical/03_pca.py
+  python analysis/statistical/03_pca.py
 """
 
 import json

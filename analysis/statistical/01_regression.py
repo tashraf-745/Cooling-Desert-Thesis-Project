@@ -10,7 +10,7 @@ Three nested models:
   Model 3 — full model + borough fixed effects
 
 Run from project root:
-  python analysis/03_statistical/01_regression.py
+  python analysis/statistical/01_regression.py
 """
 
 import json

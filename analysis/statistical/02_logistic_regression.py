@@ -11,7 +11,7 @@ Method:  Binary logistic regression with robust standard errors
 Output:  Odds ratios, predicted probabilities, AUC-ROC
 
 Run from project root:
-  python analysis/03_statistical/02_logistic_regression.py
+  python analysis/statistical/02_logistic_regression.py
 """
 
 import json

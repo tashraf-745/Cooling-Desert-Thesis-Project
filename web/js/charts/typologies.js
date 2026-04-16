@@ -1,4 +1,4 @@
-// Step 5: Five Typologies — Scrollytelling sticky panel
+// Five Typologies - Scrollytelling sticky panel
 
 (function () {
   'use strict';
@@ -98,7 +98,7 @@
       '<div class="typo-panel-content" id="typo-panel-content"></div>';
   }
 
-  // ── Build sun SVG (white text — dark panel background) ─────
+  // ── Build sun SVG (white text - dark panel background) ─────
   function sunSVG(c) {
     return '<svg class="show-map-sun" width="100" height="100"' +
         ' viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
@@ -113,9 +113,9 @@
       '<line x1="38" y1="14" x2="43" y2="9"   stroke="' + c.color + '" stroke-width="2.5" stroke-linecap="round"/>' +
       '<circle cx="26" cy="26" r="13" fill="' + c.color + '" fill-opacity="0.22" stroke="' + c.color + '" stroke-width="1.5"/>' +
       '<text x="26" y="21.5" text-anchor="middle" dominant-baseline="middle"' +
-        ' font-size="4.2" font-family="Satoshi, sans-serif" font-weight="700" fill="#ffffff">GO TO</text>' +
+        ' font-size="4.2" font-family="Bree Serif, serif" font-weight="700" fill="#ffffff">GO TO</text>' +
       '<text x="26" y="27" text-anchor="middle" dominant-baseline="middle"' +
-        ' font-size="4.2" font-family="Satoshi, sans-serif" font-weight="700" fill="#ffffff">MAP</text>' +
+        ' font-size="4.2" font-family="Bree Serif, serif" font-weight="700" fill="#ffffff">MAP</text>' +
       '<polyline points="23,34 26,29.5 29,34" stroke="#ffffff" stroke-width="1.8"' +
         ' fill="none" stroke-linecap="round" stroke-linejoin="round"/>' +
     '</svg>';
