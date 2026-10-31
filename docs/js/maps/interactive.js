@@ -149,9 +149,8 @@
   const map = L.map('interactive-map', { zoomControl: true });
   map.fitBounds([[40.49, -74.27], [40.93, -73.68]], { animate: false, padding: [5, 5] });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png?key=cb1_4yuf_1_b2aff562ce13bd9c51c6f793', {
     attribution: '&copy; <a href="https://carto.com/attributions">CartoDB</a>',
-    subdomains: 'abcd',
     maxZoom: 19
   }).addTo(map);
 
