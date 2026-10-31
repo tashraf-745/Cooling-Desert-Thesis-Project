@@ -124,9 +124,9 @@
     const map = L.map('lisa-map', { scrollWheelZoom: false, zoomControl: true })
       .setView([40.72, -73.97], 10);
 
-    L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png?key=cb1_4yuf_1_b2aff562ce13bd9c51c6f793', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png?key=cb1_4yuf_1_b2aff562ce13bd9c51c6f793', {
       attribution: '&copy; <a href="https://carto.com/attributions">CartoDB</a>',
-      maxZoom: 19
+      subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
 
     // Borough-level context for HH clusters
